@@ -4,6 +4,7 @@ Rogue-Like-Game
 ## Projektauftraggeber
 Professor Hammer, Professor Aberger
 <hr>
+
 ## Projekthintergrund/ Motivation für das Projekt
 Unser Team hat sich dazu entschieden, ein Spiel zu erstellen, wo wir uns, in unserer Kreativität, frei entfalten können.
 Auch möchten wir etwas erschaffen, was unseren Nutzern Spaß macht und ihnen eine Möglichkeit bietet Stress
