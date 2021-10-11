@@ -29,5 +29,14 @@ Protagonist, der Rache gegen die Götter ausüben möchte.
 
 ## Programmieranteils
 70% Programmieren mit C# in Unity und 30% Graphisches Design mit Aseprite
+<hr>
 
 ## Projektorganisation:
+<b>Projektleiter:</b> Danijel Balog 
+- Tel: 069911066710 
+- E-Mail: balograduldanijel@gmail.com
+
+<b>Team:</b>
+- Sandin Habibovic
+- Kevin Jahn
+- lan Dworzak 
