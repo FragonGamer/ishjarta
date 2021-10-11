@@ -14,7 +14,9 @@ werden. Jeder Run endet entweder durch den Tod des Protagonisten oder durch Schw
 Umstände.
 Unser Rogue Like soll durch die nordisch/germanische Mythologie inspiriert sein, mit einem Wikinger namens Ira als
 Protagonist, der Rache gegen die Götter ausüben möchte. 
+
 <hr>
+
 ## Projektziele mit Meilensteinen
 - Konzipierung
 - Storyline schreiben
@@ -22,8 +24,10 @@ Protagonist, der Rache gegen die Götter ausüben möchte.
 - Spiel mit allen gewünschten
 - Features/fertiges Design
 - Finalisierung des Spieles 
+
 <hr>
-## Programmieranteil
+
+## Programmieranteils
 70% Programmieren mit C# in Unity und 30% Graphisches Design mit Aseprite
 
 ## Projektorganisation:
