@@ -15,7 +15,6 @@ werden. Jeder Run endet entweder durch den Tod des Protagonisten oder durch Schw
 Umstände.
 Unser Rogue Like soll durch die nordisch/germanische Mythologie inspiriert sein, mit einem Wikinger namens Ira als
 Protagonist, der Rache gegen die Götter ausüben möchte. 
-
 <hr>
 
 ## Projektziele mit Meilensteinen
@@ -41,3 +40,17 @@ Protagonist, der Rache gegen die Götter ausüben möchte.
 - Sandin Habibovic
 - Kevin Jahn
 - lan Dworzak 
+<hr>
+
+## Sinn, Zweck und USP
+Unterhaltung des Nutzers.
+
+## Kunde, Beteiligte
+Wir machen dies für Menschen, die sich für
+Unterhaltungsmedien interessieren.
+
+## Endergebnis
+Ein visuell-ansprechendes und spannendes Spiel, welches dem Spieler einen guten Grundgibt, um wieder zum Spiel zurückzukehren.
+
+## Kriterien
+Das Ergebnis kann an dem Spielspaß, am Spieldesign und der visuellen Attraktivität gemessen werden. 
