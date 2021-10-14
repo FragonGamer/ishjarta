@@ -42,15 +42,18 @@ Protagonist, der Rache gegen die Götter ausüben möchte.
 - lan Dworzak 
 <hr>
 
-## Sinn, Zweck und USP
-Unterhaltung des Nutzers.
+| Sinn, Zweck und USP |
+| ----------|
+|  Unterhaltung des Nutzers.|
 
-## Kunde, Beteiligte
-Wir machen dies für Menschen, die sich für
-Unterhaltungsmedien interessieren.
+| Kunde, Beteiligte |
+| ---------- |
+| Wir machen dies für Menschen, die sich für Unterhaltungsmedien interessieren. |
 
-## Endergebnis
-Ein visuell-ansprechendes und spannendes Spiel, welches dem Spieler einen guten Grundgibt, um wieder zum Spiel zurückzukehren.
+| Endergebnis |
+| ---------- |
+| Ein visuell-ansprechendes und spannendes Spiel, welches dem Spieler einen guten Grundgibt, um wieder zum Spiel zurückzukehren. |
 
-## Kriterien
-Das Ergebnis kann an dem Spielspaß, am Spieldesign und der visuellen Attraktivität gemessen werden. 
+| EnderKriteriengebnis |
+| ---------- |
+| Das Ergebnis kann an dem Spielspaß, am Spieldesign  |
