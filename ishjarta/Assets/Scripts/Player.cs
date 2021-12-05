@@ -6,7 +6,6 @@ public class Player : Entity
 {
     [SerializeField] int rangeModifier;
     [SerializeField] int luck;
-    [SerializeField] int money;
     [SerializeField] int maxResistance;
     [SerializeField] int armor;
     public Inventory inventory;
@@ -14,6 +13,7 @@ public class Player : Entity
     public override void Attack(Vector2 vector)
     {
         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), range);
+
         if (hit)
         {
             if (hit.collider.tag == "Enemy")

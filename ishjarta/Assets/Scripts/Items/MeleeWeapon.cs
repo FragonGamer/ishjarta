@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedWeapon : Weapon
+[CreateAssetMenu]
+public class MeleeWeapon : Weapon
 {
-   
+    
 }

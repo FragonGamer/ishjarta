@@ -13,7 +13,6 @@ public class Enemy : Entity
 
     protected override void Die()
     {
-        Debug.Log(name + " has died");
-        //throw new System.NotImplementedException();
+        GameObject.Destroy(gameObject);
     }
 }
