@@ -11,8 +11,18 @@ public class Player : Entity
     [SerializeField] int armor;
     public Inventory inventory;
 
-    private void FixedUpdate()
+    public override void Attack(Vector2 vector)
     {
-        Debug.Log(inventory.GetPassiveItems().Count);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), range);
+        if (hit)
+        {
+            if (hit.collider.tag == "Enemy")
+                hit.collider.GetComponent<Entity>().ReceiveDamage((int)(this.baseDamage * damageModifier));
+        }
+    }
+
+    protected override void Die()
+    {
+        throw new System.NotImplementedException();
     }
 }

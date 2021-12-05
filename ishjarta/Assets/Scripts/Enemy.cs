@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    private int dropRate;
+    [SerializeField] int dropRate;
 
+    public override void Attack(Vector2 vector)
+    {
+        throw new System.NotImplementedException();
+    }
 
-    //Hund(10-50)
-    //Katze(10-50)
-    //Schwert(100-101)
-
-    //Drop Chance = 30
-    //Hund(10-50)
-    //Katze(10-50)
-
-    //random
-
-    //Katze
+    protected override void Die()
+    {
+        Debug.Log(name + " has died");
+        //throw new System.NotImplementedException();
+    }
 }

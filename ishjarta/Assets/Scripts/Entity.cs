@@ -5,19 +5,36 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     //Health
-    private int currentHealth;
-    private int maxHealth;
-    private int baseHealth;
-    private float healthModifier;
+    [SerializeField] protected int currentHealth;
+    [SerializeField] protected int maxHealth;
+    [SerializeField] protected int baseHealth;
+    [SerializeField] protected float healthModifier;
     //Armor
-    private int resistance;
+    [SerializeField] protected int resistance;
     //Movement
-    private int movementSpeed;
+    [SerializeField] protected int movementSpeed;
     //Damage
-    private int baseDamage;
-    private float damageModifier;
+    [SerializeField] protected int baseDamage;
+    [SerializeField] protected float damageModifier;
     //AttackRate
-    private int attackRate;
+    [SerializeField] protected int attackRate;
     //Range
-    private int range;
+    [SerializeField] protected int range;
+
+    protected abstract void Die();
+
+    public void ReceiveDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        Debug.Log(name + " is being attacked");
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+    }
+
+    public abstract void Attack(Vector2 vector);
 }
