@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour , Entity
+public class Player : Entity
 {
     private int rangeModifier;
     private int luck;

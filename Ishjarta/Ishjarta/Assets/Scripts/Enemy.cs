@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour , Entity
+public class Enemy : Entity
 {
     private int dropRate;
 
