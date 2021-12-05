@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class UsableItem : Item
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum UItemtype
     {
-        
+        key,
+        coin,
+        bomb
     }
+    public UsableItem.UItemtype type;
+    public int Amount { get; set; }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
