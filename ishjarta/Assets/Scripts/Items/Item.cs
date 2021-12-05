@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Item : ScriptableObject
 {
     public string ItemName;
-    [SerializeField] Sprite Icon;
+    [SerializeField] protected Sprite Icon;
     protected int dropChanceMax,dropChanceMin;
 
 }
