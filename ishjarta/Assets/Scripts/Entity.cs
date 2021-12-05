@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     //Health
-    private int health;
+    private int currentHealth;
+    private int maxHealth;
+    private int baseHealth;
     private float healthModifier;
     //Armor
     private int resistance;
