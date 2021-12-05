@@ -9,4 +9,10 @@ public class Player : Entity
     private int money;
     private int maxResistance;
     private int armor;
+    private Inventory inventory;
+
+    public void Awake()
+    {
+        inventory = new Inventory();
+    }
 }
