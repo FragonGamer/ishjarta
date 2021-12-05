@@ -2,54 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory
-{
-    private MeleeWeapon MeleeWeapon { get; set; }
-    private RangedWeapon RangedWeapon { get; set; }
-    private List<PassiveItem> PassiveItems { get; set; }
-    private ActiveItem ActiveItem { get; set; }
-    private UsableItem Coins { get; set; }
-    private UsableItem Bombs { get; set; }
-    private UsableItem Keys { get; set; }
+public class Inventory :MonoBehaviour{ 
+    [SerializeField] MeleeWeapon MeleeWeapon { get; set; }
+    [SerializeField] RangedWeapon RangedWeapon { get; set; }
+    [SerializeField] List<PassiveItem> PassiveItems { get; set; }
+    [SerializeField] ActiveItem ActiveItem { get; set; }
+    [SerializeField] UsableItem Coins { get; set; }
+    [SerializeField] UsableItem Bombs { get; set; }
+    [SerializeField] UsableItem Keys { get; set; }
 
-
-    public Inventory()
+    private void Awake()
     {
+        PassiveItems = new List<PassiveItem>();
         MeleeWeapon = null;
         RangedWeapon = null;
-        PassiveItems = new List<PassiveItem>();
         ActiveItem = null;
-        Coins = new UsableItem { Amount = 0, type = UsableItem.UItemtype.coin, MaxAmount = 999};
-        Bombs = new UsableItem { Amount = 0, type = UsableItem.UItemtype.bomb, MaxAmount = 99};
-        Keys = new UsableItem { Amount = 0, type = UsableItem.UItemtype.key, MaxAmount = 10};
-        
+        Coins = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Keys = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Coins.init(0, UsableItem.UItemtype.coin,999);
+        Bombs.init( 0, UsableItem.UItemtype.bomb,99 );
+        Keys.init(0, UsableItem.UItemtype.key, 10);
     }
-
     public bool AddItem(Item item)
     {
         bool result;
-        if (item = null)
-        {
-            return false;
-        }
 
         if (item.GetType() == typeof(UsableItem))
         {
+            Debug.Log("Is Usable Item");
             AddUsableItem((UsableItem)item);
             result = true; 
         }
         else if (item.GetType() == typeof(PassiveItem))
         {
+            Debug.Log("Is Passive Item");
             AddPassiveItem((PassiveItem)item);
             result = true;
         }
         else if (item.GetType() == typeof(ActiveItem))
         {
+            Debug.Log("Is Active Item");
             AddActiveItem((ActiveItem)item);
             result = true;
         }
         else
         {
+            Debug.Log("Is None");
             result = false;
         }
         return result;
@@ -110,6 +109,11 @@ public class Inventory
     public void AddPassiveItem(PassiveItem item)
     {
         PassiveItems.Add(item);
+    }
+
+    public List<PassiveItem> GetPassiveItems()
+    {
+        return PassiveItems;
     }
     public void DropItem(Item item)
     {

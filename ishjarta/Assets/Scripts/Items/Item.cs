@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : ScriptableObject
 {
-    private int dropChanceMax,dropChanceMin;
+    public string ItemName;
+    [SerializeField] Sprite Icon;
+    protected int dropChanceMax,dropChanceMin;
+
 }

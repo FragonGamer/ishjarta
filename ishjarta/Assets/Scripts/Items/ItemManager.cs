@@ -8,27 +8,40 @@ public class ItemManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] KeyCode itemPickupKeycode = KeyCode.E;
 
-    private bool isInRange;
+    public bool isInRange;
+
+    private void Awake()
+    {
+        player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
+    }
 
     private void Update()
     {
         if (isInRange && Input.GetKeyDown(itemPickupKeycode))
         {
+            Debug.Log("is in range");
             if (player.inventory.AddItem(item) == true)
             {
-                GameObject.Destroy(this);
+                Debug.Log("Pick ups item");
+                GameObject.Destroy(gameObject);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        isInRange = true;    
+        if (other.tag == "Player")
+        {
+            isInRange = true;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        isInRange = false;
+        if (other.tag == "Player")
+        {
+            isInRange = true;
+        }
     }
 
 
