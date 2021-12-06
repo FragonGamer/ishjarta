@@ -43,7 +43,7 @@ public class ItemManager : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            isInRange = true;
+            isInRange = false;
         }
     }
 
