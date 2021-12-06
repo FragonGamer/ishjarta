@@ -15,6 +15,9 @@ public class ItemManager : MonoBehaviour
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
     }
 
+    /// <summary>
+    /// Picks up Item into Inventory if player is in range
+    /// </summary>
     private void Update()
     {
         if (isInRange && Input.GetKeyDown(itemPickupKeycode))
