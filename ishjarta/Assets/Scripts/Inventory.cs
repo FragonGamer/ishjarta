@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -156,5 +157,74 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void DropItem(Item item)
     {
+        if (item.GetType() == typeof(PassiveItem))
+        {
+            PassiveItems.Remove((PassiveItem)item);
+        }
+        if(item.GetType() == typeof(UsableItem))
+        {
+            DropUsableItem((UsableItem)item);
+        }
+        if (item.GetType() == typeof(MeleeWeapon))
+        {
+            SpawnItem(item);
+            MeleeWeapon = null;
+            
+        }
+        if (item.GetType() == typeof(RangedWeapon))
+        {
+            SpawnItem(item);
+            RangedWeapon = null;
+        }
+        if (item.GetType() == typeof(ActiveItem))
+        {
+            SpawnItem(item);
+            ActiveItem = null;
+        }
     }
+    
+    private void SpawnItem(Item item)
+    {
+        Type type = item.GetType();
+        if (type == typeof(MeleeWeapon))
+        {
+            Instantiate(gameObject.GetComponent<Inventory>().MeleeWeapon);
+        }
+        else if (type == typeof(RangedWeapon))
+                {
+            Instantiate(gameObject.GetComponent<Inventory>().RangedWeapon);
+        }
+        else if (type == typeof(ActiveItem))
+                    {
+            Instantiate(gameObject.GetComponent<Inventory>().ActiveItem);
+        }
+        
+    }
+    private void DropUsableItem(UsableItem item)
+    {
+        switch (item.type){
+
+            case UsableItem.UItemtype.bomb:
+                if(Bombs.Amount - item.Amount >= 0)
+                {
+                    Bombs.Amount -= item.Amount;
+                }
+                break;
+            case UsableItem.UItemtype.key:
+                if (Keys.Amount - item.Amount >= 0)
+                {
+                    Keys.Amount -= item.Amount;
+                }
+                break;
+            case UsableItem.UItemtype.coin:
+                if (Coins.Amount - item.Amount >= 0)
+                {
+                    Coins.Amount -= item.Amount;
+                }
+                break;
+        }
+            
+    }
+
+
 }
