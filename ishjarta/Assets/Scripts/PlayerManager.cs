@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
