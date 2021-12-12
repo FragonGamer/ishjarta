@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    [SerializeField] Animator animator;
     [SerializeField] int dropRate, spottingRange;
     [SerializeField] bool hasSpottedPlayer, isInRange;
     public override void Attack(Vector2 vector)
@@ -13,6 +14,6 @@ public class Enemy : Entity
 
     protected override void Die()
     {
-        GameObject.Destroy(gameObject);
+        animator.SetBool("isDead", true);
     }
 }
