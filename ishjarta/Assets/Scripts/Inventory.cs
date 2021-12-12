@@ -61,8 +61,6 @@ public class Inventory :MonoBehaviour{
             Debug.Log("Is None");
             result = false;
         }
-
-        Debug.Log(PassiveItems.Count);
         return result;
     }
 
