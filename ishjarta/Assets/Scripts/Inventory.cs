@@ -135,7 +135,7 @@ public class Inventory :MonoBehaviour{
     public void AddActiveItem(ActiveItem item)
     {
         if(ActiveItem != null)
-            DropItem(item);
+            DropItem(this.ActiveItem);
         this.ActiveItem = item;
 
     }

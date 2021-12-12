@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 03045d4f01af3ef44aa62a856f37c9f3, type: 2}
+  item: {fileID: 11400000, guid: 69879b903fc90504099db06999853679, type: 2}
   player: {fileID: 0}
   itemPickupKeycode: 101
   isInRange: 0

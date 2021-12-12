@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277a249abbffa9449bcff75725d495d6, type: 3}
-  m_Name: Bracelet
+  m_Script: {fileID: 11500000, guid: 55569badcf4f2e347b4d194586913851, type: 3}
+  m_Name: Braclet
   m_EditorClassIdentifier: 
-  ItemName: Bracelet
+  ItemName: Braclet
   Icon: {fileID: 21300000, guid: 3e2d000ff7a17cc4eb1fdb56d9735bbf, type: 3}
