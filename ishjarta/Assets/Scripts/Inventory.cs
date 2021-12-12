@@ -12,6 +12,11 @@ public class Inventory :MonoBehaviour{
     [SerializeField] UsableItem Bombs { get; set; }
     [SerializeField] UsableItem Keys { get; set; }
 
+    //Temp method
+    public ActiveItem GetActiveItem()
+    {
+        return ActiveItem;
+    }
     /// <summary>
     /// Our Constructor
     /// </summary>
@@ -129,8 +134,10 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void AddActiveItem(ActiveItem item)
     {
+        if(ActiveItem != null)
+            DropItem(item);
         this.ActiveItem = item;
-        DropItem(item);
+
     }
     /// <summary>
     /// Adds passive Item
@@ -155,6 +162,7 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void DropItem(Item item)
     {
+        Debug.Log(item.GetType());
         if (item.GetType() == typeof(PassiveItem))
         {
             PassiveItems.Remove((PassiveItem)item);
@@ -183,6 +191,7 @@ public class Inventory :MonoBehaviour{
     
     private void SpawnItem(Item item)
     {
+        Vector2 playerPos = gameObject.transform.position;
         Type type = item.GetType();
         if (type == typeof(MeleeWeapon))
         {
@@ -193,8 +202,9 @@ public class Inventory :MonoBehaviour{
             Instantiate(gameObject.GetComponent<Inventory>().RangedWeapon);
         }
         else if (type == typeof(ActiveItem))
-                    {
-            Instantiate(gameObject.GetComponent<Inventory>().ActiveItem);
+        {
+            GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
+            Instantiate(activeItem, playerPos,gameObject.transform.rotation);
         }
         
     }
