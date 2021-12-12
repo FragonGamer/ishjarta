@@ -10,17 +10,20 @@ public class PlayerManager : MonoBehaviour
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(Input.GetMouseButtonDown(0))
         {
             player.Attack(Input.mousePosition);
         }
-        else if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("Dropped Item");
-            ActiveItem activeItem = player.inventory.GetActiveItem();
-            player.inventory.DropItem(activeItem);
+            if (player.inventory.GetActiveItem() != null)
+            {
+                ActiveItem activeItem = player.inventory.GetActiveItem();
+                player.inventory.DropItem(activeItem);
+            }
         }
     }
 

@@ -45,27 +45,24 @@ public class Inventory :MonoBehaviour{
 
         if (item.GetType() == typeof(UsableItem))
         {
-            Debug.Log("Is Usable Item");
             AddUsableItem((UsableItem)item);
             result = true; 
         }
         else if (item.GetType() == typeof(PassiveItem))
         {
-            Debug.Log("Is Passive Item");
             AddPassiveItem((PassiveItem)item);
             result = true;
         }
         else if (item.GetType() == typeof(ActiveItem))
         {
-            Debug.Log("Is Active Item");
             AddActiveItem((ActiveItem)item);
             result = true;
         }
         else
         {
-            Debug.Log("Is None");
             result = false;
         }
+
         return result;
     }
 
@@ -167,22 +164,22 @@ public class Inventory :MonoBehaviour{
         {
             PassiveItems.Remove((PassiveItem)item);
         }
-        if(item.GetType() == typeof(UsableItem))
+        else if(item.GetType() == typeof(UsableItem))
         {
             DropUsableItem((UsableItem)item);
         }
-        if (item.GetType() == typeof(MeleeWeapon))
+        else if (item.GetType() == typeof(MeleeWeapon))
         {
             SpawnItem(item);
             MeleeWeapon = null;
             
         }
-        if (item.GetType() == typeof(RangedWeapon))
+        else if (item.GetType() == typeof(RangedWeapon))
         {
             SpawnItem(item);
             RangedWeapon = null;
         }
-        if (item.GetType() == typeof(ActiveItem))
+        else if (item.GetType() == typeof(ActiveItem))
         {
             SpawnItem(item);
             ActiveItem = null;
@@ -204,7 +201,7 @@ public class Inventory :MonoBehaviour{
         else if (type == typeof(ActiveItem))
         {
             GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
-            Instantiate(activeItem, playerPos,gameObject.transform.rotation);
+            Instantiate(activeItem, playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
         }
         
     }

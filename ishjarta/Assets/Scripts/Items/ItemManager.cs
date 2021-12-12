@@ -22,7 +22,6 @@ public class ItemManager : MonoBehaviour
     {
         if (isInRange && Input.GetKeyDown(itemPickupKeycode))
         {
-            Debug.Log("is in range");
             if (player.inventory.AddItem(item) == true)
             {
                 Debug.Log("Pick ups item");
