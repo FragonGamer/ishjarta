@@ -270,9 +270,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1584511725759553138, guid: c3178be288706e1498adacd3d98f85f4, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1584511725759553139, guid: c3178be288706e1498adacd3d98f85f4, type: 3}
       propertyPath: m_Name
       value: Test_Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584511725759553140, guid: c3178be288706e1498adacd3d98f85f4, type: 3}
+      propertyPath: hasSpottedPlayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1584511725759553142, guid: c3178be288706e1498adacd3d98f85f4, type: 3}
       propertyPath: m_RootOrder
@@ -345,6 +353,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1892742593516829476, guid: 52e269885b78b2a478938fcd0eba2d45, type: 3}
+      propertyPath: movementSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6607695795067367189, guid: 52e269885b78b2a478938fcd0eba2d45, type: 3}
       propertyPath: m_Name
       value: Player
