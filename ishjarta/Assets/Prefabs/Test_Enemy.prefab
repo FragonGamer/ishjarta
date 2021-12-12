@@ -108,6 +108,9 @@ MonoBehaviour:
   attackRate: 1
   range: 4
   dropRate: 1
+  spottingRange: 10
+  hasSpottedPlayer: 0
+  isInRange: 0
 --- !u!58 &1584511725759553141
 CircleCollider2D:
   m_ObjectHideFlags: 0

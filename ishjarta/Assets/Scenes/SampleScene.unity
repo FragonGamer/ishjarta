@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1584511725759553140, guid: c3178be288706e1498adacd3d98f85f4, type: 3}
+      propertyPath: hasSpottedPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1584511725759553142, guid: c3178be288706e1498adacd3d98f85f4, type: 3}
       propertyPath: m_RootOrder
       value: 4
