@@ -16,6 +16,12 @@ public class PlayerManager : MonoBehaviour
         {
             player.Attack(Input.mousePosition);
         }
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("Dropped Item");
+            ActiveItem activeItem = player.inventory.GetActiveItem();
+            player.inventory.DropItem(activeItem);
+        }
     }
 
 }

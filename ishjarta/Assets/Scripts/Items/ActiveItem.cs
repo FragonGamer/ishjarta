@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ActiveItem : Item
 {
-    
+
 }

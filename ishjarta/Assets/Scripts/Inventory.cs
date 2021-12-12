@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class Inventory :MonoBehaviour{
     [SerializeField] UsableItem Bombs { get; set; }
     [SerializeField] UsableItem Keys { get; set; }
 
+    //Temp method
+    public ActiveItem GetActiveItem()
+    {
+        return ActiveItem;
+    }
     /// <summary>
     /// Our Constructor
     /// </summary>
@@ -128,8 +134,10 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void AddActiveItem(ActiveItem item)
     {
+        if(ActiveItem != null)
+            DropItem(this.ActiveItem);
         this.ActiveItem = item;
-        DropItem(item);
+
     }
     /// <summary>
     /// Adds passive Item
@@ -154,5 +162,77 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void DropItem(Item item)
     {
+        Debug.Log(item.GetType());
+        if (item.GetType() == typeof(PassiveItem))
+        {
+            PassiveItems.Remove((PassiveItem)item);
+        }
+        if(item.GetType() == typeof(UsableItem))
+        {
+            DropUsableItem((UsableItem)item);
+        }
+        if (item.GetType() == typeof(MeleeWeapon))
+        {
+            SpawnItem(item);
+            MeleeWeapon = null;
+            
+        }
+        if (item.GetType() == typeof(RangedWeapon))
+        {
+            SpawnItem(item);
+            RangedWeapon = null;
+        }
+        if (item.GetType() == typeof(ActiveItem))
+        {
+            SpawnItem(item);
+            ActiveItem = null;
+        }
     }
+    
+    private void SpawnItem(Item item)
+    {
+        Vector2 playerPos = gameObject.transform.position;
+        Type type = item.GetType();
+        if (type == typeof(MeleeWeapon))
+        {
+            Instantiate(gameObject.GetComponent<Inventory>().MeleeWeapon);
+        }
+        else if (type == typeof(RangedWeapon))
+                {
+            Instantiate(gameObject.GetComponent<Inventory>().RangedWeapon);
+        }
+        else if (type == typeof(ActiveItem))
+        {
+            GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
+            Instantiate(activeItem, playerPos,gameObject.transform.rotation);
+        }
+        
+    }
+    private void DropUsableItem(UsableItem item)
+    {
+        switch (item.type){
+
+            case UsableItem.UItemtype.bomb:
+                if(Bombs.Amount - item.Amount >= 0)
+                {
+                    Bombs.Amount -= item.Amount;
+                }
+                break;
+            case UsableItem.UItemtype.key:
+                if (Keys.Amount - item.Amount >= 0)
+                {
+                    Keys.Amount -= item.Amount;
+                }
+                break;
+            case UsableItem.UItemtype.coin:
+                if (Coins.Amount - item.Amount >= 0)
+                {
+                    Coins.Amount -= item.Amount;
+                }
+                break;
+        }
+            
+    }
+
+
 }
