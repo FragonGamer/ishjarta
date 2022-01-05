@@ -9,6 +9,8 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] protected int maxHealth;
     [SerializeField] protected int baseHealth;
     [SerializeField] protected float healthModifier;
+    
+    
     //Armor
     [SerializeField] protected int resistance;
     //Movement
@@ -20,11 +22,13 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] protected int attackRate;
     //Range
     [SerializeField] protected int range;
-
+    
     protected abstract void Die();
+    
 
     public void ReceiveDamage(int damage)
     {
+        
         currentHealth -= damage;
 
         Debug.Log(name + " is being attacked");
@@ -37,4 +41,6 @@ public abstract class Entity : MonoBehaviour
     }
 
     public abstract void Attack(Vector2 vector);
+    
+    
 }

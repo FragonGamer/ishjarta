@@ -59,10 +59,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -101,6 +103,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -412,9 +415,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      SlimeDeathFinal_8: -4180685549831334107
+      SlimeDeathFinal_12: -8314056786740612807
+      SlimeDeathFinal_11: 7176428315679572548
+      SlimeDeathFinal_5: -8259986147401340061
+      SlimeDeathFinal_1: -4684088671400839920
+      SlimeDeathFinal_4: -3464191658462298884
+      SlimeDeathFinal_10: 1005598215576811495
+      SlimeDeathFinal: 3986777191281231678
+      SlimeDeathFinal_2: 1575126740045566249
+      SlimeDeathFinal_9: -3611758889404836684
+      SlimeDeathFinal_7: 8295418104765787087
+      SlimeDeathFinal_6: -3676782571941974536
+      SlimeDeathFinal_3: -2830439248501267139
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

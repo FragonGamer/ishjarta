@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Player : Entity
     [SerializeField] int maxResistance;
     [SerializeField] int armor;
     public Inventory inventory;
+
+   
 
     public override void Attack(Vector2 vector)
     {

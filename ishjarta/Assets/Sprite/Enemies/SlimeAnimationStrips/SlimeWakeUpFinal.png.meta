@@ -56,10 +56,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -98,6 +100,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -388,9 +391,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      SlimeWakeUpFinal_5: -1728413508727021034
+      SlimeWakeUpFinal_11: 1103196552487308587
+      SlimeWakeUpFinal_10: -7722697049060963205
+      SlimeWakeUpFinal_9: 6865429564719970550
+      SlimeWakeUpFinal_6: -6917426719569171170
+      SlimeWakeUpFinal_4: 2528166165602587007
+      SlimeWakeUpFinal_7: 4837507032411297600
+      SlimeWakeUpFinal_8: -8542958900750555808
+      SlimeWakeUpFinal_2: -6787850774771372747
+      SlimeWakeUpFinal_3: -66700157180164871
+      SlimeWakeUpFinal_0: -3705893170577119550
+      SlimeWakeUpFinal_1: -6101302063658104775
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
