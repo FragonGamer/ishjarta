@@ -9,7 +9,8 @@ public class UsableItem : Item
     {
         key,
         coin,
-        bomb
+        bomb,
+        armor
     }
     public UsableItem.UItemtype type;
     public int Amount { get; set; }

@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour
     
     
     //Armor
-    [SerializeField] protected int resistance;
+    protected float resistance;
     //Movement
     [SerializeField] protected int movementSpeed;
     //Damage
@@ -28,7 +28,7 @@ public abstract class Entity : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
-        
+        damage = (damage - ((int)( damage * resistance))) ;
         currentHealth -= damage;
 
         Debug.Log(name + " is being attacked");

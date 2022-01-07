@@ -7,8 +7,21 @@ public class Player : Entity
 {
     [SerializeField] int rangeModifier;
     [SerializeField] int luck;
-    [SerializeField] int maxResistance;
-    [SerializeField] int armor;
+    //[SerializeField] int maxResistance;
+
+    public void CalcResistence()
+    {
+
+            int armorAmount = inventory.GetArmor().Amount;
+            resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+        
+    }
+
+    public float GetResistence()
+    {
+        return resistance;
+    }
+    
     public Inventory inventory;
 
    

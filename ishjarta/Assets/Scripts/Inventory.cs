@@ -11,6 +11,12 @@ public class Inventory :MonoBehaviour{
     [SerializeField] UsableItem Coins { get; set; }
     [SerializeField] UsableItem Bombs { get; set; }
     [SerializeField] UsableItem Keys { get; set; }
+    [SerializeField] UsableItem Armor { get; set; }
+
+    public UsableItem GetArmor()
+    {
+        return this.Armor;
+    }
 
     //Temp method
     public ActiveItem GetActiveItem()
@@ -29,9 +35,11 @@ public class Inventory :MonoBehaviour{
         Coins = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Keys = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Armor = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Coins.init(0, UsableItem.UItemtype.coin,999);
         Bombs.init( 0, UsableItem.UItemtype.bomb,99 );
         Keys.init(0, UsableItem.UItemtype.key, 10);
+        Armor.init(0, UsableItem.UItemtype.armor, 999);
     }
 
     /// <summary>
@@ -62,12 +70,12 @@ public class Inventory :MonoBehaviour{
         {
             result = false;
         }
-
+        PrintInventory();
         return result;
     }
 
     /// <summary>
-    /// Checks Usable Item Type and uses that to increase the amoint
+    /// Checks Usable Item Type and uses that to increase the amount
     /// </summary>
     /// <param name="item"></param>
     public void AddUsableItem(UsableItem item)
@@ -95,7 +103,7 @@ public class Inventory :MonoBehaviour{
                 }
                 break;
             case UsableItem.UItemtype.coin:
-                if (this.Coins.Amount <= this.Keys.MaxAmount)
+                if (this.Coins.Amount <= this.Coins.MaxAmount)
                 {
                     if (this.Coins.Amount + itemAmount > this.Coins.MaxAmount)
                     {
@@ -108,7 +116,7 @@ public class Inventory :MonoBehaviour{
                 }
                 break;
             case UsableItem.UItemtype.bomb:
-                if (this.Bombs.Amount <= this.Keys.MaxAmount)
+                if (this.Bombs.Amount <= this.Bombs.MaxAmount)
                 {
                     if (this.Bombs.Amount + itemAmount > this.Bombs.MaxAmount)
                     {
@@ -119,6 +127,21 @@ public class Inventory :MonoBehaviour{
                         this.Bombs.Amount += itemAmount;
                     }
                 }
+                break;
+            case UsableItem.UItemtype.armor:
+                if (this.Armor.Amount <= this.Armor.MaxAmount)
+                {
+                    if (this.Armor.Amount + 1 > this.Armor.MaxAmount)
+                    {
+                        this.Armor.Amount = this.Armor.MaxAmount;
+                    }
+                    else
+                    {
+                        this.Armor.Amount += 1;
+                    }
+                }
+
+                this.gameObject.GetComponent<Player>().CalcResistence();
                 break;
             default:
                 break;
@@ -229,6 +252,12 @@ public class Inventory :MonoBehaviour{
                 break;
         }
             
+    }
+    
+    //Print to log console
+    private void PrintInventory()
+    {
+        Debug.Log($"Armor : {this.Armor.Amount} : {this.gameObject.GetComponent<Player>().GetResistence() * 100}%");
     }
 
 

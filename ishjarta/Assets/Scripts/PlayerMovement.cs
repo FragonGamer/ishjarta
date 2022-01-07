@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); // Time.fixedDeltaTime = time since last method call
     }
 }
