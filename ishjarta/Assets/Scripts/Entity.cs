@@ -24,7 +24,6 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] protected int range;
     
     protected abstract void Die();
-    
 
     public void ReceiveDamage(int damage)
     {

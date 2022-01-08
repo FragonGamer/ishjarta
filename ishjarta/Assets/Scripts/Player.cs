@@ -9,6 +9,12 @@ public class Player : Entity
     [SerializeField] int luck;
     //[SerializeField] int maxResistance;
 
+    public HealthBar hpBar;
+    //void Start()
+    //{
+    //    hpBar.SetMaxHealth(maxHealth);
+    //}
+
     public void CalcResistence()
     {
 
@@ -16,7 +22,7 @@ public class Player : Entity
             resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
         
     }
-
+    
     public float GetResistence()
     {
         return resistance;
@@ -40,5 +46,21 @@ public class Player : Entity
     protected override void Die()
     {
         throw new System.NotImplementedException();
+    }
+
+    new public void ReceiveDamage(int damage)
+    {
+        damage = (damage - ((int)(damage * resistance)));
+        currentHealth -= damage;
+
+        Debug.Log(name + " is being attacked");
+
+        hpBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
     }
 }
