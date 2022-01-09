@@ -349,11 +349,18 @@ public class Inventory :MonoBehaviour{
     ItemState state = ItemState.ready;
 
     public KeyCode activeItemActivationKey;
+    public KeyCode weaponSwitchKey;
 
     void Update()
     {
+        if (Input.GetKeyDown(weaponSwitchKey))
+        {
+            ChangeWeapon();
+            PrintInventory();
+        }
         switch (state)
         {
+            
             case ItemState.ready:
                 if (Input.GetKeyDown(activeItemActivationKey))
                 {
