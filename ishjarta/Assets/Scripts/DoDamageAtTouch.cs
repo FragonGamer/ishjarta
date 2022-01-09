@@ -10,29 +10,40 @@ public class DoDamageAtTouch : MonoBehaviour
     private float time = 0.0f;
 
     private GameObject player;
-
+    private CircleCollider2D circleCollider;
     private Enemy enemyScript;
 
-    private void Start()
+    private void Awake()
     {
+        circleCollider = gameObject.AddComponent<CircleCollider2D>();
+        circleCollider.isTrigger = true;
         enemyScript = gameObject.GetComponent<Enemy>();
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
+    private void Start()
     {
-        time = DamageInterval;
+        Debug.Log(circleCollider.radius);
+        circleCollider.radius = enemyScript.GetRange();
+        Debug.Log(circleCollider.radius);
     }
-
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        enemyScript.isInRange = true;
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("attacking player");
             if (time >= DamageInterval)
             {
                 time = 0.0f;
-                collision.gameObject.GetComponent<Player>().ReceiveDamage(TouchDamage);
+                other.gameObject.GetComponent<Player>().ReceiveDamage(TouchDamage);
             }
             time += Time.deltaTime;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        enemyScript.isInRange = false;
     }
 }

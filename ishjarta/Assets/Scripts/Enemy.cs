@@ -6,14 +6,30 @@ using UnityEngine.AI;
 public class Enemy : Entity
 {
     [SerializeField] Animator animator;
-    [SerializeField] int dropRate, spottingRange;
-    [SerializeField] bool hasSpottedPlayer, isInRange;
-    [SerializeField] Transform target;
-    [SerializeField] NavMeshAgent agent;
+
+    [SerializeField] private int spottingRange = 1;
+    public int dropRate { get; private set; }
+    public bool hasSpottedPlayer { get; set; }
+    public bool isInRange { get; set; }
+    private float time;
+    #region getters and setters
+    public int GetMovementSpeed()
+    {
+        return movementSpeed;
+    }
+    public int GetRange()
+    {
+        return range;
+    }
+    public int GetSpottingRange()
+    {
+        return spottingRange;
+    }
+    #endregion
+
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        target = GetComponent<Transform>();
+        animator = GetComponent<Animator>();
     }
     public override void Attack(Vector2 vector)
     {
@@ -26,9 +42,5 @@ public class Enemy : Entity
         animator.SetBool("isDead", true);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, spottingRange);
-    }
+
 }

@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
@@ -91,7 +89,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        throw new System.NotImplementedException();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     new public void ReceiveDamage(int damage)
