@@ -9,8 +9,8 @@ public class SpawnItem : ActiveItem
 
     public override void Activate(GameObject parent)
     {
-        PlayerMovement movement = parent.GetComponent<PlayerMovement>();
+        var playerPos = parent.transform.position;
 
-        Instantiate(Prefab, movement.movement, Quaternion.identity);
+        Instantiate(Prefab, playerPos, Quaternion.identity);
     }
 }

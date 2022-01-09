@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: 
   Icon: {fileID: 0}
-  cooldownTime: 0
+  cooldownTime: 2000
   activeTime: 0
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 7952905054882304252, guid: 4a81a55cd562f263aa2207b2e82c95d1, type: 3}
