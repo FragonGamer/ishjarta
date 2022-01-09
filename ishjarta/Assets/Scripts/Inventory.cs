@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Inventory :MonoBehaviour{ 
@@ -63,9 +64,14 @@ public class Inventory :MonoBehaviour{
             AddPassiveItem((PassiveItem)item);
             result = true;
         }
-        else if (item.GetType() == typeof(ActiveItem))
+        else if ( item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
             AddActiveItem((ActiveItem)item);
+            result = true;
+        }
+        else if (item.GetType().IsSubclassOf(typeof(Weapon)))
+        {
+            AddWeapon(item);
             result = true;
         }
         else
@@ -74,6 +80,22 @@ public class Inventory :MonoBehaviour{
         }
         PrintInventory();
         return result;
+    }
+
+    private void AddWeapon(Item item)
+    {
+        if (item.GetType() == typeof(MeleeWeapon))
+        {
+            DropItem(MeleeWeapon);
+            MeleeWeapon = (MeleeWeapon)item;
+        }
+        else if (item.GetType() == typeof(RangedWeapon))
+        {
+            DropItem(RangedWeapon);
+            RangedWeapon = (RangedWeapon) item;
+        }
+        Debug.Log(CurrentWeapon.name);
+        CurrentWeapon = (Weapon)item;
     }
 
     /// <summary>
@@ -204,7 +226,7 @@ public class Inventory :MonoBehaviour{
             SpawnItem(item);
             RangedWeapon = null;
         }
-        else if (item.GetType() == typeof(ActiveItem))
+        else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
             SpawnItem(item);
             ActiveItem = null;
@@ -223,7 +245,7 @@ public class Inventory :MonoBehaviour{
                 {
             Instantiate(gameObject.GetComponent<Inventory>().RangedWeapon);
         }
-        else if (type == typeof(ActiveItem))
+        else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
             GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
             Instantiate(activeItem, playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
