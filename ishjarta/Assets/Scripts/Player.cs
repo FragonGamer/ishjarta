@@ -9,10 +9,10 @@ public class Player : Entity
     //[SerializeField] int maxResistance;
 
     public HealthBar hpBar;
-    //void Start()
-    //{
-    //    hpBar.SetMaxHealth(maxHealth);
-    //}
+    void Start()
+    {
+        hpBar.SetMaxHealth(maxHealth);
+    }
 
     public void CalcResistence()
     {
