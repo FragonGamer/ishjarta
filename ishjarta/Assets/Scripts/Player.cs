@@ -31,17 +31,62 @@ public class Player : Entity
     
     public Inventory inventory;
 
-   
+    public int DealingDamage
+    {
+        get
+        {
+            return (int)(this.baseDamage * damageModifier);
+        }
+    }
+
+
 
     public override void Attack(Vector2 vector)
     {
-        RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), range);
-
-        if (hit)
+        if (GetComponent<PolygonCollider2D>() == null)
         {
-            if (hit.collider.tag == "Enemy")
-                hit.collider.GetComponent<Entity>().ReceiveDamage((int)(this.baseDamage * damageModifier));
+            MeleeWeapon w = new();
+            w.Width = 0.1f;
+            w.Range = 1.2f;
+            inventory.CurrentWeapon = w;
+
+            if (inventory.CurrentWeapon is MeleeWeapon melWeapon)
+            {
+                Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(vector) - GetComponent<Rigidbody2D>().position;
+                float angle = Mathf.Atan2(lookdir.y, lookdir.x);
+                if (angle < 0)
+                    angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
+
+                Vector2[] v = new Vector2[]
+                {
+                    RotateVector2(new Vector2 {x = 0, y = 0}, angle),
+                    RotateVector2(new Vector2 {x = melWeapon.Range*(0.7f), y = melWeapon.Width}, angle) ,
+                    RotateVector2(new Vector2 {x = melWeapon.Range, y = 0}, angle) ,
+                    RotateVector2(new Vector2 {x = melWeapon.Range*(0.7f), y =  melWeapon.Width*(-1)}, angle)
+                };
+
+                PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();
+                pc.isTrigger = true;
+                pc.points = v;
+
+                Destroy(pc, 0.2f);
+            }
+            else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
+            {
+
+            }
         }
+
+    }
+
+    private Vector2 RotateVector2(Vector2 vec, float angle)
+    {
+        Vector2 result = new Vector2();
+
+        result.x = (float)(Math.Cos(angle) * vec.x - Math.Sin(angle) * vec.y);
+        result.y = (float)(Math.Sin(angle) * vec.x + Math.Cos(angle) * vec.y);
+
+        return result;
     }
 
     protected override void Die()
