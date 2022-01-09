@@ -6,6 +6,7 @@ using UnityEngine;
 public class Inventory :MonoBehaviour{ 
     [SerializeField] MeleeWeapon MeleeWeapon { get; set; }
     [SerializeField] RangedWeapon RangedWeapon { get; set; }
+    [SerializeField] public Weapon CurrentWeapon { get; set; }
     [SerializeField] List<PassiveItem> PassiveItems { get; set; }
     [SerializeField] ActiveItem ActiveItem { get; set; }
     [SerializeField] UsableItem Coins { get; set; }
@@ -31,6 +32,7 @@ public class Inventory :MonoBehaviour{
         PassiveItems = new List<PassiveItem>();
         MeleeWeapon = null;
         RangedWeapon = null;
+        CurrentWeapon = null;
         ActiveItem = null;
         Coins = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;

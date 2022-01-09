@@ -5,5 +5,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class MeleeWeapon : Weapon
 {
-    
+    [SerializeField] public float Range { get; set; }
+    [SerializeField] public float Width { get; set; }
 }
