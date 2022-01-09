@@ -261,4 +261,54 @@ public class Inventory :MonoBehaviour{
     }
 
 
+
+
+    // Active Item Usage
+
+    float cooldownTime;
+    float activeTime;
+
+    enum ItemState
+    {
+        ready,
+        active,
+        cooldown
+    }
+    ItemState state = ItemState.ready;
+
+    public KeyCode activeItemActivationKey;
+
+    void Update()
+    {
+        switch (state)
+        {
+            case ItemState.ready:
+                if (Input.GetKeyDown(activeItemActivationKey))
+                {
+                    ActiveItem.Activate(gameObject);
+                    state = ItemState.active;
+                    activeTime = ActiveItem.activeTime;
+                }
+                break;
+            case ItemState.active:
+                if (activeTime > 0)
+                    activeTime -= Time.deltaTime;
+                else
+                {
+                    state = ItemState.cooldown;
+                    cooldownTime = ActiveItem.cooldownTime;
+                }
+                break;
+            case ItemState.cooldown:
+                if (cooldownTime > 0)
+                    cooldownTime -= Time.deltaTime;
+                else
+                    state = ItemState.active;
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }

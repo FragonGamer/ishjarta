@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
 
-    Vector2 movement;
+    public Vector2 movement;
 
     /// <summary>
     /// Update is called once per frame
