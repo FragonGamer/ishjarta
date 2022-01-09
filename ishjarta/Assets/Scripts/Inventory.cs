@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Inventory :MonoBehaviour{ 
@@ -51,29 +52,86 @@ public class Inventory :MonoBehaviour{
     /// <returns></returns>
     public bool AddItem(Item item)
     {
-        bool result;
+        bool result = false;
+        if (item != null)
+        {
+            
 
-        if (item.GetType() == typeof(UsableItem))
-        {
-            AddUsableItem((UsableItem)item);
-            result = true; 
+            if (item.GetType() == typeof(UsableItem))
+            {
+                AddUsableItem((UsableItem) item);
+                result = true;
+            }
+            else if (item.GetType() == typeof(PassiveItem))
+            {
+                AddPassiveItem((PassiveItem) item);
+                result = true;
+            }
+            else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
+            {
+                AddActiveItem((ActiveItem) item);
+                result = true;
+            }
+            else if (item.GetType().IsSubclassOf(typeof(Weapon)))
+            {
+                AddWeapon(item);
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            PrintInventory();
         }
-        else if (item.GetType() == typeof(PassiveItem))
-        {
-            AddPassiveItem((PassiveItem)item);
-            result = true;
-        }
-        else if (item.GetType() == typeof(ActiveItem))
-        {
-            AddActiveItem((ActiveItem)item);
-            result = true;
-        }
-        else
-        {
-            result = false;
-        }
-        PrintInventory();
+
         return result;
+        
+    }
+
+    public void ChangeWeapon()
+    {
+        try
+        {
+            if (CurrentWeapon.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
+            {
+                CurrentWeapon = RangedWeapon;
+            }
+            else if (CurrentWeapon.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
+            {
+                CurrentWeapon = MeleeWeapon;
+            }
+        }
+        catch (NullReferenceException n)
+        {
+            if (MeleeWeapon != null)
+            {
+                CurrentWeapon = MeleeWeapon;
+            }
+            else if (RangedWeapon != null)
+            {
+                CurrentWeapon = RangedWeapon;
+            }
+        }
+        
+    }
+
+    private void AddWeapon(Item item)
+    {
+        if (item.GetType() == typeof(MeleeWeapon))
+        {
+            DropItem(MeleeWeapon);
+            MeleeWeapon = (MeleeWeapon)item;
+            ChangeWeapon();
+        }
+        else if (item.GetType() == typeof(RangedWeapon))
+        {
+            DropItem(RangedWeapon);
+            RangedWeapon = (RangedWeapon) item;
+            ChangeWeapon();
+        }
+        Debug.Log(CurrentWeapon.name);
+        CurrentWeapon = (Weapon)item;
     }
 
     /// <summary>
@@ -184,30 +242,33 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void DropItem(Item item)
     {
-        Debug.Log(item.GetType());
-        if (item.GetType() == typeof(PassiveItem))
+        if (item != null)
         {
-            PassiveItems.Remove((PassiveItem)item);
-        }
-        else if(item.GetType() == typeof(UsableItem))
-        {
-            DropUsableItem((UsableItem)item);
-        }
-        else if (item.GetType() == typeof(MeleeWeapon))
-        {
-            SpawnItem(item);
-            MeleeWeapon = null;
-            
-        }
-        else if (item.GetType() == typeof(RangedWeapon))
-        {
-            SpawnItem(item);
-            RangedWeapon = null;
-        }
-        else if (item.GetType() == typeof(ActiveItem))
-        {
-            SpawnItem(item);
-            ActiveItem = null;
+            Debug.Log(item.GetType());
+            if (item.GetType() == typeof(PassiveItem))
+            {
+                PassiveItems.Remove((PassiveItem) item);
+            }
+            else if (item.GetType() == typeof(UsableItem))
+            {
+                DropUsableItem((UsableItem) item);
+            }
+            else if (item.GetType() == typeof(MeleeWeapon))
+            {
+                SpawnItem(item);
+                MeleeWeapon = null;
+
+            }
+            else if (item.GetType() == typeof(RangedWeapon))
+            {
+                SpawnItem(item);
+                RangedWeapon = null;
+            }
+            else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
+            {
+                SpawnItem(item);
+                ActiveItem = null;
+            }
         }
     }
     
@@ -217,13 +278,15 @@ public class Inventory :MonoBehaviour{
         Type type = item.GetType();
         if (type == typeof(MeleeWeapon))
         {
-            Instantiate(gameObject.GetComponent<Inventory>().MeleeWeapon);
+            GameObject meleeWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Melee/{item.name}") as GameObject;
+            Instantiate(meleeWeapon,playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
         }
         else if (type == typeof(RangedWeapon))
-                {
-            Instantiate(gameObject.GetComponent<Inventory>().RangedWeapon);
+        { 
+            GameObject rangedWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Ranged/{item.name}") as GameObject;
+            Instantiate(rangedWeapon,playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
         }
-        else if (type == typeof(ActiveItem))
+        else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
             GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
             Instantiate(activeItem, playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
@@ -232,34 +295,41 @@ public class Inventory :MonoBehaviour{
     }
     private void DropUsableItem(UsableItem item)
     {
-        switch (item.type){
+        
+            switch (item.type)
+            {
 
-            case UsableItem.UItemtype.bomb:
-                if(Bombs.Amount - item.Amount >= 0)
-                {
-                    Bombs.Amount -= item.Amount;
-                }
-                break;
-            case UsableItem.UItemtype.key:
-                if (Keys.Amount - item.Amount >= 0)
-                {
-                    Keys.Amount -= item.Amount;
-                }
-                break;
-            case UsableItem.UItemtype.coin:
-                if (Coins.Amount - item.Amount >= 0)
-                {
-                    Coins.Amount -= item.Amount;
-                }
-                break;
-        }
-            
+                case UsableItem.UItemtype.bomb:
+                    if (Bombs.Amount - item.Amount >= 0)
+                    {
+                        Bombs.Amount -= item.Amount;
+                    }
+
+                    break;
+                case UsableItem.UItemtype.key:
+                    if (Keys.Amount - item.Amount >= 0)
+                    {
+                        Keys.Amount -= item.Amount;
+                    }
+
+                    break;
+                case UsableItem.UItemtype.coin:
+                    if (Coins.Amount - item.Amount >= 0)
+                    {
+                        Coins.Amount -= item.Amount;
+                    }
+
+                    break;
+            }
+        
+
     }
     
     //Print to log console
     private void PrintInventory()
     {
         Debug.Log($"Armor : {this.Armor.Amount} : {this.gameObject.GetComponent<Player>().GetResistence() * 100}%");
+        Debug.Log($"Melee Weapon: {(MeleeWeapon != null ? MeleeWeapon.name : 'f')} | Ranged Weapon: {(RangedWeapon != null ? RangedWeapon.name : 'f')} | Active Weapon: {(CurrentWeapon != null ? CurrentWeapon.name : 'f')}");
     }
 
 
@@ -279,11 +349,18 @@ public class Inventory :MonoBehaviour{
     ItemState state = ItemState.ready;
 
     public KeyCode activeItemActivationKey;
+    public KeyCode weaponSwitchKey;
 
     void Update()
     {
+        if (Input.GetKeyDown(weaponSwitchKey))
+        {
+            ChangeWeapon();
+            PrintInventory();
+        }
         switch (state)
         {
+            
             case ItemState.ready:
                 if (Input.GetKeyDown(activeItemActivationKey))
                 {
@@ -295,7 +372,7 @@ public class Inventory :MonoBehaviour{
             case ItemState.active:
                 if (activeTime > 0)
                     activeTime -= Time.deltaTime;
-                else
+                else  
                 {
                     state = ItemState.cooldown;
                     cooldownTime = ActiveItem.cooldownTime;
@@ -305,10 +382,8 @@ public class Inventory :MonoBehaviour{
                 if (cooldownTime > 0)
                     cooldownTime -= Time.deltaTime;
                 else
-                    state = ItemState.active;
-                break;
-            default:
-                break;
+                    state = ItemState.ready;
+                break; 
         }
     }
 
