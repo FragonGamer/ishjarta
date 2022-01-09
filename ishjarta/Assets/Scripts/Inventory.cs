@@ -365,7 +365,7 @@ public class Inventory :MonoBehaviour{
             case ItemState.active:
                 if (activeTime > 0)
                     activeTime -= Time.deltaTime;
-                else
+                else  
                 {
                     state = ItemState.cooldown;
                     cooldownTime = ActiveItem.cooldownTime;
@@ -375,10 +375,8 @@ public class Inventory :MonoBehaviour{
                 if (cooldownTime > 0)
                     cooldownTime -= Time.deltaTime;
                 else
-                    state = ItemState.active;
-                break;
-            default:
-                break;
+                    state = ItemState.ready;
+                break; 
         }
     }
 

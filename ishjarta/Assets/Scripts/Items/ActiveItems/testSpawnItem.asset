@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e8c58b1080db1e4b9d59213eefaaf0b, type: 3}
-  m_Name: testDashItem
+  m_Script: {fileID: 11500000, guid: a995714fce2e3124892bec7ff79f63fc, type: 3}
+  m_Name: testSpawnItem
   m_EditorClassIdentifier: 
   ItemName: 
   Icon: {fileID: 0}
-  cooldownTime: 3
-  activeTime: 0.5
-  dashSpeed: 100
+  cooldownTime: 2000
+  activeTime: 0
+  Prefab: {fileID: 7952905054882304252, guid: 4a81a55cd562f263aa2207b2e82c95d1, type: 3}
