@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
+    [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] int luck;
     //[SerializeField] int maxResistance;
@@ -39,44 +40,73 @@ public class Player : Entity
 
 
 
-    public override void Attack(Vector2 vector)
+    public override void Attack(Vector2 mousePos)
     {
-        if (GetComponent<PolygonCollider2D>() == null)
+        //MeleeWeapon w = new();
+        //w.Width = 0.1f;
+        //w.Range = 1.2f;
+        //inventory.CurrentWeapon = w;
+
+        inventory.CurrentWeapon = new RangedWeapon();
+
+        if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
         {
-            MeleeWeapon w = new();
-            w.Width = 0.1f;
-            w.Range = 1.2f;
-            inventory.CurrentWeapon = w;
+            float angle = CalculateDegreesInRad(mousePos);
 
-            if (inventory.CurrentWeapon is MeleeWeapon melWeapon)
+            Vector2[] v = new Vector2[]
             {
-                Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(vector) - GetComponent<Rigidbody2D>().position;
-                float angle = Mathf.Atan2(lookdir.y, lookdir.x);
-                if (angle < 0)
-                    angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
-
-                Vector2[] v = new Vector2[]
-                {
                     RotateVector2(new Vector2 {x = 0, y = 0}, angle),
                     RotateVector2(new Vector2 {x = melWeapon.Range*(0.7f), y = melWeapon.Width}, angle) ,
                     RotateVector2(new Vector2 {x = melWeapon.Range, y = 0}, angle) ,
                     RotateVector2(new Vector2 {x = melWeapon.Range*(0.7f), y =  melWeapon.Width*(-1)}, angle)
-                };
+            };
 
-                PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();
-                pc.isTrigger = true;
-                pc.points = v;
+            PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();
+            pc.isTrigger = true;
+            pc.points = v;
 
-                Destroy(pc, 0.2f);
-            }
-            else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
-            {
+            Destroy(pc, 0.2f);
+        }
+        else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
+        {
+            Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
+            float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
 
-            }
+
+            FirePoint.GetComponent<Rigidbody2D>().rotation = angle;
+
+            GameObject arrow = Instantiate((GameObject)Resources.Load($"Prefabs/ArrowBasic") as GameObject,
+                FirePoint.transform.position, FirePoint.transform.rotation);
+
+            arrow.GetComponent<Rigidbody2D>().AddForce(FirePoint.transform.up * 2, ForceMode2D.Impulse);
+
+
+            //Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
+            //GameObject a = Instantiate((GameObject)Resources.Load($"Prefabs/ArrowBasic") as GameObject,
+            //    GetComponent<Rigidbody2D>().position,
+            //    Quaternion.Euler(new Vector3(0, 0, Mathf.Rad2Deg * CalculateDegreesInRad(mousePos))));
+
+            //Debug.Log(a.transform.rotation);
+
+            //Vector2 force = new Vector2();
+
+            //force.x = lookdir.x < 0 ? -1 : 1;
+            //force.y = lookdir.y < 0 ? -1 : 1;
+
+            //a.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
         }
 
     }
 
+    private float CalculateDegreesInRad(Vector2 vec)
+    {
+        Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(vec) - GetComponent<Rigidbody2D>().position;
+        float angle = Mathf.Atan2(lookdir.y, lookdir.x);
+        if (angle < 0)
+            angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
+
+        return angle;
+    }
     private Vector2 RotateVector2(Vector2 vec, float angle)
     {
         Vector2 result = new Vector2();
