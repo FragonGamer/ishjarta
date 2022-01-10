@@ -51,6 +51,8 @@ public class Player : Entity
 
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
         {
+            melWeapon.Range = 1.2f;
+            melWeapon.Width = 0.3f;
             float angle = CalculateDegreesInRad(mousePos);
 
             Vector2[] v = new Vector2[]
