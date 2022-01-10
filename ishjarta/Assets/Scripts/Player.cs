@@ -73,12 +73,12 @@ public class Player : Entity
             float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
 
 
-            FirePoint.GetComponent<Rigidbody2D>().rotation = angle;
+            FirePoint.transform.rotation = Quaternion.Euler( 0f ,0f , angle);
 
             GameObject arrow = Instantiate((GameObject)Resources.Load($"Prefabs/ArrowBasic") as GameObject,
-                FirePoint.transform.position, FirePoint.transform.rotation);
+                (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
 
-            arrow.GetComponent<Rigidbody2D>().AddForce(FirePoint.transform.up * 2, ForceMode2D.Impulse);
+            arrow.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * 2, ForceMode2D.Impulse);
 
 
             //Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;

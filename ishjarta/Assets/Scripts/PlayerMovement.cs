@@ -11,7 +11,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public Vector2 movement;
-
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
     /// <summary>
     /// Update is called once per frame
     /// Bad for physics
