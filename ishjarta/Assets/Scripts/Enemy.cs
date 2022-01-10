@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 using UnityEngine.AI;
 
 public class Enemy : Entity
@@ -39,8 +40,9 @@ public class Enemy : Entity
 
     protected override void Die()
     {
-        //animator.SetBool("isDead", true);
-        Destroy(this.gameObject);
+        gameObject.GetComponent<AIPath>().canMove = false;
+        animator.SetBool("isDead", true);
+
     }
 
 
