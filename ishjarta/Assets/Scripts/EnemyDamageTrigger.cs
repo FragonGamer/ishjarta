@@ -10,7 +10,7 @@ public class EnemyDamageTrigger : MonoBehaviour
         {
             Player p = collider.gameObject.GetComponent<Player>();
 
-            ((Enemy)this.gameObject.GetComponent<Enemy>()).ReceiveDamage(p.DealingDamage);
+            this.gameObject.GetComponent<Enemy>().ReceiveDamage(p.DealingDamage);
         }
     }
 }

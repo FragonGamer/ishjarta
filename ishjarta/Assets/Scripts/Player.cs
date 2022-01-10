@@ -47,7 +47,7 @@ public class Player : Entity
         //w.Range = 1.2f;
         //inventory.CurrentWeapon = w;
 
-        inventory.CurrentWeapon = new RangedWeapon();
+        //inventory.CurrentWeapon = new RangedWeapon();
 
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
         {
@@ -77,7 +77,8 @@ public class Player : Entity
 
             GameObject arrow = Instantiate((GameObject)Resources.Load($"Prefabs/ArrowBasic") as GameObject,
                 (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
-
+            
+            arrow.GetComponent<Arrow>().DealingDammage = DealingDamage;
             arrow.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * 2, ForceMode2D.Impulse);
 
 

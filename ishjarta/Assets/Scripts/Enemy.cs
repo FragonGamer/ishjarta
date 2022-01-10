@@ -39,7 +39,8 @@ public class Enemy : Entity
 
     protected override void Die()
     {
-        animator.SetBool("isDead", true);
+        //animator.SetBool("isDead", true);
+        Destroy(this.gameObject);
     }
 
 

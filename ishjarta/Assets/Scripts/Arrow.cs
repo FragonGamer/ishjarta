@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    Rigidbody2D rb;
-    Vector2 direction;
-    // Start is called before the first frame update
-    void Start()
-    {
-        //rb = GetComponent<Rigidbody2D>();
-        //Vector2 force = transform.forward * 10;
-        //rb.AddForce(force, ForceMode2D.Impulse);
-    }
+    public int DealingDammage;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        //rb.MovePosition((Vector2)(transform.position + transform.forward * 20 * Time.deltaTime));
+        if(collider.gameObject.tag == "Enemy")
+        {
+            collider.gameObject.GetComponent<Enemy>().ReceiveDamage(DealingDammage);
+        }
+        Destroy(this.gameObject);
     }
 }
