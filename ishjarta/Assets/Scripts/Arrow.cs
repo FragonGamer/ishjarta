@@ -11,7 +11,11 @@ public class Arrow : MonoBehaviour
         if(collider.gameObject.tag == "Enemy")
         {
             collider.gameObject.GetComponent<Enemy>().ReceiveDamage(DealingDammage);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        else if (collider.gameObject.tag == "Walls" || collider.gameObject.tag == "Obstacle")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
