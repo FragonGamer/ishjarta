@@ -72,7 +72,7 @@ public class Inventory :MonoBehaviour{
                 AddActiveItem((ActiveItem) item);
                 result = true;
             }
-            else if (item.GetType().IsSubclassOf(typeof(Weapon)))
+            else if (item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
             {
                 AddWeapon(item);
                 result = true;
@@ -93,11 +93,11 @@ public class Inventory :MonoBehaviour{
     {
         try
         {
-            if (CurrentWeapon.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
+            if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && RangedWeapon != null)
             {
                 CurrentWeapon = RangedWeapon;
             }
-            else if (CurrentWeapon.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
+            else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && MeleeWeapon != null)
             {
                 CurrentWeapon = MeleeWeapon;
             }
@@ -118,13 +118,13 @@ public class Inventory :MonoBehaviour{
 
     private void AddWeapon(Item item)
     {
-        if (item.GetType() == typeof(MeleeWeapon))
+        if (item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
         {
             DropItem(MeleeWeapon);
             MeleeWeapon = (MeleeWeapon)item;
             ChangeWeapon();
         }
-        else if (item.GetType() == typeof(RangedWeapon))
+        else if (item.GetType().IsSubclassOf(typeof(RangedWeapon)))
         {
             DropItem(RangedWeapon);
             RangedWeapon = (RangedWeapon) item;

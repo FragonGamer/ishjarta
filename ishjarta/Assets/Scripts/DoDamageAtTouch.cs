@@ -33,7 +33,6 @@ public class DoDamageAtTouch : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("attacking player");
             if (time >= DamageInterval)
             {
                 time = 0.0f;
