@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2026335554727972551}
   - component: {fileID: 2026335554727972550}
   m_Layer: 0
-  m_Name: rangedtest
+  m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,9 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b8bae5d047ab318f6a168e1c1a4114d1, type: 2}
+  item: {fileID: 11400000, guid: 365b9913297f17743b65f6ed67e0ee1c, type: 2}
   player: {fileID: 0}
-  itemPickupKeycode: 101
   isInRange: 0
 --- !u!58 &2026335554727972550
 CircleCollider2D:

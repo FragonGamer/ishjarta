@@ -1,34 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] Item item;
     [SerializeField] Player player;
-    [SerializeField] KeyCode itemPickupKeycode = KeyCode.E;
-
+    [SerializeField] InputMaster inputMaster;
     public bool isInRange;
 
     private void Awake()
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
+        inputMaster = new InputMaster();
+    }
+    private void OnEnable()
+    {
+        inputMaster.Enable();
+    }
+    private void OnDisable()
+    {
+        inputMaster.Disable();
     }
 
-    /// <summary>
-    /// Picks up Item into Inventory if player is in range
-    /// </summary>
-    private void Update()
+    private void Start()
     {
-        if (isInRange && Input.GetKeyDown(itemPickupKeycode))
-        {
-            if (player.inventory.AddItem(item) == true)
-            {
-                Debug.Log("Pick ups item");
-                GameObject.Destroy(gameObject);
-            }
-        }
-        
+        inputMaster.Player.PickUpItem.performed += PickUpItem;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,5 +45,15 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-
+    public void PickUpItem(InputAction.CallbackContext context)
+    {
+        if (isInRange)
+        {
+            if (player.inventory.AddItem(item) == true)
+            {
+                Debug.Log("Pick ups item");
+                GameObject.Destroy(gameObject);
+            }
+        }
+    }
 }

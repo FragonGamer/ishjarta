@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8424182254944312549}
   - component: {fileID: 1892742593516829476}
-  - component: {fileID: 6963274806370533518}
   - component: {fileID: 264775069492423061}
   - component: {fileID: 1518163295076240293}
   - component: {fileID: 2531728917344798226}
@@ -150,22 +149,6 @@ MonoBehaviour:
   luck: 1
   hpBar: {fileID: 0}
   inventory: {fileID: 1518163295076240293}
---- !u!114 &6963274806370533518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6607695795067367189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8960f0c424d9847bc8e6d9cb2e3551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  rb: {fileID: 2531728917344798226}
-  animator: {fileID: 0}
-  movement: {x: 0, y: 0}
 --- !u!114 &264775069492423061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  animator: {fileID: 0}
+  rb: {fileID: 0}
+  movement: {x: 0, y: 0}
 --- !u!114 &1518163295076240293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeItemActivationKey: 113
-  weaponSwitchKey: 120
 --- !u!50 &2531728917344798226
 Rigidbody2D:
   serializedVersion: 4

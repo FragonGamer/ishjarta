@@ -5,15 +5,15 @@ using System.Reflection;
 using UnityEngine;
 
 public class Inventory :MonoBehaviour{ 
-    [SerializeField] MeleeWeapon MeleeWeapon { get; set; }
-    [SerializeField] RangedWeapon RangedWeapon { get; set; }
-    [SerializeField] public Weapon CurrentWeapon { get; set; }
-    [SerializeField] List<PassiveItem> PassiveItems { get; set; }
-    [SerializeField] ActiveItem ActiveItem { get; set; }
-    [SerializeField] UsableItem Coins { get; set; }
-    [SerializeField] UsableItem Bombs { get; set; }
-    [SerializeField] UsableItem Keys { get; set; }
-    [SerializeField] UsableItem Armor { get; set; }
+    MeleeWeapon MeleeWeapon { get; set; }
+    RangedWeapon RangedWeapon { get; set; }
+    public Weapon CurrentWeapon { get; set; }
+    List<PassiveItem> PassiveItems { get; set; }
+    ActiveItem ActiveItem { get; set; }
+    UsableItem Coins { get; set; }
+    UsableItem Bombs { get; set; }
+    UsableItem Keys { get; set; }
+    UsableItem Armor { get; set; }
 
     public UsableItem GetArmor()
     {
@@ -69,10 +69,11 @@ public class Inventory :MonoBehaviour{
             }
             else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
             {
+                Debug.Log("active item");
                 AddActiveItem((ActiveItem) item);
                 result = true;
             }
-            else if (item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
+            else if (item.GetType().IsSubclassOf(typeof(Weapon)))
             {
                 AddWeapon(item);
                 result = true;
@@ -93,14 +94,16 @@ public class Inventory :MonoBehaviour{
     {
         try
         {
-            if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && RangedWeapon != null)
-            {
-                CurrentWeapon = RangedWeapon;
-            }
-            else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && MeleeWeapon != null)
+
+            if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && RangedWeapon != null )
             {
                 CurrentWeapon = MeleeWeapon;
             }
+            else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && MeleeWeapon != null)
+            {
+                CurrentWeapon = RangedWeapon;
+            }
+            PrintInventory();
         }
         catch (NullReferenceException n)
         {
@@ -121,7 +124,7 @@ public class Inventory :MonoBehaviour{
         if (item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
         {
             DropItem(MeleeWeapon);
-            MeleeWeapon = (MeleeWeapon)item;
+            MeleeWeapon = (MeleeWeapon) item;
             ChangeWeapon();
         }
         else if (item.GetType().IsSubclassOf(typeof(RangedWeapon)))
@@ -214,10 +217,10 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void AddActiveItem(ActiveItem item)
     {
-        if(ActiveItem != null)
+        if(this.ActiveItem != null)
             DropItem(this.ActiveItem);
-        this.ActiveItem = item;
 
+        this.ActiveItem = item;
     }
     /// <summary>
     /// Adds passive Item
@@ -253,13 +256,13 @@ public class Inventory :MonoBehaviour{
             {
                 DropUsableItem((UsableItem) item);
             }
-            else if (item.GetType() == typeof(MeleeWeapon))
+            else if (item.GetType() == typeof(MeleeWeapon)|| item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
             {
                 SpawnItem(item);
                 MeleeWeapon = null;
 
             }
-            else if (item.GetType() == typeof(RangedWeapon))
+            else if (item.GetType() == typeof(RangedWeapon)|| item.GetType().IsSubclassOf(typeof(RangedWeapon)))
             {
                 SpawnItem(item);
                 RangedWeapon = null;
@@ -276,12 +279,12 @@ public class Inventory :MonoBehaviour{
     {
         Vector2 playerPos = gameObject.transform.position;
         Type type = item.GetType();
-        if (type == typeof(MeleeWeapon))
+        if (type == typeof(MeleeWeapon) || item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
         {
             GameObject meleeWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Melee/{item.name}") as GameObject;
             Instantiate(meleeWeapon,playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
         }
-        else if (type == typeof(RangedWeapon))
+        else if (type == typeof(RangedWeapon) || item.GetType().IsSubclassOf(typeof(RangedWeapon)))
         { 
             GameObject rangedWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Ranged/{item.name}") as GameObject;
             Instantiate(rangedWeapon,playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
@@ -332,7 +335,15 @@ public class Inventory :MonoBehaviour{
         Debug.Log($"Melee Weapon: {(MeleeWeapon != null ? MeleeWeapon.name : 'f')} | Ranged Weapon: {(RangedWeapon != null ? RangedWeapon.name : 'f')} | Active Weapon: {(CurrentWeapon != null ? CurrentWeapon.name : 'f')}");
     }
 
-
+    public void UseActiveItem()
+    {
+        if (state == ActiveItemState.ready)
+        {
+            ActiveItem.Activate(gameObject);
+            state = ActiveItemState.active;
+            activeTime = ActiveItem.activeTime;
+        }
+    }
 
 
     // Active Item Usage
@@ -340,50 +351,32 @@ public class Inventory :MonoBehaviour{
     float cooldownTime;
     float activeTime;
 
-    enum ItemState
+    enum ActiveItemState
     {
         ready,
         active,
         cooldown
     }
-    ItemState state = ItemState.ready;
-
-    public KeyCode activeItemActivationKey;
-    public KeyCode weaponSwitchKey;
-
+    ActiveItemState state = ActiveItemState.ready;
     void Update()
     {
-        if (Input.GetKeyDown(weaponSwitchKey))
-        {
-            ChangeWeapon();
-            PrintInventory();
-        }
         switch (state)
         {
-            
-            case ItemState.ready:
-                if (Input.GetKeyDown(activeItemActivationKey))
-                {
-                    ActiveItem.Activate(gameObject);
-                    state = ItemState.active;
-                    activeTime = ActiveItem.activeTime;
-                }
-                break;
-            case ItemState.active:
+            case ActiveItemState.active:
                 if (activeTime > 0)
                     activeTime -= Time.deltaTime;
                 else  
                 {
-                    state = ItemState.cooldown;
+                    state = ActiveItemState.cooldown;
                     cooldownTime = ActiveItem.cooldownTime;
                 }
                 break;
-            case ItemState.cooldown:
+            case ActiveItemState.cooldown:
                 if (cooldownTime > 0)
                     cooldownTime -= Time.deltaTime;
                 else
-                    state = ItemState.ready;
-                break; 
+                    state = ActiveItemState.ready;
+                break;
         }
     }
 

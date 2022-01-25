@@ -27,7 +27,10 @@ public class Player : Entity
     {
         return resistance;
     }
-    
+    public float GetMovementSpeed()
+    {
+        return movementSpeed;
+    }
     public Inventory inventory;
 
     public int DealingDamage

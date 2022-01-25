@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class RangedWeapon : Weapon
+public class Bow : RangedWeapon
 {
-    public float range;
+    private void Awake()
+    {
+        range = 5f;
+    }
 }
