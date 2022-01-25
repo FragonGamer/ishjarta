@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
             movement = Vector2.zero;
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
         };
         inputMaster.Player.Attack.performed += AttackAction;
         inputMaster.Player.DropItem.performed += DropItemAction;
