@@ -9,7 +9,6 @@ public class DoDamageAtTouch : MonoBehaviour
     [SerializeField] public float DamageInterval = 1;
     private float time = 0.0f;
 
-    private GameObject player;
     private CircleCollider2D circleCollider;
     private Enemy enemyScript;
 
