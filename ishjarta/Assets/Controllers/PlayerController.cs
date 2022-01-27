@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 movement;
+
+    public Vector2 GetMovementVector() { return movement; }
+
     private void Awake()
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private void MoveAction(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
+        movement.Normalize();
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);

@@ -9,7 +9,11 @@ public class Player : Entity
     [SerializeField] int luck;
     //[SerializeField] int maxResistance;
 
-    public HealthBar hpBar;
+    [SerializeField] private HealthBar hpBar;
+    private void Awake()
+    {
+        hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
+    }
     void Start()
     {
         hpBar.SetMaxHealth(maxHealth);

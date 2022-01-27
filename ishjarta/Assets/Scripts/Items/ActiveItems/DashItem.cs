@@ -9,9 +9,9 @@ public class DashItem : ActiveItem
 
     public override void Activate(GameObject parent)
     {
-        PlayerMovement movement = parent.GetComponent<PlayerMovement>();
+        PlayerController movement = parent.GetComponent<PlayerController>();
         Rigidbody2D rigidBody = parent.GetComponent<Rigidbody2D>();
 
-        rigidBody.velocity = movement.movement.normalized * dashSpeed;
+        rigidBody.velocity = movement.GetMovementVector().normalized * dashSpeed;
     }
 }

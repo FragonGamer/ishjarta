@@ -40,6 +40,15 @@ public class Enemy : Entity
 
     protected override void Die()
     {
+        if (gameObject.GetComponent<CircleCollider2D>() != null)
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        if (gameObject.GetComponent<BoxCollider2D>() != null)
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         gameObject.GetComponent<AIPath>().canMove = false;
         animator.SetBool("isDead", true);
 
