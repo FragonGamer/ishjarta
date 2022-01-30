@@ -9,7 +9,7 @@ public class Sword : MeleeWeapon
     {
         Range = 1.2f;
         Width = 0.3f;
-        attackRate = 1f;
+        AttackRate = 1f;
     }
 
 }

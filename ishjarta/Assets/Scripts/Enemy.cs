@@ -9,9 +9,9 @@ public class Enemy : Entity
     [SerializeField] Animator animator;
 
     [SerializeField] private int spottingRange = 1;
-    public int dropRate { get; private set; }
-    public bool hasSpottedPlayer { get; set; }
-    public bool isInRange { get; set; }
+    [field: SerializeField] public int dropRate { get; private set; }
+    [field: SerializeField] public bool hasSpottedPlayer { get; set; }
+    [field: SerializeField] public bool isInRange { get; set; }
     private float time;
     #region getters and setters
     public int GetMovementSpeed()

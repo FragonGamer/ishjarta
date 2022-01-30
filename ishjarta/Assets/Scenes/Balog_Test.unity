@@ -731,6 +731,18 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2128995530207865042, guid: 52e269885b78b2a478938fcd0eba2d45, type: 3}
+      propertyPath: m_Size.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128995530207865042, guid: 52e269885b78b2a478938fcd0eba2d45, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539355730813688468, guid: 52e269885b78b2a478938fcd0eba2d45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6607695795067367189, guid: 52e269885b78b2a478938fcd0eba2d45, type: 3}
       propertyPath: m_Name
       value: Player

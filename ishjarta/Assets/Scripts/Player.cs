@@ -12,6 +12,10 @@ public class Player : Entity
     //[SerializeField] int maxResistance;
 
     [SerializeField] private HealthBar hpBar;
+
+    public int GetBaseDamage() { return baseDamage; }
+    public void SetBaseDamage(int value) { baseDamage = value; }
+
     private void Awake()
     {
         hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
@@ -23,25 +27,20 @@ public class Player : Entity
 
     private void Update()
     {
-        if (timeMelee < inventory.getMeleeWeapon().attackRate)
+        if (inventory.GetMeleeWeapon() != null && timeMelee < inventory.GetMeleeWeapon().AttackRate)
         {
             timeMelee += Time.deltaTime;
         }
-        if (timeRanged < inventory.getRangedWeapon().fireRate)
+        if (inventory.GetRangedWeapon() != null && timeRanged < inventory.GetRangedWeapon().AttackRate)
         {
             timeRanged += Time.deltaTime;
         }
-        
-
-
     }
 
     public void CalcResistence()
     {
-
             int armorAmount = inventory.GetArmor().Amount;
             resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
-        
     }
     
     public float GetResistence()
@@ -66,18 +65,12 @@ public class Player : Entity
 
     public override void Attack(Vector2 mousePos)
     {
-        //MeleeWeapon w = new();
-        //w.Width = 0.1f;
-        //w.Range = 1.2f;
-        //inventory.CurrentWeapon = w;
-
-        //inventory.CurrentWeapon = new RangedWeapon();
-
+        //MeleeAttack
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
         {
-            if (timeMelee >= melWeapon.attackRate)
+            if (timeMelee >= melWeapon.AttackRate)
             {
-                timeMelee = 0.0f;
+                timeMelee = 0f;
 
                 melWeapon.Range = 1.2f;
                 melWeapon.Width = 0.3f;
@@ -98,11 +91,12 @@ public class Player : Entity
                 Destroy(pc, 0.2f);
             }
         }
+        //Ranged Attack
         else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
         {
-            if (timeRanged >= curWeapon.fireRate)
+            if (timeRanged >= curWeapon.AttackRate)
             {
-                timeRanged = 0.0f;
+                timeRanged = 0f;
                 
                 Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
                 float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
@@ -114,24 +108,10 @@ public class Player : Entity
                     (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
             
                 arrow.GetComponent<Arrow>().DealingDammage = DealingDamage;
-                arrow.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * 2, ForceMode2D.Impulse);
+                arrow.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
+
+                Destroy(arrow, 10f);
             }
-            
-
-
-            //Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
-            //GameObject a = Instantiate((GameObject)Resources.Load($"Prefabs/ArrowBasic") as GameObject,
-            //    GetComponent<Rigidbody2D>().position,
-            //    Quaternion.Euler(new Vector3(0, 0, Mathf.Rad2Deg * CalculateDegreesInRad(mousePos))));
-
-            //Debug.Log(a.transform.rotation);
-
-            //Vector2 force = new Vector2();
-
-            //force.x = lookdir.x < 0 ? -1 : 1;
-            //force.y = lookdir.y < 0 ? -1 : 1;
-
-            //a.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
         }
 
     }

@@ -7,7 +7,7 @@ public class Bow : RangedWeapon
 {
     private void Awake()
     {
-        range = 5f;
-        fireRate = 1f;
+        Range = 5f;
+        AttackRate = 1f;
     }
 }

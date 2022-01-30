@@ -14,11 +14,13 @@ public class Inventory :MonoBehaviour{
     UsableItem Bombs { get; set; }
     UsableItem Keys { get; set; }
     UsableItem Armor { get; set; }
+    Player player { get; set; }
 
-    public MeleeWeapon getMeleeWeapon()
+    #region Getters and Setters
+    public MeleeWeapon GetMeleeWeapon()
     {
         return MeleeWeapon;
-    }public RangedWeapon getRangedWeapon()
+    }public RangedWeapon GetRangedWeapon()
     {
         return RangedWeapon;
     }
@@ -26,12 +28,12 @@ public class Inventory :MonoBehaviour{
     {
         return this.Armor;
     }
-
     //Temp method
     public ActiveItem GetActiveItem()
     {
         return ActiveItem;
     }
+    #endregion
     /// <summary>
     /// Our Constructor
     /// </summary>
@@ -42,6 +44,7 @@ public class Inventory :MonoBehaviour{
         RangedWeapon = null;
         CurrentWeapon = null;
         ActiveItem = null;
+        player = gameObject.GetComponent<Player>();
         Coins = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Keys = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
@@ -109,10 +112,8 @@ public class Inventory :MonoBehaviour{
             {
                 CurrentWeapon = RangedWeapon;
             }
+            player.SetBaseDamage(CurrentWeapon.Damage);
             PrintInventory();
-        
-        
-        
     }
 
     private void AddWeapon(Item item)
@@ -140,6 +141,8 @@ public class Inventory :MonoBehaviour{
             {
                 CurrentWeapon = RangedWeapon;
             }
+            if (CurrentWeapon != null)
+                player.SetBaseDamage(CurrentWeapon.Damage);
         }
         if (weapontype != CurrentWeapon.GetType())
         {
@@ -218,7 +221,7 @@ public class Inventory :MonoBehaviour{
                     }
                 }
 
-                this.gameObject.GetComponent<Player>().CalcResistence();
+                player.CalcResistence();
                 break;
             default:
                 break;
@@ -345,7 +348,7 @@ public class Inventory :MonoBehaviour{
     //Print to log console
     private void PrintInventory()
     {
-        Debug.Log($"Armor : {this.Armor.Amount} : {this.gameObject.GetComponent<Player>().GetResistence() * 100}%");
+        Debug.Log($"Armor : {this.Armor.Amount} : {player.GetResistence() * 100}%");
         Debug.Log($"Melee Weapon: {(MeleeWeapon != null ? MeleeWeapon.name : 'f')} | Ranged Weapon: {(RangedWeapon != null ? RangedWeapon.name : 'f')} | Active Weapon: {(CurrentWeapon != null ? CurrentWeapon.name : 'f')}");
     }
 

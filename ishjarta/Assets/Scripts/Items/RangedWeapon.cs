@@ -5,10 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class RangedWeapon : Weapon
 {
-    public float range;
-    //delay
-    public float fireRate;
-
+    [field: SerializeField] public int ProjectileVelocity { get; set; }
 
 
 }

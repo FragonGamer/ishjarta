@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Enemy"&&collider.GetType() == typeof(BoxCollider2D))
+        if(collider.gameObject.tag == "Enemy" && collider.GetType() == typeof(BoxCollider2D))
         {
             collider.gameObject.GetComponent<Enemy>().ReceiveDamage(DealingDammage);
             Destroy(this.gameObject);

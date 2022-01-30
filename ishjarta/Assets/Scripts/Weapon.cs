@@ -4,5 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : Item
 {
-    
+    [field: SerializeField] public int Damage { get; set; }
+    [field: SerializeField] public float Range { get; set; }
+    [field: SerializeField] public float AttackRate { get; set; }
 }

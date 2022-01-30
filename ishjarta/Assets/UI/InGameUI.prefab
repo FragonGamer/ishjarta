@@ -272,6 +272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3463015209156136558, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3463015209695227746, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

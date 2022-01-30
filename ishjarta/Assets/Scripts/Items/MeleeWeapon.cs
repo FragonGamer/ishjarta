@@ -5,8 +5,5 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    public float Range;
-    public float Width;
-    public float attackRate;
-
+    [field: SerializeField] public float Width { get; set; }
 }

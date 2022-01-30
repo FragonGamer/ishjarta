@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f744c8752a03e4487f91df4d5b3ec3, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: Bow
   Icon: {fileID: 0}
-  range: 0
+  <Damage>k__BackingField: 30
+  <Range>k__BackingField: 5
+  <AttackRate>k__BackingField: 0
+  <ProjectileVelocity>k__BackingField: 7
