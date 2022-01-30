@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    public float Range { get; set; }
-    public float Width { get; set; }
+    public float Range;
+    public float Width;
+    public float attackRate;
 
 }

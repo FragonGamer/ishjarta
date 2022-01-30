@@ -15,6 +15,13 @@ public class Inventory :MonoBehaviour{
     UsableItem Keys { get; set; }
     UsableItem Armor { get; set; }
 
+    public MeleeWeapon getMeleeWeapon()
+    {
+        return MeleeWeapon;
+    }public RangedWeapon getRangedWeapon()
+    {
+        return RangedWeapon;
+    }
     public UsableItem GetArmor()
     {
         return this.Armor;
@@ -92,20 +99,38 @@ public class Inventory :MonoBehaviour{
 
     public void ChangeWeapon()
     {
-        try
-        {
-
-            if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && RangedWeapon != null )
+        
+           
+            if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && MeleeWeapon != null )
             {
                 CurrentWeapon = MeleeWeapon;
             }
-            else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && MeleeWeapon != null)
+            else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && RangedWeapon != null)
             {
                 CurrentWeapon = RangedWeapon;
             }
             PrintInventory();
+        
+        
+        
+    }
+
+    private void AddWeapon(Item item)
+    {
+        Type weapontype = item.GetType();
+        if (weapontype.IsSubclassOf(typeof(MeleeWeapon)))
+        {
+            DropItem(MeleeWeapon);
+            MeleeWeapon = (MeleeWeapon) item;
+
         }
-        catch (NullReferenceException n)
+        else if (weapontype.IsSubclassOf(typeof(RangedWeapon)))
+        {
+            DropItem(RangedWeapon);
+            RangedWeapon = (RangedWeapon) item;
+        }
+
+        if (CurrentWeapon == null)
         {
             if (MeleeWeapon != null)
             {
@@ -116,23 +141,12 @@ public class Inventory :MonoBehaviour{
                 CurrentWeapon = RangedWeapon;
             }
         }
-        
-    }
+        if (weapontype != CurrentWeapon.GetType())
+        {
+            ChangeWeapon();
+        }
 
-    private void AddWeapon(Item item)
-    {
-        if (item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
-        {
-            DropItem(MeleeWeapon);
-            MeleeWeapon = (MeleeWeapon) item;
-            ChangeWeapon();
-        }
-        else if (item.GetType().IsSubclassOf(typeof(RangedWeapon)))
-        {
-            DropItem(RangedWeapon);
-            RangedWeapon = (RangedWeapon) item;
-            ChangeWeapon();
-        }
+        
         Debug.Log(CurrentWeapon.name);
         CurrentWeapon = (Weapon)item;
     }

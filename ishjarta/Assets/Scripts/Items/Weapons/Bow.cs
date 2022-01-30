@@ -8,5 +8,6 @@ public class Bow : RangedWeapon
     private void Awake()
     {
         range = 5f;
+        fireRate = 1f;
     }
 }

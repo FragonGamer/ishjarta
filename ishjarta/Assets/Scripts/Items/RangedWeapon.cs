@@ -6,4 +6,9 @@ using UnityEngine;
 public class RangedWeapon : Weapon
 {
     public float range;
+    //delay
+    public float fireRate;
+
+
+
 }

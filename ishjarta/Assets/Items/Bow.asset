@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f744c8752a03e4487f91df4d5b3ec3, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  ItemName: Bow
+  ItemName: 
   Icon: {fileID: 0}
-  range: 4
+  range: 0
