@@ -8,8 +8,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Enemy enemyScript;
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb;
-
     float distance;
+    public float StoppingDistance { get; set; } = 0.5f;
+    #region Getters and Setters
+    #endregion
 
     private void Awake()
     {
@@ -24,14 +26,14 @@ public class EnemyController : MonoBehaviour
         aiPath.canMove = false;
         target = PlayerManager.instance.player.transform;
         aiDestinationSetter.target = target;
-        aiPath.maxSpeed = enemyScript.GetMovementSpeed();
-        aiPath.endReachedDistance = enemyScript.GetRange()-0.2f;
+        aiPath.maxSpeed = enemyScript.GetSpeed();
+        aiPath.endReachedDistance = ((enemyScript.GetRange()/2) - StoppingDistance) <= 0 ? 0.5f : (enemyScript.GetRange() / 2) - StoppingDistance;
         aiPath.whenCloseToDestination = CloseToDestinationMode.Stop;
     }
     private void Update()
     {
         distance = Vector3.Distance(transform.position, target.position);
-        if (distance <= enemyScript.GetSpottingRange() + 3f)
+        if (distance <= enemyScript.GetSpottingRange() + enemyScript.GetSpottingRange()/10)
         {
             animator.SetBool("hasSpottedPlayer",true);
             animator.SetFloat("Speed",aiPath.velocity.sqrMagnitude);

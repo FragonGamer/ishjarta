@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2531728917344798226}
   - component: {fileID: 2128995530207865042}
   - component: {fileID: 3756161934450164982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
   baseHealth: 100
   healthModifier: 1
   movementSpeed: 2
+  speedModifier: 0
   baseDamage: 20
   damageModifier: 1
   attackRate: 1

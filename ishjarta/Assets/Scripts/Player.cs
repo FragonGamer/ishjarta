@@ -16,12 +16,9 @@ public class Player : Entity
     public int GetBaseDamage() { return baseDamage; }
     public void SetBaseDamage(int value) { baseDamage = value; }
 
-    private void Awake()
+    private void Start()
     {
         hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
-    }
-    void Start()
-    {
         hpBar.SetMaxHealth(maxHealth);
     }
 
@@ -104,13 +101,13 @@ public class Player : Entity
 
                 FirePoint.transform.rotation = Quaternion.Euler( 0f ,0f , angle);
 
-                GameObject arrow = Instantiate((GameObject)Resources.Load($"Prefabs/ArrowBasic") as GameObject,
+                GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
                     (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
             
-                arrow.GetComponent<Arrow>().DealingDammage = DealingDamage;
-                arrow.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
+                projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
+                projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
 
-                Destroy(arrow, 10f);
+                Destroy(projectile, 10f);
             }
         }
 
@@ -140,7 +137,7 @@ public class Player : Entity
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    new public void ReceiveDamage(int damage)
+    public override void ReceiveDamage(int damage)
     {
         damage = (damage - ((int)(damage * resistance)));
         currentHealth -= damage;

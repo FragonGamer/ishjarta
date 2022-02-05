@@ -26,6 +26,20 @@ public class Enemy : Entity
     {
         return spottingRange;
     }
+
+    public float GetAttackRate()
+    {
+        return attackRate;
+    }
+    public float GetSpeed()
+    {
+        return movementSpeed * speedModifier;
+    }
+    //returns Damage which is calculated by baseDamage*damageModifier;
+    public float GetDamage()
+    {
+        return baseDamage * damageModifier;
+    }
     #endregion
 
     private void Start()
@@ -37,7 +51,19 @@ public class Enemy : Entity
         throw new System.NotImplementedException();
         
     }
+    public override void ReceiveDamage(int damage)
+    {
+        damage = (damage - ((int)(damage * currentResistance)));
+        currentHealth -= damage;
 
+        Debug.Log(name + " is being attacked");
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+    }
     protected override void Die()
     {
         if (gameObject.GetComponent<CircleCollider2D>() != null)

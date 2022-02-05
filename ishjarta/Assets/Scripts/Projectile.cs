@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public int DealingDammage;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Enemy" && collider.GetType() == typeof(BoxCollider2D))
+        if(collider.GetType() == typeof(BoxCollider2D) && collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Player")
         {
-            collider.gameObject.GetComponent<Enemy>().ReceiveDamage(DealingDammage);
+            collider.gameObject.GetComponent<Entity>().ReceiveDamage(DealingDammage);
             Destroy(this.gameObject);
         }
         // 3 is obstacle layer and 6 is wall layer

@@ -29,30 +29,19 @@ public abstract class Entity : MonoBehaviour
 
     protected abstract void Die();
 
-    public void ReceiveDamage(int damage)
-    {
-        damage = (damage - ((int)(damage * currentResistance)));
-        currentHealth -= damage;
-
-        Debug.Log(name + " is being attacked");
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Die();
-        }
-    }
+    public abstract void ReceiveDamage(int damage);
 
     public abstract void Attack(Vector2 vector);
 
 
 
     StatusEffectHandler statusEffectHandler;
+    /*
     private void Update()
     {
         HandleEffects();
     }
-
+    */
     public void HandleEffects()
     {
         FrostEffect fe = statusEffectHandler.Frost;

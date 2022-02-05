@@ -237,12 +237,16 @@ MonoBehaviour:
   baseHealth: 100
   healthModifier: 1
   movementSpeed: 1
-  baseDamage: 1
+  speedModifier: 1
+  baseDamage: 5
   damageModifier: 1
   attackRate: 1
   range: 1
   animator: {fileID: 0}
   spottingRange: 5
+  <dropRate>k__BackingField: 0
+  <hasSpottedPlayer>k__BackingField: 0
+  <isInRange>k__BackingField: 0
 --- !u!114 &2376428963787245878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,5 +399,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TouchDamage: 20
-  DamageInterval: 1
+  MeeleDamage: 0
+  AttackRate: 0
