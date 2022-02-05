@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -11,10 +12,9 @@ public abstract class Entity : MonoBehaviour
     // Is used for enemy scaling and for player itembuff
     [SerializeField] protected float healthModifier;
 
-
     //Armor
-    protected float resistance;
-    protected float currentResistance;
+    [SerializeField] protected float resistance;
+    [SerializeField] protected float currentResistance;
     //Movement
     [SerializeField] protected int movementSpeed;
     [SerializeField] protected float speedModifier;
@@ -34,72 +34,73 @@ public abstract class Entity : MonoBehaviour
     public abstract void Attack(Vector2 vector);
 
 
+    private void Awake()
+    {
+        statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
+    }
 
     StatusEffectHandler statusEffectHandler;
-    /*
-    private void Update()
-    {
-        HandleEffects();
-    }
-    */
+
     public void HandleEffects()
     {
-        FrostEffect fe = statusEffectHandler.Frost;
-        if (fe != null)
+        BaseEffect baseEffect = statusEffectHandler.Frost;
+        if (baseEffect != null)
         {
-            speedModifier = fe.Effect();
-            if (!fe.IsActive)
+            speedModifier = baseEffect.Effect();
+            if (!baseEffect.IsActive)
             {
                 statusEffectHandler.RemoveFrost();
                 speedModifier = 1;
             }
         }
 
-        PoisiningEffect pe = statusEffectHandler.Poisining;
-        if (pe != null)
+        baseEffect = statusEffectHandler.Poisining;
+        if (baseEffect != null)
         {
-            currentHealth = pe.Effect(currentHealth);
+            currentHealth = baseEffect.Effect(currentHealth);
             currentHealth = currentHealth <= 0 ? 0 : currentHealth;
-            if (!pe.IsActive) statusEffectHandler.RemovePoisining();
+            if (!baseEffect.IsActive) statusEffectHandler.RemovePoisining();
         }
 
-        IncinerationEffect ie = statusEffectHandler.Incineration;
-        if (ie != null)
+        baseEffect = statusEffectHandler.Incineration;
+        if (baseEffect != null)
         {
-            currentResistance = ie.Effect(resistance, ref currentHealth);
+            currentResistance = baseEffect.Effect(resistance, ref currentHealth);
+            Debug.Log(baseEffect.DurationRemaining);
             currentHealth = currentHealth <= 0 ? 0 : currentHealth;
             currentResistance = currentResistance <= 0 ? 0 : currentResistance;
-            if (!ie.IsActive)
+            if (!baseEffect.IsActive)
             {
                 statusEffectHandler.RemoveIncineration();
                 currentResistance = resistance;
             }
         }
 
-        RegenerationEffect re = statusEffectHandler.Regeneration;
-        if (re != null)
+        baseEffect = statusEffectHandler.Regeneration;
+        if (baseEffect != null)
         {
-            currentHealth = re.Effect(currentHealth);
+            currentHealth = baseEffect.Effect(currentHealth);
             currentHealth = currentHealth >= maxHealth ? maxHealth : currentHealth;
-            if (!re.IsActive) statusEffectHandler.RemoveRegeneration();
+            if (!baseEffect.IsActive) statusEffectHandler.RemoveRegeneration();
         }
 
-        SpeedEffect spe = statusEffectHandler.Speed;
-        if (spe != null)
+        baseEffect = statusEffectHandler.Speed;
+        if (baseEffect != null)
         {
-            speedModifier = spe.Effect();
-            if (!spe.IsActive)
+            Debug.Log(baseEffect.DurationRemaining);
+            speedModifier = baseEffect.Effect();
+            if (!baseEffect.IsActive)
             {
                 statusEffectHandler.RemoveSpeed();
                 speedModifier = 1;
             }
         }
 
-        StrengthEffect ste = statusEffectHandler.Strength;
-        if (ste != null)
+        baseEffect = statusEffectHandler.Strength;
+        if (baseEffect != null)
         {
-            damageModifier = ste.Effect();
-            if (!ste.IsActive)
+            damageModifier = baseEffect.Effect();
+            if (!baseEffect.IsActive)
             {
                 statusEffectHandler.RemoveStrengh();
                 damageModifier = 1;
@@ -111,5 +112,10 @@ public abstract class Entity : MonoBehaviour
     {
         if (effect != null)
             statusEffectHandler.AddEffect(effect);
+    }
+    public void AddEffectRange(IEnumerable<BaseEffect> effect)
+    {
+        if (effect != null)
+            statusEffectHandler.AddEffectRange(effect.ToArray());
     }
 }

@@ -14,57 +14,88 @@ public class StatusEffectHandler : ScriptableObject
 
     public void AddEffect(BaseEffect effect)
     {
-        if(effect is FrostEffect)
+        if(effect is FrostEffect fe)
         {
-            Frost = (FrostEffect)effect;
+            if(Frost != null)
+            {
+                float speedDelay = fe.SpeedDelay >= Frost.SpeedDelay ? fe.SpeedDelay : Frost.SpeedDelay;
+                float duration = fe.Duration >= Frost.Duration ? fe.Duration : Frost.Duration;
+
+                fe = FrostEffect.CreateInstance(duration, speedDelay);
+            }
+
+            Frost = fe;
         } 
-        else if(effect is PoisiningEffect) 
-        { 
-            Poisining = (PoisiningEffect)effect;
-        }
-        else if( effect is IncinerationEffect)
+        else if(effect is PoisiningEffect pe) 
         {
-            Incineration = (IncinerationEffect)effect;
+            if (Poisining != null)
+            {
+                int poisonDamage = pe.PoisonDamage >= Poisining.PoisonDamage ? pe.PoisonDamage : Poisining.PoisonDamage;
+                float duration = pe.Duration >= Poisining.Duration ? pe.Duration : Poisining.Duration;
+
+                pe = PoisiningEffect.CreateInstance(duration, poisonDamage);
+            }
+
+            Poisining = pe;
         }
-        else if(effect is RegenerationEffect)
+        else if(effect is IncinerationEffect ie)
         {
-            Regeneration = (RegenerationEffect)effect;
+            if (Incineration != null)
+            {
+                float resistanceReduction = ie.ResistanceReduction >= Incineration.ResistanceReduction 
+                    ? ie.ResistanceReduction : Incineration.ResistanceReduction;
+                float duration = ie.Duration >= Incineration.Duration ? ie.Duration : Incineration.Duration;
+
+                ie = IncinerationEffect.CreateInstance(duration, resistanceReduction, ie.IncinerationDamage);
+            }
+
+            Incineration = ie;
         }
-        else if (effect is SpeedEffect)
+        else if(effect is RegenerationEffect re)
         {
-            Speed = (SpeedEffect)effect;
+            if (Regeneration != null)
+            {
+                int regeneration = re.Regeneration >= Regeneration.Regeneration
+                    ? re.Regeneration : Regeneration.Regeneration;
+                float duration = re.Duration >= Regeneration.Duration ? re.Duration : Regeneration.Duration;
+
+                re = RegenerationEffect.CreateInstance(duration, regeneration);
+            }
+
+            Regeneration = re;
         }
-        else if (effect is StrengthEffect)
+        else if (effect is SpeedEffect spe)
         {
-            Strength = (StrengthEffect)effect;
+            if (Speed != null)
+            {
+                float speedModifier = spe.SpeedModifier >= Speed.SpeedModifier
+                    ? spe.SpeedModifier : Speed.SpeedModifier;
+                float duration = spe.Duration >= Speed.Duration ? spe.Duration : Speed.Duration;
+
+                spe = SpeedEffect.CreateInstance(duration, speedModifier);
+            }
+            Speed = spe;
+        }
+        else if (effect is StrengthEffect ste)
+        {
+            if (Strength != null)
+            {
+                float strengthModifier = ste.StrengthModifier >= Strength.StrengthModifier
+                    ? ste.StrengthModifier : Strength.StrengthModifier;
+                float duration = ste.Duration >= Strength.Duration ? ste.Duration : Strength.Duration;
+
+                ste = StrengthEffect.CreateInstance(duration, strengthModifier);
+            }
+
+            Strength = ste;
         }
     }
 
-    public void RemoveEffect(BaseEffect effect)
+    public void AddEffectRange(BaseEffect[] effects)
     {
-        if (effect == Frost)
+        for(int i = 0; i < effects.Length; i++)
         {
-            Frost = null;
-        }
-        else if (effect == Poisining)
-        {
-            Poisining = null;
-        }
-        else if (effect == Incineration)
-        {
-            Incineration = null;
-        }
-        else if (effect == Regeneration)
-        {
-            Regeneration = null;
-        }
-        else if (effect == Speed)
-        {
-            Speed = null;
-        }
-        else if (effect == Strength)
-        {
-            Strength = null;
+            AddEffect(effects[i]);
         }
     }
 
@@ -93,4 +124,32 @@ public class StatusEffectHandler : ScriptableObject
     {
         Strength = null;
     }
+
+    //public void RemoveEffect(BaseEffect effect)
+    //{
+    //    if (effect == Frost)
+    //    {
+    //        Frost = null;
+    //    }
+    //    else if (effect == Poisining)
+    //    {
+    //        Poisining = null;
+    //    }
+    //    else if (effect == Incineration)
+    //    {
+    //        Incineration = null;
+    //    }
+    //    else if (effect == Regeneration)
+    //    {
+    //        Regeneration = null;
+    //    }
+    //    else if (effect == Speed)
+    //    {
+    //        Speed = null;
+    //    }
+    //    else if (effect == Strength)
+    //    {
+    //        Strength = null;
+    //    }
+    //}
 }

@@ -10,11 +10,25 @@ public class StrengthEffect : BaseEffect
         HasOneTimeEffect = false;
     }
 
-    private float strengthModifier;
+    public float StrengthModifier { get; protected set; }
 
-    public float Effect()
+    public override float Effect()
     {
         TickEffect();
-        return strengthModifier;
+        return StrengthModifier;
+    }
+
+    private void Init(float duration, float strengthModifier)
+    {
+        Duration = duration;
+        DurationRemaining = Duration;
+        StrengthModifier = strengthModifier;
+    }
+
+    public static StrengthEffect CreateInstance(float duration, float strengthModifier)
+    {
+        var effect = ScriptableObject.CreateInstance<StrengthEffect>();
+        effect.Init(duration, strengthModifier);
+        return effect;
     }
 }

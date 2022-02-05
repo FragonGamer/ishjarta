@@ -10,11 +10,26 @@ public class PoisiningEffect : BaseEffect
         HasOneTimeEffect = false;
     }
 
-    private int poisoning;
+    public int PoisonDamage { get; protected set; }
 
-    public int Effect(int health)
+    public override int Effect(int health)
     {
-        TickEffect();
-        return health - poisoning;
+        if(TickEffect())
+            return health - PoisonDamage;
+        return health;
+    }
+
+    private void Init(float duration, int poisonDamage)
+    {
+        Duration = duration;
+        DurationRemaining = LastSecond = Duration;
+        PoisonDamage = poisonDamage;
+    }
+
+    public static PoisiningEffect CreateInstance(float duration, int poisonDamage)
+    {
+        var effect = ScriptableObject.CreateInstance<PoisiningEffect>();
+        effect.Init(duration, poisonDamage);
+        return effect;
     }
 }

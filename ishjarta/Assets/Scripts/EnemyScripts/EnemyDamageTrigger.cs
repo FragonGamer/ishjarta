@@ -8,9 +8,11 @@ public class EnemyDamageTrigger : MonoBehaviour
     {
         if (collider is PolygonCollider2D)
         {
-            Player p = collider.gameObject.GetComponent<Player>();
+            Player player = collider.gameObject.GetComponent<Player>();
+            Enemy enemy = this.gameObject.GetComponent<Enemy>();
 
-            this.gameObject.GetComponent<Enemy>().ReceiveDamage(p.DealingDamage);
+            enemy.ReceiveDamage(player.DealingDamage);
+            enemy.AddEffectRange(player.GetCurrentEffectOfMeleeWeapon);
         }
     }
 }

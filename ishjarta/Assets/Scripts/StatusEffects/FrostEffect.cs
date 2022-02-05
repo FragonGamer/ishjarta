@@ -10,11 +10,25 @@ public class FrostEffect : BaseEffect
         HasOneTimeEffect = false;
     }
 
-    private float speedDelay;
+    public float SpeedDelay { get; protected set; }
 
-    public float Effect()
+    public override float Effect()
     {
         TickEffect();
-        return speedDelay;
+        return SpeedDelay;
+    }
+
+    private void Init(float duration, float speedDelay)
+    {
+        Duration = duration;
+        DurationRemaining = Duration;
+        SpeedDelay = speedDelay;
+    }
+
+    public static FrostEffect CreateInstance(float duration, float speedDelay)
+    {
+        var effect = ScriptableObject.CreateInstance<FrostEffect>();
+        effect.Init(duration, speedDelay);
+        return effect;
     }
 }

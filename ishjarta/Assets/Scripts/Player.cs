@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,7 @@ public class Player : Entity
 
     private void Update()
     {
+        HandleEffects();
         if (inventory.GetMeleeWeapon() != null && timeMelee < inventory.GetMeleeWeapon().AttackRate)
         {
             timeMelee += Time.deltaTime;
@@ -46,7 +48,7 @@ public class Player : Entity
     }
     public float GetMovementSpeed()
     {
-        return movementSpeed;
+        return movementSpeed * speedModifier;
     }
     public Inventory inventory;
 
@@ -58,7 +60,7 @@ public class Player : Entity
         }
     }
 
-
+    public List<BaseEffect> GetCurrentEffectOfMeleeWeapon => inventory.CurrentWeapon is MeleeWeapon melWeapon ? melWeapon.Effects : null;
 
     public override void Attack(Vector2 mousePos)
     {
@@ -105,6 +107,7 @@ public class Player : Entity
                     (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
             
                 projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
+                projectile.GetComponent<Projectile>().Effects = curWeapon.Effects;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
 
                 Destroy(projectile, 10f);
