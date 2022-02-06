@@ -8,10 +8,11 @@ public abstract class BaseEffect : ScriptableObject
     public float DurationRemaining { get; protected set; } = 0f;
 
     public float LastSecond { get; protected set; } = 0f;
-    public bool IsActive => DurationRemaining > 0f;
+    public bool IsActive => IsPermanent || DurationRemaining > 0f;
 
     public bool HasOneTimeEffect { get; protected set; }
     public bool HasEffectOverTime { get; protected set; }
+    public bool IsPermanent { get; protected set; }
 
     protected void Awake()
     {
@@ -27,6 +28,11 @@ public abstract class BaseEffect : ScriptableObject
         if (LastSecond - DurationRemaining >= 1)
         {
             LastSecond--;
+            if (IsPermanent && LastSecond == 0)
+            {
+                DurationRemaining = Duration;
+                LastSecond = Duration;
+            }
             return true;
         }
         else

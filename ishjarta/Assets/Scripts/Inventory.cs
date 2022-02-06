@@ -101,19 +101,21 @@ public class Inventory :MonoBehaviour{
     }
 
     public void ChangeWeapon()
-    {
-        
-           
-            if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && MeleeWeapon != null )
-            {
-                CurrentWeapon = MeleeWeapon;
-            }
-            else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && RangedWeapon != null)
-            {
-                CurrentWeapon = RangedWeapon;
-            }
-            player.SetBaseDamage(CurrentWeapon.Damage);
-            PrintInventory();
+    {   
+        if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && MeleeWeapon != null )
+        {
+            player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+            CurrentWeapon = MeleeWeapon;
+            player.AddEffectRange(CurrentWeapon.OwnerEffects);
+        }
+        else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && RangedWeapon != null)
+        {
+            player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+            CurrentWeapon = RangedWeapon;
+            player.AddEffectRange(CurrentWeapon.OwnerEffects);
+        }
+        player.SetBaseDamage(CurrentWeapon.Damage);
+        PrintInventory();
     }
 
     private void AddWeapon(Item item)
@@ -124,11 +126,16 @@ public class Inventory :MonoBehaviour{
             DropItem(MeleeWeapon);
             MeleeWeapon = (MeleeWeapon) item;
 
+            player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+            CurrentWeapon = null;
         }
         else if (weapontype.IsSubclassOf(typeof(RangedWeapon)))
         {
             DropItem(RangedWeapon);
             RangedWeapon = (RangedWeapon) item;
+
+            player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+            CurrentWeapon = null;
         }
 
         if (CurrentWeapon == null)
@@ -142,7 +149,10 @@ public class Inventory :MonoBehaviour{
                 CurrentWeapon = RangedWeapon;
             }
             if (CurrentWeapon != null)
+            {
+                player.AddEffectRange(CurrentWeapon.OwnerEffects);
                 player.SetBaseDamage(CurrentWeapon.Damage);
+            }
         }
         if (weapontype != CurrentWeapon.GetType())
         {

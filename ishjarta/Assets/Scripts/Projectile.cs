@@ -6,7 +6,8 @@ public class Projectile : MonoBehaviour
 {
     public int DealingDammage;
 
-    public List<BaseEffect> Effects { get; set; }
+    // Effects which will be passed on to the enemy
+    public List<BaseEffect> EmitEffects { get; set; }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -16,7 +17,7 @@ public class Projectile : MonoBehaviour
             if (entity != null)
             {
                 entity.ReceiveDamage(DealingDammage);
-                entity.AddEffectRange(Effects);
+                entity.AddEffectRange(EmitEffects);
             }
         }
         // 3 is obstacle layer and 6 is wall layer

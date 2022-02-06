@@ -25,11 +25,24 @@ public class PoisiningEffect : BaseEffect
         DurationRemaining = LastSecond = Duration;
         PoisonDamage = poisonDamage;
     }
+    private void Init(bool isPermanent, int poisonDamage)
+    {
+        IsPermanent = isPermanent;
+        Duration = 1;
+        DurationRemaining = LastSecond = Duration;
+        PoisonDamage = poisonDamage;
+    }
 
     public static PoisiningEffect CreateInstance(float duration, int poisonDamage)
     {
         var effect = ScriptableObject.CreateInstance<PoisiningEffect>();
         effect.Init(duration, poisonDamage);
+        return effect;
+    }
+    public static PoisiningEffect CreateInstance(bool isPermanent, int poisonDamage)
+    {
+        var effect = ScriptableObject.CreateInstance<PoisiningEffect>();
+        effect.Init(isPermanent, poisonDamage);
         return effect;
     }
 }

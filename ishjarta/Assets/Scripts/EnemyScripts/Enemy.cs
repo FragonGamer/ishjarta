@@ -42,6 +42,11 @@ public class Enemy : Entity
     }
     #endregion
 
+
+    // Effect which will be passed on to the player
+    [SerializeField] public BaseEffect EmitEffect { get; set; }
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();

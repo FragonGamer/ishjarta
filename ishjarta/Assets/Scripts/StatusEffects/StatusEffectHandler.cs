@@ -14,6 +14,9 @@ public class StatusEffectHandler : ScriptableObject
 
     public void AddEffect(BaseEffect effect)
     {
+        if (IsEffectAlreadyPermanent(effect))
+            return;
+
         if(effect is FrostEffect fe)
         {
             if(Frost != null)
@@ -125,31 +128,69 @@ public class StatusEffectHandler : ScriptableObject
         Strength = null;
     }
 
-    //public void RemoveEffect(BaseEffect effect)
-    //{
-    //    if (effect == Frost)
-    //    {
-    //        Frost = null;
-    //    }
-    //    else if (effect == Poisining)
-    //    {
-    //        Poisining = null;
-    //    }
-    //    else if (effect == Incineration)
-    //    {
-    //        Incineration = null;
-    //    }
-    //    else if (effect == Regeneration)
-    //    {
-    //        Regeneration = null;
-    //    }
-    //    else if (effect == Speed)
-    //    {
-    //        Speed = null;
-    //    }
-    //    else if (effect == Strength)
-    //    {
-    //        Strength = null;
-    //    }
-    //}
+    private bool IsEffectAlreadyPermanent(BaseEffect effect)
+    {
+        bool result = false;
+        if (effect is FrostEffect && Frost != null)
+        {
+            result = Frost.IsPermanent;
+        }
+        else if (effect is PoisiningEffect && Poisining != null)
+        {
+            result = Poisining.IsPermanent;
+        }
+        else if (effect is IncinerationEffect && Incineration != null)
+        {
+            result = Incineration.IsPermanent;
+        }
+        else if (effect is RegenerationEffect && Regeneration != null)
+        {
+            result = Regeneration.IsPermanent;
+        }
+        else if (effect is SpeedEffect && Speed != null)
+        {
+            result = Speed.IsPermanent;
+        }
+        else if (effect is StrengthEffect && Strength != null)
+        {
+            result = Strength.IsPermanent;
+        }
+        return result;
+    }
+
+    public void RemoveEffect(BaseEffect effect)
+    {
+        if (effect == Frost)
+        {
+            Frost = null;
+        }
+        else if (effect == Poisining)
+        {
+            Poisining = null;
+        }
+        else if (effect == Incineration)
+        {
+            Incineration = null;
+        }
+        else if (effect == Regeneration)
+        {
+            Regeneration = null;
+        }
+        else if (effect == Speed)
+        {
+            Speed = null;
+        }
+        else if (effect == Strength)
+        {
+            Strength = null;
+        }
+    }
+
+    public void RemoveEffectRange(BaseEffect[] effects)
+    {
+        for (int i = 0; i < effects.Length; i++)
+        {
+            RemoveEffect(effects[i]);
+        }
+    }
 }

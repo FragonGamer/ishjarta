@@ -44,7 +44,11 @@ public class EnemyMeeleAttack : MonoBehaviour
                     if (time >= AttackRate)
                     {
                         time = 0.0f;
-                    playerCollider.gameObject.GetComponent<Player>().ReceiveDamage(MeeleDamage);
+
+                        // Add effect to the player
+                        playerCollider.gameObject.GetComponent<Player>().AddEffect(enemyScript.EmitEffect);
+
+                        playerCollider.gameObject.GetComponent<Player>().ReceiveDamage(MeeleDamage);
                     }
                     time += Time.deltaTime;
                 }

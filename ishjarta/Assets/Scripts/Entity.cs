@@ -66,7 +66,6 @@ public abstract class Entity : MonoBehaviour
         if (baseEffect != null)
         {
             currentResistance = baseEffect.Effect(resistance, ref currentHealth);
-            Debug.Log(baseEffect.DurationRemaining);
             currentHealth = currentHealth <= 0 ? 0 : currentHealth;
             currentResistance = currentResistance <= 0 ? 0 : currentResistance;
             if (!baseEffect.IsActive)
@@ -117,5 +116,16 @@ public abstract class Entity : MonoBehaviour
     {
         if (effect != null)
             statusEffectHandler.AddEffectRange(effect.ToArray());
+    }
+    public void RemoveEffect(BaseEffect effect)
+    {
+        if (effect != null)
+            statusEffectHandler.RemoveEffect(effect);
+    }
+
+    public void RemoveEffectRange(IEnumerable<BaseEffect> effect)
+    {
+        if (effect != null)
+            statusEffectHandler.RemoveEffectRange(effect.ToArray());
     }
 }

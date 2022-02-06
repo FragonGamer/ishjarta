@@ -60,7 +60,7 @@ public class Player : Entity
         }
     }
 
-    public List<BaseEffect> GetCurrentEffectOfMeleeWeapon => inventory.CurrentWeapon is MeleeWeapon melWeapon ? melWeapon.Effects : null;
+    public List<BaseEffect> GetCurrentEffectOfMeleeWeapon => inventory.CurrentWeapon is MeleeWeapon melWeapon ? melWeapon.EmitEffects : null;
 
     public override void Attack(Vector2 mousePos)
     {
@@ -107,7 +107,7 @@ public class Player : Entity
                     (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
             
                 projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
-                projectile.GetComponent<Projectile>().Effects = curWeapon.Effects;
+                projectile.GetComponent<Projectile>().EmitEffects = curWeapon.EmitEffects;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
 
                 Destroy(projectile, 10f);
