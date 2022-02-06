@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DungeonGenerationTest",
+                    "type": "Button",
+                    "id": "5a173625-7af2-4ae1-bfba-0993d09c1099",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -254,6 +263,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Drop Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e67caea-730c-4a1b-80a7-e9e07b8e0278",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "DungeonGenerationTest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
