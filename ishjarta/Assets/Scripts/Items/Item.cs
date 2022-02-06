@@ -9,6 +9,11 @@ public abstract class Item : ScriptableObject
     [SerializeField] protected Sprite Icon;
     protected int dropChanceMax,dropChanceMin;
 
+    public Sprite GetSprite()
+    {
+        return Icon;
+    }
+
     // Effects which the owner gets
     public List<BaseEffect> OwnerEffects { get; set; }
 

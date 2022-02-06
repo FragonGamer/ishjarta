@@ -4,17 +4,40 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class Inventory :MonoBehaviour{ 
-    MeleeWeapon MeleeWeapon { get; set; }
-    RangedWeapon RangedWeapon { get; set; }
-    public Weapon CurrentWeapon { get; set; }
-    List<PassiveItem> PassiveItems { get; set; }
-    ActiveItem ActiveItem { get; set; }
-    UsableItem Coins { get; set; }
-    UsableItem Bombs { get; set; }
-    UsableItem Keys { get; set; }
-    UsableItem Armor { get; set; }
-    Player player { get; set; }
+public class Inventory :MonoBehaviour{
+    #region Singleton
+    public static Inventory instance;
+    private void Awake()
+    {
+        instance = this;
+        PassiveItems = new List<PassiveItem>();
+        MeleeWeapon = null;
+        RangedWeapon = null;
+        CurrentWeapon = null;
+        ActiveItem = null;
+        player = gameObject.GetComponent<Player>();
+        Coins = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Keys = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Armor = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
+        Coins.init(0, UsableItem.UItemtype.coin, 999);
+        Bombs.init(0, UsableItem.UItemtype.bomb, 99);
+        Keys.init(0, UsableItem.UItemtype.key, 10);
+        Armor.init(0, UsableItem.UItemtype.armor, 999);
+    }
+    #endregion
+    [field: SerializeField] MeleeWeapon MeleeWeapon { get; set; }
+    [field: SerializeField] RangedWeapon RangedWeapon { get; set; }
+    [field: SerializeField] public Weapon CurrentWeapon { get; set; }
+    [field: SerializeField] List<PassiveItem> PassiveItems { get; set; }
+    [field: SerializeField] ActiveItem ActiveItem { get; set; }
+    [field: SerializeField] UsableItem Coins { get; set; }
+    [field: SerializeField] UsableItem Bombs { get; set; }
+    [field: SerializeField] UsableItem Keys { get; set; }
+    [field: SerializeField] UsableItem Armor { get; set; }
+    [field: SerializeField] Player player { get; set; }
+
+    [SerializeField] private HUDManager hudManager;
 
     #region Getters and Setters
     public MeleeWeapon GetMeleeWeapon()
@@ -34,25 +57,10 @@ public class Inventory :MonoBehaviour{
         return ActiveItem;
     }
     #endregion
-    /// <summary>
-    /// Our Constructor
-    /// </summary>
-    private void Awake()
+
+    private void Start()
     {
-        PassiveItems = new List<PassiveItem>();
-        MeleeWeapon = null;
-        RangedWeapon = null;
-        CurrentWeapon = null;
-        ActiveItem = null;
-        player = gameObject.GetComponent<Player>();
-        Coins = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
-        Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
-        Keys = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
-        Armor = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
-        Coins.init(0, UsableItem.UItemtype.coin,999);
-        Bombs.init( 0, UsableItem.UItemtype.bomb,99 );
-        Keys.init(0, UsableItem.UItemtype.key, 10);
-        Armor.init(0, UsableItem.UItemtype.armor, 999);
+        hudManager = HUDManager.instance;
     }
 
     /// <summary>
@@ -92,7 +100,7 @@ public class Inventory :MonoBehaviour{
             {
                 result = false;
             }
-
+            hudManager.UpdateAllSpritesAndText();
             PrintInventory();
         }
 
@@ -114,6 +122,7 @@ public class Inventory :MonoBehaviour{
             CurrentWeapon = RangedWeapon;
             player.AddEffectRange(CurrentWeapon.OwnerEffects);
         }
+        hudManager.UpdateWeaponSprites();
         player.SetBaseDamage(CurrentWeapon.Damage);
         PrintInventory();
     }
@@ -123,19 +132,25 @@ public class Inventory :MonoBehaviour{
         Type weapontype = item.GetType();
         if (weapontype.IsSubclassOf(typeof(MeleeWeapon)))
         {
-            DropItem(MeleeWeapon);
+            if (MeleeWeapon!=null)
+            {
+                DropItem(MeleeWeapon);
+                player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+                CurrentWeapon = null;
+            }
             MeleeWeapon = (MeleeWeapon) item;
 
-            player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
-            CurrentWeapon = null;
         }
         else if (weapontype.IsSubclassOf(typeof(RangedWeapon)))
         {
-            DropItem(RangedWeapon);
+            if (RangedWeapon != null)
+            {
+                DropItem(MeleeWeapon);
+                player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+                CurrentWeapon = null;
+            }
             RangedWeapon = (RangedWeapon) item;
 
-            player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
-            CurrentWeapon = null;
         }
 
         if (CurrentWeapon == null)

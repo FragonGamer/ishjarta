@@ -160,37 +160,43 @@ public class StatusEffectHandler : ScriptableObject
 
     public void RemoveEffect(BaseEffect effect)
     {
-        if (effect == Frost)
+        if (effect != null)
         {
-            Frost = null;
-        }
-        else if (effect == Poisining)
-        {
-            Poisining = null;
-        }
-        else if (effect == Incineration)
-        {
-            Incineration = null;
-        }
-        else if (effect == Regeneration)
-        {
-            Regeneration = null;
-        }
-        else if (effect == Speed)
-        {
-            Speed = null;
-        }
-        else if (effect == Strength)
-        {
-            Strength = null;
+            if (effect == Frost)
+            {
+                Frost = null;
+            }
+            else if (effect == Poisining)
+            {
+                Poisining = null;
+            }
+            else if (effect == Incineration)
+            {
+                Incineration = null;
+            }
+            else if (effect == Regeneration)
+            {
+                Regeneration = null;
+            }
+            else if (effect == Speed)
+            {
+                Speed = null;
+            }
+            else if (effect == Strength)
+            {
+                Strength = null;
+            }
         }
     }
 
     public void RemoveEffectRange(BaseEffect[] effects)
     {
-        for (int i = 0; i < effects.Length; i++)
+        if (effects != null)
         {
-            RemoveEffect(effects[i]);
+            for (int i = 0; i < effects.Length; i++)
+            {
+                RemoveEffect(effects[i]);
+            }
         }
     }
 }

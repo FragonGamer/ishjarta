@@ -85,24 +85,7 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * player.GetMovementSpeed() * Time.fixedDeltaTime);
 
     }
-    /*
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            player.Attack(Input.mousePosition);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("Dropped Item");
-            if (player.inventory.GetActiveItem() != null)
-            {
-                ActiveItem activeItem = player.inventory.GetActiveItem();
-                player.inventory.DropItem(activeItem);
-            }
-        }
-    }
-    */
+
     private void FixedUpdate()
     {
         Move();
