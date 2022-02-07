@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisiningEffect : BaseEffect
+[CreateAssetMenu(menuName = "PoisoningEffect")]
+public class PoisoningEffect : BaseEffect
 {
     new void Awake()
     {
@@ -10,7 +11,7 @@ public class PoisiningEffect : BaseEffect
         HasOneTimeEffect = false;
     }
 
-    public int PoisonDamage { get; protected set; }
+    [field: SerializeField] public int PoisonDamage { get; protected set; }
 
     public override int Effect(int health)
     {
@@ -33,15 +34,15 @@ public class PoisiningEffect : BaseEffect
         PoisonDamage = poisonDamage;
     }
 
-    public static PoisiningEffect CreateInstance(float duration, int poisonDamage)
+    public static PoisoningEffect CreateInstance(float duration, int poisonDamage)
     {
-        var effect = ScriptableObject.CreateInstance<PoisiningEffect>();
+        var effect = ScriptableObject.CreateInstance<PoisoningEffect>();
         effect.Init(duration, poisonDamage);
         return effect;
     }
-    public static PoisiningEffect CreateInstance(bool isPermanent, int poisonDamage)
+    public static PoisoningEffect CreateInstance(bool isPermanent, int poisonDamage)
     {
-        var effect = ScriptableObject.CreateInstance<PoisiningEffect>();
+        var effect = ScriptableObject.CreateInstance<PoisoningEffect>();
         effect.Init(isPermanent, poisonDamage);
         return effect;
     }

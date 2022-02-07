@@ -44,13 +44,20 @@ public class Enemy : Entity
 
 
     // Effect which will be passed on to the player
-    [SerializeField] public BaseEffect EmitEffect { get; set; }
+    [field: SerializeField] public BaseEffect EmitEffect { get; set; }
 
+    public override void UpdateHealthBar() { }
 
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
+
+    public void Update()
+    {
+        HandleEffects();
+    }
+
     public override void Attack(Vector2 vector)
     {
         throw new System.NotImplementedException();

@@ -21,7 +21,7 @@ public class FrostEffect : BaseEffect
     private void Init(float duration, float speedDelay)
     {
         Duration = duration;
-        DurationRemaining = Duration;
+        DurationRemaining = LastSecond = Duration;
         SpeedDelay = speedDelay;
     }
 

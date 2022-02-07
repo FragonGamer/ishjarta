@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatusEffectHandler : ScriptableObject
 {
     public FrostEffect Frost { get; private set; }
-    public PoisiningEffect Poisining { get; private set; }
+    public PoisoningEffect Poisining { get; private set; }
     public IncinerationEffect Incineration { get; private set; }
 
     public RegenerationEffect Regeneration { get; private set; }
@@ -29,14 +29,14 @@ public class StatusEffectHandler : ScriptableObject
 
             Frost = fe;
         } 
-        else if(effect is PoisiningEffect pe) 
+        else if(effect is PoisoningEffect pe) 
         {
             if (Poisining != null)
             {
                 int poisonDamage = pe.PoisonDamage >= Poisining.PoisonDamage ? pe.PoisonDamage : Poisining.PoisonDamage;
                 float duration = pe.Duration >= Poisining.Duration ? pe.Duration : Poisining.Duration;
 
-                pe = PoisiningEffect.CreateInstance(duration, poisonDamage);
+                pe = PoisoningEffect.CreateInstance(duration, poisonDamage);
             }
 
             Poisining = pe;
@@ -135,7 +135,7 @@ public class StatusEffectHandler : ScriptableObject
         {
             result = Frost.IsPermanent;
         }
-        else if (effect is PoisiningEffect && Poisining != null)
+        else if (effect is PoisoningEffect && Poisining != null)
         {
             result = Poisining.IsPermanent;
         }

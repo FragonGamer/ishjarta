@@ -17,6 +17,11 @@ public class Player : Entity
     public int GetBaseDamage() { return baseDamage; }
     public void SetBaseDamage(int value) { baseDamage = value; }
 
+    public override void UpdateHealthBar()
+    {
+        hpBar.SetHealth(currentHealth);
+    }
+
     private void Start()
     {
         hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
@@ -40,11 +45,12 @@ public class Player : Entity
     {
             int armorAmount = inventory.GetArmor().Amount;
             resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+            currentResistance = resistance;
     }
     
     public float GetResistence()
     {
-        return resistance;
+        return currentResistance;
     }
     public float GetMovementSpeed()
     {

@@ -28,7 +28,7 @@ public class RegenerationEffect : BaseEffect
     private void Init(bool isPermanent, int regeneration)
     {
         IsPermanent = isPermanent;
-        Duration = 2;
+        Duration = 1;
         DurationRemaining = LastSecond = Duration;
         Regeneration = regeneration;
     }

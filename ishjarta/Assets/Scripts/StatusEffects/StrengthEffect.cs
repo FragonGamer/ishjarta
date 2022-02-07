@@ -24,11 +24,25 @@ public class StrengthEffect : BaseEffect
         DurationRemaining = Duration;
         StrengthModifier = strengthModifier;
     }
+    private void Init(bool isPermanent, float strengthModifier)
+    {
+        IsPermanent = isPermanent;
+        Duration = 1;
+        DurationRemaining = LastSecond = Duration;
+        StrengthModifier = strengthModifier;
+    }
 
     public static StrengthEffect CreateInstance(float duration, float strengthModifier)
     {
         var effect = ScriptableObject.CreateInstance<StrengthEffect>();
         effect.Init(duration, strengthModifier);
+        return effect;
+    }
+
+    public static StrengthEffect CreateInstance(bool isPermanent, float strengthModifier)
+    {
+        var effect = ScriptableObject.CreateInstance<StrengthEffect>();
+        effect.Init(isPermanent, strengthModifier);
         return effect;
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class BaseEffect : ScriptableObject
 {
-    [SerializeField] public float Duration { get; protected set; } = 0f;
-    public float DurationRemaining { get; protected set; } = 0f;
+    [field: SerializeField] public float Duration { get; protected set; } = 0f;
+    [field: SerializeField] public float DurationRemaining { get; protected set; } = 0f;
 
-    public float LastSecond { get; protected set; } = 0f;
+    [field: SerializeField] public float LastSecond { get; protected set; } = 0f;
     public bool IsActive => IsPermanent || DurationRemaining > 0f;
 
     public bool HasOneTimeEffect { get; protected set; }
@@ -28,6 +28,7 @@ public abstract class BaseEffect : ScriptableObject
         if (LastSecond - DurationRemaining >= 1)
         {
             LastSecond--;
+            Debug.Log(LastSecond);
             if (IsPermanent && LastSecond == 0)
             {
                 DurationRemaining = Duration;
@@ -45,7 +46,7 @@ public abstract class BaseEffect : ScriptableObject
         return 0.0f;
     }
 
-    // Virtual Method to override for the PoisiningEffect and RegenerationEffect
+    // Virtual Method to override for the PoisoningEffect and RegenerationEffect
     public virtual int Effect(int i)
     {
         return i;

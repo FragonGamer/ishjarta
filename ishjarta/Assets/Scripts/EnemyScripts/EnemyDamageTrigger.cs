@@ -10,7 +10,7 @@ public class EnemyDamageTrigger : MonoBehaviour
         {
             Player player = collider.gameObject.GetComponent<Player>();
             Enemy enemy = this.gameObject.GetComponent<Enemy>();
-
+            
             enemy.ReceiveDamage(player.DealingDamage);
             enemy.AddEffectRange(player.GetCurrentEffectOfMeleeWeapon);
         }

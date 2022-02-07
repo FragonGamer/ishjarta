@@ -28,7 +28,7 @@ public class IncinerationEffect : BaseEffect
     private void Init(float duration, float resistanceReduction, int incinerationDamage)
     {
         Duration = duration;
-        DurationRemaining = Duration;
+        DurationRemaining = LastSecond = Duration;
         ResistanceReduction = resistanceReduction;
         IncinerationDamage = incinerationDamage;
         HasIncinerated = false;

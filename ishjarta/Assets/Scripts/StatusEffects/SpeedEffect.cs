@@ -23,7 +23,14 @@ public class SpeedEffect : BaseEffect
     private void Init(float duration, float speedModifier)
     {
         Duration = duration;
-        DurationRemaining = Duration;
+        DurationRemaining = LastSecond = Duration;
+        SpeedModifier = speedModifier;
+    }
+    private void Init(bool isPermanent, float speedModifier)
+    {
+        IsPermanent = isPermanent;
+        Duration = 1;
+        DurationRemaining = LastSecond = Duration;
         SpeedModifier = speedModifier;
     }
 
@@ -31,6 +38,13 @@ public class SpeedEffect : BaseEffect
     {
         var effect = ScriptableObject.CreateInstance<SpeedEffect>();
         effect.Init(duration, speedModifier);
+        return effect;
+    }
+
+    public static SpeedEffect CreateInstance(bool isPermanent, float speedModifier)
+    {
+        var effect = ScriptableObject.CreateInstance<SpeedEffect>();
+        effect.Init(isPermanent, speedModifier);
         return effect;
     }
 }

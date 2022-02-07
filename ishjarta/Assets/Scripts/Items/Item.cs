@@ -18,5 +18,5 @@ public abstract class Item : ScriptableObject
     public List<BaseEffect> OwnerEffects { get; set; }
 
     // Effects which will be passed on to the enemy
-    public List<BaseEffect> EmitEffects { get; set; }
+    [field: SerializeField] public List<BaseEffect> EmitEffects { get; set; }
 }

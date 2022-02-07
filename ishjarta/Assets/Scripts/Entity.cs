@@ -33,32 +33,36 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void Attack(Vector2 vector);
 
+    public abstract void UpdateHealthBar();
+
 
     private void Awake()
     {
         statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
     }
-
+    
     StatusEffectHandler statusEffectHandler;
 
     public void HandleEffects()
     {
+        float speedBoost = 1, speedDelay = 1;
         BaseEffect baseEffect = statusEffectHandler.Frost;
         if (baseEffect != null)
         {
-            speedModifier = baseEffect.Effect();
+            speedDelay = baseEffect.Effect();
             if (!baseEffect.IsActive)
             {
                 statusEffectHandler.RemoveFrost();
                 speedModifier = 1;
             }
         }
-
+        
         baseEffect = statusEffectHandler.Poisining;
         if (baseEffect != null)
         {
             currentHealth = baseEffect.Effect(currentHealth);
             currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+            UpdateHealthBar();
             if (!baseEffect.IsActive) statusEffectHandler.RemovePoisining();
         }
 
@@ -67,6 +71,7 @@ public abstract class Entity : MonoBehaviour
         {
             currentResistance = baseEffect.Effect(resistance, ref currentHealth);
             currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+            UpdateHealthBar();
             currentResistance = currentResistance <= 0 ? 0 : currentResistance;
             if (!baseEffect.IsActive)
             {
@@ -80,14 +85,14 @@ public abstract class Entity : MonoBehaviour
         {
             currentHealth = baseEffect.Effect(currentHealth);
             currentHealth = currentHealth >= maxHealth ? maxHealth : currentHealth;
+            UpdateHealthBar();
             if (!baseEffect.IsActive) statusEffectHandler.RemoveRegeneration();
         }
 
         baseEffect = statusEffectHandler.Speed;
         if (baseEffect != null)
         {
-            Debug.Log(baseEffect.DurationRemaining);
-            speedModifier = baseEffect.Effect();
+            speedBoost = baseEffect.Effect();
             if (!baseEffect.IsActive)
             {
                 statusEffectHandler.RemoveSpeed();
@@ -105,6 +110,8 @@ public abstract class Entity : MonoBehaviour
                 damageModifier = 1;
             }
         }
+        HUDManager.instance.UpdateAllSpritesAndText();
+        speedModifier = speedBoost * speedDelay;
     }
 
     public void AddEffect(BaseEffect effect)
