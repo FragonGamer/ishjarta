@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
             {
                 entity.ReceiveDamage(DealingDammage);
                 entity.AddEffectRange(EmitEffects);
+                Destroy(this.gameObject);
             }
         }
         // 3 is obstacle layer and 6 is wall layer

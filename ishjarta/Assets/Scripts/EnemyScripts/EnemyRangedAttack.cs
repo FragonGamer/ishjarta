@@ -63,7 +63,7 @@ public class EnemyRangedAttack : MonoBehaviour
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
                     // Add effect to the player
-                    projectile.GetComponent<Projectile>().EmitEffects.Add(enemyScript.EmitEffect);
+                    //projectile.GetComponent<Projectile>().EmitEffects.Add(enemyScript.EmitEffect);
 
                     projectile.GetComponent<Projectile>().DealingDammage = RangedDamage;
                     projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * ProjectileVelocity, ForceMode2D.Impulse);
