@@ -12,7 +12,7 @@ public class EnemyDamageTrigger : MonoBehaviour
             Enemy enemy = this.gameObject.GetComponent<Enemy>();
             
             enemy.ReceiveDamage(player.DealingDamage);
-            enemy.AddEffectRange(player.GetCurrentEffectOfMeleeWeapon);
+            enemy.AddEffectRange(player.GetCurrentEffects);
         }
     }
 }

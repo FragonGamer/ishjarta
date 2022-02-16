@@ -14,14 +14,14 @@ public class FrostEffect : BaseEffect
 
     public override float Effect()
     {
-        TickEffect();
+        TickPerSecondEffect();
         return SpeedDelay;
     }
 
     private void Init(float duration, float speedDelay)
     {
         Duration = duration;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining  = Duration;
         SpeedDelay = speedDelay;
     }
 

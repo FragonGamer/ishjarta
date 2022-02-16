@@ -15,22 +15,22 @@ public class PoisoningEffect : BaseEffect
 
     public override int Effect(int health)
     {
-        if(TickEffect())
-            return health - PoisonDamage;
-        return health;
+        TickPerSecondEffect();
+        
+        return health - PoisonDamage;
     }
 
     private void Init(float duration, int poisonDamage)
     {
         Duration = duration;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         PoisonDamage = poisonDamage;
     }
     private void Init(bool isPermanent, int poisonDamage)
     {
         IsPermanent = isPermanent;
         Duration = 1;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         PoisonDamage = poisonDamage;
     }
 

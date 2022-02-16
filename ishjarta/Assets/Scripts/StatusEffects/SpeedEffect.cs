@@ -16,21 +16,21 @@ public class SpeedEffect : BaseEffect
 
     public override float Effect()
     {
-        TickEffect();
+        TickPerSecondEffect();
         return SpeedModifier;
     }
 
     private void Init(float duration, float speedModifier)
     {
         Duration = duration;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         SpeedModifier = speedModifier;
     }
     private void Init(bool isPermanent, float speedModifier)
     {
         IsPermanent = isPermanent;
         Duration = 1;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         SpeedModifier = speedModifier;
     }
 

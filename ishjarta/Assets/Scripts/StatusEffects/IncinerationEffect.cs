@@ -16,7 +16,7 @@ public class IncinerationEffect : BaseEffect
 
     public override float Effect(float resistance, ref int health)
     {
-        TickEffect();
+        TickPerSecondEffect();
         if(!HasIncinerated)
         {
             health -= IncinerationDamage;
@@ -28,7 +28,7 @@ public class IncinerationEffect : BaseEffect
     private void Init(float duration, float resistanceReduction, int incinerationDamage)
     {
         Duration = duration;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         ResistanceReduction = resistanceReduction;
         IncinerationDamage = incinerationDamage;
         HasIncinerated = false;

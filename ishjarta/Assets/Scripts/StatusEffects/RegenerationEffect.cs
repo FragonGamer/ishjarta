@@ -14,22 +14,22 @@ public class RegenerationEffect : BaseEffect
 
     public override int Effect(int health)
     {
-        if(TickEffect())
-            return health + Regeneration;
-        return health;
+        TickPerSecondEffect();
+
+        return health + Regeneration;
     }
 
     private void Init(float duration, int regeneration)
     {
         Duration = duration;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         Regeneration = regeneration;
     }
     private void Init(bool isPermanent, int regeneration)
     {
         IsPermanent = isPermanent;
         Duration = 1;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         Regeneration = regeneration;
     }
 

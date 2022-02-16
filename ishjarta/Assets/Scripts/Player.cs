@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class Player : Entity
 {
@@ -66,7 +67,9 @@ public class Player : Entity
         }
     }
 
-    public List<BaseEffect> GetCurrentEffectOfMeleeWeapon => inventory.CurrentWeapon is MeleeWeapon melWeapon ? melWeapon.EmitEffects : null;
+    public List<BaseEffect> GetCurrentEffects =>
+        inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
+        inventory.CurrentWeapon.EmitEffects.Select(e => BaseEffect.ReturnCopy(e)).ToList() : null;
 
     public override void Attack(Vector2 mousePos)
     {
@@ -83,7 +86,7 @@ public class Player : Entity
 
                 Vector2[] v = new Vector2[]
                 {
-                    RotateVector2(new Vector2 {x = 0, y = 0}, angle),
+                    new Vector2 {x = 0, y = 0},
                     RotateVector2(new Vector2 {x = melWeapon.Range * (0.7f), y = melWeapon.Width}, angle),
                     RotateVector2(new Vector2 {x = melWeapon.Range, y = 0}, angle),
                     RotateVector2(new Vector2 {x = melWeapon.Range * (0.7f), y = melWeapon.Width * (-1)}, angle)
@@ -113,7 +116,7 @@ public class Player : Entity
                     (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
             
                 projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
-                projectile.GetComponent<Projectile>().EmitEffects = curWeapon.EmitEffects;
+                projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
 
                 Destroy(projectile, 10f);

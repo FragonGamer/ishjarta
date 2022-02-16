@@ -14,7 +14,7 @@ public class StrengthEffect : BaseEffect
 
     public override float Effect()
     {
-        TickEffect();
+        TickPerSecondEffect();
         return StrengthModifier;
     }
 
@@ -28,7 +28,7 @@ public class StrengthEffect : BaseEffect
     {
         IsPermanent = isPermanent;
         Duration = 1;
-        DurationRemaining = LastSecond = Duration;
+        DurationRemaining = Duration;
         StrengthModifier = strengthModifier;
     }
 

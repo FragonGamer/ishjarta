@@ -41,9 +41,19 @@ public abstract class Entity : MonoBehaviour
         statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
     }
     
-    StatusEffectHandler statusEffectHandler;
 
+    private float timeCounter = 0;
     public void HandleEffects()
+    {
+        timeCounter += Time.deltaTime;
+        if(timeCounter >= 1)
+        {
+            timeCounter = 0;
+            ExecuteEffects();
+        }
+    }
+    StatusEffectHandler statusEffectHandler;
+    public void ExecuteEffects()
     {
         float speedBoost = 1, speedDelay = 1;
         BaseEffect baseEffect = statusEffectHandler.Frost;
