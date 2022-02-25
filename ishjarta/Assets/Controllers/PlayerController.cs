@@ -12,10 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 movement;
 
     public Vector2 GetMovementVector() { return movement; }
-
     private void Awake()
     {
-        player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         inputMaster = new InputMaster();
@@ -31,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        player = PlayerManager.instance.player.GetComponent<Player>();
         inputMaster.Player.Movement.performed += MoveAction;
         inputMaster.Player.Movement.canceled += _ => { 
             movement = Vector2.zero;
