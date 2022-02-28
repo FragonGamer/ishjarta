@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce9fa3edd2b07b4f97967414512fd78, type: 3}
   m_Name: SpeedEffect1
   m_EditorClassIdentifier: 
+  <Duration>k__BackingField: 5
+  <DurationRemaining>k__BackingField: 5
+  <SpeedModifier>k__BackingField: 2

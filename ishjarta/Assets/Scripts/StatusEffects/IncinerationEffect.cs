@@ -34,10 +34,26 @@ public class IncinerationEffect : BaseEffect
         HasIncinerated = false;
     }
 
+    private void Init(bool isPermanent, float resistanceReduction, int incinerationDamage)
+    {
+        IsPermanent = isPermanent;
+        Duration = 1;
+        DurationRemaining = Duration;
+        ResistanceReduction = resistanceReduction;
+        IncinerationDamage = incinerationDamage;
+        HasIncinerated = false;
+    }
+
     public static IncinerationEffect CreateInstance(float duration, float resistanceReduction, int incinerationDamage)
     {
         var effect = ScriptableObject.CreateInstance<IncinerationEffect>();
         effect.Init(duration, resistanceReduction, incinerationDamage);
+        return effect;
+    }
+    public static IncinerationEffect CreateInstance(bool isPermanent, float resistanceReduction, int incinerationDamage)
+    {
+        var effect = ScriptableObject.CreateInstance<IncinerationEffect>();
+        effect.Init(isPermanent, resistanceReduction, incinerationDamage);
         return effect;
     }
 }

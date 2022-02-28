@@ -12,7 +12,7 @@ public class SpeedEffect : BaseEffect
         HasOneTimeEffect = false;
     }
 
-    [SerializeField] public float SpeedModifier { get; protected set; }
+    [field: SerializeField] public float SpeedModifier { get; protected set; }
 
     public override float Effect()
     {

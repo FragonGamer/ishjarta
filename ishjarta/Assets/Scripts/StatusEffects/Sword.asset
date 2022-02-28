@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: 
   Icon: {fileID: 0}
-  <EmitEffects>k__BackingField: []
-  <Damage>k__BackingField: 0
-  <Range>k__BackingField: 0
-  <AttackRate>k__BackingField: 0
-  <Width>k__BackingField: 0
+  <EmitEffects>k__BackingField:
+  - {fileID: 11400000, guid: 75ed8cf587ccc524490adcb4ac2ddd10, type: 2}
+  <Damage>k__BackingField: 5
+  <Range>k__BackingField: 1.2
+  <AttackRate>k__BackingField: 1
+  <Width>k__BackingField: 0.3

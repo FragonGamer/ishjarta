@@ -535,6 +535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 4225301854092310818, guid: 02d6da556d3cddf53a2fe0f65e17815e, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 28b8eeec41e12324ea5dcab95f739741, type: 2}
     - target: {fileID: 4225301854092310819, guid: 02d6da556d3cddf53a2fe0f65e17815e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -582,6 +586,65 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 02d6da556d3cddf53a2fe0f65e17815e, type: 3}
+--- !u!1001 &1484216175
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1435497413773076061, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_Name
+      value: SpeedBraclet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435497413773076062, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09d56676c8a5d524a96d92f70a0c08c7, type: 3}
 --- !u!1001 &1541371442
 PrefabInstance:
   m_ObjectHideFlags: 0
