@@ -1566,9 +1566,9 @@ Tilemap:
   - first: {x: -3, y: 5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -1625,12 +1625,12 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 186d0f43c7822db4cbdbd27250cc8d54, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 5917bc14ad1190344bc97d2f759037e8, type: 2}
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: aae7b5a04603b7f4684ed723d2e94934, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 39be1a74eaaf48b4ab8fef3cbf7eeb5d, type: 2}
   - m_RefCount: 81
     m_Data: {fileID: 11400000, guid: 38f36aec5a428aa448f38319d84dd5d5, type: 2}
   - m_RefCount: 8
@@ -1640,12 +1640,12 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: b2a9595fd4431f946b73337cfbbae9f5, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 083c042a9b980cd43883e9db4685e207, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 643003d144f45024b84fa4b161dc1983, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: 21300000, guid: 2e949e251f80e324e90dbff5b2c51ebf, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 25df763bff02aae4796e0f82932a3f0a, type: 3}
   - m_RefCount: 81
     m_Data: {fileID: 21300000, guid: 4921aaa397ad3d24aae6bb5ff36b0b00, type: 3}
   - m_RefCount: 8
@@ -1655,7 +1655,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 403a9743b97d1ac488506d442c698fad, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 99
+  - m_RefCount: 100
     m_Data:
       e00: 1
       e01: 0
@@ -1691,23 +1691,23 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data:
-      e00: 0
-      e01: -1
-      e02: 0
+      e00: -0.7215376
+      e01: NaN
+      e02: -3.0411285e+33
       e03: 0
-      e10: 1
-      e11: 0
-      e12: 0
+      e10: 1.53e-43
+      e11: 7e-45
+      e12: 4.5905e-41
       e13: 0
-      e20: 0
+      e20: 4.196e-41
       e21: 0
-      e22: 1
+      e22: -0.72153664
       e23: 0
       e30: 0
-      e31: 0
-      e32: 0
+      e31: 7.34684e-40
+      e32: 1.53e-43
       e33: 1
   - m_RefCount: 10
     m_Data:
