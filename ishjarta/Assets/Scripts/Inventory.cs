@@ -135,7 +135,7 @@ public class Inventory :MonoBehaviour{
             if (MeleeWeapon!=null)
             {
                 DropItem(MeleeWeapon);
-                player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+                //player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
                 CurrentWeapon = null;
             }
             MeleeWeapon = (MeleeWeapon) item;
@@ -146,7 +146,7 @@ public class Inventory :MonoBehaviour{
             if (RangedWeapon != null)
             {
                 DropItem(MeleeWeapon);
-                player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
+                //player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
                 CurrentWeapon = null;
             }
             RangedWeapon = (RangedWeapon) item;
@@ -271,6 +271,7 @@ public class Inventory :MonoBehaviour{
     public void AddPassiveItem(PassiveItem item)
     {
         PassiveItems.Add(item);
+        player.AddEffectRange(item.OwnerEffects);
     }
 
     /// <summary>
@@ -292,7 +293,9 @@ public class Inventory :MonoBehaviour{
             Debug.Log(item.GetType());
             if (item.GetType() == typeof(PassiveItem))
             {
-                PassiveItems.Remove((PassiveItem) item);
+                if(PassiveItems.Remove((PassiveItem) item))
+                    player.RemoveEffectRange(item.OwnerEffects);
+
             }
             else if (item.GetType() == typeof(UsableItem))
             {

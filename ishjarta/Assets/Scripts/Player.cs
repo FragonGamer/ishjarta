@@ -69,7 +69,7 @@ public class Player : Entity
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
-        inventory.CurrentWeapon.EmitEffects.Select(e => BaseEffect.ReturnCopy(e)).ToList() : null;
+        inventory.CurrentWeapon.EmitEffects : null;
 
     public override void Attack(Vector2 mousePos)
     {

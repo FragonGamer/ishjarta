@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 5
-  speedBoost: 5
+  speedBoost: 1
 --- !u!1 &239064593 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5520240170576418033, guid: 4a3e0ed2c03875d4a988c75d69f2eefb, type: 3}

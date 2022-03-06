@@ -41,7 +41,6 @@ public abstract class Entity : MonoBehaviour
         statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
     }
     
-
     private float timeCounter = 0;
     public void HandleEffects()
     {
@@ -55,73 +54,178 @@ public abstract class Entity : MonoBehaviour
     StatusEffectHandler statusEffectHandler;
     public void ExecuteEffects()
     {
-        float speedBoost = 1, speedDelay = 1;
-        BaseEffect baseEffect = statusEffectHandler.Frost;
-        if (baseEffect != null)
+        float speedBoost = 0, speedDelay = 0;
+        BaseEffect[] baseEffects = ConvertEffectsToArray(statusEffectHandler.FrostStat.Frost, statusEffectHandler.FrostStat.PermanentFrost);
+        if (baseEffects.Length != 0)
         {
-            speedDelay = baseEffect.Effect();
-            if (!baseEffect.IsActive)
+            for(int i = 0; i < baseEffects.Length;i++)
             {
-                statusEffectHandler.RemoveFrost();
-                speedModifier = 1;
+                var baseEffect = baseEffects[i];
+
+                speedDelay += baseEffect.Effect();
+                if (!baseEffect.IsActive)
+                {
+                    statusEffectHandler.RemoveEffect(baseEffect);
+                }
             }
         }
-        
-        baseEffect = statusEffectHandler.Poisining;
-        if (baseEffect != null)
+
+        baseEffects = ConvertEffectsToArray(statusEffectHandler.PoisoningStat.Poisoning, statusEffectHandler.PoisoningStat.PermanentPoisoning);
+        if (baseEffects.Length != 0)
         {
-            currentHealth = baseEffect.Effect(currentHealth);
-            currentHealth = currentHealth <= 0 ? 0 : currentHealth;
-            UpdateHealthBar();
-            if (!baseEffect.IsActive) statusEffectHandler.RemovePoisining();
+            for (int i = 0; i < baseEffects.Length; i++)
+            {
+                var baseEffect = baseEffects[i];
+
+                currentHealth = baseEffect.Effect(currentHealth);
+                currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+                UpdateHealthBar();
+                if (!baseEffect.IsActive) statusEffectHandler.RemoveEffect(baseEffect);
+            }
         }
 
-        baseEffect = statusEffectHandler.Incineration;
-        if (baseEffect != null)
+        baseEffects = ConvertEffectsToArray(statusEffectHandler.IncinerationStat.Incineration, statusEffectHandler.IncinerationStat.PermanentIncineration);
+        if (baseEffects.Length != 0)
         {
-            currentResistance = baseEffect.Effect(resistance, ref currentHealth);
-            currentHealth = currentHealth <= 0 ? 0 : currentHealth;
-            UpdateHealthBar();
+            float decreasedResistance = 0f;
+            for (int i = 0; i < baseEffects.Length; i++)
+            {
+                var baseEffect = baseEffects[i];
+
+                decreasedResistance += baseEffect.Effect(resistance, ref currentHealth);
+                currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+                UpdateHealthBar();
+                if (!baseEffect.IsActive)
+                {
+                    statusEffectHandler.RemoveEffect(baseEffect);
+                    //currentResistance = resistance;
+                }
+            }
+            currentResistance = resistance - decreasedResistance;
             currentResistance = currentResistance <= 0 ? 0 : currentResistance;
-            if (!baseEffect.IsActive)
+        }
+        else
+        {
+            currentResistance = resistance;
+        }
+
+        baseEffects = ConvertEffectsToArray(statusEffectHandler.RegenerationStat.Regeneration, statusEffectHandler.RegenerationStat.PermanentRegeneration);
+        if (baseEffects.Length != 0)
+        {
+            for (int i = 0; i < baseEffects.Length; i++)
             {
-                statusEffectHandler.RemoveIncineration();
-                currentResistance = resistance;
+                var baseEffect = baseEffects[i];
+
+                currentHealth = baseEffect.Effect(currentHealth);
+                currentHealth = currentHealth >= maxHealth ? maxHealth : currentHealth;
+                UpdateHealthBar();
+                if (!baseEffect.IsActive) statusEffectHandler.RemoveEffect(baseEffect);
             }
         }
 
-        baseEffect = statusEffectHandler.Regeneration;
-        if (baseEffect != null)
+        baseEffects = ConvertEffectsToArray(statusEffectHandler.SpeedStat.Speed, statusEffectHandler.SpeedStat.PermanentSpeed);
+        if (baseEffects.Length != 0)
         {
-            currentHealth = baseEffect.Effect(currentHealth);
-            currentHealth = currentHealth >= maxHealth ? maxHealth : currentHealth;
-            UpdateHealthBar();
-            if (!baseEffect.IsActive) statusEffectHandler.RemoveRegeneration();
-        }
-
-        baseEffect = statusEffectHandler.Speed;
-        if (baseEffect != null)
-        {
-            speedBoost = baseEffect.Effect();
-            if (!baseEffect.IsActive)
+            for (int i = 0; i < baseEffects.Length; i++)
             {
-                statusEffectHandler.RemoveSpeed();
-                speedModifier = 1;
+                var baseEffect = baseEffects[i];
+
+                speedBoost += baseEffect.Effect();
+                if (!baseEffect.IsActive)
+                {
+                    statusEffectHandler.RemoveEffect(baseEffect);
+                }
             }
         }
 
-        baseEffect = statusEffectHandler.Strength;
-        if (baseEffect != null)
+        baseEffects = ConvertEffectsToArray(statusEffectHandler.StrengthStat.Strength, statusEffectHandler.StrengthStat.PermanentStrength);
+        if (baseEffects.Length != 0)
         {
-            damageModifier = baseEffect.Effect();
-            if (!baseEffect.IsActive)
+            float strengthBoost = 1f;
+            for (int i = 0; i < baseEffects.Length; i++)
             {
-                statusEffectHandler.RemoveStrengh();
-                damageModifier = 1;
+                var baseEffect = baseEffects[i];
+
+                strengthBoost += baseEffect.Effect();
+                if (!baseEffect.IsActive)
+                {
+                    statusEffectHandler.RemoveEffect(baseEffect);
+                }
             }
+            damageModifier = strengthBoost;
         }
+        else
+            damageModifier = 1f;
+
         HUDManager.instance.UpdateAllSpritesAndText();
-        speedModifier = speedBoost * speedDelay;
+        speedModifier = 1 + speedBoost - speedDelay;
+        //float speedBoost = 1, speedDelay = 1;
+        //BaseEffect baseEffect = statusEffectHandler.Frost;
+        //if (baseEffect != null)
+        //{
+        //    speedDelay = baseEffect.Effect();
+        //    if (!baseEffect.IsActive)
+        //    {
+        //        statusEffectHandler.RemoveFrost();
+        //        speedModifier = 1;
+        //    }
+        //}
+
+        //baseEffect = statusEffectHandler.Poisining;
+        //if (baseEffect != null)
+        //{
+        //    currentHealth = baseEffect.Effect(currentHealth);
+        //    currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+        //    UpdateHealthBar();
+        //    if (!baseEffect.IsActive) statusEffectHandler.RemovePoisining();
+        //}
+
+        //baseEffect = statusEffectHandler.Incineration;
+        //if (baseEffect != null)
+        //{
+        //    currentResistance = baseEffect.Effect(resistance, ref currentHealth);
+        //    currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+        //    UpdateHealthBar();
+        //    currentResistance = currentResistance <= 0 ? 0 : currentResistance;
+        //    if (!baseEffect.IsActive)
+        //    {
+        //        statusEffectHandler.RemoveIncineration();
+        //        currentResistance = resistance;
+        //    }
+        //}
+
+        //baseEffect = statusEffectHandler.Regeneration;
+        //if (baseEffect != null)
+        //{
+        //    currentHealth = baseEffect.Effect(currentHealth);
+        //    currentHealth = currentHealth >= maxHealth ? maxHealth : currentHealth;
+        //    UpdateHealthBar();
+        //    if (!baseEffect.IsActive) statusEffectHandler.RemoveRegeneration();
+        //}
+
+        //baseEffect = statusEffectHandler.Speed;
+        //if (baseEffect != null)
+        //{
+        //    speedBoost = baseEffect.Effect();
+        //    if (!baseEffect.IsActive)
+        //    {
+        //        statusEffectHandler.RemoveSpeed();
+        //        speedModifier = 1;
+        //    }
+        //}
+
+        //baseEffect = statusEffectHandler.Strength;
+        //if (baseEffect != null)
+        //{
+        //    damageModifier = baseEffect.Effect();
+        //    if (!baseEffect.IsActive)
+        //    {
+        //        statusEffectHandler.RemoveStrengh();
+        //        damageModifier = 1;
+        //    }
+        //}
+        //HUDManager.instance.UpdateAllSpritesAndText();
+        //speedModifier = speedBoost * speedDelay;
     }
 
     public void AddEffect(BaseEffect effect)
@@ -144,5 +248,18 @@ public abstract class Entity : MonoBehaviour
     {
         if (effect != null)
             statusEffectHandler.RemoveEffectRange(effect.ToArray());
+    }
+
+    private BaseEffect[] ConvertEffectsToArray(BaseEffect baseEffect, IEnumerable<BaseEffect> baseEffects)
+    {
+        var result = new List<BaseEffect>();
+
+        if(baseEffect != null)
+            result.Add(baseEffect);
+
+        if (baseEffects != null && baseEffects.Count() > 0)
+            result.AddRange(baseEffects);
+
+        return result.ToArray();
     }
 }
