@@ -1,151 +1,159 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.IO;
+using System;
 
 public class StageController : MonoBehaviour
 {
-    const int layoutLength = 11;
-    int midOfLayoutLength = Convert.ToInt32(layoutLength / 2);
-    private int lastRoomNumber = 1;
-    const int maxRoomNumbers = 18;
-    public int[,] worldLayout = new int[11, 11];
-    public List<Room> rooms = new List<Room>();
 
-    public void PrintStageLayout()
+    [SerializeField] Room[] rooms;
+    GameObject player;
+    int baseRoomSize = 7;
+    Tuple<int, int>[,] grid = new Tuple<int, int>[9, 9];
+    bool[,] gridAval = new bool[9, 9];
+    Vector3 baseCoordinates = new Vector3(0, 0, 0);
+    public bool test = true;
+    [SerializeField] GameObject startRoom;
+    int nextRoomId = 1;
+    Tuple<int, int> startPos;
+    List<Room> roomList = new List<Room>();
+
+
+
+    private void Awake()
     {
-        string world = "";
-        for (int i = 0; i < worldLayout.GetLength(0); i++)
+        CalcGrid();
+        CreateStage();
+        CreatePlayer();
+        SetRoomNums();
+        SetEveryRoomInvisable();
+    }
+    void CalcGrid()
+    {
+        int girdLength = grid.GetLength(0);
+        int midPoint = girdLength / 2;
+        for (int i = 0; i < girdLength; i++)
         {
-            for (int j = 0; j < worldLayout.GetLength(1); j++)
+            for (int j = 0; j < girdLength; j++)
             {
-                world += worldLayout[i, j] + "   ";
+                Tuple<int, int> pair = new Tuple<int, int>(i * baseRoomSize, j * baseRoomSize);
+                grid[i, j] = pair;
+                gridAval[i, j] = false;
             }
-            world += "\n\n";
-        }
-        Debug.Log(world);
-    }
-    public void CreateStage()
-    {
-
-        CreateWorldLayout();
-        PrintStageLayout();
-
-
-    }
-    public void AddRoomToLayout()
-    {
-        lastRoomNumber++;
-        System.Random random = new System.Random();
-        Room newRoom = null;
-        Room parentRoom = null;
-        int parentRoomDoorId = 0;
-
-        //Room Size / Oriantation START
-        int roomSize = random.Next(1, 5);
-        int orientation = random.Next(1, 3);
-
-        switch (roomSize)
-        {
-
-
-            case 1: newRoom = new Room1X1("StandardRoom", lastRoomNumber, roomSize, orientation); break;
-            case 2:
-                newRoom = new Room1X2("StandardRoom", lastRoomNumber, roomSize, orientation);
-                break;
-            case 3:
-                newRoom = new Room2X1("StandardRoom", lastRoomNumber, roomSize, orientation);
-
-                break;
-            case 4: newRoom = new Room2X2("StandardRoom", lastRoomNumber, roomSize, orientation); break;
-            default:
-                return;
-                break;
 
         }
-        //Room Size / Oriantation END
-        bool parentRoomFailure = false;
-        int parentRoomFailureCounter = 0;
-        while (!parentRoomFailure)
+        startPos = grid[midPoint, midPoint];
+
+    }
+    void CreateStage()
+    {
+
+    }
+
+    public void SetEveryRoomInvisable()
+    {
+        rooms = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
+        foreach (Room room in rooms)
         {
-            // Parent room
-            int parentRoomId = random.Next(1, lastRoomNumber);
-            parentRoom = rooms.FirstOrDefault(room => room.RoomId == parentRoomId);
-            parentRoom.CalcPossibleDoors(worldLayout,layoutLength);
-            // Parent room
-
-
-            parentRoomDoorId = 0;
-            int positionFailureCounter = 0;
-
-            Tuple<int, int> position = new Tuple<int, int>(0, 0);
-            bool posIsvalid = false;
-
-            while (!posIsvalid && positionFailureCounter < 20)
+            foreach (Renderer r in room.GetComponentsInChildren<Renderer>())
             {
-              
-                parentRoomDoorId = random.Next(1, parentRoom.PossibleDoorCount+1);
+                if (room.RoomId != 0)
+                    r.enabled = false;
+            }
+        }
+    }
+    void InstantiateAssetGroupOnZero(GameObject[] assets)
+    {
+        foreach (var item in assets)
+        {
+            var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        }
+
+
+    }
+    //Temp
+    void SetRoomNums()
+    {
+        var rooms = GameObject.FindObjectsOfType<Room>();
+        var startRoom = GameObject.FindGameObjectWithTag("StartPosition").GetComponent<StartPosition>().room;
+        foreach (var room in rooms)
+        {
+            if (room != startRoom)
+            {
+                room.RoomId = nextRoomId++;
+            }
+        }
+    }
+
+    void CreatePlayer()
+    {
+        var playerAssetsFile = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), "player"));
+        var playerAssets = playerAssetsFile.LoadAllAssets<GameObject>();
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
+        GameObject player;
+        GameObject camera;
+        foreach (var item in playerAssets)
+        {
+
+            if (item.CompareTag("MainCamera"))
+            {
+                camera = Instantiate(item);
+            }
+            else if (item.CompareTag("Player"))
+            {
+                player = Instantiate(item, playerPosition, new Quaternion(0, 0, 0, 0));
+                this.player = player;
+                var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
+                var playerManager = gameManager.GetComponent<PlayerManager>();
                 try
                 {
-                    newRoom.Position = parentRoom.Doors.Find(door => door.DoorId == parentRoomDoorId-1).Position;
+                    if (playerManager.player == null)
+                        playerManager.player = player;
                 }
-                catch (NullReferenceException e)
+                catch (System.Exception)
                 {
-                    Debug.Log("THIS");
 
-                    throw e;
+                    throw;
                 }
-                if (newRoom.CheckPosition(worldLayout, midOfLayoutLength))
-                {
-                    posIsvalid = true;
-                }
-                else
-                {
-                    positionFailureCounter++;
-                }
-
-
             }
-            if (posIsvalid)
+            else
             {
-                break;
+                var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
             }
-            if (++parentRoomFailureCounter >= 10)
-            {
-                parentRoomFailure = true;
-            }
-        }
-        if (parentRoomFailure == true)
-        {
-            lastRoomNumber--;
-            return;
+
         }
 
-        
-        worldLayout = newRoom.MarkRoomInLayout(worldLayout, midOfLayoutLength);
-        rooms.Add(newRoom);
-
-        Door parentDoor = parentRoom.Doors.Find(door => door.DoorId == parentRoomDoorId);
-
-        
 
     }
-
-
-    public void CreateWorldLayout()
+    void InstantiateAssetGroup(GameObject[] assets, Vector3 position)
     {
-        Room startRoom = new Room1X1("StartRoom", 1, 1, 1);
-        startRoom.Position = new Tuple<int, int>(0, 0);
-        startRoom.MarkRoomInLayout(worldLayout, midOfLayoutLength);
-        rooms.Add(startRoom);
-
-        for (int i = 0; i < maxRoomNumbers - 1; i++)
+        foreach (var item in assets)
         {
-            AddRoomToLayout();
+            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+        }
+    }
+    GameObject[] LoadAllAssetsOfAssetPack(AssetBundle assetBundle)
+    {
+        var prefabs = assetBundle.LoadAllAssets<GameObject>();
+        return prefabs;
+    }
+    GameObject loadAssetFromAssetPack(AssetBundle assetBundle, string asset)
+    {
+        var prefab = assetBundle.LoadAsset<GameObject>(asset);
+        return prefab;
+    }
+    AssetBundle loadAssetPack(string assetPack)
+    {
+        var myLoadedAssetBundle
+            = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), assetPack));
+        if (myLoadedAssetBundle == null)
+        {
+            throw new System.Exception("Failed to load AssetBundle!");
         }
 
+        return myLoadedAssetBundle;
     }
-
 
 }
