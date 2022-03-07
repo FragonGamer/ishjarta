@@ -24,11 +24,22 @@ public class StageController : MonoBehaviour
 
     private void Awake()
     {
+        rooms = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
         CalcGrid();
         CreateStage();
         CreatePlayer();
+        
         SetRoomNums();
+
         SetEveryRoomInvisable();
+    }
+    void SetStartRoom(){
+        var level = loadAssetPack("level");
+        GameObject startposition = loadAssetFromAssetPack(level,"StartPosition");
+
+        var start = Instantiate(startposition,rooms[0].transform.position,new Quaternion(0,0,0,0));
+        start.transform.position = rooms[0].gameObject.transform.position;
+        start.transform.parent=rooms[0].gameObject.transform;
     }
     void CalcGrid()
     {
@@ -54,7 +65,6 @@ public class StageController : MonoBehaviour
 
     public void SetEveryRoomInvisable()
     {
-        rooms = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
         foreach (Room room in rooms)
         {
             foreach (Renderer r in room.GetComponentsInChildren<Renderer>())

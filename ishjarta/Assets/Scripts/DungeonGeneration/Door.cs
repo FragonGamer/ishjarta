@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
         North,
         South
     }
+
     public bool doorIsOpen;
     [SerializeField] public GameObject ConnectedDoor;
     Vector3 position;
@@ -23,6 +24,7 @@ public class Door : MonoBehaviour
         position = gameObject.transform.position;
         room = GetComponentInParent<Room>();
     }
+
     public void TeleportPlayerToDoor()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -45,9 +47,9 @@ public class Door : MonoBehaviour
                 return;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (doorIsOpen && collision.CompareTag("Player") && collision.GetType() == typeof(CircleCollider2D))
         {
             GameObject player = collision.gameObject;
@@ -57,6 +59,7 @@ public class Door : MonoBehaviour
             room.ToggleRoomState();
         }
     }
+
     public void AttachClosestDoor()
     {
         var door = FindClosestDoor();
@@ -65,6 +68,7 @@ public class Door : MonoBehaviour
             ConnectedDoor = door;
         }
     }
+
     private GameObject FindClosestDoor()
     {
         int roomId = room.RoomId;
@@ -84,7 +88,7 @@ public class Door : MonoBehaviour
             }
         }
 
-        if(distance < 7)
+        if (distance < 7)
         {
             return closest;
         }
@@ -93,5 +97,4 @@ public class Door : MonoBehaviour
             return null;
         }
     }
-
 }
