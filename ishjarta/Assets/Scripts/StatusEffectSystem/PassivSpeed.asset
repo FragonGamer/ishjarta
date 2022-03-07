@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1b3b2ffce9f1a4fa3c50ed92e4763f, type: 3}
   m_Name: PassivSpeed
   m_EditorClassIdentifier: 
-  <Duration>k__BackingField: 0
-  <DurationRemaining>k__BackingField: 0
-  <IsPermanent>k__BackingField: 0
-  <SpeedModifier>k__BackingField: 0
+  <Duration>k__BackingField: 1
+  <IsPermanent>k__BackingField: 1
+  <SpeedModifier>k__BackingField: 2

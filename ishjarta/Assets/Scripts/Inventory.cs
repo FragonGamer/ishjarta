@@ -80,7 +80,7 @@ public class Inventory :MonoBehaviour{
                 AddUsableItem((UsableItem) item);
                 result = true;
             }
-            else if (item.GetType() == typeof(PassiveItem))
+            else if (item.GetType() == typeof(PassiveItem) || item.GetType().IsSubclassOf(typeof(PassiveItem)))
             {
                 AddPassiveItem((PassiveItem) item);
                 result = true;

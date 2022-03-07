@@ -15,7 +15,14 @@ public class Player : Entity
 
     [SerializeField] private HealthBar hpBar;
 
-    public int GetBaseDamage() { return baseDamage; }
+    //public Player(int currentHealth, int maxHealth, int baseHealth, float healthModifier,
+    //    float resistance, float currentResistance, int movementSpeed, float speedModifier, int baseDamage,
+    //    float damageModifier, int attackRate, int range) : base(currentHealth, maxHealth, baseHealth, 
+    //        healthModifier, resistance, currentResistance, movementSpeed, speedModifier, baseDamage, damageModifier, 
+    //        attackRate, range)
+    //{ }
+
+        public int GetBaseDamage() { return baseDamage; }
     public void SetBaseDamage(int value) { baseDamage = value; }
 
     public override void UpdateHealthBar()
@@ -27,6 +34,8 @@ public class Player : Entity
     {
         hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
         hpBar.SetMaxHealth(maxHealth);
+
+        UpdateHealthBar();
     }
 
     private void Update()

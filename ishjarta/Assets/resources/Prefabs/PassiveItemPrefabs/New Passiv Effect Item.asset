@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: 
   Icon: {fileID: 0}
+  <OwnerEffects>k__BackingField:
+  - {fileID: 11400000, guid: 83184015c60e3944f8b235367d5a55d9, type: 2}
   <EmitEffects>k__BackingField: []
