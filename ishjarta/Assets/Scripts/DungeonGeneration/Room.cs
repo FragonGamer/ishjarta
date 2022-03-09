@@ -19,11 +19,15 @@ public class Room : MonoBehaviour
     }
     private void Start()
     {
+       ConnectDoors();
+    }
+    void ConnectDoors()
+    {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Door");
         foreach (GameObject go in gos)
         {
-            if(go.GetComponent<Door>().room.RoomId == RoomId)
+            if (go.GetComponent<Door>().room.RoomId == RoomId)
             {
                 doors.Add(go);
             }

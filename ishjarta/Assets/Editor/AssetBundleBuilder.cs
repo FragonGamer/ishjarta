@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,4 +28,5 @@ public class AssetBundleBuilder
                 Debug.Log("Asset Bundle: " + name);
         }
     }
+    
 }

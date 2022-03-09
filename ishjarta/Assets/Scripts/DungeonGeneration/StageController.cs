@@ -10,28 +10,93 @@ public class StageController : MonoBehaviour
 
     [SerializeField] Room[] rooms;
     GameObject player;
-    int baseRoomSize = 7;
-    Tuple<int, int>[,] grid = new Tuple<int, int>[9, 9];
-    bool[,] gridAval = new bool[9, 9];
-    Vector3 baseCoordinates = new Vector3(0, 0, 0);
-    public bool test = true;
     [SerializeField] GameObject startRoom;
     int nextRoomId = 1;
-    Tuple<int, int> startPos;
-    List<Room> roomList = new List<Room>();
+
+    //2D array for tracking position and doors of room cells
+    GridPosdataType[,] worldLayout = new GridPosdataType[7,7];
+    //2D array for tracking aval positions in the grid
+    bool[,] availableGridPositions = new bool[7,7];
+
+    int gridLength;
+    int midLength;
+    const int roomBaseLength = 7;
 
 
 
     private void Awake()
     {
+        gridLength = worldLayout.GetLength(0);
+        midLength = worldLayout.GetLength(0) / 2;
         rooms = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
-        CalcGrid();
-        CreateStage();
-        CreatePlayer();
+        initWorldLayout();
+        Utils.PrintPosMatrix(worldLayout);
+        //CreatePlayer();
         
-        SetRoomNums();
+        //SetRoomNums();
 
-        SetEveryRoomInvisable();
+        //SetEveryRoomInvisable();
+    }
+    void initWorldLayout()
+    {
+        for (int i = 0; i < availableGridPositions.GetLength(0); i++)
+        {
+            for (int j = 0; j < availableGridPositions.GetLength(0); j++)
+            {
+                availableGridPositions[i, j] = false;
+            }
+        }
+        for (int i = 0; i < worldLayout.GetLength(0); i++)
+        {
+            for (int j = 0; j < worldLayout.GetLength(0); j++)
+            {
+                worldLayout[i, j] = new GridPosdataType(0,0);
+            }
+        }
+        for (int i = 0; i <= worldLayout.GetLength(0) / 2; i++)
+        {
+            for (int j = 0; j <= worldLayout.GetLength(0) / 2; j++)
+            {
+                worldLayout[i, j] = new GridPosdataType((roomBaseLength * (midLength - j)) , -(roomBaseLength * (midLength - i)));
+            }
+        }
+
+        int tmp = 1;
+        int tmp2;
+        for (int i = 0; i < (worldLayout.GetLength(0) / 2) + 1; i++)
+        {
+            tmp2 = midLength;
+            for (int j = (worldLayout.GetLength(0) / 2) + 1; j < worldLayout.GetLength(0); j++)
+            {
+                worldLayout[i, j] = new GridPosdataType(roomBaseLength * tmp, (tmp2 * roomBaseLength));
+                tmp2--;
+            }
+            tmp++;
+        }
+
+        //for (int i = 0; i <= worldLayout.GetLength(0) / 2; i++)
+        //{
+        //    for (int j = (worldLayout.GetLength(0) / 2) + 1; j < worldLayout.GetLength(0); j++)
+        //    {
+
+        //        worldLayout[i, j] = new GridPosdataType((roomBaseLength * (midLength - i)), (roomBaseLength * (midLength - j)));
+        //    }
+        //}
+
+
+        //tmp = roomBaseLength;
+        //for (int i = (worldLayout.GetLength(0) / 2) + 1; i < worldLayout.GetLength(0); i++)
+        //{
+        //    tmp2 = -roomBaseLength;
+        //    for (int j = (worldLayout.GetLength(0) / 2)+1; j < worldLayout.GetLength(0); j++)
+        //    {
+        //        worldLayout[i, j] = new GridPosdataType(tmp , tmp2);
+        //        tmp2 = tmp2 + -roomBaseLength;
+        //    }
+        //    tmp += roomBaseLength;
+        //}
+
+
     }
     void SetStartRoom(){
         var level = loadAssetPack("level");
@@ -41,27 +106,7 @@ public class StageController : MonoBehaviour
         start.transform.position = rooms[0].gameObject.transform.position;
         start.transform.parent=rooms[0].gameObject.transform;
     }
-    void CalcGrid()
-    {
-        int girdLength = grid.GetLength(0);
-        int midPoint = girdLength / 2;
-        for (int i = 0; i < girdLength; i++)
-        {
-            for (int j = 0; j < girdLength; j++)
-            {
-                Tuple<int, int> pair = new Tuple<int, int>(i * baseRoomSize, j * baseRoomSize);
-                grid[i, j] = pair;
-                gridAval[i, j] = false;
-            }
-
-        }
-        startPos = grid[midPoint, midPoint];
-
-    }
-    void CreateStage()
-    {
-
-    }
+    
 
     public void SetEveryRoomInvisable()
     {
