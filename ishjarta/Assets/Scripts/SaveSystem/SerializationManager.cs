@@ -8,7 +8,7 @@ using UnityEngine;
 public class SerializationManager
 {
     //public static string dataPath = Application.persistentDataPath;
-    public static string dataPath = @"D:\bla";
+    public static string dataPath = @"C:\Users\Fragon\Documents";
     public static string savePath = dataPath + @"\saves";
     public static bool Save(string saveName, object saveData)
     {
