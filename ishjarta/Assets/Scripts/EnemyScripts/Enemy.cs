@@ -13,6 +13,15 @@ public class Enemy : Entity
     [field: SerializeField] public bool hasSpottedPlayer { get; set; }
     [field: SerializeField] public bool isInRange { get; set; }
     private float time;
+
+    //public Enemy(int currentHealth, int maxHealth, int baseHealth, float healthModifier, 
+    //    float resistance, float currentResistance, int movementSpeed, float speedModifier, 
+    //    int baseDamage, float damageModifier, int attackRate, int range) 
+    //    : base(currentHealth, maxHealth, baseHealth, healthModifier, resistance, currentResistance, 
+    //        movementSpeed, speedModifier, baseDamage, damageModifier, attackRate, range)
+    //{
+    //}
+
     #region getters and setters
     public int GetMovementSpeed()
     {

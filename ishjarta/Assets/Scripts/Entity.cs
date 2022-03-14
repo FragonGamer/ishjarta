@@ -27,6 +27,85 @@ public abstract class Entity : MonoBehaviour
     //Range
     [SerializeField] protected int range;
 
+    private bool IsInitialized = false;
+    public void Init(int currentHealth, int maxHealth, int baseHealth, float healthModifier,
+        float resistance, float currentResistance, int movementSpeed, float speedModifier, int baseDamage,
+        float damageModifier, int attackRate, int range)
+    {
+        if(!IsInitialized)
+        {
+            IsInitialized = true;
+
+            this.currentHealth = currentHealth;
+            this.maxHealth = maxHealth;
+            this.baseHealth = baseHealth;
+            this.healthModifier = healthModifier;
+            this.resistance = resistance;
+            this.currentResistance = currentResistance;
+            this.movementSpeed = movementSpeed;
+            this.speedModifier = speedModifier;
+            this.baseDamage = baseDamage;
+            this.damageModifier = damageModifier;
+            this.attackRate = attackRate;
+            this.range = range;
+        }
+    }
+
+    #region Getter
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    public int GetBaseHealth()
+    {
+        return baseHealth;
+    }
+    public float GetHealthModifier()
+    {
+        return healthModifier;
+    }
+
+    public float GetResistance()
+    {
+        return resistance;
+    }
+    public float GetCurrentResistance()
+    {
+        return currentResistance;
+
+    }
+    public int GetMovementSpeed()
+    {
+        return movementSpeed;
+    }
+    public float GetSpeedModifier()
+    {
+        return speedModifier;
+    }
+
+    public int GetBaseDamage()
+    {
+        return baseDamage;
+    }
+    public float GetDamageModifier()
+    {
+        return damageModifier;
+    }
+
+    public int GetAttackRate()
+    {
+        return attackRate;
+    }
+    public int GetRange()
+    {
+        return range;
+    }
+    #endregion Getter
+
     protected abstract void Die();
 
     public abstract void ReceiveDamage(int damage);
