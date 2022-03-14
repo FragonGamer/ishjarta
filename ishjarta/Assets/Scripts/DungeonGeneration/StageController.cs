@@ -4,113 +4,130 @@ using UnityEngine;
 using System.Linq;
 using System.IO;
 using System;
+using Random = System.Random;
 
 public class StageController : MonoBehaviour
 {
 
-    [SerializeField] Room[] rooms;
+    [SerializeField] Room[] roomObjects;
+    private GameObject[] rooms;
+    
     GameObject player;
     [SerializeField] GameObject startRoom;
-    int nextRoomId = 1;
+    int nextRoomId = 0;
 
     //2D array for tracking position and doors of room cells
     GridPosdataType[,] worldLayout = new GridPosdataType[7,7];
     //2D array for tracking aval positions in the grid
     bool[,] availableGridPositions = new bool[7,7];
 
-    int gridLength;
-    int midLength;
     const int roomBaseLength = 7;
 
+    public AssetBundle assets = null;
+
+    
+    
 
 
     private void Awake()
     {
-        gridLength = worldLayout.GetLength(0);
-        midLength = worldLayout.GetLength(0) / 2;
-        rooms = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
-        initWorldLayout();
-        Utils.PrintPosMatrix(worldLayout);
-        //CreatePlayer();
+        assets = loadAssetPack("rooms");
+        roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
+        InitWorldLayout();
+        CreateStage();
         
-        //SetRoomNums();
-
-        //SetEveryRoomInvisable();
+        
+        Utils.PrintPosMatrix(worldLayout);
+        Utils.PrintMatrix(availableGridPositions);
+        
+        CreatePlayer();
+        SetEveryRoomInvisable();
     }
-    void initWorldLayout()
+
+    void SetStartRoom()
     {
-        for (int i = 0; i < availableGridPositions.GetLength(0); i++)
-        {
-            for (int j = 0; j < availableGridPositions.GetLength(0); j++)
-            {
-                availableGridPositions[i, j] = false;
-            }
-        }
-        for (int i = 0; i < worldLayout.GetLength(0); i++)
-        {
-            for (int j = 0; j < worldLayout.GetLength(0); j++)
-            {
-                worldLayout[i, j] = new GridPosdataType(0,0);
-            }
-        }
-        for (int i = 0; i <= worldLayout.GetLength(0) / 2; i++)
-        {
-            for (int j = 0; j <= worldLayout.GetLength(0) / 2; j++)
-            {
-                worldLayout[i, j] = new GridPosdataType((roomBaseLength * (midLength - j)) , -(roomBaseLength * (midLength - i)));
-            }
-        }
 
-        int tmp = 1;
-        int tmp2;
-        for (int i = 0; i < (worldLayout.GetLength(0) / 2) + 1; i++)
-        {
-            tmp2 = midLength;
-            for (int j = (worldLayout.GetLength(0) / 2) + 1; j < worldLayout.GetLength(0); j++)
-            {
-                worldLayout[i, j] = new GridPosdataType(roomBaseLength * tmp, (tmp2 * roomBaseLength));
-                tmp2--;
-            }
-            tmp++;
-        }
+        GameObject startRoom = loadAssetFromAssetPack(assets, "Start");
+        
+        var startRoomGO = Instantiate(startRoom,new Vector3(0,0,0),new Quaternion(0,0,0,0));
 
-        //for (int i = 0; i <= worldLayout.GetLength(0) / 2; i++)
-        //{
-        //    for (int j = (worldLayout.GetLength(0) / 2) + 1; j < worldLayout.GetLength(0); j++)
-        //    {
+        SetRoomStats(startRoomGO,true,true,true,true);
+        
+      
+        
+    }
 
-        //        worldLayout[i, j] = new GridPosdataType((roomBaseLength * (midLength - i)), (roomBaseLength * (midLength - j)));
-        //    }
-        //}
-
-
-        //tmp = roomBaseLength;
-        //for (int i = (worldLayout.GetLength(0) / 2) + 1; i < worldLayout.GetLength(0); i++)
-        //{
-        //    tmp2 = -roomBaseLength;
-        //    for (int j = (worldLayout.GetLength(0) / 2)+1; j < worldLayout.GetLength(0); j++)
-        //    {
-        //        worldLayout[i, j] = new GridPosdataType(tmp , tmp2);
-        //        tmp2 = tmp2 + -roomBaseLength;
-        //    }
-        //    tmp += roomBaseLength;
-        //}
-
+    GameObject AddRoom()
+    {
+        var gos = LoadAllAssetsOfAssetPack(assets).ToList();
+        GameObject start = loadAssetFromAssetPack(assets, "Start");;
+        gos.Remove(start); 
+        Random random = new Random(); 
+        GameObject room = gos.ToArray()[random.Next(0,gos.Count())];
+        
+        
+        var roomGO = Instantiate(room,new Vector3(0,7,0),new Quaternion(0,0,0,0));
+        SetRoomStats(roomGO,true,true,true,true);
+        
+        
+        return roomGO;
 
     }
-    void SetStartRoom(){
-        var level = loadAssetPack("level");
-        GameObject startposition = loadAssetFromAssetPack(level,"StartPosition");
 
-        var start = Instantiate(startposition,rooms[0].transform.position,new Quaternion(0,0,0,0));
-        start.transform.position = rooms[0].gameObject.transform.position;
-        start.transform.parent=rooms[0].gameObject.transform;
+    
+    void SetRoomStats(GameObject roomGO,bool hasED, bool hasWD, bool hasSD, bool hasND)
+    {
+
+        Room room = roomGO.GetComponent<Room>();
+        room.RoomId = nextRoomId;
+
+        availableGridPositions[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))] = false;
+        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].roomId = room.RoomId;
+        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasEDoor = hasED;
+        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasNDoor = hasND;
+        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasSDoor = hasSD;
+        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasWDoor = hasWD;
+        
+        nextRoomId++;
     }
     
 
+    void CreateStage()
+    {
+        SetStartRoom();
+        AddRoom();
+    }
+    void InitWorldLayout()
+    {
+        for (int i = 0; i < availableGridPositions.GetLength(0); i++)
+        {
+            for (int j = 0; j < availableGridPositions.GetLength(1); j++)
+            {
+                availableGridPositions[i, j] = true;
+            }
+        }
+        int gpx;
+        int gpy;
+        gpy = (worldLayout.GetLength(0) / 2) * roomBaseLength ;
+        for (int y = 0; y < worldLayout.GetLength(0); y++)
+        {
+            gpx = worldLayout.GetLength(0) / 2 * roomBaseLength * -1;
+            for (int x = 0; x < worldLayout.GetLength(1); x++)
+            {
+                worldLayout[y,x] = new GridPosdataType(gpx,gpy);
+                gpx += roomBaseLength;
+            }
+            
+
+            gpy -= roomBaseLength;
+        }
+
+
+    }
     public void SetEveryRoomInvisable()
     {
-        foreach (Room room in rooms)
+        roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
+        foreach (Room room in roomObjects)
         {
             foreach (Renderer r in room.GetComponentsInChildren<Renderer>())
             {
@@ -128,20 +145,6 @@ public class StageController : MonoBehaviour
 
 
     }
-    //Temp
-    void SetRoomNums()
-    {
-        var rooms = GameObject.FindObjectsOfType<Room>();
-        var startRoom = GameObject.FindGameObjectWithTag("StartPosition").GetComponent<StartPosition>().room;
-        foreach (var room in rooms)
-        {
-            if (room != startRoom)
-            {
-                room.RoomId = nextRoomId++;
-            }
-        }
-    }
-
     void CreatePlayer()
     {
         var playerAssetsFile = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), "player"));

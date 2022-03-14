@@ -5,9 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] public int RoomId;
+    public int RoomId;
     List<GameObject> doors = new List<GameObject>();
     Tuple<int, int> size;
+
+    [SerializeField] public int lenX;
+    [SerializeField] public int lenY;
 
     public void ToggleRoomState()
     {
@@ -21,7 +24,7 @@ public class Room : MonoBehaviour
     {
        ConnectDoors();
     }
-    void ConnectDoors()
+    public void ConnectDoors()
     {
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Door");

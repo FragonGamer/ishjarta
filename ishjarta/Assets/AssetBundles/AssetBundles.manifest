@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1562921471
+CRC: 747738787
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -8,3 +8,7 @@ AssetBundleManifest:
     Info_1:
       Name: level
       Dependencies: {}
+    Info_2:
+      Name: rooms
+      Dependencies:
+        Dependency_0: level
