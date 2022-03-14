@@ -9,8 +9,6 @@ using Random = System.Random;
 public class StageController : MonoBehaviour
 {
 
-    [SerializeField] Room[] roomObjects;
-    private GameObject[] rooms;
     
     GameObject player;
     [SerializeField] GameObject startRoom;
@@ -21,7 +19,7 @@ public class StageController : MonoBehaviour
     //2D array for tracking aval positions in the grid
     bool[,] availableGridPositions = new bool[7,7];
 
-    const int roomBaseLength = 7;
+    public const int roomBaseLength = 7;
 
     public AssetBundle assets = null;
 
@@ -32,13 +30,13 @@ public class StageController : MonoBehaviour
     private void Awake()
     {
         assets = loadAssetPack("rooms");
-        roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
+        
         InitWorldLayout();
         CreateStage();
         
         
-        Utils.PrintPosMatrix(worldLayout);
-        Utils.PrintMatrix(availableGridPositions);
+        //Utils.PrintPosMatrix(worldLayout);
+        //Utils.PrintMatrix(availableGridPositions);
         
         CreatePlayer();
         SetEveryRoomInvisable();
@@ -52,24 +50,42 @@ public class StageController : MonoBehaviour
         var startRoomGO = Instantiate(startRoom,new Vector3(0,0,0),new Quaternion(0,0,0,0));
 
         SetRoomStats(startRoomGO,true,true,true,true);
-        
+        Utils.PrintPosMatrix(startRoomGO.GetComponent<Room>().GetRoomLayout());
       
         
     }
 
+    public GameObject[] GetRooms()
+    {
+        var roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as GameObject[];
+        return roomObjects;
+    }
     GameObject AddRoom()
     {
+        Random random = new Random(); 
+        // imports all room prefabs of stage
         var gos = LoadAllAssetsOfAssetPack(assets).ToList();
         GameObject start = loadAssetFromAssetPack(assets, "Start");;
-        gos.Remove(start); 
-        Random random = new Random(); 
+        gos.Remove(start);
+
+        var rooms = GetRooms();
+        bool placmentSuccess = false;
+
+        //while (!placmentSuccess)
+        //{
+        //    var rootRoom = rooms[random.Next(0, rooms.Length)];
+        //    placmentSuccess = true;
+       // }
+        
+        
+        
         GameObject room = gos.ToArray()[random.Next(0,gos.Count())];
         
         
-        var roomGO = Instantiate(room,new Vector3(0,7,0),new Quaternion(0,0,0,0));
+        var roomGO = Instantiate(room);
         SetRoomStats(roomGO,true,true,true,true);
         
-        
+        Utils.PrintPosMatrix(roomGO.GetComponent<Room>().GetRoomLayout());
         return roomGO;
 
     }
@@ -126,7 +142,7 @@ public class StageController : MonoBehaviour
     }
     public void SetEveryRoomInvisable()
     {
-        roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
+        var roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
         foreach (Room room in roomObjects)
         {
             foreach (Renderer r in room.GetComponentsInChildren<Renderer>())

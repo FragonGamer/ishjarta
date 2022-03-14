@@ -54,6 +54,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomId: 0
+  lenX: 14
+  lenY: 14
 --- !u!1 &3051391368914511976
 GameObject:
   m_ObjectHideFlags: 0

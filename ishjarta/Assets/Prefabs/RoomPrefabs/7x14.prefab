@@ -1902,6 +1902,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomId: 0
+  lenX: 14
+  lenY: 7
 --- !u!1 &7662842298225575311
 GameObject:
   m_ObjectHideFlags: 0

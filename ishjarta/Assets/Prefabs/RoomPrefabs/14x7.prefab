@@ -1900,6 +1900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomId: 0
+  lenX: 7
+  lenY: 14
 --- !u!1001 &505509528205717514
 PrefabInstance:
   m_ObjectHideFlags: 0
