@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1793329229
+CRC: 4077811048
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c1d586fdbd9a85c6d7d8acbecf57fffa
+    Hash: 88e5c9514d544f02cc565b01af611052
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ac1ab5de073c7371a73d9317afd895c
@@ -43,10 +43,10 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Prefabs/RoomPrefabs/14x14.prefab
-- Assets/Prefabs/RoomPrefabs/7x14.prefab
 - Assets/Prefabs/RoomPrefabs/Start.prefab
-- Assets/Prefabs/RoomPrefabs/14x7.prefab
-- Assets/Prefabs/RoomPrefabs/7x7.prefab
+- Assets/Prefabs/RoomPrefabs/10x10.prefab
+- Assets/Prefabs/RoomPrefabs/10x5.prefab
+- Assets/Prefabs/RoomPrefabs/5x10.prefab
+- Assets/Prefabs/RoomPrefabs/5x5.prefab
 Dependencies:
 - /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/AssetBundles/level

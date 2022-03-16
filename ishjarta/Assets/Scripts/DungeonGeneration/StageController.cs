@@ -15,11 +15,11 @@ public class StageController : MonoBehaviour
     int nextRoomId = 0;
 
     //2D array for tracking position and doors of room cells
-    GridPosdataType[,] worldLayout = new GridPosdataType[7,7];
+    private GridPosdataType[,] worldLayout;
     //2D array for tracking aval positions in the grid
-    bool[,] availableGridPositions = new bool[7,7];
+    private bool[,] availableGridPositions;
 
-    public const int roomBaseLength = 7;
+    public const int roomBaseLength = 5;
 
     public AssetBundle assets = null;
 
@@ -29,6 +29,8 @@ public class StageController : MonoBehaviour
 
     private void Awake()
     {
+        worldLayout = new GridPosdataType[roomBaseLength,roomBaseLength];
+        availableGridPositions = new bool[roomBaseLength,roomBaseLength];
         assets = loadAssetPack("rooms");
         
         InitWorldLayout();
@@ -71,11 +73,11 @@ public class StageController : MonoBehaviour
         var rooms = GetRooms();
         bool placmentSuccess = false;
 
-        //while (!placmentSuccess)
-        //{
-        //    var rootRoom = rooms[random.Next(0, rooms.Length)];
-        //    placmentSuccess = true;
-       // }
+        while (!placmentSuccess)
+        {
+            var rootRoom = rooms[random.Next(0, rooms.Length)];
+            placmentSuccess = true;
+        }
         
         
         
@@ -111,7 +113,6 @@ public class StageController : MonoBehaviour
     void CreateStage()
     {
         SetStartRoom();
-        AddRoom();
     }
     void InitWorldLayout()
     {

@@ -9,6 +9,7 @@ TagManager:
   - HealthBar
   - GameManager
   - Door
+  - StageController
   - StartPosition
   - StartRoom
   layers:
