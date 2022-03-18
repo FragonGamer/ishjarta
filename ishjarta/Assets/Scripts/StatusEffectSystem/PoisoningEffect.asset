@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc38f33701d7ac144a22db031eee96a0, type: 3}
   m_Name: PoisoningEffect
   m_EditorClassIdentifier: 
-  <Duration>k__BackingField: 0
+  <Duration>k__BackingField: 5
   <IsPermanent>k__BackingField: 0
-  <PoisonDamage>k__BackingField: 0
+  <PoisonDamage>k__BackingField: 5

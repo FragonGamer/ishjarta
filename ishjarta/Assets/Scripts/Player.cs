@@ -35,11 +35,12 @@ public class Player : Entity
         hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
         hpBar.SetMaxHealth(maxHealth);
 
-        UpdateHealthBar();
     }
 
     private void Update()
     {
+        UpdateHealthBar();
+
         HandleEffects();
         if (inventory.GetMeleeWeapon() != null && timeMelee < inventory.GetMeleeWeapon().AttackRate)
         {

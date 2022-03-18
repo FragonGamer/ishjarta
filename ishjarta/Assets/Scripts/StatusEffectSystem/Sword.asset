@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: 
   Icon: {fileID: 0}
+  <OwnerEffects>k__BackingField:
+  - {fileID: 11400000, guid: 1268a8205687ad2448334ee024cfea33, type: 2}
   <EmitEffects>k__BackingField:
-  - {fileID: 11400000, guid: 75ed8cf587ccc524490adcb4ac2ddd10, type: 2}
+  - {fileID: 11400000, guid: 7ba69100322ea344c9df0d1ae94df03c, type: 2}
   <Damage>k__BackingField: 5
   <Range>k__BackingField: 1.2
   <AttackRate>k__BackingField: 1

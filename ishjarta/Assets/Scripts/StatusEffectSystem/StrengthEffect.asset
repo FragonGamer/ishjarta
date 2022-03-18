@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb16806ea2f4b64a87c5a76ad13c88a, type: 3}
   m_Name: StrengthEffect
   m_EditorClassIdentifier: 
-  <Duration>k__BackingField: 0
-  <IsPermanent>k__BackingField: 0
+  <Duration>k__BackingField: 5
+  <IsPermanent>k__BackingField: 1
+  <StrengthModifier>k__BackingField: 2
