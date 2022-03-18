@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Beach_Catwalk
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: f3d4b5c80c42a6541b1f97fb68fe57b4, type: 3}
+  - {fileID: 21300000, guid: d7bf7971a7ea9784394fbb643c26ae42, type: 3}
+  - {fileID: 21300000, guid: 1f25a702aa889074bb5d4d05a0bf2f3e, type: 3}
+  - {fileID: 21300000, guid: b9004116ef438594aa680d6fdfef3e5b, type: 3}
+  - {fileID: 21300000, guid: 4da9e9dd90c014c4ca0671392d775445, type: 3}
+  - {fileID: 21300000, guid: 983199fab540b894f8de5cbf82ef93a2, type: 3}
+  - {fileID: 21300000, guid: b372a89c06eac9c4e82c7630c078f6d5, type: 3}
+  m_MinSpeed: 4
+  m_MaxSpeed: 4
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
