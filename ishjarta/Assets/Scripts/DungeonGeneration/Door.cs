@@ -15,15 +15,15 @@ public class Door : MonoBehaviour
 
     public bool doorIsOpen;
     [SerializeField] public GameObject ConnectedDoor;
-    Vector3 position;
-    [SerializeField] Direction direction;
+    [SerializeField] public Direction direction;
     public Room room;
+
 
     private void Awake()
     {
-        position = gameObject.transform.position;
         room = GetComponentInParent<Room>();
     }
+
 
     public void TeleportPlayerToDoor()
     {
@@ -55,8 +55,8 @@ public class Door : MonoBehaviour
             GameObject player = collision.gameObject;
 
             TeleportPlayerToDoor();
-            ConnectedDoor.GetComponentInParent<Room>().ToggleRoomState();
-            room.ToggleRoomState();
+            //ConnectedDoor.GetComponentInParent<Room>().ToggleRoomState();
+            //room.ToggleRoomState();
         }
     }
 
