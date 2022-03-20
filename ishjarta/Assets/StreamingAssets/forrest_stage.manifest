@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2408215391
+CRC: 3960955268
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -49,4 +49,4 @@ Assets:
 - Assets/Prefabs/RoomPrefabs/5x10.prefab
 - Assets/Prefabs/RoomPrefabs/5x5.prefab
 Dependencies:
-- D:/ishjarta/ishjarta/Assets/AssetBundles/level
+- D:/ishjarta/ishjarta/Assets/StreamingAssets/level

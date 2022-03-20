@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class Utils
 {
-    private static string assetsDir = Application.dataPath + "/AssetBundles";
+    private static string assetsDir = Application.streamingAssetsPath;
     public static string GetAssetsDirectory()
     {
         return assetsDir;
