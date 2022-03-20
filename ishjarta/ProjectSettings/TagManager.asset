@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - Obstacle
   - HealthBar
+  - GameManager
+  - Door
+  - StageController
+  - StartPosition
+  - StartRoom
   layers:
   - Default
   - TransparentFX

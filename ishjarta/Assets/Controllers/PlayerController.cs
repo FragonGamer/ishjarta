@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         inputMaster.Player.DropItem.performed += DropItemAction;
         inputMaster.Player.SwitchWeapon.performed += SwitchWeaponAction;
         inputMaster.Player.UseActiveItem.performed += UseActiveItemAction;
-        inputMaster.Player.DungeonGenerationTest.performed += GenerateStageAction;
+        //inputMaster.Player.DungeonGenerationTest.performed += GenerateStageAction;
     }
 
     private void MoveAction(InputAction.CallbackContext context)
@@ -52,11 +52,11 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
-    //Temporary
-    private void GenerateStageAction(InputAction.CallbackContext context) {
-        var stageController = GameObject.FindGameObjectWithTag("StageController");
-        stageController.GetComponent<StageController>().CreateStage();
-    }
+    ////Temporary
+    //private void GenerateStageAction(InputAction.CallbackContext context) {
+    //    var stageController = GameObject.FindGameObjectWithTag("StageController");
+    //    stageController.GetComponent<StageController>().CreateStage();
+    //}
 
 
     private void AttackAction(InputAction.CallbackContext context)

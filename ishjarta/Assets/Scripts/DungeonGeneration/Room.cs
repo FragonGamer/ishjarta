@@ -1,59 +1,153 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
-public abstract class Room
-    
+public class Room : MonoBehaviour
 {
-    public string Name { get; set; }
-    public int RoomId { get; set; }
-    public Tuple<int, int> Position { get; set; }
-    public int RoomSize { get; set; }
-    public int Oriantation { get; set; }
-    public List<Door> Doors { get; set; } = new List<Door>();
-    public int PossibleDoorCount { 
-        get
+    public int RoomId;
+    public List<GameObject> doors { get; private set;} = new List<GameObject>();
+
+    [SerializeField] public int lenX;
+    [SerializeField] public int lenY;
+
+    private GridPosdataType[,] roomLayout = null;
+
+    
+
+
+    public GridPosdataType[,] GetRoomLayout()
+    {
+        roomLayout = new GridPosdataType[lenY / StageController.roomBaseLength, lenX / StageController.roomBaseLength];
+        var x = 0;
+        var y = 0;
+        for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
-            switch (RoomSize)
+            
+            for (int j = 0; j < roomLayout.GetLength(1); j++)
             {
-                case 1:
-                    return 4;
+
+                roomLayout[i, j] = new GridPosdataType(y,x);
+                if(doors.Count > 0){
+                    CalcDoorsOfRoomCell(this.gameObject,new Tuple<int, int>(i,j),y,x);
+                }
+                else{
+                    SetDoors();
+                    CalcDoorsOfRoomCell(this.gameObject,new Tuple<int, int>(i,j),y,x);
+                }
+                y += StageController.roomBaseLength;
+            }
+
+            y = 0;
+            x -= StageController.roomBaseLength;
+        }
+        
+        return roomLayout;
+    }
+
+    private void CalcDoorsOfRoomCell(GameObject go, Tuple<int,int> gridPosition,int x,int y){
+        GameObject helper = new GameObject();
+        helper.transform.position = go.transform.position + new Vector3(-3.5f,4.5f,0) + new Vector3(x,y,0);
+        Vector3 helperPosition = helper.transform.position;
+        List<Door> doorsOfThisCell = new List<Door>();
+
+        foreach(var door in doors){
+            var diff = door.transform.position - helperPosition;
+            float curDistance = diff.sqrMagnitude;
+            if(curDistance <= StageController.roomBaseLength){
+                doorsOfThisCell.Add(door.GetComponent<Door>());
+            }
+
+        }
+         roomLayout[gridPosition.Item1,gridPosition.Item2].roomId = RoomId;
+
+        foreach(var door in doorsOfThisCell){
+            switch(door.direction){
+                case Door.Direction.East:
+                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasEDoor = true;
                     break;
-                case 2:
-                    return 6;
+                case Door.Direction.West:
+                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasWDoor = true;
                     break;
-                case 3:
-                    return 6;
+                case Door.Direction.North:
+                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasNDoor = true;
                     break;
-                case 4:
-                    return 8;
+                case Door.Direction.South:
+                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasSDoor = true;
                     break;
                 default:
-                    return -1;
-                    break;
+                break;
             }
         }
-        }
+        Destroy(helper);
 
-    public Room(string Name,int RoomId, int RoomSize, int Oriantation)
+
+    }
+
+
+    public void ToggleRoomState()
     {
-        this.Name = Name;
-        this.RoomId = RoomId;
-        this.RoomSize = RoomSize;
-        this.Oriantation = Oriantation;
+        var renderer = GetComponentsInChildren<Renderer>();
+        if (renderer != null)
+            foreach (Renderer r in renderer) { r.enabled = !r.enabled; }
+        
+       
     }
-    public abstract void CalcPossibleDoors(int[,] stage, int maxLength);
-    public abstract bool CheckPosition(int[,] stage, int midOfLayoutLength);
-    public abstract int[,] MarkRoomInLayout(int[,] stage, int midOfLayoutLength);
-    public bool CheckBounds(int[,] stage, Tuple<int,int> position, int maxLength) {
-        int midlength = maxLength / 2;
-        if (position.Item1 + midlength >= 0 && position.Item1 + midlength < maxLength && position.Item2 + midlength >= 0 && position.Item2 + midlength < maxLength)
+
+    //This was for testing purposes of tilemap swap
+    public void Test()
+    {
+        
+            var test = this.gameObject.GetComponentsInChildren<Tilemap>();
+            foreach (Tilemap tilemap in test)
+            {
+                if (tilemap.name.Contains("Obstacle"))
+                {
+
+                    foreach (var door in doors)
+                    {
+                        if (door.GetComponent<Door>().ConnectedDoor == null)
+                        {
+                            var tile1 = tilemap.GetTile(new Vector3Int(-4, 6));
+                            tilemap.SetTile(new Vector3Int(Mathf.FloorToInt(door.transform.position.x), Mathf.FloorToInt(door.transform.position.y)), tile1);
+                        }
+                    }
+
+
+                }
+            }
+        
+    }
+
+
+    public void SetDoors()
+    {
+       
+        var gos = this.GetComponentsInChildren<Door>();
+        foreach (var item in gos)
         {
-            return true;
+            if (!doors.Contains(item.gameObject))
+            {
+                doors.Add(item.gameObject);
+            }
         }
-        return false;
     }
-    
+    public void SetRoomToDoors(){
+
+        foreach (var door in doors){
+            door.GetComponent<Door>().room = gameObject.GetComponent<Room>();
+        }
+        
+        
+    }
+    public void ConnectDoors()
+    {
+        
+        foreach (var item in doors)
+        {
+            item.GetComponent<Door>().AttachClosestDoor();
+        }
+    }
+
 }
