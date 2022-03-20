@@ -21,8 +21,8 @@ public class StageController : MonoBehaviour
 
     public const int roomBaseLength = 5;
     // world base length should be odd
-    public const int worldBaseLength = 21;
-    private const int maxRooms = 9;
+    public const int worldBaseLength = 20;
+    private const int maxRooms = 15;
     [SerializeField] public bool TestGeneration;
 
     public AssetBundle assets = null;
