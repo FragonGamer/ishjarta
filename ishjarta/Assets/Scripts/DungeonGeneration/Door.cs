@@ -55,8 +55,13 @@ public class Door : MonoBehaviour
             GameObject player = collision.gameObject;
 
             TeleportPlayerToDoor();
-            //ConnectedDoor.GetComponentInParent<Room>().ToggleRoomState();
-            //room.ToggleRoomState();
+            var stagecontroller = FindObjectOfType<StageController>();
+            if (!stagecontroller.TestGeneration)
+            {
+                ConnectedDoor.GetComponentInParent<Room>().ToggleRoomState();
+                room.ToggleRoomState();
+            }
+
         }
     }
 

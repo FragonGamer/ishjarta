@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class Room : MonoBehaviour
 {
@@ -12,10 +13,17 @@ public class Room : MonoBehaviour
     [SerializeField] public int lenX;
     [SerializeField] public int lenY;
 
+
+    [Header("Tiles")]
+    [SerializeField] Tile closedWallUp;
+    [SerializeField] Tile closedWallDown;
+    [SerializeField] Tile closedWallLeft;
+    [SerializeField] Tile closedWallRight;
+
     private GridPosdataType[,] roomLayout = null;
 
-    
 
+ 
 
     public GridPosdataType[,] GetRoomLayout()
     {
@@ -98,20 +106,44 @@ public class Room : MonoBehaviour
     //This was for testing purposes of tilemap swap
     public void Test()
     {
-        
-            var test = this.gameObject.GetComponentsInChildren<Tilemap>();
-            foreach (Tilemap tilemap in test)
+
+            var tilemaps = this.gameObject.GetComponentsInChildren<Tilemap>();
+            foreach (Tilemap tilemap in tilemaps)
             {
                 if (tilemap.name.Contains("Obstacle"))
                 {
 
-                    foreach (var door in doors)
+                    foreach (var door in doors.Select(item => item.GetComponent<Door>()))
                     {
-                        if (door.GetComponent<Door>().ConnectedDoor == null)
+                        if (door.ConnectedDoor == null)
                         {
-                            var tile1 = tilemap.GetTile(new Vector3Int(-4, 6));
-                            tilemap.SetTile(new Vector3Int(Mathf.FloorToInt(door.transform.position.x), Mathf.FloorToInt(door.transform.position.y)), tile1);
+                        
+                        switch (door.direction)
+                        {
+                            case Door.Direction.East:
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), closedWallRight);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y + 1), closedWallRight);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y - 1), closedWallRight);
+                                break;
+                            case Door.Direction.South:
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), closedWallDown);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x + 1, (int)door.gameObject.transform.localPosition.y), closedWallDown);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x - 1, (int)door.gameObject.transform.localPosition.y), closedWallDown);
+                                break;
+                            case Door.Direction.West:
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), closedWallLeft);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y + 1), closedWallLeft);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y - 1), closedWallLeft);
+                                break;
+                            case Door.Direction.North:
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), closedWallUp);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x + 1, (int)door.gameObject.transform.localPosition.y), closedWallUp);
+                                tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x - 1, (int)door.gameObject.transform.localPosition.y), closedWallUp);
+                                break;
+
                         }
+
+                    }
                     }
 
 

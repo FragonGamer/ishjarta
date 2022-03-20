@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using UnityEngine;
 
@@ -10,44 +11,26 @@ public static class Utils
     {
         return assetsDir;
     }
-    public static void PrintMatrix<T>(T[,] matrix)
+    public static GameObject[] LoadAllAssetsOfAssetPack(AssetBundle assetBundle)
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < matrix.GetLength(0); i++)
+        var prefabs = assetBundle.LoadAllAssets<GameObject>();
+        return prefabs;
+    }
+    public static GameObject loadAssetFromAssetPack(AssetBundle assetBundle, string asset)
+    {
+        var prefab = assetBundle.LoadAsset<GameObject>(asset);
+        return prefab;
+    }
+    public static AssetBundle loadAssetPack(string assetPack)
+    {
+        var myLoadedAssetBundle
+            = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), assetPack));
+        if (myLoadedAssetBundle == null)
         {
-            for (int j = 0; j < matrix.GetLength(1); j++)
-            {
-                stringBuilder.Append(matrix[i, j]);
-                stringBuilder.Append(" ");
-               
-            }
-            stringBuilder.Append("\n");
+            throw new System.Exception("Failed to load AssetBundle!");
         }
 
-        Debug.Log(stringBuilder.ToString());
+        return myLoadedAssetBundle;
     }
-    public static void PrintPosMatrix(GridPosdataType[,] matrix)
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        StringBuilder stringBuilder1 = new StringBuilder();
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            for (int j = 0; j < matrix.GetLength(1); j++)
-            {
-                stringBuilder.Append($"{matrix[i, j].xPos}/{matrix[i, j].yPos}");
-                stringBuilder.Append(" ");
-                stringBuilder1.Append($"{matrix[i, j].roomId}");
-                stringBuilder1.Append(" ");
-
-            }
-            stringBuilder.Append("\n");
-            stringBuilder1.Append("\n");
-        }
-
-        Debug.Log(stringBuilder.ToString());
-        Debug.Log(stringBuilder1.ToString());
-        
-        
-        
-    }
+    
 }

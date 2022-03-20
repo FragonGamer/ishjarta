@@ -1,10 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
 using System;
 using Random = System.Random;
+using System.Globalization;
+using UnityEngine.Tilemaps;
 
 public class StageController : MonoBehaviour
 {
@@ -19,35 +20,46 @@ public class StageController : MonoBehaviour
     private bool[,] availableGridPositions;
 
     public const int roomBaseLength = 5;
-    public const int worldBaseLength = 100;
-    private const int maxRooms = 70;
+    // world base length should be odd
+    public const int worldBaseLength = 21;
+    private const int maxRooms = 9;
+    [SerializeField] public bool TestGeneration;
 
     public AssetBundle assets = null;
 
+    public string currentStageName = "forrest";
 
-    
-    
+    private void ResetStageController()
+    {
 
-
+    }
     private void Start()
     {
-        worldLayout = new GridPosdataType[worldBaseLength,worldBaseLength];
-        availableGridPositions = new bool[worldBaseLength,worldBaseLength];
-        assets = loadAssetPack("rooms");
-        
+        CreateGame();
+    }
+    public void CreateGame()
+    {
+        worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
+        availableGridPositions = new bool[worldBaseLength, worldBaseLength];
+        assets = Utils.loadAssetPack(currentStageName+"_stage");
+
         InitWorldLayout();
         CreateStage();
-        
-        
-       
-        
-        CreatePlayer();
-        //SetEveryRoomInvisable();
 
-        foreach(var room in worldRooms){
+
+
+
+        CreatePlayer();
+        if (!TestGeneration)
+        {
+            SetEveryRoomInvisable();
+        }
+
+        foreach (var room in worldRooms)
+        {
             room.SetDoors();
             room.SetRoomToDoors();
-            
+
         }
         foreach (var room in worldRooms)
         {
@@ -63,14 +75,16 @@ public class StageController : MonoBehaviour
                 }
             }
         }
-        //startRoom.GetComponent<Room>().Test();
-        
+        foreach(var room in worldRooms)
+        {
+            room.GetComponent<Room>().Test();
+        }
     }
 
     void SetStartRoom()
     {
 
-        GameObject startRoom = loadAssetFromAssetPack(assets, "Start");
+        GameObject startRoom = Utils.loadAssetFromAssetPack(assets, "Start");
         
         var startRoomGO = Instantiate(startRoom,new Vector3(0,0,0),new Quaternion(0,0,0,0));
 
@@ -87,13 +101,12 @@ public class StageController : MonoBehaviour
     }
 
     private List<GameObject> GetPossibleRooms(){
- var gos = LoadAllAssetsOfAssetPack(assets).ToList();
-        GameObject start = loadAssetFromAssetPack(assets, "Start");;
+ var gos = Utils.LoadAllAssetsOfAssetPack(assets).ToList();
+        GameObject start = Utils.loadAssetFromAssetPack(assets, "Start");;
         gos.Remove(start);
         return gos;
     }
     
-    //TODO überlappen der räume fixen
     GameObject AddRoom()
     {
         Random random = new Random(); 
@@ -273,8 +286,7 @@ public class StageController : MonoBehaviour
             var room = AddRoom();
             Debug.Log(room.GetComponent<Room>().RoomId);
             Debug.Log(room.transform.position);
-            Utils.PrintPosMatrix(worldLayout);
-            Utils.PrintMatrix(availableGridPositions);
+
         }
         
 
@@ -329,40 +341,43 @@ public class StageController : MonoBehaviour
     }
     void CreatePlayer()
     {
-        var playerAssetsFile = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), "player"));
-        var playerAssets = playerAssetsFile.LoadAllAssets<GameObject>();
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
-        GameObject player;
-        GameObject camera;
-        foreach (var item in playerAssets)
+       if (player == null)
         {
+            var playerAssetsFile = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), "player"));
+            var playerAssets = playerAssetsFile.LoadAllAssets<GameObject>();
+            Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
+            GameObject player;
+            GameObject camera;
+            foreach (var item in playerAssets)
+            {
 
-            if (item.CompareTag("MainCamera"))
-            {
-                camera = Instantiate(item);
-            }
-            else if (item.CompareTag("Player"))
-            {
-                player = Instantiate(item, playerPosition, new Quaternion(0, 0, 0, 0));
-                this.player = player;
-                var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
-                var playerManager = gameManager.GetComponent<PlayerManager>();
-                try
+                if (item.CompareTag("MainCamera"))
                 {
-                    if (playerManager.player == null)
-                        playerManager.player = player;
+                    camera = Instantiate(item);
                 }
-                catch (System.Exception)
+                else if (item.CompareTag("Player"))
                 {
+                    player = Instantiate(item, playerPosition, new Quaternion(0, 0, 0, 0));
+                    this.player = player;
+                    var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
+                    var playerManager = gameManager.GetComponent<PlayerManager>();
+                    try
+                    {
+                        if (playerManager.player == null)
+                            playerManager.player = player;
+                    }
+                    catch (System.Exception)
+                    {
 
-                    throw;
+                        throw;
+                    }
                 }
-            }
-            else
-            {
-                var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-            }
+                else
+                {
+                    var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+                }
 
+            }
         }
 
 
@@ -374,26 +389,6 @@ public class StageController : MonoBehaviour
             Instantiate(item, position, new Quaternion(0, 0, 0, 0));
         }
     }
-    GameObject[] LoadAllAssetsOfAssetPack(AssetBundle assetBundle)
-    {
-        var prefabs = assetBundle.LoadAllAssets<GameObject>();
-        return prefabs;
-    }
-    GameObject loadAssetFromAssetPack(AssetBundle assetBundle, string asset)
-    {
-        var prefab = assetBundle.LoadAsset<GameObject>(asset);
-        return prefab;
-    }
-    AssetBundle loadAssetPack(string assetPack)
-    {
-        var myLoadedAssetBundle
-            = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), assetPack));
-        if (myLoadedAssetBundle == null)
-        {
-            throw new System.Exception("Failed to load AssetBundle!");
-        }
-
-        return myLoadedAssetBundle;
-    }
+    
 
 }
