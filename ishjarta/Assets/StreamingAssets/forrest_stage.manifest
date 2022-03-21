@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3960955268
+CRC: 4248213330
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 915f6d237661f3de7e126a24f6990d99
+    Hash: 3f84b82d1e69b92aad8b51aac2a26ab9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f094f811f79c3816b7e39d9a515f7e54
+    Hash: 15a4a522ec475153ed011cc74589ca09
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -49,4 +49,4 @@ Assets:
 - Assets/Prefabs/RoomPrefabs/5x10.prefab
 - Assets/Prefabs/RoomPrefabs/5x5.prefab
 Dependencies:
-- D:/ishjarta/ishjarta/Assets/StreamingAssets/level
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/level
