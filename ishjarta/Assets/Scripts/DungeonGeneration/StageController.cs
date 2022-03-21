@@ -10,6 +10,7 @@ using UnityEngine.Tilemaps;
 public class StageController : MonoBehaviour
 {
     GameObject player;
+    Dictionary<Room,int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
     int nextRoomId = 0;
     List<Room> worldRooms = new List<Room>();
@@ -21,8 +22,9 @@ public class StageController : MonoBehaviour
 
     public const int roomBaseLength = 5;
     // world base length should be odd
-    public const int worldBaseLength = 20;
-    private const int maxRooms = 15;
+    public const int worldBaseLength = 300;
+
+    [SerializeField] public  int maxRooms = 50;
     [SerializeField] public bool TestGeneration;
 
     public AssetBundle assets = null;
@@ -39,10 +41,12 @@ public class StageController : MonoBehaviour
     }
     public void CreateGame()
     {
+        
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
         assets = Utils.loadAssetPack(currentStageName+"_stage");
-
+        var gos = GetPossibleRooms();
+        gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(),0));
         InitWorldLayout();
         CreateStage();
 
@@ -107,6 +111,7 @@ public class StageController : MonoBehaviour
         return gos;
     }
     
+
     GameObject AddRoom()
     {
         Random random = new Random(); 
@@ -117,31 +122,36 @@ public class StageController : MonoBehaviour
 
         var gos = GetPossibleRooms();
         gos.Shuffle();
-         
+        
+        
 
+        
         foreach(var room in rooms.Select(room => room.GetComponent<Room>())){
             room.SetDoors();
             var doors = room.doors;
             doors.Shuffle();
 
-            foreach(var posRoom in gos.Select(room => room.GetComponent<Room>())){
-               
+            foreach(var posRoom in gos.Select(room => room.GetComponent<Room>()).OrderBy(test => test.doors.Count(dd => dd.GetComponent<Door>().ConnectedDoor is null))  ){
+                    if(roomCounter[posRoom] < posRoom.maxOfThisRoom || posRoom.maxOfThisRoom == -1){
 
                     foreach(var door in doors.Select(door => door.GetComponent<Door>())){
                          if(door.ConnectedDoor == null){
                         Tuple<int,int> posPosition = null;
+                        var xOffset = random.Next(0,posRoom.lenX/StageController.roomBaseLength) * StageController.roomBaseLength;
+                        var yOffset = random.Next(0,posRoom.lenY/StageController.roomBaseLength) * StageController.roomBaseLength;
+
                         switch(door.direction){
                             case Door.Direction.East:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x + StageController.roomBaseLength,(int)room.gameObject.transform.position.y);
+                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x + StageController.roomBaseLength ,(int)room.gameObject.transform.position.y + yOffset);
                                 break;
                             case Door.Direction.South:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x,(int)room.gameObject.transform.position.y - StageController.roomBaseLength);
+                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset,(int)room.gameObject.transform.position.y - StageController.roomBaseLength);
                                 break;
                              case Door.Direction.West:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.lenX ,(int)room.gameObject.transform.position.y);
+                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.lenX ,(int)room.gameObject.transform.position.y + yOffset);
                                 break;
                             case Door.Direction.North:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x ,(int)room.gameObject.transform.position.y + posRoom.lenY);
+                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset ,(int)room.gameObject.transform.position.y + posRoom.lenY);
                                 break;
 
                         }
@@ -154,10 +164,12 @@ public class StageController : MonoBehaviour
                         else{
                             var newRoom = PlaceRoom(posRoom,posPosition);
                             nextRoomId++;
+                            roomCounter[posRoom]++;
                             worldRooms.Add(newRoom.GetComponent<Room>());
                             return posRoom.gameObject;
                         }
                         }
+                    }
                     }
 
                 
@@ -281,13 +293,16 @@ public class StageController : MonoBehaviour
     }
     void CreateStage()
     {
+        Random random = new Random();
+        var f = random.Next(maxRooms/2,maxRooms);
         SetStartRoom();
-        while(worldRooms.Count() < maxRooms){
+        while(worldRooms.Count() < f){
             var room = AddRoom();
             Debug.Log(room.GetComponent<Room>().RoomId);
             Debug.Log(room.transform.position);
 
         }
+        Debug.Log("Rooms: " + f);
         
 
     }

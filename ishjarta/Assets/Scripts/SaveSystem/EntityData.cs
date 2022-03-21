@@ -32,7 +32,7 @@ public abstract class EntityData
     public EntityData(Entity entity)
     {
         position = entity.transform.position;
-
+/*
         currentHealth = entity.GetCurrentHealth();
         maxHealth = entity.GetMaxHealth();
         baseHealth = entity.GetBaseHealth();
@@ -50,5 +50,6 @@ public abstract class EntityData
         attackRate = entity.GetAttackRate();
 
         range = entity.GetRange();
+        */
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] public int maxOfThisRoom;
     public int RoomId;
     public List<GameObject> doors { get; private set;} = new List<GameObject>();
 

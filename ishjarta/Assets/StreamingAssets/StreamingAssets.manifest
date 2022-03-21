@@ -1,17 +1,17 @@
 ManifestFileVersion: 0
-CRC: 1698746069
+CRC: 2668192967
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: level
-      Dependencies: {}
+      Name: forrest_stage
+      Dependencies:
+        Dependency_0: level
     Info_1:
       Name: player
       Dependencies: {}
     Info_2:
-      Name: forrest_stage
-      Dependencies:
-        Dependency_0: level
+      Name: level
+      Dependencies: {}
     Info_3:
       Name: tilemaps
       Dependencies: {}
