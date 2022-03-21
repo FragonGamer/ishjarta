@@ -265,20 +265,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
-  maxHealth: 100
-  baseHealth: 100
-  healthModifier: 1
-  movementSpeed: 1
-  speedModifier: 1
-  baseDamage: 40
-  damageModifier: 1.5
-  attackRate: 4
-  range: 10
+  <MaxHealth>k__BackingField: 100
+  <BaseHealth>k__BackingField: 100
+  <HealthModifier>k__BackingField: 1
+  <Resistance>k__BackingField: 0
+  <CurrentResistance>k__BackingField: 0
+  <MovementSpeed>k__BackingField: 1
+  <SpeedModifier>k__BackingField: 1
+  <BaseDamage>k__BackingField: 5
+  <DamageModifier>k__BackingField: 1
+  <AttackRate>k__BackingField: 1
+  <Range>k__BackingField: 0
+  <Width>k__BackingField: 0
   animator: {fileID: 0}
   spottingRange: 13
   <dropRate>k__BackingField: 0
   <hasSpottedPlayer>k__BackingField: 0
   <isInRange>k__BackingField: 0
+  <EmitEffect>k__BackingField: {fileID: 0}
 --- !u!114 &2376428963787245878
 MonoBehaviour:
   m_ObjectHideFlags: 0

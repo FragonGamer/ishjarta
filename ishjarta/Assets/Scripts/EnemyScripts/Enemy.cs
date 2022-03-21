@@ -25,11 +25,11 @@ public class Enemy : Entity
     #region getters and setters
     public int GetMovementSpeed()
     {
-        return movementSpeed;
+        return MovementSpeed;
     }
-    public int GetRange()
+    public float GetRange()
     {
-        return range;
+        return Range;
     }
     public int GetSpottingRange()
     {
@@ -38,16 +38,16 @@ public class Enemy : Entity
 
     public float GetAttackRate()
     {
-        return attackRate;
+        return AttackRate;
     }
     public float GetSpeed()
     {
-        return movementSpeed * speedModifier;
+        return MovementSpeed * SpeedModifier;
     }
     //returns Damage which is calculated by baseDamage*damageModifier;
     public float GetDamage()
     {
-        return baseDamage * damageModifier;
+        return BaseDamage * DamageModifier;
     }
     #endregion
 
@@ -74,14 +74,14 @@ public class Enemy : Entity
     }
     public override void ReceiveDamage(int damage)
     {
-        damage = (damage - ((int)(damage * currentResistance)));
-        currentHealth -= damage;
+        damage = (damage - ((int)(damage * CurrentResistance)));
+        CurrentHealth -= damage;
 
         Debug.Log(name + " is being attacked");
 
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
-            currentHealth = 0;
+            CurrentHealth = 0;
             Die();
         }
     }

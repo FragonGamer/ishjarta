@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 2531728917344798226}
   - component: {fileID: 2128995530207865042}
   - component: {fileID: 3756161934450164982}
+  - component: {fileID: 3511570834529421310}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -137,17 +138,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
-  maxHealth: 100
-  baseHealth: 100
-  healthModifier: 1
-  resistance: 0
-  currentResistance: 0
-  movementSpeed: 2
-  speedModifier: 1
-  baseDamage: 20
-  damageModifier: 1
-  attackRate: 1
-  range: 10
+  <MaxHealth>k__BackingField: 100
+  <BaseHealth>k__BackingField: 100
+  <HealthModifier>k__BackingField: 1
+  <Resistance>k__BackingField: 0
+  <CurrentResistance>k__BackingField: 0
+  <MovementSpeed>k__BackingField: 2
+  <SpeedModifier>k__BackingField: 1
+  <BaseDamage>k__BackingField: 5
+  <DamageModifier>k__BackingField: 1
+  <AttackRate>k__BackingField: 1
+  <Range>k__BackingField: 0
+  <Width>k__BackingField: 0
   FirePoint: {fileID: 8899212196531149792}
   rangeModifier: 1
   luck: 1
@@ -257,6 +259,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &3511570834529421310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6607695795067367189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7494606404856730283
 GameObject:
   m_ObjectHideFlags: 0

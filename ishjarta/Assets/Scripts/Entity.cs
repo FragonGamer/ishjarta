@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,105 +7,57 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     //Health
-    [SerializeField] protected int currentHealth;
-    [SerializeField] protected int maxHealth;
-    [SerializeField] protected int baseHealth;
+    [field: SerializeField] private int currentHealth;
+    public int CurrentHealth
+    {
+        get { return currentHealth; }
+        set { currentHealth = value; }
+    }
+    [field: SerializeField] public int MaxHealth { get; protected set; }
+    [field: SerializeField] public int BaseHealth { get; protected set; }
     // Is used for enemy scaling and for player itembuff
-    [SerializeField] protected float healthModifier;
+    [field: SerializeField] public float HealthModifier { get; protected set; }
 
     //Armor
-    [SerializeField] protected float resistance;
-    [SerializeField] protected float currentResistance;
+    [field: SerializeField] public float Resistance { get; protected set; }
+    [field: SerializeField] public float CurrentResistance { get; protected set; }
     //Movement
-    [SerializeField] protected int movementSpeed;
-    [SerializeField] protected float speedModifier;
+    [field: SerializeField] public int MovementSpeed { get; protected set; }
+    [field: SerializeField] public float SpeedModifier { get; protected set; }
     //Damage
-    [SerializeField] protected int baseDamage;
+    [field: SerializeField] public int BaseDamage { get; protected set; }
     // Is used for enemy scaling and for player itembuff
-    [SerializeField] protected float damageModifier;
+    [field: SerializeField] public float DamageModifier { get; protected set; }
     //AttackRate
-    [SerializeField] protected int attackRate;
+    [field: SerializeField] public int AttackRate { get; protected set; }
     //Range
-    [SerializeField] protected int range;
+    [field: SerializeField] public float Range { get; protected set; }
+    //Width
+    [field: SerializeField] public float Width { get; protected set; }
 
     private bool IsInitialized = false;
     public void Init(int currentHealth, int maxHealth, int baseHealth, float healthModifier,
         float resistance, float currentResistance, int movementSpeed, float speedModifier, int baseDamage,
-        float damageModifier, int attackRate, int range)
+        float damageModifier, int attackRate, float range)
     {
         if(!IsInitialized)
         {
             IsInitialized = true;
 
-            this.currentHealth = currentHealth;
-            this.maxHealth = maxHealth;
-            this.baseHealth = baseHealth;
-            this.healthModifier = healthModifier;
-            this.resistance = resistance;
-            this.currentResistance = currentResistance;
-            this.movementSpeed = movementSpeed;
-            this.speedModifier = speedModifier;
-            this.baseDamage = baseDamage;
-            this.damageModifier = damageModifier;
-            this.attackRate = attackRate;
-            this.range = range;
+            this.CurrentHealth = currentHealth;
+            this.MaxHealth = maxHealth;
+            this.BaseHealth = baseHealth;
+            this.HealthModifier = healthModifier;
+            this.Resistance = resistance;
+            this.CurrentResistance = currentResistance;
+            this.MovementSpeed = movementSpeed;
+            this.SpeedModifier = speedModifier;
+            this.BaseDamage = baseDamage;
+            this.DamageModifier = damageModifier;
+            this.AttackRate = attackRate;
+            this.Range = range;
         }
     }
-
-    #region Getter
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-    public int GetBaseHealth()
-    {
-        return baseHealth;
-    }
-    public float GetHealthModifier()
-    {
-        return healthModifier;
-    }
-
-    public float GetResistance()
-    {
-        return resistance;
-    }
-    public float GetCurrentResistance()
-    {
-        return currentResistance;
-
-    }
-    public int GetMovementSpeed()
-    {
-        return movementSpeed;
-    }
-    public float GetSpeedModifier()
-    {
-        return speedModifier;
-    }
-
-    public int GetBaseDamage()
-    {
-        return baseDamage;
-    }
-    public float GetDamageModifier()
-    {
-        return damageModifier;
-    }
-
-    public int GetAttackRate()
-    {
-        return attackRate;
-    }
-    public int GetRange()
-    {
-        return range;
-    }
-    #endregion Getter
 
     protected abstract void Die();
 
@@ -114,6 +67,13 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void UpdateHealthBar();
 
+    public int DealingDamage
+    {
+        get
+        {
+            return (int)(this.BaseDamage * DamageModifier);
+        }
+    }
 
     private void Awake()
     {
@@ -156,8 +116,8 @@ public abstract class Entity : MonoBehaviour
             {
                 var baseEffect = baseEffects[i];
 
-                currentHealth = baseEffect.Effect(currentHealth);
-                currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+                CurrentHealth = baseEffect.Effect(CurrentHealth);
+                CurrentHealth = CurrentHealth <= 0 ? 0 : CurrentHealth;
                 UpdateHealthBar();
                 if (!baseEffect.IsActive) statusEffectHandler.RemoveEffect(baseEffect);
             }
@@ -171,8 +131,8 @@ public abstract class Entity : MonoBehaviour
             {
                 var baseEffect = baseEffects[i];
 
-                decreasedResistance += baseEffect.Effect(resistance, ref currentHealth);
-                currentHealth = currentHealth <= 0 ? 0 : currentHealth;
+                decreasedResistance += baseEffect.Effect(Resistance, ref currentHealth);
+                CurrentHealth = CurrentHealth <= 0 ? 0 : CurrentHealth;
                 UpdateHealthBar();
                 if (!baseEffect.IsActive)
                 {
@@ -180,12 +140,12 @@ public abstract class Entity : MonoBehaviour
                     //currentResistance = resistance;
                 }
             }
-            currentResistance = resistance - decreasedResistance;
-            currentResistance = currentResistance <= 0 ? 0 : currentResistance;
+            CurrentResistance = Resistance - decreasedResistance;
+            CurrentResistance = CurrentResistance <= 0 ? 0 : CurrentResistance;
         }
         else
         {
-            currentResistance = resistance;
+            CurrentResistance = Resistance;
         }
 
         baseEffects = ConvertEffectsToArray(statusEffectHandler.RegenerationStat.Regeneration, statusEffectHandler.RegenerationStat.PermanentRegeneration);
@@ -195,8 +155,8 @@ public abstract class Entity : MonoBehaviour
             {
                 var baseEffect = baseEffects[i];
 
-                currentHealth = baseEffect.Effect(currentHealth);
-                currentHealth = currentHealth >= maxHealth ? maxHealth : currentHealth;
+                CurrentHealth = baseEffect.Effect(CurrentHealth);
+                CurrentHealth = CurrentHealth >= MaxHealth ? MaxHealth : CurrentHealth;
                 UpdateHealthBar();
                 if (!baseEffect.IsActive) statusEffectHandler.RemoveEffect(baseEffect);
             }
@@ -231,13 +191,13 @@ public abstract class Entity : MonoBehaviour
                     statusEffectHandler.RemoveEffect(baseEffect);
                 }
             }
-            damageModifier = strengthBoost;
+            DamageModifier = strengthBoost;
         }
         else
-            damageModifier = 1f;
+            DamageModifier = 1f;
 
         HUDManager.instance.UpdateAllSpritesAndText();
-        speedModifier = 1 + speedBoost - speedDelay;
+        SpeedModifier = 1 + speedBoost - speedDelay;
         //float speedBoost = 1, speedDelay = 1;
         //BaseEffect baseEffect = statusEffectHandler.Frost;
         //if (baseEffect != null)
@@ -340,5 +300,15 @@ public abstract class Entity : MonoBehaviour
             result.AddRange(baseEffects);
 
         return result.ToArray();
+    }
+
+    public static Vector2 RotateVector2(Vector2 vec, float angle)
+    {
+        Vector2 result = new Vector2();
+
+        result.x = (float)(Math.Cos(angle) * vec.x - Math.Sin(angle) * vec.y);
+        result.y = (float)(Math.Sin(angle) * vec.x + Math.Cos(angle) * vec.y);
+
+        return result;
     }
 }

@@ -22,18 +22,18 @@ public class Player : Entity
     //        attackRate, range)
     //{ }
 
-        public int GetBaseDamage() { return baseDamage; }
-    public void SetBaseDamage(int value) { baseDamage = value; }
+        public int GetBaseDamage() { return BaseDamage; }
+    public void SetBaseDamage(int value) { BaseDamage = value; }
 
     public override void UpdateHealthBar()
     {
-        hpBar.SetHealth(currentHealth);
+        hpBar.SetHealth(CurrentHealth);
     }
 
     private void Start()
     {
         hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBar>();
-        hpBar.SetMaxHealth(maxHealth);
+        hpBar.SetMaxHealth(MaxHealth);
 
     }
 
@@ -55,27 +55,19 @@ public class Player : Entity
     public void CalcResistence()
     {
             int armorAmount = inventory.GetArmor().Amount;
-            resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
-            currentResistance = resistance;
+            Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+            CurrentResistance = Resistance;
     }
     
     public float GetResistence()
     {
-        return currentResistance;
+        return CurrentResistance;
     }
     public float GetMovementSpeed()
     {
-        return movementSpeed * speedModifier;
+        return MovementSpeed * SpeedModifier;
     }
     public Inventory inventory;
-
-    public int DealingDamage
-    {
-        get
-        {
-            return (int)(this.baseDamage * damageModifier);
-        }
-    }
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
@@ -90,8 +82,6 @@ public class Player : Entity
             {
                 timeMelee = 0f;
 
-                melWeapon.Range = 1.2f;
-                melWeapon.Width = 0.3f;
                 float angle = CalculateDegreesInRad(mousePos);
 
                 Vector2[] v = new Vector2[]
@@ -135,6 +125,27 @@ public class Player : Entity
 
     }
 
+    protected override void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public override void ReceiveDamage(int damage)
+    {
+        damage = (damage - ((int)(damage * Resistance)));
+        CurrentHealth -= damage;
+
+        Debug.Log(name + " is being attacked");
+
+        hpBar.SetHealth(CurrentHealth);
+
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            Die();
+        }
+    }
+
     private float CalculateDegreesInRad(Vector2 vec)
     {
         Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(vec) - GetComponent<Rigidbody2D>().position;
@@ -143,35 +154,5 @@ public class Player : Entity
             angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
 
         return angle;
-    }
-    private Vector2 RotateVector2(Vector2 vec, float angle)
-    {
-        Vector2 result = new Vector2();
-
-        result.x = (float)(Math.Cos(angle) * vec.x - Math.Sin(angle) * vec.y);
-        result.y = (float)(Math.Sin(angle) * vec.x + Math.Cos(angle) * vec.y);
-
-        return result;
-    }
-
-    protected override void Die()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public override void ReceiveDamage(int damage)
-    {
-        damage = (damage - ((int)(damage * resistance)));
-        currentHealth -= damage;
-
-        Debug.Log(name + " is being attacked");
-
-        hpBar.SetHealth(currentHealth);
-
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Die();
-        }
     }
 }
