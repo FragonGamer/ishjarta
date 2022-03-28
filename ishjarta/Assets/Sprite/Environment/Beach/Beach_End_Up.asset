@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Beach_End_Up
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: aa6eeacccf3fd91429e1850e38b265ff, type: 3}
+  - {fileID: 21300000, guid: d28c4047416429043ab94f404353f7a2, type: 3}
+  - {fileID: 21300000, guid: a3e0f62f981e9e64aba22c759127f278, type: 3}
+  - {fileID: 21300000, guid: d40c5b2965f740041bfb0ce6d72ff933, type: 3}
+  - {fileID: 21300000, guid: 9619ec172ada17c4685b1ab7038ff8ca, type: 3}
+  - {fileID: 21300000, guid: 247b62364bcc5dc478a9d5cfb1d9f86e, type: 3}
+  - {fileID: 21300000, guid: e3820ed03db1bcc40bc0ca542957f8cc, type: 3}
+  m_MinSpeed: 4
+  m_MaxSpeed: 4
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
