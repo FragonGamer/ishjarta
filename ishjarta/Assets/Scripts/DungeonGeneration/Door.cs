@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     }
 
     public bool doorIsOpen;
-    [SerializeField] public GameObject ConnectedDoor;
+    public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
     public Room room;
 

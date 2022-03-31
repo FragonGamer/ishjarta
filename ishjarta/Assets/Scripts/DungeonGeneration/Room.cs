@@ -57,7 +57,7 @@ public class Room : MonoBehaviour
 
     private void CalcDoorsOfRoomCell(GameObject go, Tuple<int,int> gridPosition,int x,int y){
         GameObject helper = new GameObject();
-        helper.transform.position = go.transform.position + new Vector3(-3.5f,4.5f,0) + new Vector3(x,y,0);
+        helper.transform.position = go.transform.position + new Vector3(2f,-2f,0) + new Vector3(x,y,0);
         Vector3 helperPosition = helper.transform.position;
         List<Door> doorsOfThisCell = new List<Door>();
 

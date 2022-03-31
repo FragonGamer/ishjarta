@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2668192967
+CRC: 570382700
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -11,7 +11,4 @@ AssetBundleManifest:
       Dependencies: {}
     Info_2:
       Name: level
-      Dependencies: {}
-    Info_3:
-      Name: tilemaps
       Dependencies: {}
