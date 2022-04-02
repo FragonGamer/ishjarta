@@ -6,6 +6,8 @@ using System;
 using Random = System.Random;
 using System.Globalization;
 using UnityEngine.Tilemaps;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class StageController : MonoBehaviour
 {
@@ -31,9 +33,35 @@ public class StageController : MonoBehaviour
 
     public string currentStageName = "forrest";
 
-    private void ResetStageController()
+    private void ResetStage()
     {
+        DestroyAllGOS();
+        roomCounter = new Dictionary<Room, int>();
+        startRoom = null;
+        nextRoomId = 0;
+        worldRooms = new List<Room>();
+        worldLayout = null;
+        availableGridPositions = null;
+        AssetBundle.UnloadAllAssetBundles(false);
         
+        
+        CreateGame();
+        
+    }
+    void DestroyAllGOS()
+    {
+        var gos = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (var g in gos)
+        {
+            if (g.Equals(player.gameObject) || g.Equals(this.gameObject))
+            {
+                continue;
+            }
+            else
+            {
+                Destroy(g);
+            }
+        }
     }
     private void Start()
     {
@@ -48,6 +76,7 @@ public class StageController : MonoBehaviour
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
         InitWorldLayout();
+        
         CreateStage();
 
 
@@ -79,6 +108,7 @@ public class StageController : MonoBehaviour
                 }
             }
         }
+        SetEveryFreeDoorClosed();
 
     }
 
@@ -241,10 +271,15 @@ public class StageController : MonoBehaviour
             var x = arrayPos.Item1 + pos.xPos / roomBaseLength;
             var y = arrayPos.Item2 - pos.yPos / roomBaseLength;
 
+            if(pos.roomId < 0)
+            {
+                continue;
+            }
             if (!availableGridPositions[y, x])
             {
                 return null;
             }
+            
 
             if (x + 1 > 0 && x + 1 < worldLayout.GetLength(0))
             {
@@ -266,10 +301,10 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    if (worldLayout[y, x + 1].roomId > -1 && worldLayout[y, x + 1].hasWDoor == false)
-                    {
-                        return null;
-                    }
+                    //if (worldLayout[y, x + 1].roomId > -1 && worldLayout[y, x + 1].hasWDoor == false)
+                    //{
+                    //    return null;
+                    //}
 
                 }
 
@@ -291,10 +326,10 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    if (worldLayout[y, x - 1].roomId > -1 && worldLayout[y, x - 1].hasEDoor == false)
-                    {
-                        return null;
-                    }
+                    //if (worldLayout[y, x - 1].roomId > -1 && worldLayout[y, x - 1].hasEDoor == false)
+                    //{
+                    //    return null;
+                    //}
                 }
 
             }
@@ -315,10 +350,10 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    if (worldLayout[y + 1, x].roomId > -1 && worldLayout[y + 1, x].hasNDoor == false)
-                    {
-                        return null;
-                    }
+                    //if (worldLayout[y + 1, x].roomId > -1 && worldLayout[y + 1, x].hasNDoor == false)
+                    //{
+                    //    return null;
+                    //}
                 }
 
             }
@@ -338,10 +373,10 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    if (worldLayout[y - 1, x].roomId > -1 && worldLayout[y - 1, x].hasSDoor == false)
-                    {
-                        return null;
-                    }
+                    //if (worldLayout[y - 1, x].roomId > -1 && worldLayout[y - 1, x].hasSDoor == false)
+                    //{
+                    //    return null;
+                    //}
                 }
 
             }
@@ -373,7 +408,7 @@ public class StageController : MonoBehaviour
 
         nextRoomId++;
     }
-    void CreateStage()
+    async void CreateStage()
     {
         Random random = new Random();
         var f = random.Next(maxRooms / 2, maxRooms);
@@ -391,16 +426,15 @@ public class StageController : MonoBehaviour
         Debug.Log("Rooms: " + f);
 
 
+   
+
+    }
+    async Task Timer()
+    {
+        await Task.Delay(1000);
     }
     void InitWorldLayout()
     {
-        for (int i = 0; i < availableGridPositions.GetLength(0); i++)
-        {
-            for (int j = 0; j < availableGridPositions.GetLength(1); j++)
-            {
-                availableGridPositions[i, j] = true;
-            }
-        }
         int gpx;
         int gpy;
         gpy = (worldLayout.GetLength(0) / 2) * roomBaseLength;
@@ -409,6 +443,7 @@ public class StageController : MonoBehaviour
             gpx = worldLayout.GetLength(0) / 2 * roomBaseLength * -1;
             for (int x = 0; x < worldLayout.GetLength(1); x++)
             {
+                availableGridPositions[y,x] = true;
                 worldLayout[y, x] = new GridPosdataType(gpx, gpy);
                 gpx += roomBaseLength;
             }
@@ -442,44 +477,42 @@ public class StageController : MonoBehaviour
     }
     void CreatePlayer()
     {
-        if (player == null)
-        {
-            var playerAssetsFile = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), "player"));
-            var playerAssets = playerAssetsFile.LoadAllAssets<GameObject>();
-            Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
-            GameObject player;
-            GameObject camera;
-            foreach (var item in playerAssets)
-            {
 
-                if (item.CompareTag("MainCamera"))
-                {
-                    camera = Instantiate(item);
-                }
-                else if (item.CompareTag("Player"))
+        var playerAssetsFile = Utils.loadAssetPack("player");
+        var playerAssets = Utils.LoadAllAssetsOfAssetPack(playerAssetsFile);
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
+        GameObject player;
+        GameObject camera;
+        foreach (var item in playerAssets)
+        {
+
+            if (item.CompareTag("MainCamera"))
+            {
+                camera = Instantiate(item);
+            }
+            else if (item.CompareTag("Player"))
+            {
+                if (this.player is null)
                 {
                     player = Instantiate(item, playerPosition, new Quaternion(0, 0, 0, 0));
                     this.player = player;
                     var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
                     var playerManager = gameManager.GetComponent<PlayerManager>();
-                    try
-                    {
-                        if (playerManager.player == null)
-                            playerManager.player = player;
-                    }
-                    catch (System.Exception)
-                    {
-
-                        throw;
-                    }
+                    if (playerManager.player == null)
+                        playerManager.player = player;
                 }
                 else
                 {
-                    var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+                    this.player.transform.position = playerPosition;
                 }
-
             }
+            else
+            {
+                var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            }
+
         }
+
 
 
     }

@@ -31,20 +31,27 @@ public class Room : MonoBehaviour
         roomLayout = new GridPosdataType[lenY / StageController.roomBaseLength, lenX / StageController.roomBaseLength];
         var x = 0;
         var y = 0;
+        //var tilemap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.Contains("Background"));
         for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
             
             for (int j = 0; j < roomLayout.GetLength(1); j++)
             {
+                roomLayout[i, j] = new GridPosdataType(y, x);
+                //if (tilemap.HasTile( new Vector3Int(y + 2, x -2, 0))){
 
-                roomLayout[i, j] = new GridPosdataType(y,x);
-                if(doors.Count > 0){
-                    CalcDoorsOfRoomCell(this.gameObject,new Tuple<int, int>(i,j),y,x);
-                }
-                else{
-                    SetDoors();
-                    CalcDoorsOfRoomCell(this.gameObject,new Tuple<int, int>(i,j),y,x);
-                }
+                    
+                    if (doors.Count > 0)
+                    {
+                        CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
+                    }
+                    else
+                    {
+                        SetDoors();
+                        CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
+                    }
+                //}
+                
                 y += StageController.roomBaseLength;
             }
 
