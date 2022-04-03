@@ -412,7 +412,7 @@ public class StageController : MonoBehaviour
 
 
         }
-        var endRoom = CreateEndRoom();
+        //var endRoom = CreateEndRoom();
         Debug.Log("Rooms: " + nextRoomId);
 
         Utils.PrintGridPosDataTypeMatrix(worldLayout);

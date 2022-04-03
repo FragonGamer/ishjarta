@@ -12,6 +12,8 @@ TagManager:
   - StageController
   - StartPosition
   - StartRoom
+  - Room
+  - EndPosition
   layers:
   - Default
   - TransparentFX
