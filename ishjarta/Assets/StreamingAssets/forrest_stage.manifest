@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1156330567
+CRC: 152752118
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 18b894ae3c8c18d1377c40fc0977e9a8
+    Hash: c8fec69d0f247466dac524b66532158f
   TypeTreeHash:
     serializedVersion: 2
     Hash: b1f2df8e2e2582e698576f8444d2305f
@@ -52,6 +52,7 @@ Assets:
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/10x5_1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/15x10 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5_1.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/10x15.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10.prefab
