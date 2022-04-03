@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27d0062b8ba7e446b3d9aacb39c43c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms: []
-  test: 1
-  startRoom: {fileID: 0}
+  maxRooms: 3
+  TestGeneration: 0
+  assets: {fileID: 0}
+  currentStageName: forrest
