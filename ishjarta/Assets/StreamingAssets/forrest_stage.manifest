@@ -3,7 +3,7 @@ CRC: 1156330567
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5caada8bcd0ea7d68cb5c8bf734094c6
+    Hash: 18b894ae3c8c18d1377c40fc0977e9a8
   TypeTreeHash:
     serializedVersion: 2
     Hash: b1f2df8e2e2582e698576f8444d2305f
@@ -56,4 +56,4 @@ Assets:
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10.prefab
 Dependencies:
-- D:/Programming/games/ishjarta/ishjarta/Assets/StreamingAssets/level
+- D:/Programming/ishjarta/ishjarta/Assets/StreamingAssets/level

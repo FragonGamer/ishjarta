@@ -21,7 +21,7 @@ public class StageController : MonoBehaviour
 
     public const int roomBaseLength = 5;
     // world base length should be odd
-    public const int worldBaseLength = 21;
+    public const int worldBaseLength = 111;
 
     [SerializeField] public int maxRooms = 3;
     [SerializeField] public bool TestGeneration;
@@ -172,7 +172,7 @@ public class StageController : MonoBehaviour
                                     posPosition = new Tuple<int, int>( ((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
                                     break;
                                 case Door.Direction.South:
-                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) - posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) + posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
                                     break;
                                 case Door.Direction.West:
                                     posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
