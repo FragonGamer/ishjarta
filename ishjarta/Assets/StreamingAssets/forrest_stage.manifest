@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1058447164
+CRC: 3546582701
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 48e41b5d53d4da1b2735fec91fc43f80
+    Hash: 693d54f70198fd877afb3d7c31537627
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b1f2df8e2e2582e698576f8444d2305f
+    Hash: d7b1e37376a536fd8fe108334d8d6e62
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -19,17 +19,61 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
 - Class: 61
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9d5480c8ebff9304f92acc46d6ff9dcf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 39fa3d8997a24136984ca6e2c99902bc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f6f0d7f5352c48f4ba5eba2cdf560f70, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e6f744c8752a03e4487f91df4d5b3ec3, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: eedbe3daf179c874cbeb764e68ef40af, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: a57232a70f6d52045bd243cf66f51aa3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -41,12 +85,39 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 1839735485
   Script: {instanceID: 0}
-SerializeReferenceClassIdentifiers: []
+SerializeReferenceClassIdentifiers:
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.AstarColor
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.AstarData
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.AutoRepathPolicy
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.EuclideanEmbedding
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.GraphMask
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.StartEndModifier
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputAction
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputActionMap
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputBinding
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputControlScheme
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputControlScheme/DeviceRequirement
 Assets:
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/Start.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/15x10.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5 2.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/10x10_1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/10x5_2.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/10x5_1.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/15x10 1.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/End.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5_1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10 1.prefab

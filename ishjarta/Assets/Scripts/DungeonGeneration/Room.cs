@@ -24,21 +24,21 @@ public class Room : MonoBehaviour
     private GridPosdataType[,] roomLayout = null;
 
 
- 
-
+    
     public GridPosdataType[,] GetRoomLayout()
     {
+        
         roomLayout = new GridPosdataType[lenY / StageController.roomBaseLength, lenX / StageController.roomBaseLength];
         var x = 0;
         var y = 0;
-        //var tilemap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.Contains("Background"));
+        var tilemap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.Contains("Background"));
+
         for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
-            
             for (int j = 0; j < roomLayout.GetLength(1); j++)
             {
                 roomLayout[i, j] = new GridPosdataType(y, x);
-                //if (tilemap.HasTile( new Vector3Int(y + 2, x -2, 0))){
+                if (tilemap.HasTile( new Vector3Int(y +1, x -1, 0))){
 
                     
                     if (doors.Count > 0)
@@ -50,7 +50,7 @@ public class Room : MonoBehaviour
                         SetDoors();
                         CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
                     }
-                //}
+                }
                 
                 y += StageController.roomBaseLength;
             }
@@ -60,6 +60,71 @@ public class Room : MonoBehaviour
         }
         
         return roomLayout;
+    }
+    
+    public int GetIndexOfFirstXRoomCell(int offset)
+    {
+        if (roomLayout is null) roomLayout = GetRoomLayout();
+        offset /= StageController.roomBaseLength;
+        int index = 0;
+        for (int i = 0; i < roomLayout.GetLength(1); i++)
+        {
+            if (roomLayout[offset, i].roomId >= 0)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
+
+    }
+    public int GetIndexOfFirstYRoomCell(int offset)
+    {
+        if (roomLayout is null) roomLayout = GetRoomLayout();
+        offset /= StageController.roomBaseLength;
+        int index = 0;
+        for (int i = 0; i < roomLayout.GetLength(0); i++)
+        {
+            if (roomLayout[i, offset].roomId >= 0)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
+
+    }
+    public int GetXLength(int offset)
+    {
+        if (roomLayout is null) roomLayout = GetRoomLayout();
+        offset /= StageController.roomBaseLength;
+        int len = 0;
+        
+        for (int i = 0; i < roomLayout.GetLength(1); i++)
+        {
+            if (roomLayout[offset, i].roomId >= 0)
+            {
+                len+= StageController.roomBaseLength;
+            }
+        }
+        return len; ;
+
+    }
+    public int GetYLength(int offset)
+    {
+        if (roomLayout is null) roomLayout = GetRoomLayout();
+        offset /= StageController.roomBaseLength;
+        int len = 0;
+
+        for (int i = 0; i < roomLayout.GetLength(0); i++)
+        {
+            if (roomLayout[i,offset].roomId >= 0)
+            {
+                len += StageController.roomBaseLength;
+            }
+        }
+        return len;
+
     }
 
     private void CalcDoorsOfRoomCell(GameObject go, Tuple<int,int> gridPosition,int x,int y){
