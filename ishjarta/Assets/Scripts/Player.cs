@@ -15,14 +15,21 @@ public class Player : Entity
 
     [SerializeField] private HealthBar hpBar;
 
-    //public Player(int currentHealth, int maxHealth, int baseHealth, float healthModifier,
-    //    float resistance, float currentResistance, int movementSpeed, float speedModifier, int baseDamage,
-    //    float damageModifier, int attackRate, int range) : base(currentHealth, maxHealth, baseHealth, 
-    //        healthModifier, resistance, currentResistance, movementSpeed, speedModifier, baseDamage, damageModifier, 
-    //        attackRate, range)
-    //{ }
+    #region SaveSystem
+    private bool isPlayerInitialized = false;
+    public void Init(PlayerData playerData)
+    {
+        if (!isPlayerInitialized)
+        {
+            isPlayerInitialized = true;
 
-        public int GetBaseDamage() { return BaseDamage; }
+            base.Init(playerData);
+            //inventory.Init(playerData.inventory);
+        }
+    }
+    #endregion SaveSystem
+
+    public int GetBaseDamage() { return BaseDamage; }
     public void SetBaseDamage(int value) { BaseDamage = value; }
 
     public override void UpdateHealthBar()
@@ -68,6 +75,11 @@ public class Player : Entity
         return MovementSpeed * SpeedModifier;
     }
     public Inventory inventory;
+
+    public Inventory GetInventory()
+    {
+        return inventory;
+    }
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?

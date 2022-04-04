@@ -1,0 +1,35 @@
+ManifestFileVersion: 0
+CRC: 3488197445
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4790b91f52985c87cbcf73ec67e83049
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 63dbf0ede8a9212a25b9c19ef7443dac
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/resources/Prefabs/ActiveItemPrefabs/BaseBraclet.prefab
+Dependencies: []

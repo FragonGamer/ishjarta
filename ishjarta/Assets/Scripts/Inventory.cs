@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using System.Linq;
 
 public class Inventory :MonoBehaviour{
     #region Singleton
@@ -20,10 +21,10 @@ public class Inventory :MonoBehaviour{
         Bombs = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Keys = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
         Armor = ScriptableObject.CreateInstance(typeof(UsableItem)) as UsableItem;
-        Coins.init(0, UsableItem.UItemtype.coin, 999);
-        Bombs.init(0, UsableItem.UItemtype.bomb, 99);
-        Keys.init(0, UsableItem.UItemtype.key, 10);
-        Armor.init(0, UsableItem.UItemtype.armor, 999);
+        Coins.Init(0, UsableItem.UsableItemtype.coin, 999);
+        Bombs.Init(0, UsableItem.UsableItemtype.bomb, 99);
+        Keys.Init(0, UsableItem.UsableItemtype.key, 10);
+        Armor.Init(0, UsableItem.UsableItemtype.armor, 999);
     }
     #endregion
     [field: SerializeField] MeleeWeapon MeleeWeapon { get; set; }
@@ -56,8 +57,46 @@ public class Inventory :MonoBehaviour{
     {
         return ActiveItem;
     }
+    public UsableItem GetCoins()
+    {
+        return Coins;
+    }
+    public UsableItem GetKeys()
+    {
+        return Keys;
+    }
+    public UsableItem GetBombs()
+    {
+        return Bombs;
+    }
     #endregion
 
+    #region SaveSystem
+    private bool isInventoryInitialized = false;
+    public void Init(InventoryData inventoryData)
+    {
+        Debug.Log("Inventory:" + inventoryData);
+        if (!isInventoryInitialized)
+        {
+            isInventoryInitialized = true;
+
+            MeleeWeapon.Init(inventoryData.meleeWeapon);
+            RangedWeapon.Init(inventoryData.rangedWeapon);
+            CurrentWeapon = inventoryData.IsCurrentWeaponMelee ? MeleeWeapon : RangedWeapon;
+            PassiveItems.AddRange(inventoryData.passiveItems.Select(x =>
+            {
+                var passivItem = ScriptableObject.CreateInstance<PassiveItem>();
+                passivItem.Init(x);
+                return passivItem;
+            }));
+            ActiveItem.Init(inventoryData.activeItem);
+            Coins.Init(inventoryData.coins);
+            Bombs.Init(inventoryData.bombs);
+            Keys.Init(inventoryData.keys);
+            Armor.Init(inventoryData.armor);
+        }
+    }
+    #endregion SaveSystem
     private void Start()
     {
         hudManager = HUDManager.instance;
@@ -194,7 +233,7 @@ public class Inventory :MonoBehaviour{
 
         switch (item.type)
         {
-            case UsableItem.UItemtype.key:
+            case UsableItem.UsableItemtype.key:
                 if (this.Keys.Amount <= this.Keys.MaxAmount)
                 {
                     if (this.Keys.Amount + itemAmount > this.Keys.MaxAmount)
@@ -207,7 +246,7 @@ public class Inventory :MonoBehaviour{
                     }
                 }
                 break;
-            case UsableItem.UItemtype.coin:
+            case UsableItem.UsableItemtype.coin:
                 if (this.Coins.Amount <= this.Coins.MaxAmount)
                 {
                     if (this.Coins.Amount + itemAmount > this.Coins.MaxAmount)
@@ -220,7 +259,7 @@ public class Inventory :MonoBehaviour{
                     }
                 }
                 break;
-            case UsableItem.UItemtype.bomb:
+            case UsableItem.UsableItemtype.bomb:
                 if (this.Bombs.Amount <= this.Bombs.MaxAmount)
                 {
                     if (this.Bombs.Amount + itemAmount > this.Bombs.MaxAmount)
@@ -233,7 +272,7 @@ public class Inventory :MonoBehaviour{
                     }
                 }
                 break;
-            case UsableItem.UItemtype.armor:
+            case UsableItem.UsableItemtype.armor:
                 if (this.Armor.Amount <= this.Armor.MaxAmount)
                 {
                     if (this.Armor.Amount + 1 > this.Armor.MaxAmount)
@@ -347,21 +386,21 @@ public class Inventory :MonoBehaviour{
             switch (item.type)
             {
 
-                case UsableItem.UItemtype.bomb:
+                case UsableItem.UsableItemtype.bomb:
                     if (Bombs.Amount - item.Amount >= 0)
                     {
                         Bombs.Amount -= item.Amount;
                     }
 
                     break;
-                case UsableItem.UItemtype.key:
+                case UsableItem.UsableItemtype.key:
                     if (Keys.Amount - item.Amount >= 0)
                     {
                         Keys.Amount -= item.Amount;
                     }
 
                     break;
-                case UsableItem.UItemtype.coin:
+                case UsableItem.UsableItemtype.coin:
                     if (Coins.Amount - item.Amount >= 0)
                     {
                         Coins.Amount -= item.Amount;

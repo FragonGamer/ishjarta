@@ -7,19 +7,19 @@ using UnityEngine;
 
 public class SerializationManager
 {
-    //public static string dataPath = Application.persistentDataPath;
-    public static string dataPath = @"C:\Users\Fragon\Documents";
-    public static string savePath = dataPath + @"\saves";
+    public static string dataPath = Application.dataPath;
+    public static string savePath = dataPath + @"/saves";
     public static bool Save(string saveName, object saveData)
     {
         BinaryFormatter binaryFormatter = GetBinaryFormatter();
 
-        Debug.Log(savePath);
+        //Debug.Log(savePath);
 
         if (!Directory.Exists(savePath))
             Directory.CreateDirectory(savePath);
 
         FileStream fileStream = File.Create(savePath + @"\" + saveName + ".save");
+        Debug.Log("File " + saveName + ".save was created");
 
         binaryFormatter.Serialize(fileStream, saveData);
 
@@ -28,10 +28,15 @@ public class SerializationManager
         return true;
     }
 
-    public static object Load(string path)
+    public static object Load(string path, out bool loaded)
     {
         if (!File.Exists(path))
-            return null;
+        {
+            Debug.Log("Path: "+path+" does not exist");
+            loaded = false;
+            return null;            
+        }
+            
 
         BinaryFormatter binaryFormatter = GetBinaryFormatter();
 
@@ -41,11 +46,14 @@ public class SerializationManager
         {
             object save = binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
+            loaded = true;
             return save;
-        } catch
+        }
+        catch
         {
             Debug.LogError($"Failed to load file at path: {path}");
             fileStream.Close();
+            loaded = false;
             return null;
         }
     }

@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+CRC: 2559821356
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 548bedf35c4c036b5a76a4d02c5f67a9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 34d6ebca1944e1332d24916568b85cc3
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9248fb4887562a943b28cee9d316e3cb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0f1b3b2ffce9f1a4fa3c50ed92e4763f, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
+Dependencies: []

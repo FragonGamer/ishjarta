@@ -5,21 +5,37 @@ using UnityEngine;
 [CreateAssetMenu]
 public class UsableItem : Item
 {
-    public enum UItemtype
+    public enum UsableItemtype
     {
         key,
         coin,
         bomb,
         armor
     }
-    public UsableItem.UItemtype type;
+    public UsableItem.UsableItemtype type;
     public int Amount { get; set; }
     public int MaxAmount { get; set; }
 
-    public void init( int a, UItemtype Itype, int ma)
+    public void Init( int a, UsableItemtype Itype, int ma)
     {
         type = Itype;
         MaxAmount = ma;
         Amount = a;
     }
+
+    #region SaveSystem
+    private bool isUsableItemInitialized = false;
+    public void Init(UsableItemData usableItemData)
+    {
+        if (!isUsableItemInitialized)
+        {
+            isUsableItemInitialized = true;
+            base.Init(usableItemData);
+
+            Amount = usableItemData.amount;
+            MaxAmount = usableItemData.maxAmount;
+            type = (UsableItemtype)usableItemData.usabelItemType;
+        }
+    }
+    #endregion SaveSystem
 }

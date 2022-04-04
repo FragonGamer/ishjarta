@@ -10,6 +10,15 @@ public class ItemManager : MonoBehaviour
     [SerializeField] InputMaster inputMaster;
     public bool isInRange;
 
+    public Item GetItem()
+    {
+        return item;
+    }
+    public void SetItem(Item item)
+    {
+        this.item = item;
+    }
+
     private void Awake()
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));

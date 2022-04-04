@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ba278098d7e7cb4fbec969c3c401e93, type: 3}
+  m_Script: {fileID: 11500000, guid: 5035d1f88ce307844afea1ac946f2af2, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
   ItemName: Sword
-  Icon: {fileID: 21300000, guid: e07e788bcb4073e4cb8d6b5d2387da84, type: 3}
-  <EmitEffects>k__BackingField:
-  - {fileID: 0}
-  <Damage>k__BackingField: 10
+  <Icon>k__BackingField: {fileID: 21300000, guid: e07e788bcb4073e4cb8d6b5d2387da84, type: 3}
+  <OwnerEffects>k__BackingField: []
+  <EmitEffects>k__BackingField: []
+  <Damage>k__BackingField: 5
   <Range>k__BackingField: 1.2
   <AttackRate>k__BackingField: 1
   <Width>k__BackingField: 0.3
+  <WeaponType>k__BackingField: 0

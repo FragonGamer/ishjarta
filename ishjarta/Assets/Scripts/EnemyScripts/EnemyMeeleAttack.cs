@@ -64,7 +64,7 @@ public class EnemyMeeleAttack : MonoBehaviour
                                 Entity.RotateVector2(new Vector2 {x = enemyScript.Range * (0.7f), y = enemyScript.Width * (-1)}, angle)
                         };
 
-                        Debug.Log($"Angle: {angle}, x: {v[2].x}, y: {v[2].y}");
+                        //Debug.Log($"Angle: {angle}, x: {v[2].x}, y: {v[2].y}");
 
 
                         PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();

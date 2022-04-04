@@ -1,17 +1,35 @@
 ManifestFileVersion: 0
-CRC: 1698746069
+CRC: 50677104
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: level
-      Dependencies: {}
-    Info_1:
       Name: player
       Dependencies: {}
-    Info_2:
+    Info_1:
       Name: forrest_stage
       Dependencies:
         Dependency_0: level
-    Info_3:
+    Info_2:
       Name: tilemaps
+      Dependencies: {}
+    Info_3:
+      Name: level
+      Dependencies: {}
+    Info_4:
+      Name: activeitem
+      Dependencies: {}
+    Info_5:
+      Name: passivitem
+      Dependencies: {}
+    Info_6:
+      Name: meleeweapon
+      Dependencies: {}
+    Info_7:
+      Name: rangedweapon
+      Dependencies: {}
+    Info_8:
+      Name: enemy
+      Dependencies: {}
+    Info_9:
+      Name: usableitem
       Dependencies: {}

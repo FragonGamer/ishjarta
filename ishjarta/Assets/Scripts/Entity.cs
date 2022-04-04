@@ -35,29 +35,31 @@ public abstract class Entity : MonoBehaviour
     //Width
     [field: SerializeField] public float Width { get; protected set; }
 
-    private bool IsInitialized = false;
-    public void Init(int currentHealth, int maxHealth, int baseHealth, float healthModifier,
-        float resistance, float currentResistance, int movementSpeed, float speedModifier, int baseDamage,
-        float damageModifier, int attackRate, float range)
+    #region SaveSystem
+    private bool isEntityInitialized = false;
+    protected void Init(EntityData entityData)
     {
-        if(!IsInitialized)
+        if(!isEntityInitialized)
         {
-            IsInitialized = true;
+            isEntityInitialized = true;
 
-            this.CurrentHealth = currentHealth;
-            this.MaxHealth = maxHealth;
-            this.BaseHealth = baseHealth;
-            this.HealthModifier = healthModifier;
-            this.Resistance = resistance;
-            this.CurrentResistance = currentResistance;
-            this.MovementSpeed = movementSpeed;
-            this.SpeedModifier = speedModifier;
-            this.BaseDamage = baseDamage;
-            this.DamageModifier = damageModifier;
-            this.AttackRate = attackRate;
-            this.Range = range;
+            this.transform.position = entityData.position;
+
+            this.CurrentHealth = entityData.currentHealth;
+            this.MaxHealth = entityData.maxHealth;
+            this.BaseHealth = entityData.baseHealth;
+            this.HealthModifier = entityData.healthModifier;
+            this.Resistance = entityData.resistance;
+            this.CurrentResistance = entityData.currentResistance;
+            this.MovementSpeed = entityData.movementSpeed;
+            this.SpeedModifier = entityData.speedModifier;
+            this.BaseDamage = entityData.baseDamage;
+            this.DamageModifier = entityData.damageModifier;
+            this.AttackRate = entityData.attackRate;
+            this.Range = entityData.range;
         }
     }
+    #endregion SaveSystem
 
     protected abstract void Die();
 

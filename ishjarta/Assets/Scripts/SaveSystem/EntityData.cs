@@ -27,28 +27,28 @@ public abstract class EntityData
     //AttackRate
     public int attackRate;
     //Range
-    public int range;
+    public float range;
 
     public EntityData(Entity entity)
     {
         position = entity.transform.position;
 
-        currentHealth = entity.GetCurrentHealth();
-        maxHealth = entity.GetMaxHealth();
-        baseHealth = entity.GetBaseHealth();
-        healthModifier = entity.GetHealthModifier();
+        currentHealth = entity.CurrentHealth;
+        maxHealth = entity.MaxHealth;
+        baseHealth = entity.BaseHealth;
+        healthModifier = entity.HealthModifier;
 
-        resistance = entity.GetResistance();
-        currentResistance = entity.GetCurrentResistance();
+        resistance = entity.Resistance;
+        currentResistance = entity.CurrentResistance;
 
-        movementSpeed = entity.GetMovementSpeed();
-        speedModifier = entity.GetSpeedModifier();
+        movementSpeed = entity.MovementSpeed;
+        speedModifier = entity.SpeedModifier;
 
-        baseDamage = entity.GetBaseDamage();
-        damageModifier = entity.GetDamageModifier();
+        baseDamage = entity.BaseDamage;
+        damageModifier = entity.DamageModifier;
 
-        attackRate = entity.GetAttackRate();
+        attackRate = entity.AttackRate;
 
-        range = entity.GetRange();
+        range = entity.Range;
     }
 }

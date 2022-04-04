@@ -3,7 +3,7 @@ CRC: 4248213330
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3f84b82d1e69b92aad8b51aac2a26ab9
+    Hash: 3c2ed8212e71443aac07cfbedf06c445
   TypeTreeHash:
     serializedVersion: 2
     Hash: 15a4a522ec475153ed011cc74589ca09
@@ -49,4 +49,4 @@ Assets:
 - Assets/Prefabs/RoomPrefabs/5x10.prefab
 - Assets/Prefabs/RoomPrefabs/5x5.prefab
 Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/level
+- D:/SYP/ishjarta/ishjarta/Assets/StreamingAssets/level

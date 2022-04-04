@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Armor
   m_EditorClassIdentifier: 
   ItemName: Armor
-  Icon: {fileID: 21300000, guid: 684b5549cf1e26f47bf397869af2ffe7, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 684b5549cf1e26f47bf397869af2ffe7, type: 3}
+  <OwnerEffects>k__BackingField: []
+  <EmitEffects>k__BackingField: []
   type: 3
