@@ -189,7 +189,7 @@ public class SaveManager : MonoBehaviour
                 }
                 else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.armor)
                 {
-                    var armor = Utils.loadAssetFromAssetPack(passivItemBundle, "Armor");
+                    var armor = Utils.loadAssetFromAssetPack(passivItemBundle, "armor");
 
                     var usableItem = ScriptableObject.CreateInstance<UsableItem>();
                     usableItem.Init(ui);
