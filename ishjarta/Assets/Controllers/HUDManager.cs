@@ -32,11 +32,11 @@ public class HUDManager : MonoBehaviour
     }
     public void UpdateAllSpritesAndText()
     {
-        if (playerInventory.GetActiveItem()!=null)
+        if (playerInventory.GetActiveItem() != null)
             ActiveItemSprite.sprite = playerInventory.GetActiveItem().GetSprite();
 
         UpdateWeaponSprites();
-        ArmorValueText.text = $"{Mathf.RoundToInt(player.GetResistence()*100)} %";
+        ArmorValueText.text = $"{Mathf.RoundToInt(player.GetResistence() * 100)} %";
     }
     public void UpdateWeaponSprites()
     {

@@ -117,6 +117,7 @@ public class Player : Entity
 
                 projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
+                projectile.GetComponent<Projectile>().Owner = this.gameObject;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
 
                 Destroy(projectile, 10f);
@@ -127,6 +128,7 @@ public class Player : Entity
 
     protected override void Die()
     {
+        Debug.Log("Died");
         AssetBundle.UnloadAllAssetBundles(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

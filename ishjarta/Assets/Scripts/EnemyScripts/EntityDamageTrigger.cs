@@ -16,13 +16,13 @@ public class EntityDamageTrigger : MonoBehaviour
 
             if (this.gameObject.tag == "Enemy")
             {
-                Player player = collider.gameObject.GetComponent<Player>();
+                Player player = FindObjectOfType<Player>();
                 Enemy enemy = this.gameObject.GetComponent<Enemy>();
 
                 enemy.ReceiveDamage(player.DealingDamage);
                 enemy.AddEffectRange(player.GetCurrentEffects);
             }
-            else if(this.gameObject.tag == "Player")
+            else if (this.gameObject.tag == "Player")
             {
                 Player player = this.gameObject.GetComponent<Player>();
                 Enemy enemy = collider.gameObject.GetComponent<Enemy>();

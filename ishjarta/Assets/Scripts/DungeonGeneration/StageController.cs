@@ -42,7 +42,7 @@ public class StageController : MonoBehaviour
         worldLayout = null;
         availableGridPositions = null;
         AssetBundle.UnloadAllAssetBundles(false);
-
+        Debug.Log("Resetted Stage");
         CreateGame();
 
     }
@@ -81,8 +81,8 @@ public class StageController : MonoBehaviour
 
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
-        assets = Utils.loadAssetPack(currentStageName + "_stage");
-        enemyAssets = Utils.loadAssetPack("enemies/" + currentStageName);
+        assets = Utils.loadAssetPack($"stage/{currentStageName}");
+        enemyAssets = Utils.loadAssetPack($"enemies/{currentStageName}");
 
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4155191511
+CRC: 4256450867
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: eec773abf76bfde58647c5b72041e85c
+    Hash: ddce56cf90b6bb1782511369449aa8cb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3d68fcc4f5da85118caf77a15742a5c4
@@ -121,9 +121,9 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.SpriteState
 Assets:
-- Assets/Prefabs/Player.prefab
-- Assets/Prefabs/Main Camera.prefab
-- Assets/Prefabs/A_.prefab
-- Assets/Prefabs/EventSystem.prefab
-- Assets/Prefabs/HUD.prefab
+- Assets/_Bundles/Player/Player.prefab
+- Assets/_Bundles/Player/Main Camera.prefab
+- Assets/_Bundles/Player/A_.prefab
+- Assets/_Bundles/Player/EventSystem.prefab
+- Assets/_Bundles/Player/HUD.prefab
 Dependencies: []

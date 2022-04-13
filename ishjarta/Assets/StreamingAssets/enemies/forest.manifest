@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1228075347
+CRC: 3420520538
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 590835534c4c5a7ddc29922b3eb194bd
+    Hash: c40a0ae740f407f73951cd13c77b3bb1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: dc3f9b24ba82f6e134f8034ad041c17f
+    Hash: 9f36ad91a0cd12cfc347f3afdfe9be87
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +29,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 95
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5c6a44167b48e9e448fc2533d4021e6b, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
 - Class: 114
@@ -59,5 +61,7 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: AstarPathfindingProject
   ClassName: Pathfinding.StartEndModifier
 Assets:
+- Assets/Prefabs/Enemys/Ranged/RangedSlime.prefab
+- Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 - Assets/Prefabs/Enemys/Meele/Slime.prefab
 Dependencies: []

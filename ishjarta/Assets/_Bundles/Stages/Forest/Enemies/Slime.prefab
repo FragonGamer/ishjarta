@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4160398792419752425
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6302374957738007875}
-  m_Layer: 0
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6302374957738007875
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4160398792419752425}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7939937297367134488}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &6406920082014636687
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,14 +98,14 @@ GameObject:
   - component: {fileID: -1115400360848426448}
   - component: {fileID: 8253690455608401491}
   - component: {fileID: 2376428963787245878}
-  - component: {fileID: 1290827625}
-  - component: {fileID: 5605398896210301529}
   - component: {fileID: 1290827628}
   - component: {fileID: 1290827615}
   - component: {fileID: 1290827616}
   - component: {fileID: 1290827617}
+  - component: {fileID: 1290827625}
+  - component: {fileID: 1290827627}
   m_Layer: 0
-  m_Name: RangedSlime
+  m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +124,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3841540516567282623}
-  - {fileID: 6302374957738007875}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,7 +169,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -4066783523933719916, guid: fd48fb6cdb8ff244194ea6784f80049f, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -275,14 +243,13 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 5
   <DamageModifier>k__BackingField: 1
   <AttackRate>k__BackingField: 1
-  <Range>k__BackingField: 5
-  <Width>k__BackingField: 5
+  <Range>k__BackingField: 1.2
+  <Width>k__BackingField: 0.3
   animator: {fileID: 0}
-  spottingRange: 13
+  spottingRange: 5
   <dropRate>k__BackingField: 0
   <hasSpottedPlayer>k__BackingField: 0
   <isInRange>k__BackingField: 0
-  room: {fileID: 0}
   <EmitEffect>k__BackingField: {fileID: 0}
 --- !u!114 &2376428963787245878
 MonoBehaviour:
@@ -296,41 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1290827625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939937297367134493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aiPath: {fileID: 0}
-  aiDestinationSetter: {fileID: 0}
-  target: {fileID: 0}
-  enemyScript: {fileID: 0}
-  animator: {fileID: 0}
-  rb: {fileID: 0}
---- !u!114 &5605398896210301529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939937297367134493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c6a44167b48e9e448fc2533d4021e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <FirePoint>k__BackingField: {fileID: 4160398792419752425}
-  <ProjectileNameInFile>k__BackingField: ArrowBasic
-  <ProjectileVelocity>k__BackingField: 4
-  RangedDamage: 1
-  AttackRate: 1
 --- !u!61 &1290827628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -441,3 +373,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &1290827625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939937297367134493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiPath: {fileID: 0}
+  aiDestinationSetter: {fileID: 0}
+  target: {fileID: 0}
+  enemyScript: {fileID: 0}
+  animator: {fileID: 0}
+  rb: {fileID: 0}
+--- !u!114 &1290827627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939937297367134493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeeleDamage: 0
+  AttackRate: 0

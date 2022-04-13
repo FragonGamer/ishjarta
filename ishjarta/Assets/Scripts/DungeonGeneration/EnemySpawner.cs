@@ -9,20 +9,22 @@ public class EnemySpawner : MonoBehaviour
     AssetBundle enemyAssets;
     GameObject[] possibleEnemies;
     StageController stageController;
-    float delay = 3;
-    float amount = 5;
+    [SerializeField] public float delay = 3;
+    [SerializeField] public float amount = 5;
     float counter;
-    [SerializeField] public float time;
+    float time;
     Room room;
     Enemy enemy;
+
     void Start()
     {
         stageController = FindObjectOfType<StageController>().GetComponent<StageController>();
         enemyAssets = stageController.enemyAssets;
         possibleEnemies = Utils.LoadAllAssetsOfAssetPack(enemyAssets);
         room = GetComponentInParent<Room>();
-        room.Enemies.Add(this.GetComponent<Enemy>());
+        enemy = this.GetComponent<Enemy>();
         room.SetCleared();
+
     }
 
 
@@ -39,6 +41,10 @@ public class EnemySpawner : MonoBehaviour
             }
             if (counter >= amount)
             {
+                if (room.Enemies.Contains(enemy))
+                {
+                    Debug.Log("belastend");
+                }
                 room.Enemies.Remove(enemy);
                 Destroy(this.gameObject);
             }
