@@ -37,8 +37,16 @@ public class Room : MonoBehaviour
     private void Start()
     {
         Enemies = GetComponentsInChildren<Enemy>().ToList();
+        SetCleared();
+    }
+    public void SetCleared()
+    {
         if (Enemies.Count == 0)
             IsCleared = true;
+        else
+        {
+            IsCleared = false;
+        }
     }
     private void Update()
     {

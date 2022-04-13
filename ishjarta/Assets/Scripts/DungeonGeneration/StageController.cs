@@ -30,7 +30,7 @@ public class StageController : MonoBehaviour
     public AssetBundle enemyAssets { get; private set; }
 
 
-    public string currentStageName = "forrest";
+    public string currentStageName = "forest";
 
     public void ResetStage()
     {
@@ -82,7 +82,8 @@ public class StageController : MonoBehaviour
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
         assets = Utils.loadAssetPack(currentStageName + "_stage");
-        enemyAssets = Utils.loadAssetPack(currentStageName + "_stage_enemies");
+        enemyAssets = Utils.loadAssetPack("enemies/" + currentStageName);
+
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
         InitWorldLayout();

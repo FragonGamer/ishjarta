@@ -9,8 +9,8 @@ public class Player : Entity
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] int luck;
-    [SerializeField]private float timeRanged = 0.0f;
-    [SerializeField]private float timeMelee = 0.0f;
+    [SerializeField] private float timeRanged = 0.0f;
+    [SerializeField] private float timeMelee = 0.0f;
     //[SerializeField] int maxResistance;
 
     [SerializeField] private HealthBar hpBar;
@@ -22,7 +22,7 @@ public class Player : Entity
     //        attackRate, range)
     //{ }
 
-        public int GetBaseDamage() { return BaseDamage; }
+    public int GetBaseDamage() { return BaseDamage; }
     public void SetBaseDamage(int value) { BaseDamage = value; }
 
     public override void UpdateHealthBar()
@@ -54,11 +54,11 @@ public class Player : Entity
 
     public void CalcResistence()
     {
-            int armorAmount = inventory.GetArmor().Amount;
-            Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
-            CurrentResistance = Resistance;
+        int armorAmount = inventory.GetArmor().Amount;
+        Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+        CurrentResistance = Resistance;
     }
-    
+
     public float GetResistence()
     {
         return CurrentResistance;
@@ -105,16 +105,16 @@ public class Player : Entity
             if (timeRanged >= curWeapon.AttackRate)
             {
                 timeRanged = 0f;
-                
+
                 Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
                 float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
 
 
-                FirePoint.transform.rotation = Quaternion.Euler( 0f ,0f , angle);
+                FirePoint.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
                 GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
-                    (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
-            
+                    (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
+
                 projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
@@ -127,6 +127,7 @@ public class Player : Entity
 
     protected override void Die()
     {
+        AssetBundle.UnloadAllAssetBundles(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

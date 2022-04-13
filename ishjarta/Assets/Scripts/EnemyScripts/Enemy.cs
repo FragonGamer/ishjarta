@@ -62,7 +62,10 @@ public class Enemy : Entity
     {
         animator = GetComponent<Animator>();
         room = GetComponentInParent<Room>();
-        this.gameObject.SetActive(false);
+        if (!room.isEntered)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void Update()

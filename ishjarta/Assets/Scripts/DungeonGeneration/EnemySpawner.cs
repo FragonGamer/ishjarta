@@ -13,33 +13,45 @@ public class EnemySpawner : MonoBehaviour
     float amount = 5;
     float counter;
     [SerializeField] public float time;
+    Room room;
+    Enemy enemy;
     void Start()
     {
         stageController = FindObjectOfType<StageController>().GetComponent<StageController>();
         enemyAssets = stageController.enemyAssets;
         possibleEnemies = Utils.LoadAllAssetsOfAssetPack(enemyAssets);
+        room = GetComponentInParent<Room>();
+        room.Enemies.Add(this.GetComponent<Enemy>());
+        room.SetCleared();
     }
 
 
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= delay && counter < amount)
+        if (room.isEntered)
         {
-            time = 0;
-            SpawnEnemy();
-            counter++;
-        }
-        else
-        {
-            Destroy(this.gameObject);
+            time += Time.deltaTime;
+            if (time >= delay && counter < amount)
+            {
+                time = 0;
+                SpawnEnemy();
+                counter++;
+            }
+            if (counter >= amount)
+            {
+                room.Enemies.Remove(enemy);
+                Destroy(this.gameObject);
+            }
         }
 
     }
     void SpawnEnemy()
     {
+
         var enemy = possibleEnemies.Shuffle().First();
-        Instantiate(enemy, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0));
+        var go = Instantiate(enemy, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0));
+        room.Enemies.Add(go.GetComponent<Enemy>());
+        go.transform.parent = room.gameObject.transform;
     }
 
 }
