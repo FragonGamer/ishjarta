@@ -12,8 +12,8 @@ public class StageController : MonoBehaviour
     Dictionary<Room, int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
     int nextRoomId = 0;
-    List<Room> worldRooms = new List<Room>();
-
+    public List<Room> worldRooms { get; private set; } = new List<Room>();
+    
     //2D array for tracking position and doors of room cells
     private GridPosdataType[,] worldLayout;
     //2D array for tracking aval positions in the grid
@@ -32,7 +32,7 @@ public class StageController : MonoBehaviour
 
     public async Task ResetStage()
     {
-        
+        await DestroyAllGOS();
         roomCounter = new Dictionary<Room, int>();
         startRoom = null;
         nextRoomId = 0;
@@ -40,12 +40,11 @@ public class StageController : MonoBehaviour
         worldLayout = null;
         availableGridPositions = null;
         AssetBundle.UnloadAllAssetBundles(false);
-        DestroyAllGOS();
-        await Timer(5000);
+
         CreateGame();
-        
+
     }
-    void DestroyAllGOS()
+    async Task DestroyAllGOS()
     {
         var gos = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (var g in gos)
@@ -59,7 +58,6 @@ public class StageController : MonoBehaviour
                 UnityEngine.GameObject.Destroy(g);
             }
         }
-        
     }
     private void Start()
     {
@@ -74,13 +72,13 @@ public class StageController : MonoBehaviour
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
         InitWorldLayout();
-        
+
         CreateStage();
 
 
 
 
-       
+
         if (!TestGeneration)
         {
             SetEveryRoomInvisable();
@@ -105,7 +103,7 @@ public class StageController : MonoBehaviour
                     door.GetComponent<Door>().doorIsOpen = false;
                 }
             }
-           
+
         }
         SetEveryFreeDoorClosed();
 
@@ -132,11 +130,7 @@ public class StageController : MonoBehaviour
         this.startRoom = startRoomGO;
     }
 
-    public GameObject[] GetRooms()
-    {
-        var roomObjects = GameObject.FindObjectsOfType<Room>().ToList().Select(test => test.gameObject).ToArray();
-        return roomObjects;
-    }
+
 
     private List<GameObject> GetPossibleRooms()
     {
@@ -154,7 +148,7 @@ public class StageController : MonoBehaviour
             if (roomCounter[posRoom] < posRoom.maxOfThisRoom || posRoom.maxOfThisRoom == -1)
             {
 
-                foreach (var room in GetRooms().ToList().Shuffle().Select(room => room.GetComponent<Room>()))
+                foreach (var room in (worldRooms.ToList().Shuffle().Select(room => room.GetComponent<Room>())))
                 {
                     room.SetDoors();
 
@@ -169,7 +163,7 @@ public class StageController : MonoBehaviour
                             switch (door.direction)
                             {
                                 case Door.Direction.East:
-                                    posPosition = new Tuple<int, int>( ((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                                    posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
                                     break;
                                 case Door.Direction.South:
                                     posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) + posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
@@ -271,7 +265,7 @@ public class StageController : MonoBehaviour
             var x = arrayPos.Item1 + pos.xPos / roomBaseLength;
             var y = arrayPos.Item2 - pos.yPos / roomBaseLength;
 
-            if(pos.roomId < 0)
+            if (pos.roomId < 0)
             {
                 continue;
             }
@@ -279,7 +273,7 @@ public class StageController : MonoBehaviour
             {
                 return null;
             }
-            
+
 
             if (x + 1 > 0 && x + 1 < worldLayout.GetLength(0))
             {
@@ -301,7 +295,7 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    
+
 
                 }
 
@@ -323,7 +317,7 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    
+
                 }
 
             }
@@ -344,7 +338,7 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    
+
                 }
 
             }
@@ -364,7 +358,7 @@ public class StageController : MonoBehaviour
                     {
                         return null;
                     }
-                    
+
                 }
 
             }
@@ -412,7 +406,7 @@ public class StageController : MonoBehaviour
 
 
         }
-        //var endRoom = CreateEndRoom();
+        var endRoom = CreateEndRoom();
         Debug.Log("Rooms: " + nextRoomId);
 
         Utils.PrintGridPosDataTypeMatrix(worldLayout);
@@ -424,56 +418,56 @@ public class StageController : MonoBehaviour
     {
         Random random = new Random();
         var endRoom = Utils.loadAssetFromAssetPack(assets, "End").GetComponent<Room>();
-        
 
-                foreach (var room in GetRooms().ToList().Shuffle().Select(room => room.GetComponent<Room>()))
+
+        foreach (var room in worldRooms.ToList().Shuffle().Select(room => room.GetComponent<Room>()))
+        {
+            room.SetDoors();
+
+            foreach (var door in room.doors.Shuffle().Select(door => door.GetComponent<Door>()))
+            {
+                if (door.ConnectedDoor == null)
                 {
-                    room.SetDoors();
+                    Tuple<int, int> posPosition = null;
+                    var xOffset = random.Next(0, endRoom.lenX / StageController.roomBaseLength) * StageController.roomBaseLength;
+                    var yOffset = random.Next(0, endRoom.lenY / StageController.roomBaseLength) * StageController.roomBaseLength;
 
-                    foreach (var door in room.doors.Shuffle().Select(door => door.GetComponent<Door>()))
+                    switch (door.direction)
                     {
-                        if (door.ConnectedDoor == null)
-                        {
-                            Tuple<int, int> posPosition = null;
-                            var xOffset = random.Next(0, endRoom.lenX / StageController.roomBaseLength) * StageController.roomBaseLength;
-                            var yOffset = random.Next(0, endRoom.lenY / StageController.roomBaseLength) * StageController.roomBaseLength;
+                        case Door.Direction.East:
+                            posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - endRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                            break;
+                        case Door.Direction.South:
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) - endRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
+                            break;
+                        case Door.Direction.West:
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - endRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
+                            break;
+                        case Door.Direction.North:
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, (int)room.gameObject.transform.position.y + endRoom.GetYLength(xOffset));
+                            break;
 
-                            switch (door.direction)
-                            {
-                                case Door.Direction.East:
-                                    posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - endRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
-                                    break;
-                                case Door.Direction.South:
-                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) - endRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
-                                    break;
-                                case Door.Direction.West:
-                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - endRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
-                                    break;
-                                case Door.Direction.North:
-                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, (int)room.gameObject.transform.position.y + endRoom.GetYLength(xOffset));
-                                    break;
-
-                            }
+                    }
                     endRoom.RoomId = nextRoomId;
 
-                            if (CheckPosition(endRoom, posPosition) is null)
-                            {
+                    if (CheckPosition(endRoom, posPosition) is null)
+                    {
 
-                                continue;
-                            }
-                            else
-                            {
-                                var newRoom = PlaceRoom(endRoom, posPosition);
-                                worldRooms.Add(newRoom.GetComponent<Room>());
-                                return endRoom.gameObject;
-                            }
-                        }
+                        continue;
                     }
-
+                    else
+                    {
+                        var newRoom = PlaceRoom(endRoom, posPosition);
+                        worldRooms.Add(newRoom.GetComponent<Room>());
+                        return endRoom.gameObject;
+                    }
                 }
+            }
+
+        }
 
 
-            
+
 
 
         return null;
@@ -493,7 +487,7 @@ public class StageController : MonoBehaviour
             gpx = worldLayout.GetLength(0) / 2 * roomBaseLength * -1;
             for (int x = 0; x < worldLayout.GetLength(1); x++)
             {
-                availableGridPositions[y,x] = true;
+                availableGridPositions[y, x] = true;
                 worldLayout[y, x] = new GridPosdataType(gpx, gpy);
                 gpx += roomBaseLength;
             }
@@ -534,6 +528,7 @@ public class StageController : MonoBehaviour
         GameObject player;
         GameObject camera;
         foreach (var item in playerAssets)
+
         {
 
             if (item.CompareTag("MainCamera"))
@@ -562,6 +557,7 @@ public class StageController : MonoBehaviour
             }
 
         }
+        playerAssetsFile.Unload(false);
 
 
 

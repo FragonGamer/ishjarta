@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 public class Door : MonoBehaviour
@@ -76,6 +77,7 @@ public class Door : MonoBehaviour
 
     private GameObject FindClosestDoor()
     {
+        var sc = FindObjectOfType<StageController>().GetComponent<StageController>();
         int roomId = room.RoomId;
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Door");
@@ -84,6 +86,10 @@ public class Door : MonoBehaviour
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
+            if (!sc.worldRooms.Contains(go.GetComponent<Door>().room))
+            {
+                continue;
+            }
             Vector3 diff = go.transform.position - position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance && go.GetComponent<Door>().room.RoomId != roomId)

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 152752118
+CRC: 1876289297
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c8fec69d0f247466dac524b66532158f
+    Hash: b233696731e6f9dc5e31d2144d42ae7b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b1f2df8e2e2582e698576f8444d2305f
+    Hash: 1998f0aba6bdcb1a0ea9956304106754
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -19,10 +19,14 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
 - Class: 61
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9d5480c8ebff9304f92acc46d6ff9dcf, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: eedbe3daf179c874cbeb764e68ef40af, type: 3}
 - Class: 114
@@ -30,6 +34,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: a57232a70f6d52045bd243cf66f51aa3, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -51,10 +57,11 @@ Assets:
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/10x5_2.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/10x5_1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/15x10 1.prefab
+- Assets/Prefabs/RoomPrefabs/Forest_Stage/End.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5_1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/10x15.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x5 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10 1.prefab
 - Assets/Prefabs/RoomPrefabs/Forest_Stage/5x10.prefab
 Dependencies:
-- D:/Programming/ishjarta/ishjarta/Assets/StreamingAssets/level
+- D:/Programming/games/ishjarta/ishjarta/Assets/StreamingAssets/level
