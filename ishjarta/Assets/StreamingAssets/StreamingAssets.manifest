@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2514733098
+CRC: 1961873431
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -12,3 +12,6 @@ AssetBundleManifest:
       Name: forrest_stage
       Dependencies:
         Dependency_0: level
+    Info_3:
+      Name: forrest_stage_enemies
+      Dependencies: {}
