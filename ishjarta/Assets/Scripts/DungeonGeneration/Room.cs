@@ -7,9 +7,14 @@ using System.Linq;
 
 public class Room : MonoBehaviour
 {
+
     [SerializeField] public int maxOfThisRoom;
+    public bool IsCleared { get; private set; } = false;
+    [SerializeField] public bool isEntered = false;
+    public bool isClosed = false;
     public int RoomId;
     public int DistanceToStart = 0;
+    [SerializeField] public List<Enemy> Enemies = new List<Enemy>();
     // public Door.Direction DirectionToStart { get; set; }
     public List<GameObject> doors { get; private set; } = new List<GameObject>();
 
@@ -25,7 +30,65 @@ public class Room : MonoBehaviour
 
     private GridPosdataType[,] roomLayout = null;
 
+    public void RemoveEnemy(Enemy enemy)
+    {
+        Enemies.Remove(enemy);
+    }
+    private void Start()
+    {
+        Enemies = GetComponentsInChildren<Enemy>().ToList();
+        if (Enemies.Count == 0)
+            IsCleared = true;
+    }
+    private void Update()
+    {
+        if (isEntered)
+        {
 
+            if (!IsCleared)
+            {
+
+                if (!isClosed)
+                {
+                    CloseRoom();
+                    ActivateEnemies();
+                    isClosed = true;
+
+                }
+
+                if (Enemies.Count == 0)
+                {
+                    OpenRoom();
+                    isClosed = false;
+                    //Things after completed room here!!
+                }
+
+
+            }
+
+        }
+    }
+    private void ActivateEnemies()
+    {
+        foreach (var enemy in Enemies)
+        {
+            enemy.gameObject.SetActive(true);
+        }
+    }
+    private void CloseRoom()
+    {
+        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
+        {
+            door.doorIsOpen = false;
+        }
+    }
+    private void OpenRoom()
+    {
+        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
+        {
+            door.doorIsOpen = true;
+        }
+    }
 
     public GridPosdataType[,] GetRoomLayout()
     {
@@ -177,9 +240,14 @@ public class Room : MonoBehaviour
 
     public void ToggleRoomState()
     {
-        var renderer = GetComponentsInChildren<Renderer>();
-        if (renderer != null)
-            foreach (Renderer r in renderer) { r.enabled = !r.enabled; }
+
+        isEntered = !isEntered;
+        if (!FindObjectOfType<StageController>().GetComponent<StageController>().TestGeneration)
+        {
+
+
+            this.gameObject.SetActive(!this.gameObject.active);
+        }
 
 
     }
@@ -262,6 +330,7 @@ public class Room : MonoBehaviour
         foreach (var item in doors)
         {
             item.GetComponent<Door>().AttachClosestDoor();
+
         }
     }
 

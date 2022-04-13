@@ -18,6 +18,7 @@ public class Door : MonoBehaviour
     public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
     public Room room;
+    public Room ConnectedDoorRoom;
 
 
     private void Awake()
@@ -54,14 +55,9 @@ public class Door : MonoBehaviour
         if (doorIsOpen && collision.CompareTag("Player") && collision.GetType() == typeof(CircleCollider2D))
         {
             GameObject player = collision.gameObject;
-
+            ConnectedDoorRoom.ToggleRoomState();
             TeleportPlayerToDoor();
-            var stagecontroller = FindObjectOfType<StageController>();
-            if (!stagecontroller.TestGeneration)
-            {
-                ConnectedDoor.GetComponentInParent<Room>().ToggleRoomState();
-                room.ToggleRoomState();
-            }
+            room.ToggleRoomState();
 
         }
     }
@@ -72,6 +68,7 @@ public class Door : MonoBehaviour
         if (door != null)
         {
             ConnectedDoor = door;
+            ConnectedDoorRoom = door.GetComponent<Door>().room;
         }
     }
 

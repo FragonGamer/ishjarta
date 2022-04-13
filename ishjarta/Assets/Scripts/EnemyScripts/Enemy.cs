@@ -12,6 +12,7 @@ public class Enemy : Entity
     [field: SerializeField] public int dropRate { get; private set; }
     [field: SerializeField] public bool hasSpottedPlayer { get; set; }
     [field: SerializeField] public bool isInRange { get; set; }
+    public Room room;
     private float time;
 
     //public Enemy(int currentHealth, int maxHealth, int baseHealth, float healthModifier, 
@@ -60,6 +61,8 @@ public class Enemy : Entity
     private void Start()
     {
         animator = GetComponent<Animator>();
+        room = GetComponentInParent<Room>();
+        this.gameObject.SetActive(false);
     }
 
     public void Update()
@@ -70,7 +73,7 @@ public class Enemy : Entity
     public override void Attack(Vector2 vector)
     {
         throw new System.NotImplementedException();
-        
+
     }
     public override void ReceiveDamage(int damage)
     {
@@ -98,7 +101,7 @@ public class Enemy : Entity
 
         gameObject.GetComponent<AIPath>().canMove = false;
         animator.SetBool("isDead", true);
-
+        room.RemoveEnemy(this);
     }
 
 
