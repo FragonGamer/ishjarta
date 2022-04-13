@@ -9,7 +9,9 @@ public class Room : MonoBehaviour
 {
     [SerializeField] public int maxOfThisRoom;
     public int RoomId;
-    public List<GameObject> doors { get; private set;} = new List<GameObject>();
+    public int DistanceToStart = 0;
+    // public Door.Direction DirectionToStart { get; set; }
+    public List<GameObject> doors { get; private set; } = new List<GameObject>();
 
     [SerializeField] public int lenX;
     [SerializeField] public int lenY;
@@ -24,10 +26,10 @@ public class Room : MonoBehaviour
     private GridPosdataType[,] roomLayout = null;
 
 
-    
+
     public GridPosdataType[,] GetRoomLayout()
     {
-        
+
         roomLayout = new GridPosdataType[lenY / StageController.roomBaseLength, lenX / StageController.roomBaseLength];
         var x = 0;
         var y = 0;
@@ -38,9 +40,10 @@ public class Room : MonoBehaviour
             for (int j = 0; j < roomLayout.GetLength(1); j++)
             {
                 roomLayout[i, j] = new GridPosdataType(y, x);
-                if (tilemap.HasTile( new Vector3Int(y +1, x -1, 0))){
+                if (tilemap.HasTile(new Vector3Int(y + 1, x - 1, 0)))
+                {
 
-                    
+
                     if (doors.Count > 0)
                     {
                         CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
@@ -51,17 +54,17 @@ public class Room : MonoBehaviour
                         CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
                     }
                 }
-                
+
                 y += StageController.roomBaseLength;
             }
 
             y = 0;
             x -= StageController.roomBaseLength;
         }
-        
+
         return roomLayout;
     }
-    
+
     public int GetIndexOfFirstXRoomCell(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
@@ -99,12 +102,12 @@ public class Room : MonoBehaviour
         if (roomLayout is null) roomLayout = GetRoomLayout();
         offset /= StageController.roomBaseLength;
         int len = 0;
-        
+
         for (int i = 0; i < roomLayout.GetLength(1); i++)
         {
             if (roomLayout[offset, i].roomId >= 0)
             {
-                len+= StageController.roomBaseLength;
+                len += StageController.roomBaseLength;
             }
         }
         return len; ;
@@ -118,7 +121,7 @@ public class Room : MonoBehaviour
 
         for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
-            if (roomLayout[i,offset].roomId >= 0)
+            if (roomLayout[i, offset].roomId >= 0)
             {
                 len += StageController.roomBaseLength;
             }
@@ -127,38 +130,43 @@ public class Room : MonoBehaviour
 
     }
 
-    private void CalcDoorsOfRoomCell(GameObject go, Tuple<int,int> gridPosition,int x,int y){
+    private void CalcDoorsOfRoomCell(GameObject go, Tuple<int, int> gridPosition, int x, int y)
+    {
         GameObject helper = new GameObject();
-        helper.transform.position = go.transform.position + new Vector3(2f,-2f,0) + new Vector3(x,y,0);
+        helper.transform.position = go.transform.position + new Vector3(2f, -2f, 0) + new Vector3(x, y, 0);
         Vector3 helperPosition = helper.transform.position;
         List<Door> doorsOfThisCell = new List<Door>();
 
-        foreach(var door in doors){
+        foreach (var door in doors)
+        {
             var diff = door.transform.position - helperPosition;
             float curDistance = diff.sqrMagnitude;
-            if(curDistance <= StageController.roomBaseLength){
+            if (curDistance <= StageController.roomBaseLength)
+            {
                 doorsOfThisCell.Add(door.GetComponent<Door>());
             }
 
         }
-         roomLayout[gridPosition.Item1,gridPosition.Item2].roomId = RoomId;
+        roomLayout[gridPosition.Item1, gridPosition.Item2].roomId = RoomId;
 
-        foreach(var door in doorsOfThisCell){
-            switch(door.direction){
+        foreach (var door in doorsOfThisCell)
+        {
+            switch (door.direction)
+            {
                 case Door.Direction.East:
-                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasEDoor = true;
+                    roomLayout[gridPosition.Item1, gridPosition.Item2].hasEDoor = true;
                     break;
                 case Door.Direction.West:
-                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasWDoor = true;
+                    roomLayout[gridPosition.Item1, gridPosition.Item2].hasWDoor = true;
                     break;
                 case Door.Direction.North:
-                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasNDoor = true;
+                    roomLayout[gridPosition.Item1, gridPosition.Item2].hasNDoor = true;
                     break;
                 case Door.Direction.South:
-                    roomLayout[gridPosition.Item1,gridPosition.Item2].hasSDoor = true;
+                    roomLayout[gridPosition.Item1, gridPosition.Item2].hasSDoor = true;
                     break;
                 default:
-                break;
+                    break;
             }
         }
         Destroy(helper);
@@ -172,25 +180,25 @@ public class Room : MonoBehaviour
         var renderer = GetComponentsInChildren<Renderer>();
         if (renderer != null)
             foreach (Renderer r in renderer) { r.enabled = !r.enabled; }
-        
-       
+
+
     }
 
     //This was for testing purposes of tilemap swap
     public void Test()
     {
 
-            var tilemaps = this.gameObject.GetComponentsInChildren<Tilemap>();
-            foreach (Tilemap tilemap in tilemaps)
+        var tilemaps = this.gameObject.GetComponentsInChildren<Tilemap>();
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            if (tilemap.name.Contains("Obstacle"))
             {
-                if (tilemap.name.Contains("Obstacle"))
-                {
 
-                    foreach (var door in doors.Select(item => item.GetComponent<Door>()))
+                foreach (var door in doors.Select(item => item.GetComponent<Door>()))
+                {
+                    if (door.ConnectedDoor == null)
                     {
-                        if (door.ConnectedDoor == null)
-                        {
-                        
+
                         switch (door.direction)
                         {
                             case Door.Direction.East:
@@ -217,18 +225,18 @@ public class Room : MonoBehaviour
                         }
 
                     }
-                    }
-
-
                 }
+
+
             }
-        
+        }
+
     }
 
 
     public void SetDoors()
     {
-       
+
         var gos = this.GetComponentsInChildren<Door>();
         foreach (var item in gos)
         {
@@ -238,17 +246,19 @@ public class Room : MonoBehaviour
             }
         }
     }
-    public void SetRoomToDoors(){
+    public void SetRoomToDoors()
+    {
 
-        foreach (var door in doors){
+        foreach (var door in doors)
+        {
             door.GetComponent<Door>().room = gameObject.GetComponent<Room>();
         }
-        
-        
+
+
     }
     public void ConnectDoors()
     {
-        
+
         foreach (var item in doors)
         {
             item.GetComponent<Door>().AttachClosestDoor();

@@ -13,7 +13,7 @@ public class StageController : MonoBehaviour
     GameObject startRoom;
     int nextRoomId = 0;
     public List<Room> worldRooms { get; private set; } = new List<Room>();
-    
+
     //2D array for tracking position and doors of room cells
     private GridPosdataType[,] worldLayout;
     //2D array for tracking aval positions in the grid
@@ -30,9 +30,9 @@ public class StageController : MonoBehaviour
 
     public string currentStageName = "forrest";
 
-    public async Task ResetStage()
+    public void ResetStage()
     {
-        await DestroyAllGOS();
+        DestroyAllGOS();
         roomCounter = new Dictionary<Room, int>();
         startRoom = null;
         nextRoomId = 0;
@@ -44,7 +44,7 @@ public class StageController : MonoBehaviour
         CreateGame();
 
     }
-    async Task DestroyAllGOS()
+    void DestroyAllGOS()
     {
         var gos = SceneManager.GetActiveScene().GetRootGameObjects();
         foreach (var g in gos)
@@ -227,6 +227,11 @@ public class StageController : MonoBehaviour
             availableGridPositions[y, x] = false;
 
         }
+        Vector3 posStart = startRoom.transform.position;
+        Vector3 posRoom = go.transform.position;
+        Room goRoom = go.GetComponent<Room>();
+        goRoom.DistanceToStart = (int)Vector3.Distance(posStart, posRoom);
+
         return go;
     }
     public Tuple<int, int> ConvertFromGridToArrayIndex(Tuple<int, int> position)
@@ -420,7 +425,7 @@ public class StageController : MonoBehaviour
         var endRoom = Utils.loadAssetFromAssetPack(assets, "End").GetComponent<Room>();
 
 
-        foreach (var room in worldRooms.ToList().Shuffle().Select(room => room.GetComponent<Room>()))
+        foreach (var room in worldRooms.ToList().OrderByDescending(room => room.DistanceToStart).Select(room => room.GetComponent<Room>()))
         {
             room.SetDoors();
 
