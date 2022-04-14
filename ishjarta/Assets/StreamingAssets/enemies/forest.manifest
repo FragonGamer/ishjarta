@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3420520538
+CRC: 3419254731
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c40a0ae740f407f73951cd13c77b3bb1
+    Hash: f60af414e19f122ac59fac1943638ddd
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9f36ad91a0cd12cfc347f3afdfe9be87
@@ -61,7 +61,7 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: AstarPathfindingProject
   ClassName: Pathfinding.StartEndModifier
 Assets:
-- Assets/Prefabs/Enemys/Ranged/RangedSlime.prefab
+- Assets/_Bundles/Stages/Forest/Enemies/RangedSlime.prefab
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 - Assets/Prefabs/Enemys/Meele/Slime.prefab
 Dependencies: []

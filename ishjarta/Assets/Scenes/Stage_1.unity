@@ -137,7 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1107640237002589651, guid: da19dc0dfaa7938419241129f02e2d20, type: 3}
       propertyPath: TestGeneration
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107640237002589651, guid: da19dc0dfaa7938419241129f02e2d20, type: 3}
+      propertyPath: currentStageName
+      value: forest
       objectReference: {fileID: 0}
     - target: {fileID: 7613258289434030886, guid: da19dc0dfaa7938419241129f02e2d20, type: 3}
       propertyPath: m_RootOrder

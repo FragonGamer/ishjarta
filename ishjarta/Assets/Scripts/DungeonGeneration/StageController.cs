@@ -11,7 +11,10 @@ public class StageController : MonoBehaviour
     GameObject player;
     Dictionary<Room, int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
+    GameObject camera;
+    GameObject HUD;
     int nextRoomId = 0;
+
     public List<Room> worldRooms { get; private set; } = new List<Room>();
 
     //2D array for tracking position and doors of room cells
@@ -28,9 +31,10 @@ public class StageController : MonoBehaviour
 
     public AssetBundle assets { get; private set; }
     public AssetBundle enemyAssets { get; private set; }
+    public List<string> stageNames { get; private set; }
+    private int currentStageCounter;
+    public string currentStageName;
 
-
-    public string currentStageName = "forest";
 
     public void ResetStage()
     {
@@ -45,6 +49,13 @@ public class StageController : MonoBehaviour
         Debug.Log("Resetted Stage");
         CreateGame();
 
+    }
+    public void ReloadGame()
+    {
+        AssetBundle.UnloadAllAssetBundles(true);
+        HUD.SetActive(false);
+        camera.GetComponent<Camera>().nearClipPlane = 0;
+        SceneManager.LoadScene("Stage_1");
     }
     void DestroyAllGOS()
     {
@@ -74,11 +85,14 @@ public class StageController : MonoBehaviour
     }
     private void Start()
     {
+        stageNames = new List<string>();
+        stageNames.AddRange(new string[] { "forest", "forest", "test" });
+        currentStageCounter = 0;
         CreateGame();
     }
     public void CreateGame()
     {
-
+        currentStageName = stageNames.ToArray()[currentStageCounter];
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
         assets = Utils.loadAssetPack($"stage/{currentStageName}");
@@ -432,8 +446,7 @@ public class StageController : MonoBehaviour
         }
         var endRoom = CreateEndRoom();
         Debug.Log("Rooms: " + nextRoomId);
-
-        Utils.PrintGridPosDataTypeMatrix(worldLayout);
+        currentStageCounter++;
 
 
     }
@@ -530,13 +543,16 @@ public class StageController : MonoBehaviour
             room.gameObject.SetActive(!room.gameObject.active);
         }
     }
-    void InstantiateAssetGroupOnZero(GameObject[] assets)
+    Dictionary<string, GameObject> InstantiateAssetGroupOnZero(GameObject[] assets)
 
     {
+        var result = new Dictionary<string, GameObject>();
         foreach (var item in assets)
         {
             var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            result.Add(go.name, go);
         }
+        return result;
 
 
     }
@@ -571,7 +587,9 @@ public class StageController : MonoBehaviour
 
         this.player.transform.position = playerPosition;
 
-        InstantiateAssetGroupOnZero(playerAssets);
+        var gos = InstantiateAssetGroupOnZero(playerAssets);
+        camera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main")).Select(x => x.Value).First();
+        HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
         playerAssetsFile.Unload(false);
 
     }
@@ -579,12 +597,16 @@ public class StageController : MonoBehaviour
 
 
 
-    void InstantiateAssetGroup(GameObject[] assets, Vector3 position)
+    Dictionary<string, GameObject> InstantiateAssetGroup(GameObject[] assets, Vector3 position)
     {
+        var result = new Dictionary<string, GameObject>();
         foreach (var item in assets)
         {
-            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            result.Add(go.name, go);
         }
+        return result;
+
     }
 
 

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 movement;
+    StageController stageController;
 
     public Vector2 GetMovementVector() { return movement; }
     private void Awake()
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         inputMaster = new InputMaster();
+        stageController = FindObjectOfType<StageController>();
     }
     private void OnEnable()
     {
@@ -31,7 +33,8 @@ public class PlayerController : MonoBehaviour
     {
         player = PlayerManager.instance.player.GetComponent<Player>();
         inputMaster.Player.Movement.performed += MoveAction;
-        inputMaster.Player.Movement.canceled += _ => { 
+        inputMaster.Player.Movement.canceled += _ =>
+        {
             movement = Vector2.zero;
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
@@ -41,7 +44,7 @@ public class PlayerController : MonoBehaviour
         inputMaster.Player.DropItem.performed += DropItemAction;
         inputMaster.Player.SwitchWeapon.performed += SwitchWeaponAction;
         inputMaster.Player.UseActiveItem.performed += UseActiveItemAction;
-        //inputMaster.Player.DungeonGenerationTest.performed += GenerateStageAction;
+        inputMaster.Player.Reload.performed += ReloadAction;
     }
 
     private void MoveAction(InputAction.CallbackContext context)
@@ -52,11 +55,18 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
-    ////Temporary
-    //private void GenerateStageAction(InputAction.CallbackContext context) {
-    //    var stageController = GameObject.FindGameObjectWithTag("StageController");
-    //    stageController.GetComponent<StageController>().CreateStage();
-    //}
+
+    private void ReloadAction(InputAction.CallbackContext context)
+    {
+        if (stageController is null)
+        {
+            stageController = FindObjectOfType<StageController>();
+        }
+        else
+        {
+            stageController.ReloadGame();
+        }
+    }
 
 
     private void AttackAction(InputAction.CallbackContext context)

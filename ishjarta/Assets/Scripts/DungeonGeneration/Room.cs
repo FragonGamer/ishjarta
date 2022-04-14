@@ -30,15 +30,24 @@ public class Room : MonoBehaviour
 
     private GridPosdataType[,] roomLayout = null;
 
+    /// <summary>
+    /// removes enemy of enemies list in room
+    /// </summary>
+    /// <param name="enemy">enemy which you want to be removed</param>
     public void RemoveEnemy(Enemy enemy)
     {
         Enemies.Remove(enemy);
     }
     private void Start()
     {
+        //Gets all enemies in the current room
         Enemies = GetComponentsInChildren<Enemy>().ToList();
         SetCleared();
     }
+
+    /// <summary>
+    /// If the List of enemies in the room is empty (for example if all enemies are dead) the cleared status will be set to true
+    /// </summary>
     public void SetCleared()
     {
         if (Enemies.Count == 0)
@@ -76,6 +85,10 @@ public class Room : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// With this method all enemies in the room will be set to active (Enemies are disabled when you are not in the room)
+    /// </summary>
     private void ActivateEnemies()
     {
         foreach (var enemy in Enemies)
@@ -83,6 +96,9 @@ public class Room : MonoBehaviour
             enemy.gameObject.SetActive(true);
         }
     }
+    /// <summary>
+    /// sets all doors in room to be closed
+    /// </summary>
     private void CloseRoom()
     {
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
@@ -90,6 +106,9 @@ public class Room : MonoBehaviour
             door.doorIsOpen = false;
         }
     }
+    /// <summary>
+    /// sets all doors in room to be opened
+    /// </summary>
     private void OpenRoom()
     {
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
@@ -97,7 +116,18 @@ public class Room : MonoBehaviour
             door.doorIsOpen = true;
         }
     }
-
+    /// <summary>
+    /// gets the layout of the room with gridposdatatype
+    /// 
+    /// for example 5*10 room
+    /// 
+    /// output:
+    /// 
+    /// ( (0/0) hasSDoor=false hasNDoor = true hasWDoor = true hasEDoor = true roomId = 1)
+    /// ( (0/5) hasSDoor=true hasNDoor = false hasWDoor = true hasEDoor = true roomId = 1 )
+    /// 
+    /// </summary>
+    /// <returns>GridPosDataType array of the current room layout</returns>
     public GridPosdataType[,] GetRoomLayout()
     {
 
@@ -136,6 +166,11 @@ public class Room : MonoBehaviour
         return roomLayout;
     }
 
+    /// <summary>
+    /// gets the index of the first x value in an given y row
+    /// </summary>
+    /// <param name="offset">y offset of stagecontroller addroom</param>
+    /// <returns>integer of index</returns>
     public int GetIndexOfFirstXRoomCell(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
@@ -152,6 +187,11 @@ public class Room : MonoBehaviour
         return index;
 
     }
+    /// <summary>
+    /// gets the index of the first y value in an given x row
+    /// </summary>
+    /// <param name="offset">x offset of stagecontroller addroom</param>
+    /// <returns>integer of index</returns>
     public int GetIndexOfFirstYRoomCell(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
@@ -168,6 +208,11 @@ public class Room : MonoBehaviour
         return index;
 
     }
+    /// <summary>
+    /// gets the length of given x row
+    /// </summary>
+    /// <param name="offset">x offset of stagecontroller addroom</param>
+    /// <returns>integer of length</returns>
     public int GetXLength(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
@@ -184,6 +229,11 @@ public class Room : MonoBehaviour
         return len; ;
 
     }
+    /// <summary>
+    /// gets the length of given y row
+    /// </summary>
+    /// <param name="offset">y offset of stagecontroller addroom</param>
+    /// <returns>integer of length</returns>
     public int GetYLength(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
@@ -200,7 +250,13 @@ public class Room : MonoBehaviour
         return len;
 
     }
-
+    /// <summary>
+    /// calculates the doors in an given roomcell (gridposdatatype) of room
+    /// </summary>
+    /// <param name="go">gameobject (room)</param>
+    /// <param name="gridPosition">position in the grid of the room</param>
+    /// <param name="x">x coordinate</param>
+    /// <param name="y">y coordinate</param>
     private void CalcDoorsOfRoomCell(GameObject go, Tuple<int, int> gridPosition, int x, int y)
     {
         GameObject helper = new GameObject();
@@ -245,7 +301,9 @@ public class Room : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// toggles the state of the activness of the room gameobject
+    /// </summary>
     public void ToggleRoomState()
     {
 
@@ -260,7 +318,9 @@ public class Room : MonoBehaviour
 
     }
 
-    //This was for testing purposes of tilemap swap
+    /// <summary>
+    /// swaps the tiles of doors which are not connected to an other door
+    /// </summary>
     public void Test()
     {
 
@@ -309,7 +369,9 @@ public class Room : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// adds all doors of room to the door list of the room
+    /// </summary>
     public void SetDoors()
     {
 
@@ -322,6 +384,10 @@ public class Room : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// sets the room to all doors in doors list
+    /// </summary>
     public void SetRoomToDoors()
     {
 
@@ -332,6 +398,10 @@ public class Room : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// connects door to door of the nearest room
+    /// </summary>
     public void ConnectDoors()
     {
 

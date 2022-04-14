@@ -98,6 +98,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d0da36a-bcba-499e-b60f-61afd197ca02"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -298,6 +307,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""DungeonGenerationTest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0259dcba-63ee-45fd-8a73-3fa2d9764aa5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -353,6 +373,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_DropWeapon = m_Player.FindAction("Drop Weapon", throwIfNotFound: true);
         m_Player_DropItem = m_Player.FindAction("Drop Item", throwIfNotFound: true);
         m_Player_DungeonGenerationTest = m_Player.FindAction("DungeonGenerationTest", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         // References
         m_References = asset.FindActionMap("References", throwIfNotFound: true);
         m_References_MousePosition = m_References.FindAction("MousePosition", throwIfNotFound: true);
@@ -423,6 +444,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DropWeapon;
     private readonly InputAction m_Player_DropItem;
     private readonly InputAction m_Player_DungeonGenerationTest;
+    private readonly InputAction m_Player_Reload;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -435,6 +457,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @DropWeapon => m_Wrapper.m_Player_DropWeapon;
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
         public InputAction @DungeonGenerationTest => m_Wrapper.m_Player_DungeonGenerationTest;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -468,6 +491,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @DungeonGenerationTest.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDungeonGenerationTest;
                 @DungeonGenerationTest.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDungeonGenerationTest;
                 @DungeonGenerationTest.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDungeonGenerationTest;
+                @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -496,6 +522,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @DungeonGenerationTest.started += instance.OnDungeonGenerationTest;
                 @DungeonGenerationTest.performed += instance.OnDungeonGenerationTest;
                 @DungeonGenerationTest.canceled += instance.OnDungeonGenerationTest;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -561,6 +590,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnDropWeapon(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
         void OnDungeonGenerationTest(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IReferencesActions
     {
