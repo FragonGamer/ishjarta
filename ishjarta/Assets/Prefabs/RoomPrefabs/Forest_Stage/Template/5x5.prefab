@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3818307592846640531
 Transform:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ Transform:
   - {fileID: 8820459774650251041}
   - {fileID: 6738929162519782674}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5481909575181650905
 MonoBehaviour:
@@ -96,7 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOfThisRoom: -1
+  isEntered: 0
+  isClosed: 0
   RoomId: 0
+  DistanceToStart: 0
+  Enemies: []
   lenX: 5
   lenY: 5
   closedWallUp: {fileID: 11400000, guid: d3c6a07e07c38fc45a73567e211650d4, type: 2}

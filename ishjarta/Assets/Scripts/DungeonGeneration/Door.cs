@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Tilemaps;
 
 
 public class Door : MonoBehaviour
@@ -58,6 +59,16 @@ public class Door : MonoBehaviour
             ConnectedDoorRoom.ToggleRoomState();
             TeleportPlayerToDoor();
             room.ToggleRoomState();
+            var tilemap = room.gameObject.GetComponentsInChildren<Tilemap>().Where(x => x.name.ToLower().Contains("background")).First();
+            foreach (var position in tilemap.cellBounds.allPositionsWithin)
+            {
+                if (!tilemap.HasTile(position))
+                {
+                    continue;
+                }
+
+                Debug.Log(position.x + "/" + position.y);
+            }
 
         }
     }
@@ -96,7 +107,7 @@ public class Door : MonoBehaviour
             }
         }
 
-        if (distance < 7)
+        if (distance < 2)
         {
             return closest;
         }

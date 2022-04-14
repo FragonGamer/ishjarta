@@ -936,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1489393320459122063
 Transform:
   m_ObjectHideFlags: 0
@@ -972,7 +972,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOfThisRoom: -1
+  isEntered: 0
+  isClosed: 0
   RoomId: 0
+  DistanceToStart: 0
+  Enemies: []
   lenX: 10
   lenY: 5
   closedWallUp: {fileID: 11400000, guid: d3c6a07e07c38fc45a73567e211650d4, type: 2}

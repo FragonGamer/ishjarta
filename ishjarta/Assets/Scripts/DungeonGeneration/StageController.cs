@@ -11,7 +11,7 @@ public class StageController : MonoBehaviour
     GameObject player;
     Dictionary<Room, int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
-    GameObject camera;
+    public GameObject camera;
     GameObject HUD;
     int nextRoomId = 0;
 
@@ -22,20 +22,29 @@ public class StageController : MonoBehaviour
     //2D array for tracking aval positions in the grid
     private bool[,] availableGridPositions;
 
-    public const int roomBaseLength = 5;
+    public const int roomXBaseLength = 9;
+    public const int roomYBaseLength = 5;
     // world base length should be odd
     public const int worldBaseLength = 111;
 
-    [SerializeField] public int maxRooms = 3;
+    private int maxRooms;
     [SerializeField] public bool TestGeneration;
 
     public AssetBundle assets { get; private set; }
     public AssetBundle enemyAssets { get; private set; }
     public List<string> stageNames { get; private set; }
     private int currentStageCounter;
-    public string currentStageName;
+    public string currentStageName { get; private set; }
+
+    int SetMaxRooms()
+    {
+        float result;
+
+        result = 3.3f * (currentStageCounter + 1) + 5;
 
 
+        return Mathf.FloorToInt(result);
+    }
     public void ResetStage()
     {
         DestroyAllGOS();
@@ -97,7 +106,7 @@ public class StageController : MonoBehaviour
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
         assets = Utils.loadAssetPack($"stage/{currentStageName}");
         enemyAssets = Utils.loadAssetPack($"enemies/{currentStageName}");
-
+        maxRooms = SetMaxRooms();
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
         InitWorldLayout();
@@ -152,7 +161,7 @@ public class StageController : MonoBehaviour
     void SetStartRoom()
     {
 
-        GameObject startRoom = Utils.loadAssetFromAssetPack(assets, "Start");
+        GameObject startRoom = Utils.loadAssetFromAssetPack(assets, "start");
 
         var startRoomGO = Instantiate(startRoom, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
@@ -190,16 +199,16 @@ public class StageController : MonoBehaviour
                         if (door.ConnectedDoor == null)
                         {
                             Tuple<int, int> posPosition = null;
-                            var xOffset = random.Next(0, posRoom.lenX / StageController.roomBaseLength) * StageController.roomBaseLength;
-                            var yOffset = random.Next(0, posRoom.lenY / StageController.roomBaseLength) * StageController.roomBaseLength;
+                            var xOffset = random.Next(0, posRoom.lenX / StageController.roomXBaseLength) * StageController.roomXBaseLength;
+                            var yOffset = random.Next(0, posRoom.lenY / StageController.roomYBaseLength) * StageController.roomYBaseLength;
 
                             switch (door.direction)
                             {
                                 case Door.Direction.East:
-                                    posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                                    posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomXBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomXBaseLength, (int)room.gameObject.transform.position.y + yOffset);
                                     break;
                                 case Door.Direction.South:
-                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) + posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomYBaseLength) + posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomYBaseLength);
                                     break;
                                 case Door.Direction.West:
                                     posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
@@ -250,8 +259,8 @@ public class StageController : MonoBehaviour
             {
                 continue;
             }
-            var x = arrayPos.Item1 + pos.xPos / roomBaseLength;
-            var y = arrayPos.Item2 - pos.yPos / roomBaseLength;
+            var x = arrayPos.Item1 + pos.xPos / StageController.roomXBaseLength;
+            var y = arrayPos.Item2 - pos.yPos / StageController.roomYBaseLength;
             worldLayout[y, x].roomId = room.RoomId;
             worldLayout[y, x].hasEDoor = pos.hasEDoor;
             worldLayout[y, x].hasNDoor = pos.hasNDoor;
@@ -300,8 +309,8 @@ public class StageController : MonoBehaviour
         var arrayPos = ConvertFromGridToArrayIndex(position);
         foreach (var pos in roomLayout)
         {
-            var x = arrayPos.Item1 + pos.xPos / roomBaseLength;
-            var y = arrayPos.Item2 - pos.yPos / roomBaseLength;
+            var x = arrayPos.Item1 + pos.xPos / roomXBaseLength;
+            var y = arrayPos.Item2 - pos.yPos / roomYBaseLength;
 
             if (pos.roomId < 0)
             {
@@ -419,22 +428,23 @@ public class StageController : MonoBehaviour
         Room room = roomGO.GetComponent<Room>();
         room.RoomId = nextRoomId;
 
-        availableGridPositions[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))] = false;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].roomId = room.RoomId;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasEDoor = hasED;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasNDoor = hasND;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasSDoor = hasSD;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasWDoor = hasWD;
+        availableGridPositions[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))] = false;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].roomId = room.RoomId;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasEDoor = hasED;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasNDoor = hasND;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasSDoor = hasSD;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasWDoor = hasWD;
 
         nextRoomId++;
     }
     void CreateStage()
     {
-        Random random = new Random();
-        var f = random.Next(maxRooms / 2, maxRooms);
+        //Creates Start room
         SetStartRoom();
+        //Creates player
         CreatePlayer();
         int counter = 0;
+        //creates normal rooms
         while (worldRooms.Count() < maxRooms && counter < 100)
         {
             var room = AddRoom();
@@ -444,17 +454,18 @@ public class StageController : MonoBehaviour
 
 
         }
+        //creates end room
         var endRoom = CreateEndRoom();
+        worldRooms.Add(endRoom.GetComponent<Room>());
         Debug.Log("Rooms: " + nextRoomId);
         currentStageCounter++;
-
 
     }
 
     private GameObject CreateEndRoom()
     {
         Random random = new Random();
-        var endRoom = Utils.loadAssetFromAssetPack(assets, "End").GetComponent<Room>();
+        var endRoom = Utils.loadAssetFromAssetPack(assets, "end").GetComponent<Room>();
 
 
         foreach (var room in worldRooms.ToList().OrderByDescending(room => room.DistanceToStart).Select(room => room.GetComponent<Room>()))
@@ -466,16 +477,16 @@ public class StageController : MonoBehaviour
                 if (door.ConnectedDoor == null)
                 {
                     Tuple<int, int> posPosition = null;
-                    var xOffset = random.Next(0, endRoom.lenX / StageController.roomBaseLength) * StageController.roomBaseLength;
-                    var yOffset = random.Next(0, endRoom.lenY / StageController.roomBaseLength) * StageController.roomBaseLength;
+                    var xOffset = random.Next(0, endRoom.lenX / StageController.roomXBaseLength) * StageController.roomXBaseLength;
+                    var yOffset = random.Next(0, endRoom.lenY / StageController.roomYBaseLength) * StageController.roomYBaseLength;
 
                     switch (door.direction)
                     {
                         case Door.Direction.East:
-                            posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomBaseLength) - endRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                            posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomXBaseLength) - endRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomXBaseLength, (int)room.gameObject.transform.position.y + yOffset);
                             break;
                         case Door.Direction.South:
-                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomBaseLength) - endRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomBaseLength);
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomYBaseLength) - endRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomYBaseLength);
                             break;
                         case Door.Direction.West:
                             posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - endRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
@@ -518,19 +529,19 @@ public class StageController : MonoBehaviour
     {
         int gpx;
         int gpy;
-        gpy = (worldLayout.GetLength(0) / 2) * roomBaseLength;
+        gpy = (worldLayout.GetLength(0) / 2) * roomYBaseLength;
         for (int y = 0; y < worldLayout.GetLength(0); y++)
         {
-            gpx = worldLayout.GetLength(0) / 2 * roomBaseLength * -1;
+            gpx = worldLayout.GetLength(0) / 2 * roomXBaseLength * -1;
             for (int x = 0; x < worldLayout.GetLength(1); x++)
             {
                 availableGridPositions[y, x] = true;
                 worldLayout[y, x] = new GridPosdataType(gpx, gpy);
-                gpx += roomBaseLength;
+                gpx += roomXBaseLength;
             }
 
 
-            gpy -= roomBaseLength;
+            gpy -= roomYBaseLength;
         }
 
 
@@ -593,10 +604,6 @@ public class StageController : MonoBehaviour
         playerAssetsFile.Unload(false);
 
     }
-
-
-
-
     Dictionary<string, GameObject> InstantiateAssetGroup(GameObject[] assets, Vector3 position)
     {
         var result = new Dictionary<string, GameObject>();
@@ -608,6 +615,4 @@ public class StageController : MonoBehaviour
         return result;
 
     }
-
-
 }

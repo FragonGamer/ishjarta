@@ -131,7 +131,7 @@ public class Room : MonoBehaviour
     public GridPosdataType[,] GetRoomLayout()
     {
 
-        roomLayout = new GridPosdataType[lenY / StageController.roomBaseLength, lenX / StageController.roomBaseLength];
+        roomLayout = new GridPosdataType[lenY / StageController.roomYBaseLength, lenX / StageController.roomXBaseLength];
         var x = 0;
         var y = 0;
         var tilemap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.Contains("Background"));
@@ -140,27 +140,28 @@ public class Room : MonoBehaviour
         {
             for (int j = 0; j < roomLayout.GetLength(1); j++)
             {
-                roomLayout[i, j] = new GridPosdataType(y, x);
-                if (tilemap.HasTile(new Vector3Int(y + 1, x - 1, 0)))
+                roomLayout[i, j] = new GridPosdataType(x, y);
+                var tile = tilemap.GetTile(new Vector3Int(x + 4, y - 2, 0));
+                if (tile != null)
                 {
 
 
                     if (doors.Count > 0)
                     {
-                        CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
+                        CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), x, y);
                     }
                     else
                     {
                         SetDoors();
-                        CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), y, x);
+                        CalcDoorsOfRoomCell(this.gameObject, new Tuple<int, int>(i, j), x, y);
                     }
                 }
 
-                y += StageController.roomBaseLength;
+                x += StageController.roomXBaseLength;
             }
 
-            y = 0;
-            x -= StageController.roomBaseLength;
+            x = 0;
+            y -= StageController.roomYBaseLength;
         }
 
         return roomLayout;
@@ -174,7 +175,7 @@ public class Room : MonoBehaviour
     public int GetIndexOfFirstXRoomCell(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
-        offset /= StageController.roomBaseLength;
+        offset /= StageController.roomYBaseLength;
         int index = 0;
         for (int i = 0; i < roomLayout.GetLength(1); i++)
         {
@@ -195,7 +196,7 @@ public class Room : MonoBehaviour
     public int GetIndexOfFirstYRoomCell(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
-        offset /= StageController.roomBaseLength;
+        offset /= StageController.roomXBaseLength;
         int index = 0;
         for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
@@ -216,14 +217,14 @@ public class Room : MonoBehaviour
     public int GetXLength(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
-        offset /= StageController.roomBaseLength;
+        offset /= StageController.roomYBaseLength;
         int len = 0;
 
         for (int i = 0; i < roomLayout.GetLength(1); i++)
         {
             if (roomLayout[offset, i].roomId >= 0)
             {
-                len += StageController.roomBaseLength;
+                len += StageController.roomXBaseLength;
             }
         }
         return len; ;
@@ -237,14 +238,14 @@ public class Room : MonoBehaviour
     public int GetYLength(int offset)
     {
         if (roomLayout is null) roomLayout = GetRoomLayout();
-        offset /= StageController.roomBaseLength;
+        offset /= StageController.roomXBaseLength;
         int len = 0;
 
         for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
             if (roomLayout[i, offset].roomId >= 0)
             {
-                len += StageController.roomBaseLength;
+                len += StageController.roomYBaseLength;
             }
         }
         return len;
@@ -260,15 +261,15 @@ public class Room : MonoBehaviour
     private void CalcDoorsOfRoomCell(GameObject go, Tuple<int, int> gridPosition, int x, int y)
     {
         GameObject helper = new GameObject();
-        helper.transform.position = go.transform.position + new Vector3(2f, -2f, 0) + new Vector3(x, y, 0);
+        helper.transform.position = go.transform.position + new Vector3(Mathf.Floor(StageController.roomXBaseLength / 2), Mathf.Floor(StageController.roomYBaseLength / 2) * -1, 0) + new Vector3(x, y, 0);
         Vector3 helperPosition = helper.transform.position;
         List<Door> doorsOfThisCell = new List<Door>();
-
+        var len = StageController.roomXBaseLength < StageController.roomYBaseLength ? StageController.roomXBaseLength : StageController.roomYBaseLength;
         foreach (var door in doors)
         {
             var diff = door.transform.position - helperPosition;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance <= StageController.roomBaseLength)
+            float curDistance = diff.magnitude;
+            if (curDistance <= len)
             {
                 doorsOfThisCell.Add(door.GetComponent<Door>());
             }

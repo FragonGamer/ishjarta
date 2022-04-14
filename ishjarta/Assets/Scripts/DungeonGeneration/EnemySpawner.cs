@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] public float delay = 3;
     [SerializeField] public float amount = 5;
     float counter;
-    float time;
+    [SerializeField] public float time;
     Room room;
     Enemy enemy;
 
@@ -41,10 +41,6 @@ public class EnemySpawner : MonoBehaviour
             }
             if (counter >= amount)
             {
-                if (room.Enemies.Contains(enemy))
-                {
-                    Debug.Log("belastend");
-                }
                 room.Enemies.Remove(enemy);
                 Destroy(this.gameObject);
             }

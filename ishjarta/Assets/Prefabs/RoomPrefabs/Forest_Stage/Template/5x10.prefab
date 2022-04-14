@@ -49,6 +49,7 @@ MonoBehaviour:
   ConnectedDoor: {fileID: 0}
   direction: 2
   room: {fileID: 0}
+  ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &5162170904424606800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -512,6 +513,7 @@ MonoBehaviour:
   ConnectedDoor: {fileID: 0}
   direction: 1
   room: {fileID: 0}
+  ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &7252131932430572690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -587,6 +589,7 @@ MonoBehaviour:
   ConnectedDoor: {fileID: 0}
   direction: 1
   room: {fileID: 0}
+  ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &1226225790600095299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -662,6 +665,7 @@ MonoBehaviour:
   ConnectedDoor: {fileID: 0}
   direction: 0
   room: {fileID: 0}
+  ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &2949146109586595031
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -737,6 +741,7 @@ MonoBehaviour:
   ConnectedDoor: {fileID: 0}
   direction: 0
   room: {fileID: 0}
+  ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &8022603395794095131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -779,7 +784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &573670195125752209
 Transform:
   m_ObjectHideFlags: 0
@@ -815,7 +820,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOfThisRoom: -1
+  isEntered: 0
+  isClosed: 0
   RoomId: 0
+  DistanceToStart: 0
+  Enemies: []
   lenX: 5
   lenY: 10
   closedWallUp: {fileID: 11400000, guid: d3c6a07e07c38fc45a73567e211650d4, type: 2}
@@ -1361,6 +1370,7 @@ MonoBehaviour:
   ConnectedDoor: {fileID: 0}
   direction: 3
   room: {fileID: 0}
+  ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &6923120737889301902
 BoxCollider2D:
   m_ObjectHideFlags: 0
