@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2695067277
+CRC: 3884085628
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: player
+      Name: enemies/forest
       Dependencies: {}
     Info_1:
-      Name: enemies/forest
+      Name: player
       Dependencies: {}
     Info_2:
       Name: stage/forest

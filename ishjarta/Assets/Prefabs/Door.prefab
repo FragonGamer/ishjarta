@@ -48,6 +48,7 @@ MonoBehaviour:
   doorIsOpen: 1
   ConnectedDoor: {fileID: 0}
   direction: 0
+  closedDoorTile: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
   room: {fileID: 0}
   ConnectedDoorRoom: {fileID: 0}
 --- !u!61 &6685603576521750624

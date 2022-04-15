@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
     [SerializeField] Tile closedWallDown;
     [SerializeField] Tile closedWallLeft;
     [SerializeField] Tile closedWallRight;
+    private Tilemap ObstacleTileMap;
 
     private GridPosdataType[,] roomLayout = null;
 
@@ -41,6 +42,7 @@ public class Room : MonoBehaviour
     }
     private void Start()
     {
+        ObstacleTileMap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.ToLower().Contains("obstacle"));
         //Gets all enemies in the current room
         Enemies = GetComponentsInChildren<Enemy>().ToList();
         SetCleared();
@@ -102,21 +104,13 @@ public class Room : MonoBehaviour
     /// </summary>
     private void CloseRoom()
     {
-        var tilemap = this.gameObject.GetComponentsInChildren<Tilemap>().Where(x => x.name.ToLower().Contains("obstacle")).First();
-        var tileasset = Utils.loadAssetPack("tiles/forest/doors");
-        var tile = Utils.LoadAllAssetsOfAssetPack(tileasset);
-        foreach (var item in tile)
-        {
-            Debug.Log(item.GetComponent<Tile>().name);
-        }
-        tileasset.Unload(false);
-        //var test = tile.GetComponent<Tile>();
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
         {
-            //tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), test);
+            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.closedDoorTile);
             door.doorIsOpen = false;
         }
     }
+
     /// <summary>
     /// sets all doors in room to be opened
     /// </summary>
@@ -124,6 +118,7 @@ public class Room : MonoBehaviour
     {
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
         {
+            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
             door.doorIsOpen = true;
         }
     }

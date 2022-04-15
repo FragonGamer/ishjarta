@@ -19,6 +19,8 @@ public class Door : MonoBehaviour
     public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
 
+    [SerializeField] public Tile closedDoorTile;
+
     public Room room;
 
 
