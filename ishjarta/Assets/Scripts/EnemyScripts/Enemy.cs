@@ -73,7 +73,7 @@ public class Enemy : Entity
         HandleEffects();
     }
 
-    public override void Attack(Vector2 vector)
+    public override void Attack(Vector2 vector, float attackChargeModifier)
     {
         throw new System.NotImplementedException();
 

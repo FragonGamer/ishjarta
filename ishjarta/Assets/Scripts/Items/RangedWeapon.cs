@@ -8,4 +8,5 @@ public class RangedWeapon : Weapon
     [field: SerializeField] public int ProjectileVelocity { get; set; }
 
 
+
 }

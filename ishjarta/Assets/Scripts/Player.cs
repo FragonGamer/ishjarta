@@ -73,7 +73,7 @@ public class Player : Entity
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
         inventory.CurrentWeapon.EmitEffects : null;
 
-    public override void Attack(Vector2 mousePos)
+    public override void Attack(Vector2 mousePos, float damageChargeModifier)
     {
         //MeleeAttack
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
@@ -102,6 +102,7 @@ public class Player : Entity
         //Ranged Attack
         else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
         {
+
             if (timeRanged >= curWeapon.AttackRate)
             {
                 timeRanged = 0f;
@@ -115,10 +116,11 @@ public class Player : Entity
                 GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
-                projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
+                projectile.GetComponent<Projectile>().DealingDammage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
                 projectile.GetComponent<Projectile>().Owner = this.gameObject;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
+                Debug.Log(projectile.GetComponent<Projectile>().DealingDammage);
 
                 Destroy(projectile, 10f);
             }

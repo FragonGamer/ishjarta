@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 movement;
     StageController stageController;
+    bool attackIsCharging = false;
+    float timer = 1.0f;
 
     public Vector2 GetMovementVector() { return movement; }
     private void Awake()
@@ -40,7 +42,8 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         };
-        inputMaster.Player.Attack.performed += AttackAction;
+        inputMaster.Player.Attack.performed += AttackTimerAction;
+        inputMaster.Player.Attack.canceled += AttackAction;
         inputMaster.Player.DropItem.performed += DropItemAction;
         inputMaster.Player.SwitchWeapon.performed += SwitchWeaponAction;
         inputMaster.Player.UseActiveItem.performed += UseActiveItemAction;
@@ -68,10 +71,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    private void Update()
+    {
+        if (attackIsCharging && timer < 2)
+        {
+            timer += Time.deltaTime * 0.7f;
+        }
+        else if (timer >= 2)
+        {
+            Debug.Log("fully charged");
+        }
+    }
+    private void AttackTimerAction(InputAction.CallbackContext context)
+    {
+        if (player.inventory.CurrentWeapon != null && player.inventory.CurrentWeapon.IsChargable)
+            attackIsCharging = true;
+        else
+        {
+            player.Attack(inputMaster.References.MousePosition.ReadValue<Vector2>(), timer);
+        }
+    }
     private void AttackAction(InputAction.CallbackContext context)
     {
-        player.Attack(inputMaster.References.MousePosition.ReadValue<Vector2>());
+        if (player.inventory.CurrentWeapon != null && player.inventory.CurrentWeapon.IsChargable)
+        {
+            attackIsCharging = false;
+            if (timer < 1.1)
+                timer = 1;
+            Debug.Log(timer);
+            player.Attack(inputMaster.References.MousePosition.ReadValue<Vector2>(), timer);
+            timer = 0;
+        }
     }
     private void DropItemAction(InputAction.CallbackContext context)
     {

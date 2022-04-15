@@ -40,7 +40,7 @@ public abstract class Entity : MonoBehaviour
         float resistance, float currentResistance, int movementSpeed, float speedModifier, int baseDamage,
         float damageModifier, int attackRate, float range)
     {
-        if(!IsInitialized)
+        if (!IsInitialized)
         {
             IsInitialized = true;
 
@@ -63,7 +63,8 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void ReceiveDamage(int damage);
 
-    public abstract void Attack(Vector2 vector);
+
+    public abstract void Attack(Vector2 vector, float attackChargeModifier);
 
     public abstract void UpdateHealthBar();
 
@@ -79,12 +80,12 @@ public abstract class Entity : MonoBehaviour
     {
         statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
     }
-    
+
     private float timeCounter = 0;
     public void HandleEffects()
     {
         timeCounter += Time.deltaTime;
-        if(timeCounter >= 1)
+        if (timeCounter >= 1)
         {
             timeCounter = 0;
             ExecuteEffects();
@@ -97,7 +98,7 @@ public abstract class Entity : MonoBehaviour
         BaseEffect[] baseEffects = ConvertEffectsToArray(statusEffectHandler.FrostStat.Frost, statusEffectHandler.FrostStat.PermanentFrost);
         if (baseEffects.Length != 0)
         {
-            for(int i = 0; i < baseEffects.Length;i++)
+            for (int i = 0; i < baseEffects.Length; i++)
             {
                 var baseEffect = baseEffects[i];
 
@@ -293,7 +294,7 @@ public abstract class Entity : MonoBehaviour
     {
         var result = new List<BaseEffect>();
 
-        if(baseEffect != null)
+        if (baseEffect != null)
             result.Add(baseEffect);
 
         if (baseEffects != null && baseEffects.Count() > 0)

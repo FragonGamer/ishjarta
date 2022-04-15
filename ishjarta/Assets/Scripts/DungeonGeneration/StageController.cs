@@ -521,10 +521,6 @@ public class StageController : MonoBehaviour
         return null;
     }
 
-    async Task Timer(int delay)
-    {
-        await Task.Delay(delay);
-    }
     void InitWorldLayout()
     {
         int gpx;
