@@ -23,6 +23,7 @@ public class Room : MonoBehaviour
 
 
     [Header("Tiles")]
+
     [SerializeField] Tile closedWallUp;
     [SerializeField] Tile closedWallDown;
     [SerializeField] Tile closedWallLeft;
@@ -101,8 +102,18 @@ public class Room : MonoBehaviour
     /// </summary>
     private void CloseRoom()
     {
+        var tilemap = this.gameObject.GetComponentsInChildren<Tilemap>().Where(x => x.name.ToLower().Contains("obstacle")).First();
+        var tileasset = Utils.loadAssetPack("tiles/forest/doors");
+        var tile = Utils.LoadAllAssetsOfAssetPack(tileasset);
+        foreach (var item in tile)
+        {
+            Debug.Log(item.GetComponent<Tile>().name);
+        }
+        tileasset.Unload(false);
+        //var test = tile.GetComponent<Tile>();
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
         {
+            //tilemap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), test);
             door.doorIsOpen = false;
         }
     }
@@ -141,6 +152,8 @@ public class Room : MonoBehaviour
             for (int j = 0; j < roomLayout.GetLength(1); j++)
             {
                 roomLayout[i, j] = new GridPosdataType(x, y);
+
+                //tile map begins in the left upper corner with 0/0 
                 var tile = tilemap.GetTile(new Vector3Int(x + 4, y - 2, 0));
                 if (tile != null)
                 {
@@ -381,6 +394,26 @@ public class Room : MonoBehaviour
         {
             if (!doors.Contains(item.gameObject))
             {
+                var col = item.GetComponent<BoxCollider2D>();
+                switch (item.direction)
+                {
+                    case Door.Direction.East:
+                        col.offset = new Vector2(0.45f, 0);
+                        col.size = new Vector2(0.05f, 1);
+                        break;
+                    case Door.Direction.West:
+                        col.offset = new Vector2(-0.45f, 0);
+                        col.size = new Vector2(0.05f, 1);
+                        break;
+                    case Door.Direction.South:
+                        col.offset = new Vector2(0, -0.45f);
+                        col.size = new Vector2(1, 0.05f);
+                        break;
+                    case Door.Direction.North:
+                        col.offset = new Vector2(0, 0.45f);
+                        col.size = new Vector2(1, 0.05f);
+                        break;
+                }
                 doors.Add(item.gameObject);
             }
         }

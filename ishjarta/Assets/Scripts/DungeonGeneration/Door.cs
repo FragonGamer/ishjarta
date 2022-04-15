@@ -18,7 +18,12 @@ public class Door : MonoBehaviour
     public bool doorIsOpen;
     public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
+
     public Room room;
+
+
+
+
     public Room ConnectedDoorRoom;
 
 
@@ -31,24 +36,7 @@ public class Door : MonoBehaviour
     public void TeleportPlayerToDoor()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(ConnectedDoor.GetComponentInParent<Room>().RoomId);
-        switch (ConnectedDoor.GetComponent<Door>().direction)
-        {
-            case Direction.West:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(1, 0, 0);
-                break;
-            case Direction.East:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(-1, 0, 0);
-                break;
-            case Direction.North:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(0, -1, 0);
-                break;
-            case Direction.South:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(0, 1, 0);
-                break;
-            default:
-                return;
-        }
+        player.transform.position = ConnectedDoor.transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,16 +48,6 @@ public class Door : MonoBehaviour
             TeleportPlayerToDoor();
             room.ToggleRoomState();
             var tilemap = room.gameObject.GetComponentsInChildren<Tilemap>().Where(x => x.name.ToLower().Contains("background")).First();
-            foreach (var position in tilemap.cellBounds.allPositionsWithin)
-            {
-                if (!tilemap.HasTile(position))
-                {
-                    continue;
-                }
-
-                Debug.Log(position.x + "/" + position.y);
-            }
-
         }
     }
 
