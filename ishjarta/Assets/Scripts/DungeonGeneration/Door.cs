@@ -27,18 +27,25 @@ public class Door : MonoBehaviour
 
 
     public Room ConnectedDoorRoom;
-
-
     private void Awake()
     {
         room = GetComponentInParent<Room>();
     }
 
+    public float GetPlayerDistanceToDoor(Player player)
+    {
+        float distance = Vector3.Distance(this.transform.position, player.gameObject.transform.position);
+        Debug.Log(distance);
+        return distance;
 
+    }
     public void TeleportPlayerToDoor()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = ConnectedDoor.transform.position;
+        room.enteredDoor = null;
+        room.isEntered = false;
+        ConnectedDoorRoom.enteredDoor = ConnectedDoor.GetComponent<Door>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

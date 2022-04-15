@@ -29,6 +29,8 @@ public class Room : MonoBehaviour
     [SerializeField] Tile closedWallLeft;
     [SerializeField] Tile closedWallRight;
     private Tilemap ObstacleTileMap;
+    [SerializeField] public Door enteredDoor;
+    Player player;
 
     private GridPosdataType[,] roomLayout = null;
 
@@ -46,6 +48,7 @@ public class Room : MonoBehaviour
         //Gets all enemies in the current room
         Enemies = GetComponentsInChildren<Enemy>().ToList();
         SetCleared();
+        player = FindObjectOfType<Player>();
     }
 
     /// <summary>
@@ -60,6 +63,7 @@ public class Room : MonoBehaviour
             IsCleared = false;
         }
     }
+
     private void Update()
     {
         if (isEntered)
@@ -86,6 +90,14 @@ public class Room : MonoBehaviour
 
             }
 
+
+        }
+        else
+        {
+            if (enteredDoor != null && enteredDoor.GetPlayerDistanceToDoor(PlayerManager.instance.player.GetComponent<Player>()) > 1)
+            {
+                isEntered = true;
+            }
         }
     }
 
@@ -316,7 +328,6 @@ public class Room : MonoBehaviour
     public void ToggleRoomState()
     {
 
-        isEntered = !isEntered;
         if (!FindObjectOfType<StageController>().GetComponent<StageController>().TestGeneration)
         {
 

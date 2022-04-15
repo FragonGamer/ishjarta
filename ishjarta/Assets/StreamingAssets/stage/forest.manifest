@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1665392501
+CRC: 3907376237
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2c215643156e9b2bb86b40adfe0cd13e
+    Hash: 40a411e7b0c3010ab51c2c8d2a831bdf
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c2c177385501f171fc25b2a2f8aa3eac
+    Hash: f659db33059d933710de0188eb7a17b8
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -102,4 +102,4 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/9x5 3.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
+- D:/Programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
