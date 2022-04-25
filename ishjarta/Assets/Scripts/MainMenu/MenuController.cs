@@ -66,8 +66,7 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes()
     {
-        if(File.Exists(SerializationManager.savePath + @"/system.save"))
-            File.Delete(SerializationManager.savePath + @"/system.save");
+        new SerializationManager().DeleteSaveFile("system");
         SceneManager.LoadScene(newGameLevel);
     }
 
