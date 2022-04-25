@@ -43,8 +43,6 @@ public abstract class Entity : MonoBehaviour
         {
             isEntityInitialized = true;
 
-            this.transform.position = entityData.position;
-
             this.CurrentHealth = entityData.currentHealth;
             this.MaxHealth = entityData.maxHealth;
             this.BaseHealth = entityData.baseHealth;

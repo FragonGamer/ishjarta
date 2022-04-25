@@ -5,15 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class ActiveItemData : ItemData
 {
-    public float cooldownTime;
-    public float activeTime;
-
     public int activeItemType;
 
     public ActiveItemData(ActiveItem activeItem) : base(activeItem)
     {
-        cooldownTime = activeItem.cooldownTime;
-        activeTime = activeItem.activeTime;
         activeItemType = (int)activeItem.ItemType;
     }
 

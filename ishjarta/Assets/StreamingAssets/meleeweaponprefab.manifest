@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 3593788388
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 813baaf74ed50121244c9240e4009ee5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f4b05310e9cd77f9878d27be331d1d46
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5035d1f88ce307844afea1ac946f2af2, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/resources/Prefabs/WeaponPrefab/Melee/Sword.prefab
+- Assets/resources/Prefabs/WeaponPrefab/Melee/RedSword.prefab
+Dependencies:
+- D:/SYP/ishjarta/ishjarta/Assets/StreamingAssets/meleeweapon

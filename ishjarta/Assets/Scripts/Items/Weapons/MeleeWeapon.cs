@@ -25,7 +25,6 @@ public class MeleeWeapon : Weapon
             isMeleeWeaponInitialized = true;
             base.Init(meleeWeaponData);
 
-            Width = meleeWeaponData.width;
             WeaponType = (MeleeWeaponType)meleeWeaponData.weaponType;
         }
     }

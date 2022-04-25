@@ -28,8 +28,9 @@ public class SerializationManager
         return true;
     }
 
-    public static object Load(string path, out bool loaded)
+    public static object Load(string saveName, out bool loaded)
     {
+        string path = savePath + @"\" + saveName + ".save";
         if (!File.Exists(path))
         {
             Debug.Log("Path: "+path+" does not exist");
@@ -71,5 +72,20 @@ public class SerializationManager
         binaryFormatter.SurrogateSelector = selector;
 
         return binaryFormatter;
+    }
+
+    public bool DeleteSaveFile(string fileName)
+    {
+        if(File.Exists(savePath + @"\" + fileName + ".save"))
+        {
+            File.Delete(savePath + @"\" + fileName + ".save");
+            return true;
+        }
+        return false;
+    }
+
+    public static bool ExistsSaveFile(string fileName)
+    {
+        return File.Exists(savePath + @"\" + fileName + ".save");
     }
 }

@@ -16,10 +16,6 @@ public abstract class Weapon : Item
         {
             isWeaponInitialized = true;
             base.Init(weaponData);
-
-            Damage = weaponData.damage;
-            Range = weaponData.range;
-            AttackRate = weaponData.attackRate;
         }
     }
     #endregion SaveSystem

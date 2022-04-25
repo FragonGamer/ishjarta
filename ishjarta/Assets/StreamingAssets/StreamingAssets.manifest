@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 50677104
+CRC: 4153322365
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -33,3 +33,23 @@ AssetBundleManifest:
     Info_9:
       Name: usableitem
       Dependencies: {}
+    Info_10:
+      Name: activeitemprefab
+      Dependencies:
+        Dependency_0: activeitem
+    Info_11:
+      Name: passivitemprefab
+      Dependencies:
+        Dependency_0: passivitem
+    Info_12:
+      Name: meleeweaponprefab
+      Dependencies:
+        Dependency_0: meleeweapon
+    Info_13:
+      Name: rangedweaponprefab
+      Dependencies:
+        Dependency_0: rangedweapon
+    Info_14:
+      Name: usableitemprefab
+      Dependencies:
+        Dependency_0: usableitem

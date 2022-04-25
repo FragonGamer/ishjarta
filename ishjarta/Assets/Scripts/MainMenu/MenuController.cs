@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class MenuController : MonoBehaviour
 {
@@ -65,12 +66,16 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes()
     {
+        if(File.Exists(SerializationManager.savePath + @"/system.save"))
+            File.Delete(SerializationManager.savePath + @"/system.save");
         SceneManager.LoadScene(newGameLevel);
     }
 
     public void LoadGameDialogYes()
     {
-        if(noSavedGameDialog != null)
+        if (SerializationManager.ExistsSaveFile("system"))
+            SceneManager.LoadScene(newGameLevel);
+        else if(noSavedGameDialog != null)
             noSavedGameDialog.SetActive(true);
     }
 

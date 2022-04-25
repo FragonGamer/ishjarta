@@ -9,7 +9,7 @@ public class PassiveItem : Item
 
     public enum PassivItemtype
     {
-        flower
+        speedFlower
     }
 
     #region SaveSystem

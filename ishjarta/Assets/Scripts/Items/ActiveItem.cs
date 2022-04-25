@@ -14,7 +14,7 @@ public class ActiveItem : Item
 
     public enum ActiveItemtype
     {
-        braclet
+        speedBraclet
     }
 
     #region SaveSystem
@@ -25,10 +25,6 @@ public class ActiveItem : Item
         {
             isActiveItemInitialized = true;
             base.Init(activeItemData);
-
-            cooldownTime = activeItemData.cooldownTime;
-            activeTime = activeItemData.activeTime;
-            ItemType = (ActiveItemtype)activeItemData.activeItemType;
         }
     }
     #endregion SaveSystem

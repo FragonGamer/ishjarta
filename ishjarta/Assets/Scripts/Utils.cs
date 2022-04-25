@@ -32,5 +32,14 @@ public static class Utils
 
         return myLoadedAssetBundle;
     }
-    
+
+    public static Item loadItemFromAssetPack(AssetBundle assetBundle, string asset)
+    {
+        var item = assetBundle.LoadAsset<Item>(asset);
+        return item;
+    }
+    public static void UnloadAssetPack(AssetBundle assetBundle)
+    {
+        assetBundle.Unload(false);
+    }
 }

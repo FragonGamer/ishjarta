@@ -24,7 +24,6 @@ public class RangedWeapon : Weapon
             isRangedWeaponInitialized = true;
             base.Init(rangedWeaponData);
 
-            ProjectileVelocity = rangedWeaponData.projectileVelocity;
             WeaponType = (RangedWeaponType)rangedWeaponData.weaponType;
         }
     }

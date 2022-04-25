@@ -1,37 +1,23 @@
 ManifestFileVersion: 0
-CRC: 3620110236
+CRC: 2792492957
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4267c54939a3240d4eec69acf9249024
+    Hash: 9b2e1526dd9f2b1f63975d6b26dc15b5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cbd957aea2d8285cf9e2422ee6af1833
+    Hash: d2d542e69ba483a18985e9a15a086776
 HashAppended: 0
 ClassTypes:
-- Class: 1
-  Script: {instanceID: 0}
-- Class: 4
-  Script: {instanceID: 0}
-- Class: 21
-  Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
-- Class: 48
-  Script: {instanceID: 0}
-- Class: 58
-  Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 35c80754e0629fa4a9622954c02741cb, type: 3}
 - Class: 115
-  Script: {instanceID: 0}
-- Class: 212
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/WeaponPrefab/Ranged/Bow.prefab
+- Assets/Items/Bow.asset
 Dependencies: []

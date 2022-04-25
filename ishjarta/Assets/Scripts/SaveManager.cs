@@ -5,19 +5,12 @@ using System.Linq;
 
 public class SaveManager : MonoBehaviour
 {
-    public Player player;
-
     private static string fileName = "system";
 
-    private void Awake()
-    {
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         bool loaded;
-        SaveData.Instance = (SaveData)SerializationManager.Load(SerializationManager.savePath + @"/" + fileName + ".save", out loaded);
+        SaveData.Instance = (SaveData)SerializationManager.Load(fileName, out loaded);
         if (loaded)
         {
             Debug.Log("File loaded");
@@ -36,14 +29,9 @@ public class SaveManager : MonoBehaviour
 
             PlayerData playerData = SaveData.Instance.playerData;
 
-            player = PlayerManager.instance.player.GetComponent<Player>();
+            Player player = PlayerManager.instance.player.GetComponent<Player>();
 
             player.Init(playerData);
-
-            foreach(var passivItem in player.inventory.GetPassiveItems())
-            {
-                player.AddEffectRange(passivItem.OwnerEffects);
-            }
 
             var enemyData = SaveData.Instance.enemyData;
 
@@ -64,171 +52,228 @@ public class SaveManager : MonoBehaviour
                     Instantiate(rangedSlime, ed.position, Quaternion.identity);
                 }
             }
+            Utils.UnloadAssetPack(enemyBundle);
+
+
+            string asset = string.Empty;
 
             var meleeWeaponData = SaveData.Instance.meleeWeaponData;
 
-            var meleeWeaponBundle = Utils.loadAssetPack("meleeweapon");
+            var meleeWeaponPrefabBundle = Utils.loadAssetPack("meleeweaponprefab");
+            var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
 
-            foreach (var mw in meleeWeaponData)
+            foreach (var mwd in meleeWeaponData)
             {
-                if (mw.weaponType == (int)MeleeWeapon.MeleeWeaponType.sword)
+                //if (mwd.weaponType == (int)MeleeWeapon.MeleeWeaponType.sword)
+                //{
+                //    var sword = Utils.loadAssetFromAssetPack(meleeWeaponBundle, "sword");
+
+                //    //var meleeWeapon = ScriptableObject.CreateInstance<MeleeWeapon>();
+                //    //meleeWeapon.Init(mw);
+                //    //sword.GetComponent<ItemManager>().SetItem(meleeWeapon);
+
+                //    Instantiate(sword, mwd.position, Quaternion.identity);
+                //}
+                //else if (mwd.weaponType == (int)MeleeWeapon.MeleeWeaponType.redSword)
+                //{
+                //    var redsword = Utils.loadAssetFromAssetPack(meleeWeaponBundle, "redsword");
+
+                //    //var meleeWeapon = ScriptableObject.CreateInstance<MeleeWeapon>();
+                //    //meleeWeapon.Init(mw);
+                //    //redsword.GetComponent<ItemManager>().SetItem(meleeWeapon);
+
+                //    Instantiate(redsword, mwd.position, Quaternion.identity);
+                //}
+
+                asset =
+                    mwd.weaponType == (int)MeleeWeapon.MeleeWeaponType.sword ? "sword" :
+                    mwd.weaponType == (int)MeleeWeapon.MeleeWeaponType.redSword ? "redsword" :
+                    "";
+                if(asset != string.Empty)
                 {
-                    var sword = Utils.loadAssetFromAssetPack(meleeWeaponBundle, "sword");
+                    var meleeWeaponPrefab = Utils.loadAssetFromAssetPack(meleeWeaponPrefabBundle, asset);
+                    var meleeWeaponItem = Utils.loadItemFromAssetPack(meleeWeaponItemBundle, mwd.itemName);
+                    meleeWeaponPrefab.GetComponent<ItemManager>().SetItem(meleeWeaponItem);
 
-                    var meleeWeapon = ScriptableObject.CreateInstance<MeleeWeapon>();
-                    meleeWeapon.Init(mw);
-                    sword.GetComponent<ItemManager>().SetItem(meleeWeapon);
-
-                    Instantiate(sword, mw.position, Quaternion.identity);
-                }
-                else if (mw.weaponType == (int)MeleeWeapon.MeleeWeaponType.redSword)
-                {
-                    var redsword = Utils.loadAssetFromAssetPack(meleeWeaponBundle, "redsword");
-
-                    var meleeWeapon = ScriptableObject.CreateInstance<MeleeWeapon>();
-                    meleeWeapon.Init(mw);
-                    redsword.GetComponent<ItemManager>().SetItem(meleeWeapon);
-
-                    Instantiate(redsword, mw.position, Quaternion.identity);
+                    Instantiate(meleeWeaponPrefab, mwd.position, Quaternion.identity);
                 }
             }
+            Utils.UnloadAssetPack(meleeWeaponPrefabBundle);
+            Utils.UnloadAssetPack(meleeWeaponItemBundle);
 
 
             var rangedWeaponData = SaveData.Instance.rangedWeaponData;
 
-            var rangedWeaponBundle = Utils.loadAssetPack("rangedweapon");
+            var rangedWeaponPrefabBundle = Utils.loadAssetPack("rangedweaponprefab");
+            var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
 
-            foreach (var rw in rangedWeaponData)
+            foreach (var rwd in rangedWeaponData)
             {
-                if (rw.weaponType == (int)RangedWeapon.RangedWeaponType.bow)
+                //if (rw.weaponType == (int)RangedWeapon.RangedWeaponType.bow)
+                //{
+                //    var bow = Utils.loadAssetFromAssetPack(rangedWeaponBundle, "bow");
+
+                //    //var rangedWeapon = ScriptableObject.CreateInstance<RangedWeapon>();
+                //    //rangedWeapon.Init(rw);
+                //    //bow.GetComponent<ItemManager>().SetItem(rangedWeapon);
+
+                //    Instantiate(bow, rw.position, Quaternion.identity);
+                //}
+                asset =
+                   rwd.weaponType == (int)RangedWeapon.RangedWeaponType.bow ? "bow" :
+                   "";
+                if(asset != string.Empty)
                 {
-                    var bow = Utils.loadAssetFromAssetPack(rangedWeaponBundle, "bow");
+                    var rangedWeaponPrefab = Utils.loadAssetFromAssetPack(rangedWeaponPrefabBundle, asset);
+                    var rangedWeaponItem = Utils.loadItemFromAssetPack(rangedWeaponItemBundle, rwd.itemName);
+                    rangedWeaponPrefab.GetComponent<ItemManager>().SetItem(rangedWeaponItem);
 
-                    var rangedWeapon = ScriptableObject.CreateInstance<RangedWeapon>();
-                    rangedWeapon.Init(rw);
-                    bow.GetComponent<ItemManager>().SetItem(rangedWeapon);
-
-                    Instantiate(bow, rw.position, Quaternion.identity);
+                    Instantiate(rangedWeaponPrefab, rwd.position, Quaternion.identity);
                 }
             }
+            Utils.UnloadAssetPack(rangedWeaponPrefabBundle);
+            Utils.UnloadAssetPack(rangedWeaponItemBundle);
 
 
             var activeItemData = SaveData.Instance.activeItemData;
 
+            var activeItemPrefabBundle = Utils.loadAssetPack("activeitemprefab");
             var activeItemBundle = Utils.loadAssetPack("activeitem");
 
-            foreach (var ai in activeItemData)
+            foreach (var aid in activeItemData)
             {
-                if (ai.activeItemType == (int)ActiveItem.ActiveItemtype.braclet)
+                //if (ai.activeItemType == (int)ActiveItem.ActiveItemtype.speedBraclet)
+                //{
+                //    var braclet = Utils.loadAssetFromAssetPack(activeItemBundle, "speedbraclet");
+
+                //    //var activeItem = ScriptableObject.CreateInstance<ActiveItem>();
+                //    //activeItem.Init(ai);
+                //    //braclet.GetComponent<ItemManager>().SetItem(activeItem);
+
+                //    Instantiate(braclet, ai.position, Quaternion.identity);
+                //}
+                asset =
+                    aid.activeItemType == (int)ActiveItem.ActiveItemtype.speedBraclet ? "speedbraclet" :
+                    "";
+                if(asset != string.Empty)
                 {
-                    var braclet = Utils.loadAssetFromAssetPack(activeItemBundle, "basebraclet");
+                    var activeItemPrefab = Utils.loadAssetFromAssetPack(activeItemPrefabBundle, asset);
+                    var activeItem = Utils.loadItemFromAssetPack(activeItemBundle, aid.itemName);
+                    activeItemPrefab.GetComponent<ItemManager>().SetItem(activeItem);
 
-                    var activeItem = ScriptableObject.CreateInstance<ActiveItem>();
-                    activeItem.Init(ai);
-                    braclet.GetComponent<ItemManager>().SetItem(activeItem);
-
-                    Instantiate(braclet, ai.position, Quaternion.identity);
+                    Instantiate(activeItemPrefab, aid.position, Quaternion.identity);
                 }
             }
+            Utils.UnloadAssetPack(activeItemPrefabBundle);
+            Utils.UnloadAssetPack(activeItemBundle);
 
 
             var passivItemData = SaveData.Instance.passivItemData;
 
+            var passivItemPrefabBundle = Utils.loadAssetPack("passivitemprefab");
             var passivItemBundle = Utils.loadAssetPack("passivitem");
 
-            foreach (var pi in passivItemData)
+            foreach (var pid in passivItemData)
             {
-                if (pi.passivItemType == (int)PassiveItem.PassivItemtype.flower)
+                //if (pi.passivItemType == (int)PassiveItem.PassivItemtype.flower)
+                //{
+                //    var flower = Utils.loadAssetFromAssetPack(passivItemBundle, "baseflower");
+
+                //    //var passivItem = ScriptableObject.CreateInstance<PassiveItem>();
+                //    //passivItem.Init(pi);
+                //    //flower.GetComponent<ItemManager>().SetItem(passivItem);
+
+                //    Instantiate(flower, pi.position, Quaternion.identity);
+                //}
+                asset =
+                    pid.passivItemType == (int)PassiveItem.PassivItemtype.speedFlower ? "speedflower" :
+                    "";
+                if(asset != string.Empty)
                 {
-                    var flower = Utils.loadAssetFromAssetPack(passivItemBundle, "baseflower");
+                    var passivItemPrefab = Utils.loadAssetFromAssetPack(passivItemPrefabBundle, asset);
+                    var passivItem = Utils.loadItemFromAssetPack(passivItemBundle, pid.itemName);
+                    passivItemPrefab.GetComponent<ItemManager>().SetItem(passivItem);
 
-                    var passivItem = ScriptableObject.CreateInstance<PassiveItem>();
-                    passivItem.Init(pi);
-                    flower.GetComponent<ItemManager>().SetItem(passivItem);
-
-                    Instantiate(flower, pi.position, Quaternion.identity);
+                    Instantiate(passivItemPrefab, pid.position, Quaternion.identity);
                 }
             }
+            Utils.UnloadAssetPack(passivItemPrefabBundle);
+            Utils.UnloadAssetPack(passivItemBundle);
 
 
             var usableItemData = SaveData.Instance.usableItemData;
 
+            var usableItemPrefabBundle = Utils.loadAssetPack("usableitemprefab");
             var usableItemBundle = Utils.loadAssetPack("usableitem");
 
-            foreach (var ui in usableItemData)
+            foreach (var uid in usableItemData)
             {
-                if (ui.usabelItemType == (int)UsableItem.UsableItemtype.coin)
+                //if (ui.usabelItemType == (int)UsableItem.UsableItemtype.coin)
+                //{
+                //    var coin = Utils.loadAssetFromAssetPack(usableItemBundle, "coin");
+
+                //    //var usableItem = ScriptableObject.CreateInstance<UsableItem>();
+                //    //usableItem.Init(ui);
+                //    //coin.GetComponent<ItemManager>().SetItem(usableItem);
+
+                //    Instantiate(coin, ui.position, Quaternion.identity);
+                //}
+                //else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.key)
+                //{
+                //    var key = Utils.loadAssetFromAssetPack(usableItemBundle, "key");
+
+                //    //var usableItem = ScriptableObject.CreateInstance<UsableItem>();
+                //    //usableItem.Init(ui);
+                //    //key.GetComponent<ItemManager>().SetItem(usableItem);
+
+                //    Instantiate(key, ui.position, Quaternion.identity);
+                //}
+                //else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.bomb)
+                //{
+                //    var bomb = Utils.loadAssetFromAssetPack(usableItemBundle, "bomb");
+
+                //    //var usableItem = ScriptableObject.CreateInstance<UsableItem>();
+                //    //usableItem.Init(ui);
+                //    //bomb.GetComponent<ItemManager>().SetItem(usableItem);
+
+                //    Instantiate(bomb, ui.position, Quaternion.identity);
+                //}
+                //else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.armor)
+                //{
+                //    var armor = Utils.loadAssetFromAssetPack(usableItemBundle, "armor");
+
+                //    //var usableItem = ScriptableObject.CreateInstance<UsableItem>();
+                //    //usableItem.Init(ui);
+                //    //armor.GetComponent<ItemManager>().SetItem(usableItem);
+
+                //    Instantiate(armor, ui.position, Quaternion.identity);
+                //}
+                asset =
+                    uid.usabelItemType == (int)UsableItem.UsableItemtype.coin ? "coin" :
+                    uid.usabelItemType == (int)UsableItem.UsableItemtype.key ? "key" :
+                    uid.usabelItemType == (int)UsableItem.UsableItemtype.bomb ? "bomb" :
+                    uid.usabelItemType == (int)UsableItem.UsableItemtype.armor ? "armor" :
+                    "";
+                if(asset != string.Empty)
                 {
-                    var coin = Utils.loadAssetFromAssetPack(passivItemBundle, "coin");
+                    var usabelItemPrefab = Utils.loadAssetFromAssetPack(usableItemPrefabBundle, asset);
+                    var usabelItem = Utils.loadItemFromAssetPack(usableItemBundle, uid.itemName);
+                    usabelItemPrefab.GetComponent<ItemManager>().SetItem(usabelItem);
 
-                    var usableItem = ScriptableObject.CreateInstance<UsableItem>();
-                    usableItem.Init(ui);
-                    coin.GetComponent<ItemManager>().SetItem(usableItem);
-
-                    Instantiate(coin, ui.position, Quaternion.identity);
-                }
-                else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.key)
-                {
-                    var key = Utils.loadAssetFromAssetPack(passivItemBundle, "key");
-
-                    var usableItem = ScriptableObject.CreateInstance<UsableItem>();
-                    usableItem.Init(ui);
-                    key.GetComponent<ItemManager>().SetItem(usableItem);
-
-                    Instantiate(key, ui.position, Quaternion.identity);
-                }
-                else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.bomb)
-                {
-                    var bomb = Utils.loadAssetFromAssetPack(passivItemBundle, "bomb");
-
-                    var usableItem = ScriptableObject.CreateInstance<UsableItem>();
-                    usableItem.Init(ui);
-                    bomb.GetComponent<ItemManager>().SetItem(usableItem);
-
-                    Instantiate(bomb, ui.position, Quaternion.identity);
-                }
-                else if (ui.usabelItemType == (int)UsableItem.UsableItemtype.armor)
-                {
-                    var armor = Utils.loadAssetFromAssetPack(passivItemBundle, "armor");
-
-                    var usableItem = ScriptableObject.CreateInstance<UsableItem>();
-                    usableItem.Init(ui);
-                    armor.GetComponent<ItemManager>().SetItem(usableItem);
-
-                    Instantiate(armor, ui.position, Quaternion.identity);
+                    Instantiate(usabelItemPrefab, uid.position, Quaternion.identity);
                 }
             }
+            Utils.UnloadAssetPack(usableItemPrefabBundle);
+            Utils.UnloadAssetPack(usableItemBundle);
+
 
             SaveData.Instance.ClearAll();
-
-
-            //PlayerData pd = (PlayerData)SaveData.Instance.playerData;
-            //player.Init(pd.currentHealth, pd.maxHealth, pd.baseHealth, pd.healthModifier,
-            //pd.resistance, pd.currentResistance, pd.movementSpeed, pd.speedModifier, pd.baseDamage,
-            //pd.damageModifier, pd.attackRate, pd.range);
-            //player.transform.position = pd.position;
-
-
-            //if(SaveData.Instance.enemyData.Count > 0)
-            //{
-            //    EnemyData ed = (EnemyData)SaveData.Instance.enemyData[0];
-
-            //    var enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].GetComponent<Enemy>();
-
-            //    enemy.Init(ed.currentHealth, ed.maxHealth, ed.baseHealth, ed.healthModifier,
-            //        ed.resistance, ed.currentResistance, ed.movementSpeed, ed.speedModifier, ed.baseDamage,
-            //        ed.damageModifier, ed.attackRate, ed.range);
-            //    enemy.transform.position = ed.position;
-            //}
         }
+        HUDManager.instance.UpdateAllSpritesAndText();
     }
 
     public void OnApplicationQuit()
     {
-        //SaveData.Instance.playerData = new PlayerData(player);
-        //Debug.Log("Player");
-        //SerializationManager.Save(fileName, SaveData.Instance);
-
         var objects = GameObject.FindObjectsOfType(typeof(MonoBehaviour));
 
         for (int i = 0; i < objects.Length; i++)

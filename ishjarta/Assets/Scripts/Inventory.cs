@@ -75,25 +75,66 @@ public class Inventory :MonoBehaviour{
     private bool isInventoryInitialized = false;
     public void Init(InventoryData inventoryData)
     {
-        Debug.Log("Inventory:" + inventoryData);
         if (!isInventoryInitialized)
         {
             isInventoryInitialized = true;
 
-            MeleeWeapon.Init(inventoryData.meleeWeapon);
-            RangedWeapon.Init(inventoryData.rangedWeapon);
-            CurrentWeapon = inventoryData.IsCurrentWeaponMelee ? MeleeWeapon : RangedWeapon;
-            PassiveItems.AddRange(inventoryData.passiveItems.Select(x =>
+            if (inventoryData.meleeWeapon != null)
             {
-                var passivItem = ScriptableObject.CreateInstance<PassiveItem>();
-                passivItem.Init(x);
-                return passivItem;
-            }));
-            ActiveItem.Init(inventoryData.activeItem);
+                var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
+                AddItem((MeleeWeapon)Utils.loadItemFromAssetPack(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName));
+                Utils.UnloadAssetPack(meleeWeaponItemBundle);
+            }
+
+            if (inventoryData.rangedWeapon != null)
+            {
+                var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
+                AddItem((RangedWeapon)Utils.loadItemFromAssetPack(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName));
+                Utils.UnloadAssetPack(rangedWeaponItemBundle);
+            }
+
+            if (inventoryData.IsCurrentWeaponMelee && MeleeWeapon != null && CurrentWeapon is RangedWeapon)
+                ChangeWeapon();
+
+            var passivItemBundle = Utils.loadAssetPack("passivitem");
+            inventoryData.passiveItems.ForEach(x =>
+            {
+                AddItem((PassiveItem)Utils.loadItemFromAssetPack(passivItemBundle, x.itemName));
+            });
+            Utils.UnloadAssetPack(passivItemBundle);
+
+            if (inventoryData.activeItem != null)
+            {
+                var activeItemBundle = Utils.loadAssetPack("activeitem");
+                AddItem((ActiveItem)Utils.loadItemFromAssetPack(activeItemBundle, inventoryData.activeItem.itemName));
+                Utils.UnloadAssetPack(activeItemBundle);
+            }
+
             Coins.Init(inventoryData.coins);
             Bombs.Init(inventoryData.bombs);
             Keys.Init(inventoryData.keys);
             Armor.Init(inventoryData.armor);
+
+            //if(inventoryData.meleeWeapon != null)
+            //    MeleeWeapon.Init(inventoryData.meleeWeapon);
+
+            //if (inventoryData.rangedWeapon != null)
+            //    RangedWeapon.Init(inventoryData.rangedWeapon);
+
+            //CurrentWeapon = inventoryData.IsCurrentWeaponMelee ? MeleeWeapon : RangedWeapon;
+
+            //PassiveItems.AddRange(inventoryData.passiveItems.Select(x =>
+            //{
+            //    var passivItem = ScriptableObject.CreateInstance<PassiveItem>();
+            //    passivItem.Init(x);
+            //    return passivItem;
+            //}));
+            //Debug.Log($"ActiveItem: {inventoryData.activeItem}");
+            //ActiveItem.Init(inventoryData.activeItem);
+            //Coins.Init(inventoryData.coins);
+            //Bombs.Init(inventoryData.bombs);
+            //Keys.Init(inventoryData.keys);
+            //Armor.Init(inventoryData.armor);
         }
     }
     #endregion SaveSystem
@@ -112,7 +153,6 @@ public class Inventory :MonoBehaviour{
         bool result = false;
         if (item != null)
         {
-            
 
             if (item.GetType() == typeof(UsableItem))
             {
@@ -139,7 +179,8 @@ public class Inventory :MonoBehaviour{
             {
                 result = false;
             }
-            hudManager.UpdateAllSpritesAndText();
+            if(hudManager != null)
+                hudManager.UpdateAllSpritesAndText();
             PrintInventory();
         }
 
@@ -161,7 +202,8 @@ public class Inventory :MonoBehaviour{
             CurrentWeapon = RangedWeapon;
             player.AddEffectRange(CurrentWeapon.OwnerEffects);
         }
-        hudManager.UpdateWeaponSprites();
+        if(hudManager != null)
+            hudManager.UpdateWeaponSprites();
         player.SetBaseDamage(CurrentWeapon.Damage);
         PrintInventory();
     }

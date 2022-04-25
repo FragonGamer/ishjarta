@@ -106,7 +106,6 @@ public class StatusEffectHandler : ScriptableObject
         {
             if(spe.IsPermanent)
             {
-                Debug.Log("MOIN");
                 SpeedStat.PermanentSpeed.Add(spe);
             }
             else

@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1290827617, guid: 87ba730b233bb9141b7f379d3bf98808, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5605398896210301529, guid: 87ba730b233bb9141b7f379d3bf98808, type: 3}
       propertyPath: <ProjectileVelocity>k__BackingField
       value: 1
@@ -468,6 +472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 7939937297367134493, guid: 87ba730b233bb9141b7f379d3bf98808, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8253690455608401491, guid: 87ba730b233bb9141b7f379d3bf98808, type: 3}
       propertyPath: baseDamage
       value: 20
@@ -497,12 +505,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1290827615, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1290827617, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 35605761}
+    - target: {fileID: 1290827617, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -550,6 +562,10 @@ PrefabInstance:
     - target: {fileID: 7939937297367134493, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939937297367134493, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8253690455608401491, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: baseDamage
