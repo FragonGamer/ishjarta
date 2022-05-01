@@ -7,54 +7,57 @@ using UnityEngine.UI;
 public class BaseMenuController : MonoBehaviour
 {
     [Header("Sound Setting")]
-    [SerializeField] private TMP_Text volumeTextValue = null;
-    [SerializeField] private Slider volumeSlider = null;
-    [SerializeField] private float defaultVolume = 0.5f;
+    [SerializeField] protected TMP_Text volumeTextValue = null;
+    [SerializeField] protected Slider volumeSlider = null;
+    [SerializeField] protected float defaultVolume = 0.5f;
 
     [Header("Gameplay Setting")]
-    [SerializeField] private TMP_Text controllerSensitivityTextValue = null;
-    [SerializeField] private Slider controllerSensitivitySlider = null;
-    [SerializeField] private int defaultControllerSensitivity = 5;
+    [SerializeField] protected TMP_Text controllerSensitivityTextValue = null;
+    [SerializeField] protected Slider controllerSensitivitySlider = null;
+    [SerializeField] protected int defaultControllerSensitivity = 5;
     public int mainControllerSensitivity = 5;
 
     [Header("Graphic Setting")]
-    [SerializeField] private TMP_Text brightnessTextValue = null;
-    [SerializeField] private Slider brightnessSlider = null;
-    [SerializeField] private int defaultBrightness = 5;
+    [SerializeField] protected TMP_Text brightnessTextValue = null;
+    [SerializeField] protected Slider brightnessSlider = null;
+    [SerializeField] protected int defaultBrightness = 50;
 
     [Space(10)]
-    [SerializeField] private TMP_Dropdown qualityDropdown;
-    [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField] protected TMP_Dropdown qualityDropdown;
+    [SerializeField] protected Toggle fullScreenToggle;
 
-    private int qualityLevel;
-    private bool isFullScreen;
-    private float brightnessLevel;
+    protected int qualityLevel;
+    protected bool isFullScreen;
+    protected float brightnessLevel;
 
     [Header("Resolution Dropdowns")]
-    public TMP_Dropdown resolutionDropdown;
-    public Resolution[] resolutions;
+    [SerializeField] protected TMP_Dropdown resolutionDropdown = null;
+    protected Resolution[] resolutions;
 
     private void Start()
     {
-        //resolutions = Screen.resolutions;
-        //resolutionDropdown.ClearOptions();
+        if(resolutionDropdown != null)
+        {
+            resolutions = Screen.resolutions;
+            resolutionDropdown.ClearOptions();
 
-        //List<string> options = new List<string>();
+            List<string> options = new List<string>();
 
-        //int currentResolutionIndex = 0;
+            int currentResolutionIndex = 0;
 
-        //for (int i = 0; i < resolutions.Length; i++)
-        //{
-        //    string option = resolutions[i].width + " x " + resolutions[i].height;
-        //    options.Add(option);
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                string option = resolutions[i].width + " x " + resolutions[i].height;
+                options.Add(option);
 
-        //    if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
-        //        currentResolutionIndex = i;
-        //}
+                if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+                    currentResolutionIndex = i;
+            }
 
-        //resolutionDropdown.AddOptions(options);
-        //resolutionDropdown.value = currentResolutionIndex;
-        //resolutionDropdown.RefreshShownValue();
+            resolutionDropdown.AddOptions(options);
+            resolutionDropdown.value = currentResolutionIndex;
+            resolutionDropdown.RefreshShownValue();
+        }
     }
 
     public void SetVolume(float volume)

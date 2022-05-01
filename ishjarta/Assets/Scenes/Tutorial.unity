@@ -3983,13 +3983,14 @@ GameObject:
   - component: {fileID: 473917329}
   - component: {fileID: 473917328}
   - component: {fileID: 473917332}
+  - component: {fileID: 473917333}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &473917328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4097,13 +4098,35 @@ MonoBehaviour:
   mainControllerSensitivity: 5
   brightnessTextValue: {fileID: 495969210}
   brightnessSlider: {fileID: 1122058142}
-  defaultBrightness: 5
+  defaultBrightness: 50
   qualityDropdown: {fileID: 1209351068}
   fullScreenToggle: {fileID: 1739406199}
   resolutionDropdown: {fileID: 880163099}
   gameplayButton: {fileID: 1765199169}
   soundButton: {fileID: 1543400279}
   graphicsButton: {fileID: 11680253}
+--- !u!114 &473917333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473917327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8f9b216f5d0fa4883bda3b110e1711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canUse: 1
+  menuController: {fileID: 473917332}
+  volumeTextValue: {fileID: 1199780364}
+  volumeSlider: {fileID: 31471424}
+  brightnessTextValue: {fileID: 495969210}
+  brightnessSlider: {fileID: 1122058142}
+  qualityDropdown: {fileID: 1209351068}
+  fullScreenToggle: {fileID: 1739406199}
+  controllerSensitivityTextValue: {fileID: 1321908101}
+  controllerSensitivitySlider: {fileID: 1155229346}
 --- !u!1 &485163996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4336,7 +4359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7358,9 +7381,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1514475350}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 5
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
