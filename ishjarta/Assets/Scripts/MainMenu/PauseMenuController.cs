@@ -42,4 +42,13 @@ public class PauseMenuController : BaseMenuController
         SceneManager.LoadScene(mainMenu);
     }
 
+
+    [Header("PauseMenu")]
+    [SerializeField] private GameObject pauseMenu = null;
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+    }
 }
