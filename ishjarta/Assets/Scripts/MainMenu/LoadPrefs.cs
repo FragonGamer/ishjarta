@@ -8,7 +8,7 @@ public class LoadPrefs : MonoBehaviour
 {
     [Header("Generals Setting")]
     [SerializeField] private bool canUse;
-    [SerializeField] private MenuController menuController;
+    [SerializeField] private BaseMenuController menuController;
 
     [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
