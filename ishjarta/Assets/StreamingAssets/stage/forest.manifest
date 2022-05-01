@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 711471933
+CRC: 776265371
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9a0ff3b5f3e83e6f86a8b3850d01ed74
+    Hash: 729a4cb67b01ce1590805c7cf3cf9524
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f0a2e9ea6946e37912ca4c9b8a12c452
+    Hash: 9b8ab83e5ef9f027cdb381d314e996b2
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -44,8 +44,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
@@ -58,17 +56,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5035d1f88ce307844afea1ac946f2af2, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: a57232a70f6d52045bd243cf66f51aa3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 35c80754e0629fa4a9622954c02741cb, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 52baf63fa2121d949aab69a9451aacb9, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -100,7 +92,4 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/9x5 3.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/activeitemprefab
 - /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/meleeweaponprefab
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab

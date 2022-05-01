@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3381873186
+CRC: 1354382292
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 60fe51b83a630d01b4157ae843a06ddf
+    Hash: 7a1a45d7da2724b981f58c99e5e1b891
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7b25c37c0897ce8896f4b32cccf0eb9
@@ -34,5 +34,4 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/resources/Prefabs/WeaponPrefab/Ranged/Bow.prefab
-Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweapon
+Dependencies: []

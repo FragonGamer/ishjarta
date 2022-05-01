@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
-public class Inventory :MonoBehaviour{
+public class Inventory : MonoBehaviour
+{
     #region Singleton
     public static Inventory instance;
     private void Awake()
@@ -44,7 +46,8 @@ public class Inventory :MonoBehaviour{
     public MeleeWeapon GetMeleeWeapon()
     {
         return MeleeWeapon;
-    }public RangedWeapon GetRangedWeapon()
+    }
+    public RangedWeapon GetRangedWeapon()
     {
         return RangedWeapon;
     }
@@ -156,18 +159,18 @@ public class Inventory :MonoBehaviour{
 
             if (item.GetType() == typeof(UsableItem))
             {
-                AddUsableItem((UsableItem) item);
+                AddUsableItem((UsableItem)item);
                 result = true;
             }
             else if (item.GetType() == typeof(PassiveItem) || item.GetType().IsSubclassOf(typeof(PassiveItem)))
             {
-                AddPassiveItem((PassiveItem) item);
+                AddPassiveItem((PassiveItem)item);
                 result = true;
             }
             else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
             {
                 Debug.Log("active item");
-                AddActiveItem((ActiveItem) item);
+                AddActiveItem((ActiveItem)item);
                 result = true;
             }
             else if (item.GetType().IsSubclassOf(typeof(Weapon)))
@@ -179,18 +182,18 @@ public class Inventory :MonoBehaviour{
             {
                 result = false;
             }
-            if(hudManager != null)
+            if (hudManager != null)
                 hudManager.UpdateAllSpritesAndText();
             PrintInventory();
         }
 
         return result;
-        
+
     }
 
     public void ChangeWeapon()
-    {   
-        if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && MeleeWeapon != null )
+    {
+        if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && MeleeWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = MeleeWeapon;
@@ -202,7 +205,7 @@ public class Inventory :MonoBehaviour{
             CurrentWeapon = RangedWeapon;
             player.AddEffectRange(CurrentWeapon.OwnerEffects);
         }
-        if(hudManager != null)
+        if (hudManager != null)
             hudManager.UpdateWeaponSprites();
         player.SetBaseDamage(CurrentWeapon.Damage);
         PrintInventory();
@@ -210,19 +213,20 @@ public class Inventory :MonoBehaviour{
 
     private void AddWeapon(Item item)
     {
+        
         Type weapontype = item.GetType();
-        if (weapontype.IsSubclassOf(typeof(MeleeWeapon)))
+        if (weapontype.IsSubclassOf(typeof(MeleeWeapon)) || weapontype == typeof(MeleeWeapon))
         {
-            if (MeleeWeapon!=null)
+            if (MeleeWeapon != null)
             {
                 DropItem(MeleeWeapon);
                 //player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
                 CurrentWeapon = null;
             }
-            MeleeWeapon = (MeleeWeapon) item;
+            MeleeWeapon = (MeleeWeapon)item;
 
         }
-        else if (weapontype.IsSubclassOf(typeof(RangedWeapon)))
+        else if (weapontype.IsSubclassOf(typeof(RangedWeapon)) || weapontype == typeof(RangedWeapon))
         {
             if (RangedWeapon != null)
             {
@@ -230,7 +234,7 @@ public class Inventory :MonoBehaviour{
                 //player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
                 CurrentWeapon = null;
             }
-            RangedWeapon = (RangedWeapon) item;
+            RangedWeapon = (RangedWeapon)item;
 
         }
 
@@ -255,7 +259,7 @@ public class Inventory :MonoBehaviour{
             ChangeWeapon();
         }
 
-        
+
         Debug.Log(CurrentWeapon.name);
         CurrentWeapon = (Weapon)item;
     }
@@ -340,7 +344,7 @@ public class Inventory :MonoBehaviour{
     /// <param name="item"></param>
     public void AddActiveItem(ActiveItem item)
     {
-        if(this.ActiveItem != null)
+        if (this.ActiveItem != null)
             DropItem(this.ActiveItem);
 
         this.ActiveItem = item;
@@ -374,21 +378,21 @@ public class Inventory :MonoBehaviour{
             Debug.Log(item.GetType());
             if (item.GetType() == typeof(PassiveItem))
             {
-                if(PassiveItems.Remove((PassiveItem) item))
+                if (PassiveItems.Remove((PassiveItem)item))
                     player.RemoveEffectRange(item.OwnerEffects);
 
             }
             else if (item.GetType() == typeof(UsableItem))
             {
-                DropUsableItem((UsableItem) item);
+                DropUsableItem((UsableItem)item);
             }
-            else if (item.GetType() == typeof(MeleeWeapon)|| item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
+            else if (item.GetType() == typeof(MeleeWeapon) || item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
             {
                 SpawnItem(item);
                 MeleeWeapon = null;
 
             }
-            else if (item.GetType() == typeof(RangedWeapon)|| item.GetType().IsSubclassOf(typeof(RangedWeapon)))
+            else if (item.GetType() == typeof(RangedWeapon) || item.GetType().IsSubclassOf(typeof(RangedWeapon)))
             {
                 SpawnItem(item);
                 RangedWeapon = null;
@@ -400,7 +404,7 @@ public class Inventory :MonoBehaviour{
             }
         }
     }
-    
+
     private void SpawnItem(Item item)
     {
         Vector2 playerPos = gameObject.transform.position;
@@ -408,52 +412,52 @@ public class Inventory :MonoBehaviour{
         if (type == typeof(MeleeWeapon) || item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
         {
             GameObject meleeWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Melee/{item.name}") as GameObject;
-            Instantiate(meleeWeapon,playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
+            Instantiate(meleeWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
         else if (type == typeof(RangedWeapon) || item.GetType().IsSubclassOf(typeof(RangedWeapon)))
-        { 
+        {
             GameObject rangedWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Ranged/{item.name}") as GameObject;
-            Instantiate(rangedWeapon,playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
+            Instantiate(rangedWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
         else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
             GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
-            Instantiate(activeItem, playerPos + new Vector2(0,-0.25f),gameObject.transform.rotation);
+            Instantiate(activeItem, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
-        
+
     }
     private void DropUsableItem(UsableItem item)
     {
-        
-            switch (item.type)
-            {
 
-                case UsableItem.UsableItemtype.bomb:
-                    if (Bombs.Amount - item.Amount >= 0)
-                    {
-                        Bombs.Amount -= item.Amount;
-                    }
+        switch (item.type)
+        {
 
-                    break;
-                case UsableItem.UsableItemtype.key:
-                    if (Keys.Amount - item.Amount >= 0)
-                    {
-                        Keys.Amount -= item.Amount;
-                    }
+            case UsableItem.UsableItemtype.bomb:
+                if (Bombs.Amount - item.Amount >= 0)
+                {
+                    Bombs.Amount -= item.Amount;
+                }
 
-                    break;
-                case UsableItem.UsableItemtype.coin:
-                    if (Coins.Amount - item.Amount >= 0)
-                    {
-                        Coins.Amount -= item.Amount;
-                    }
+                break;
+            case UsableItem.UsableItemtype.key:
+                if (Keys.Amount - item.Amount >= 0)
+                {
+                    Keys.Amount -= item.Amount;
+                }
 
-                    break;
-            }
-        
+                break;
+            case UsableItem.UsableItemtype.coin:
+                if (Coins.Amount - item.Amount >= 0)
+                {
+                    Coins.Amount -= item.Amount;
+                }
+
+                break;
+        }
+
 
     }
-    
+
     //Print to log console
     private void PrintInventory()
     {
@@ -491,7 +495,7 @@ public class Inventory :MonoBehaviour{
             case ActiveItemState.active:
                 if (activeTime > 0)
                     activeTime -= Time.deltaTime;
-                else  
+                else
                 {
                     state = ActiveItemState.cooldown;
                     cooldownTime = ActiveItem.cooldownTime;

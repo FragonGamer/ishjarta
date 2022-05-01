@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
             }
         }
         // 3 is obstacle layer and 6 is wall layer
-        else if (collider.gameObject.layer == 3 || collider.gameObject.layer == 6 || collider.CompareTag("Obstacle"))
+        else if (collider.gameObject.layer == 3 || collider.gameObject.layer == 6 || collider.CompareTag("Obstacle") || collider.CompareTag("Door"))
         {
             Destroy(this.gameObject);
         }
