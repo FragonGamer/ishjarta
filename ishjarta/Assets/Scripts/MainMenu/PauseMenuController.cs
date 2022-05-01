@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,7 +12,29 @@ public class PauseMenuController : BaseMenuController
     [SerializeField] private TMP_Text gameplayButton = null;
     [SerializeField] private TMP_Text soundButton = null;
     [SerializeField] private TMP_Text graphicsButton = null;
+    [SerializeField] private GameObject pauseMenuContainer = null;
+    [SerializeField] private GameObject HUD = null;
+    [SerializeField] private GameObject pauseImageContainer = null;
+    InputMaster inputMaster;
+    private void Awake()
+    {
+        inputMaster = new InputMaster();
+    }
 
+    private void OnEnable()
+    {
+        inputMaster.Enable();
+    }
+    private void OnDisable()
+    {
+        inputMaster.Disable();
+    }
+
+    private void Start()
+    {
+        inputMaster.Game.PauseMenu.performed += PauseMenuAction;
+        HUD = GameObject.FindGameObjectWithTag("HUD");
+    }
     public void HighlightOnlyGameplayButton()
     {
         CancelHighlightingOfButton();
@@ -48,7 +71,29 @@ public class PauseMenuController : BaseMenuController
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        pauseMenuContainer.SetActive(false);
+        pauseImageContainer.SetActive(false);
+        if (HUD!=null)
+        {
+            HUD.SetActive(true);
+        }
         Time.timeScale = 1f;
+    }
+
+
+    private void PauseMenuAction(InputAction.CallbackContext obj)
+    {
+        if (pauseMenuContainer != null)
+        {
+            pauseMenuContainer.SetActive(!pauseMenuContainer.activeSelf);
+            if (HUD != null)
+            {
+                HUD.SetActive(!HUD.activeSelf);
+            }
+            if (pauseImageContainer != null)
+            {
+                pauseImageContainer.SetActive(!pauseImageContainer.activeSelf);
+            }
+        }
     }
 }

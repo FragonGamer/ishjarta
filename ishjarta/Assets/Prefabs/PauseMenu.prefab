@@ -2994,7 +2994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4943108203425468491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3054,6 +3054,9 @@ MonoBehaviour:
   gameplayButton: {fileID: 0}
   soundButton: {fileID: 0}
   graphicsButton: {fileID: 0}
+  pauseMenuContainer: {fileID: 0}
+  HUD: {fileID: 0}
+  pauseImageContainer: {fileID: 0}
   pauseMenu: {fileID: 0}
 --- !u!114 &4943108203425468484
 MonoBehaviour:
@@ -3083,6 +3086,9 @@ MonoBehaviour:
   gameplayButton: {fileID: 0}
   soundButton: {fileID: 0}
   graphicsButton: {fileID: 0}
+  pauseMenuContainer: {fileID: 0}
+  HUD: {fileID: 0}
+  pauseImageContainer: {fileID: 0}
   pauseMenu: {fileID: 0}
 --- !u!1 &4943108203447590805
 GameObject:
@@ -5804,7 +5810,7 @@ GameObject:
   - component: {fileID: 4943108203933315048}
   m_Layer: 5
   m_Name: PauseMenu
-  m_TagString: Untagged
+  m_TagString: MainMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5923,6 +5929,9 @@ MonoBehaviour:
   gameplayButton: {fileID: 4943108203581408572}
   soundButton: {fileID: 4943108202796589866}
   graphicsButton: {fileID: 4943108204261208448}
+  pauseMenuContainer: {fileID: 4943108203425468488}
+  HUD: {fileID: 0}
+  pauseImageContainer: {fileID: 4943108203110126444}
   pauseMenu: {fileID: 4943108203933315058}
 --- !u!114 &4943108203933315048
 MonoBehaviour:

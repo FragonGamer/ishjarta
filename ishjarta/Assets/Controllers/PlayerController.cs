@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         inputMaster.Player.UseActiveItem.performed += UseActiveItemAction;
         inputMaster.Player.Reload.performed += ReloadAction;
     }
+
 
     private void MoveAction(InputAction.CallbackContext context)
     {

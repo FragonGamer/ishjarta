@@ -348,6 +348,34 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Game"",
+            ""id"": ""37c70249-2f55-4b28-b4e6-df8cd5ca56d9"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""23e728cf-56e8-4184-970d-0cd44fb3a6f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""32a5ca3d-6eec-47b9-b446-60dc2a40395e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -377,6 +405,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         // References
         m_References = asset.FindActionMap("References", throwIfNotFound: true);
         m_References_MousePosition = m_References.FindAction("MousePosition", throwIfNotFound: true);
+        // Game
+        m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
+        m_Game_PauseMenu = m_Game.FindAction("PauseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -562,6 +593,39 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         }
     }
     public ReferencesActions @References => new ReferencesActions(this);
+
+    // Game
+    private readonly InputActionMap m_Game;
+    private IGameActions m_GameActionsCallbackInterface;
+    private readonly InputAction m_Game_PauseMenu;
+    public struct GameActions
+    {
+        private @InputMaster m_Wrapper;
+        public GameActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseMenu => m_Wrapper.m_Game_PauseMenu;
+        public InputActionMap Get() { return m_Wrapper.m_Game; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
+        public void SetCallbacks(IGameActions instance)
+        {
+            if (m_Wrapper.m_GameActionsCallbackInterface != null)
+            {
+                @PauseMenu.started -= m_Wrapper.m_GameActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnPauseMenu;
+            }
+            m_Wrapper.m_GameActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
+            }
+        }
+    }
+    public GameActions @Game => new GameActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -595,5 +659,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     public interface IReferencesActions
     {
         void OnMousePosition(InputAction.CallbackContext context);
+    }
+    public interface IGameActions
+    {
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
 }
