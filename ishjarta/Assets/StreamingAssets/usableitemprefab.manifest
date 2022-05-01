@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 353343602
+CRC: 4061141754
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f2458402c745efae828dd131ec3af376
+    Hash: 839e0f92ef9b2ccd9da36c333c2da28c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0b4818689b230ac1b91de642fb75f629
+    Hash: 9dc8bbdae72b194d361b975f2e7066e6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +33,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/Armor.prefab
+- Assets/resources/Prefabs/UsableItem/Armor.prefab
 Dependencies:
-- D:/SYP/ishjarta/ishjarta/Assets/StreamingAssets/usableitem
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitem

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1191579769
+CRC: 3274060036
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e0ab70c7c39f009495acdf303b518928
+    Hash: b682390fc45fe284951cbd73138de165
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5e9b6a31f0c3a6e7d9d58bff9f4ac0eb
+    Hash: 3dc7dba7b7c50a13e7f7c4130eb5d466
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,4 +36,4 @@ Assets:
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
 - Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
 Dependencies:
-- D:/SYP/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/passivitem

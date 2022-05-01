@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3593788388
+CRC: 3948975178
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 813baaf74ed50121244c9240e4009ee5
+    Hash: 29455db52eea5e83a217008c2c4b57dc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f4b05310e9cd77f9878d27be331d1d46
+    Hash: 16ed63a5d864349176405c0c14622ea8
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,4 +36,4 @@ Assets:
 - Assets/resources/Prefabs/WeaponPrefab/Melee/Sword.prefab
 - Assets/resources/Prefabs/WeaponPrefab/Melee/RedSword.prefab
 Dependencies:
-- D:/SYP/ishjarta/ishjarta/Assets/StreamingAssets/meleeweapon
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/meleeweapon

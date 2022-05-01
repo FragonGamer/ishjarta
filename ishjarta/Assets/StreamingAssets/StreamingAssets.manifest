@@ -1,55 +1,55 @@
 ManifestFileVersion: 0
-CRC: 4153322365
+CRC: 4282577268
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
+      Name: stage/forest
+      Dependencies:
+        Dependency_0: meleeweaponprefab
+        Dependency_1: rangedweaponprefab
+        Dependency_2: activeitemprefab
+        Dependency_3: enemies/forest
+    Info_1:
       Name: player
       Dependencies: {}
-    Info_1:
-      Name: forrest_stage
-      Dependencies:
-        Dependency_0: level
     Info_2:
-      Name: tilemaps
-      Dependencies: {}
+      Name: meleeweaponprefab
+      Dependencies:
+        Dependency_0: meleeweapon
     Info_3:
-      Name: level
-      Dependencies: {}
-    Info_4:
-      Name: activeitem
-      Dependencies: {}
-    Info_5:
       Name: passivitem
       Dependencies: {}
+    Info_4:
+      Name: rangedweaponprefab
+      Dependencies:
+        Dependency_0: rangedweapon
+    Info_5:
+      Name: usableitemprefab
+      Dependencies:
+        Dependency_0: usableitem
     Info_6:
-      Name: meleeweapon
-      Dependencies: {}
+      Name: activeitemprefab
+      Dependencies:
+        Dependency_0: activeitem
     Info_7:
       Name: rangedweapon
       Dependencies: {}
     Info_8:
-      Name: enemy
+      Name: enemies/forest
       Dependencies: {}
     Info_9:
-      Name: usableitem
-      Dependencies: {}
-    Info_10:
-      Name: activeitemprefab
-      Dependencies:
-        Dependency_0: activeitem
-    Info_11:
       Name: passivitemprefab
       Dependencies:
         Dependency_0: passivitem
+    Info_10:
+      Name: activeitem
+      Dependencies: {}
+    Info_11:
+      Name: usableitem
+      Dependencies: {}
     Info_12:
-      Name: meleeweaponprefab
-      Dependencies:
-        Dependency_0: meleeweapon
+      Name: meleeweapon
+      Dependencies: {}
     Info_13:
-      Name: rangedweaponprefab
-      Dependencies:
-        Dependency_0: rangedweapon
-    Info_14:
-      Name: usableitemprefab
-      Dependencies:
-        Dependency_0: usableitem
+      Name: enemy
+      Dependencies: {}
