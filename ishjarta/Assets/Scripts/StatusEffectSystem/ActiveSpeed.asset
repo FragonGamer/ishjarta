@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Duration>k__BackingField: 5
   <IsPermanent>k__BackingField: 0
-  <SpeedModifier>k__BackingField: 3
+  <SpeedModifier>k__BackingField: 1.5

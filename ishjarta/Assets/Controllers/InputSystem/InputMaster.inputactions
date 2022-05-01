@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "7d0da36a-bcba-499e-b60f-61afd197ca02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -83,7 +92,7 @@
                     "name": "",
                     "id": "d13f1edf-728f-4cbf-92b3-c7529d370182",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Attack",
@@ -274,6 +283,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "DungeonGenerationTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0259dcba-63ee-45fd-8a73-3fa2d9764aa5",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

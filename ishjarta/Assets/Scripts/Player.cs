@@ -9,8 +9,8 @@ public class Player : Entity
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] int luck;
-    [SerializeField]private float timeRanged = 0.0f;
-    [SerializeField]private float timeMelee = 0.0f;
+    [SerializeField] private float timeRanged = 0.0f;
+    [SerializeField] private float timeMelee = 0.0f;
     //[SerializeField] int maxResistance;
 
     [SerializeField] private HealthBar hpBar;
@@ -63,11 +63,11 @@ public class Player : Entity
 
     public void CalcResistence()
     {
-            int armorAmount = inventory.GetArmor().Amount;
-            Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
-            CurrentResistance = Resistance;
+        int armorAmount = inventory.GetArmor().Amount;
+        Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+        CurrentResistance = Resistance;
     }
-    
+
     public float GetResistence()
     {
         return CurrentResistance;
@@ -87,7 +87,7 @@ public class Player : Entity
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
         inventory.CurrentWeapon.EmitEffects : null;
 
-    public override void Attack(Vector2 mousePos)
+    public override void Attack(Vector2 mousePos, float damageChargeModifier)
     {
         //MeleeAttack
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
@@ -116,22 +116,25 @@ public class Player : Entity
         //Ranged Attack
         else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
         {
+
             if (timeRanged >= curWeapon.AttackRate)
             {
                 timeRanged = 0f;
-                
+
                 Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
                 float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
 
 
-                FirePoint.transform.rotation = Quaternion.Euler( 0f ,0f , angle);
+                FirePoint.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
                 GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
-                    (Quaternion.Euler(0f, 0f, angle)*(FirePoint.transform.position - transform.position))+transform.position, FirePoint.transform.rotation);
-            
-                projectile.GetComponent<Projectile>().DealingDammage = DealingDamage;
+                    (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
+
+                projectile.GetComponent<Projectile>().DealingDammage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
+                projectile.GetComponent<Projectile>().Owner = this.gameObject;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
+                Debug.Log(projectile.GetComponent<Projectile>().DealingDammage);
 
                 Destroy(projectile, 10f);
             }
@@ -142,6 +145,8 @@ public class Player : Entity
     protected override void Die()
     {
         new SerializationManager().DeleteSaveFile("system");
+        Debug.Log("Died");
+        AssetBundle.UnloadAllAssetBundles(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

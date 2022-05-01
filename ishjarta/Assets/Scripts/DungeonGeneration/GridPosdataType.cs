@@ -12,7 +12,7 @@ public class GridPosdataType
     {
 
     }
-    public GridPosdataType(int xPos,int yPos)
+    public GridPosdataType(int xPos, int yPos)
     {
         this.xPos = xPos;
         this.yPos = yPos;

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.Tilemaps;
 
 
 public class Door : MonoBehaviour
@@ -14,38 +16,36 @@ public class Door : MonoBehaviour
     }
 
     public bool doorIsOpen;
-    [SerializeField] public GameObject ConnectedDoor;
+    public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
+
+    [SerializeField] public Tile closedDoorTile;
+
     public Room room;
 
 
+
+
+    public Room ConnectedDoorRoom;
     private void Awake()
     {
         room = GetComponentInParent<Room>();
     }
 
+    public float GetPlayerDistanceToDoor(Player player)
+    {
+        float distance = Vector3.Distance(this.transform.position, player.gameObject.transform.position);
+        Debug.Log(distance);
+        return distance;
 
+    }
     public void TeleportPlayerToDoor()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(ConnectedDoor.GetComponentInParent<Room>().RoomId);
-        switch (ConnectedDoor.GetComponent<Door>().direction)
-        {
-            case Direction.West:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(1, 0, 0);
-                break;
-            case Direction.East:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(-1, 0, 0);
-                break;
-            case Direction.North:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(0, -1, 0);
-                break;
-            case Direction.South:
-                player.transform.position = ConnectedDoor.transform.position + new Vector3(0, 1, 0);
-                break;
-            default:
-                return;
-        }
+        player.transform.position = ConnectedDoor.transform.position;
+        room.enteredDoor = null;
+        room.isEntered = false;
+        ConnectedDoorRoom.enteredDoor = ConnectedDoor.GetComponent<Door>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,15 +53,10 @@ public class Door : MonoBehaviour
         if (doorIsOpen && collision.CompareTag("Player") && collision.GetType() == typeof(CircleCollider2D))
         {
             GameObject player = collision.gameObject;
-
+            ConnectedDoorRoom.ToggleRoomState();
             TeleportPlayerToDoor();
-            var stagecontroller = FindObjectOfType<StageController>();
-            if (!stagecontroller.TestGeneration)
-            {
-                ConnectedDoor.GetComponentInParent<Room>().ToggleRoomState();
-                room.ToggleRoomState();
-            }
-
+            room.ToggleRoomState();
+            var tilemap = room.gameObject.GetComponentsInChildren<Tilemap>().Where(x => x.name.ToLower().Contains("background")).First();
         }
     }
 
@@ -71,11 +66,13 @@ public class Door : MonoBehaviour
         if (door != null)
         {
             ConnectedDoor = door;
+            ConnectedDoorRoom = door.GetComponent<Door>().room;
         }
     }
 
     private GameObject FindClosestDoor()
     {
+        var sc = FindObjectOfType<StageController>().GetComponent<StageController>();
         int roomId = room.RoomId;
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Door");
@@ -84,6 +81,10 @@ public class Door : MonoBehaviour
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
+            if (!sc.worldRooms.Contains(go.GetComponent<Door>().room))
+            {
+                continue;
+            }
             Vector3 diff = go.transform.position - position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance && go.GetComponent<Door>().room.RoomId != roomId)
@@ -93,7 +94,7 @@ public class Door : MonoBehaviour
             }
         }
 
-        if (distance < 7)
+        if (distance < 2)
         {
             return closest;
         }

@@ -1,0 +1,105 @@
+ManifestFileVersion: 0
+CRC: 4244855118
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 238e52b0a87830e989fc9b22996e2a4d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f659db33059d933710de0188eb7a17b8
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5c6a44167b48e9e448fc2533d4021e6b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4adf8f390b7dcd94195e19c1d01ead06, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9d5480c8ebff9304f92acc46d6ff9dcf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f6f0d7f5352c48f4ba5eba2cdf560f70, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e6f744c8752a03e4487f91df4d5b3ec3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eedbe3daf179c874cbeb764e68ef40af, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7ba278098d7e7cb4fbec969c3c401e93, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a57232a70f6d52045bd243cf66f51aa3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 52baf63fa2121d949aab69a9451aacb9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0f1b3b2ffce9f1a4fa3c50ed92e4763f, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 19719996
+  Script: {instanceID: 0}
+- Class: 156049354
+  Script: {instanceID: 0}
+- Class: 483693784
+  Script: {instanceID: 0}
+- Class: 1839735485
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.AutoRepathPolicy
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.GraphMask
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.StartEndModifier
+Assets:
+- Assets/_Bundles/Stages/Forest/Environment/9x5 4.prefab
+- Assets/_Bundles/Stages/Forest/Environment/9x5 2.prefab
+- Assets/_Bundles/Stages/Forest/Environment/test 1.prefab
+- Assets/_Bundles/Stages/Forest/Environment/test.prefab
+- Assets/_Bundles/Stages/Forest/Environment/Start.prefab
+- Assets/_Bundles/Stages/Forest/Environment/End.prefab
+- Assets/_Bundles/Stages/Forest/Environment/9x5 3.prefab
+- Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
+Dependencies:
+- D:/Programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest

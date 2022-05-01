@@ -42,4 +42,24 @@ public static class Utils
     {
         assetBundle.Unload(false);
     }
+    public static void PrintGridPosDataTypeMatrix(GridPosdataType[,] matrix)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                sb.Append(matrix[i, j].roomId + "  |  ");
+
+            }
+            sb.Append("\n");
+            for (int e = 0; e < matrix.GetLength(1); e++)
+            {
+                sb.Append("-");
+            }
+            sb.AppendLine();
+        }
+        Debug.Log(sb.ToString());
+    }
+
 }

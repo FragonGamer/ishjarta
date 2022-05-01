@@ -15,7 +15,7 @@ public static class Extensions
             get { return Local ?? (Local = new System.Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId))); }
         }
     }
-    public static void Shuffle<T>(this IList<T> list)
+    public static IList<T> Shuffle<T>(this IList<T> list)
     {
         int n = list.Count;
         while (n > 1)
@@ -26,6 +26,7 @@ public static class Extensions
             list[k] = list[n];
             list[n] = value;
         }
+        return list;
     }
    
 }

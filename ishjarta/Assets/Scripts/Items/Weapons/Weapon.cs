@@ -19,4 +19,5 @@ public abstract class Weapon : Item
         }
     }
     #endregion SaveSystem
+    [field: SerializeField] public bool IsChargable { get; set; }
 }

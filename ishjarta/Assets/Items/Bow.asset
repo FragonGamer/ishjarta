@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   ItemName: Bow
-  <Icon>k__BackingField: {fileID: 21300000, guid: 505c86ef7dd8a32458ee163a7a322636, type: 3}
+  Icon: {fileID: 21300000, guid: 505c86ef7dd8a32458ee163a7a322636, type: 3}
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
   <Damage>k__BackingField: 30

@@ -44,9 +44,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 6e0714add1954474d820871cc7512b1e, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f44ab76a267f43e45864458726dec73c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 39fa3d8997a24136984ca6e2c99902bc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 45086185f75127c4da090c5ad7038001, type: 3}
 - Class: 114
@@ -78,6 +82,22 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.AstarColor
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.AstarData
+- AssemblyName: AstarPathfindingProject
+  ClassName: Pathfinding.EuclideanEmbedding
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputAction
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputActionMap
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputBinding
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputControlScheme
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputControlScheme/DeviceRequirement
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
 - AssemblyName: UnityEngine.UI
@@ -95,7 +115,9 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.SpriteState
 Assets:
-- Assets/Prefabs/Player.prefab
-- Assets/Prefabs/Main Camera.prefab
-- Assets/Prefabs/HUD.prefab
+- Assets/_Bundles/Player/Player.prefab
+- Assets/_Bundles/Player/Main Camera.prefab
+- Assets/_Bundles/Player/A_.prefab
+- Assets/_Bundles/Player/EventSystem.prefab
+- Assets/_Bundles/Player/HUD.prefab
 Dependencies: []

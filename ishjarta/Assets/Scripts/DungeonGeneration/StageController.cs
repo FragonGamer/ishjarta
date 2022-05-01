@@ -1,59 +1,123 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.IO;
 using System;
 using Random = System.Random;
-using System.Globalization;
-using UnityEngine.Tilemaps;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class StageController : MonoBehaviour
 {
     GameObject player;
+    Dictionary<Room, int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
+    public GameObject camera;
+    GameObject HUD;
     int nextRoomId = 0;
-    List<Room> worldRooms = new List<Room>();
+
+    public List<Room> worldRooms { get; private set; } = new List<Room>();
 
     //2D array for tracking position and doors of room cells
     private GridPosdataType[,] worldLayout;
     //2D array for tracking aval positions in the grid
     private bool[,] availableGridPositions;
 
-    public const int roomBaseLength = 5;
+    public const int roomXBaseLength = 9;
+    public const int roomYBaseLength = 5;
     // world base length should be odd
-    public const int worldBaseLength = 20;
-    private const int maxRooms = 15;
+    public const int worldBaseLength = 111;
+
+    private int maxRooms;
     [SerializeField] public bool TestGeneration;
 
-    public AssetBundle assets = null;
+    public AssetBundle assets { get; private set; }
+    public AssetBundle enemyAssets { get; private set; }
+    public List<string> stageNames { get; private set; }
+    private int currentStageCounter;
+    public string currentStageName { get; private set; }
 
-    public string currentStageName = "forrest";
-
-    private void ResetStageController()
+    int SetMaxRooms()
     {
+        float result;
 
+        result = 3.3f * (currentStageCounter + 1) + 5;
+
+
+        return Mathf.FloorToInt(result);
+    }
+    public void ResetStage()
+    {
+        DestroyAllGOS();
+        roomCounter = new Dictionary<Room, int>();
+        startRoom = null;
+        nextRoomId = 0;
+        worldRooms = new List<Room>();
+        worldLayout = null;
+        availableGridPositions = null;
+        AssetBundle.UnloadAllAssetBundles(false);
+        Debug.Log("Resetted Stage");
+        CreateGame();
+
+    }
+    public void ReloadGame()
+    {
+        AssetBundle.UnloadAllAssetBundles(true);
+        HUD.SetActive(false);
+        camera.GetComponent<Camera>().nearClipPlane = 0;
+        SceneManager.LoadScene("Stage_1");
+    }
+    void DestroyAllGOS()
+    {
+        var gos = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (var g in gos)
+        {
+            if (g.Equals(player.gameObject) || g.Equals(gameObject))
+            {
+                continue;
+            }
+            else
+            {
+                g.SetActive(false);
+            }
+        }
+        foreach (var g in gos)
+        {
+            if (g.Equals(player.gameObject) || g.Equals(gameObject))
+            {
+                continue;
+            }
+            else
+            {
+                UnityEngine.GameObject.Destroy(g);
+            }
+        }
     }
     private void Start()
     {
+        stageNames = new List<string>();
+        stageNames.AddRange(new string[] { "forest", "forest", "test" });
+        currentStageCounter = 0;
         CreateGame();
     }
     public void CreateGame()
     {
+        currentStageName = stageNames.ToArray()[currentStageCounter];
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
-        assets = Utils.loadAssetPack(currentStageName+"_stage");
-
+        assets = Utils.loadAssetPack($"stage/{currentStageName}");
+        enemyAssets = Utils.loadAssetPack($"enemies/{currentStageName}");
+        maxRooms = SetMaxRooms();
+        var gos = GetPossibleRooms();
+        gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
         InitWorldLayout();
+        InstantiatePlayer();
         CreateStage();
 
 
 
 
-        CreatePlayer();
-        if (!TestGeneration)
-        {
-            SetEveryRoomInvisable();
-        }
+
+
 
         foreach (var room in worldRooms)
         {
@@ -65,6 +129,7 @@ public class StageController : MonoBehaviour
         {
             room.ConnectDoors();
         }
+
         foreach (var item in worldRooms)
         {
             foreach (var door in item.doors)
@@ -74,8 +139,20 @@ public class StageController : MonoBehaviour
                     door.GetComponent<Door>().doorIsOpen = false;
                 }
             }
+
         }
-        foreach(var room in worldRooms)
+
+        SetEveryFreeDoorClosed();
+        if (!TestGeneration)
+        {
+            SetEveryRoomInvisible();
+        }
+
+    }
+
+    void SetEveryFreeDoorClosed()
+    {
+        foreach (var room in worldRooms)
         {
             room.GetComponent<Room>().Test();
         }
@@ -84,311 +161,454 @@ public class StageController : MonoBehaviour
     void SetStartRoom()
     {
 
-        GameObject startRoom = Utils.loadAssetFromAssetPack(assets, "Start");
-        
-        var startRoomGO = Instantiate(startRoom,new Vector3(0,0,0),new Quaternion(0,0,0,0));
+        GameObject startRoom = Utils.loadAssetFromAssetPack(assets, "start");
 
-        SetStartRoomStats(startRoomGO,true,true,true,true);
-        
+        var startRoomGO = Instantiate(startRoom, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+
+        SetStartRoomStats(startRoomGO, true, true, true, true);
+
         worldRooms.Add(startRoomGO.GetComponent<Room>());
         this.startRoom = startRoomGO;
+        startRoom.GetComponent<Room>().isEntered = true;
     }
 
-    public GameObject[] GetRooms()
+
+
+    private List<GameObject> GetPossibleRooms()
     {
-        var roomObjects = GameObject.FindObjectsOfType<Room>().ToList().Select(test => test.gameObject).ToArray();
-        return roomObjects;
-    }
-
-    private List<GameObject> GetPossibleRooms(){
- var gos = Utils.LoadAllAssetsOfAssetPack(assets).ToList();
-        GameObject start = Utils.loadAssetFromAssetPack(assets, "Start");;
-        gos.Remove(start);
+        var gos = Utils.LoadAllAssetsOfAssetPack(assets).ToList().FindAll(item => item.CompareTag("Room"));
         return gos;
     }
-    
+
+
     GameObject AddRoom()
     {
-        Random random = new Random(); 
-        
-        var rooms = GetRooms().ToList();
-        rooms.Shuffle();
-        rooms.ToArray();
+        Random random = new Random();
 
-        var gos = GetPossibleRooms();
-        gos.Shuffle();
-         
+        foreach (var posRoom in GetPossibleRooms().Shuffle().Select(room => room.GetComponent<Room>()))
+        {
+            if (roomCounter[posRoom] < posRoom.maxOfThisRoom || posRoom.maxOfThisRoom == -1)
+            {
 
-        foreach(var room in rooms.Select(room => room.GetComponent<Room>())){
-            room.SetDoors();
-            var doors = room.doors;
-            doors.Shuffle();
+                foreach (var room in (worldRooms.ToList().Shuffle().Select(room => room.GetComponent<Room>())))
+                {
+                    room.SetDoors();
 
-            foreach(var posRoom in gos.Select(room => room.GetComponent<Room>())){
-               
+                    foreach (var door in room.doors.Shuffle().Select(door => door.GetComponent<Door>()))
+                    {
+                        if (door.ConnectedDoor == null)
+                        {
+                            Tuple<int, int> posPosition = null;
+                            var xOffset = random.Next(0, posRoom.lenX / StageController.roomXBaseLength) * StageController.roomXBaseLength;
+                            var yOffset = random.Next(0, posRoom.lenY / StageController.roomYBaseLength) * StageController.roomYBaseLength;
 
-                    foreach(var door in doors.Select(door => door.GetComponent<Door>())){
-                         if(door.ConnectedDoor == null){
-                        Tuple<int,int> posPosition = null;
-                        switch(door.direction){
-                            case Door.Direction.East:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x + StageController.roomBaseLength,(int)room.gameObject.transform.position.y);
-                                break;
-                            case Door.Direction.South:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x,(int)room.gameObject.transform.position.y - StageController.roomBaseLength);
-                                break;
-                             case Door.Direction.West:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.lenX ,(int)room.gameObject.transform.position.y);
-                                break;
-                            case Door.Direction.North:
-                                posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x ,(int)room.gameObject.transform.position.y + posRoom.lenY);
-                                break;
+                            switch (door.direction)
+                            {
+                                case Door.Direction.East:
+                                    posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomXBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomXBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                                    break;
+                                case Door.Direction.South:
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomYBaseLength) + posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomYBaseLength);
+                                    break;
+                                case Door.Direction.West:
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
+                                    break;
+                                case Door.Direction.North:
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, (int)room.gameObject.transform.position.y + posRoom.GetYLength(xOffset));
+                                    break;
 
-                        }
-                        posRoom.RoomId = nextRoomId;
+                            }
+                            posRoom.RoomId = nextRoomId;
 
-                        if(CheckPosition(posRoom,posPosition) is null){
-                            
-                            continue;
-                        }
-                        else{
-                            var newRoom = PlaceRoom(posRoom,posPosition);
-                            nextRoomId++;
-                            worldRooms.Add(newRoom.GetComponent<Room>());
-                            return posRoom.gameObject;
-                        }
+                            if (CheckPosition(posRoom, posPosition) is null)
+                            {
+
+                                continue;
+                            }
+                            else
+                            {
+                                var newRoom = PlaceRoom(posRoom, posPosition);
+                                nextRoomId++;
+                                roomCounter[posRoom]++;
+                                worldRooms.Add(newRoom.GetComponent<Room>());
+                                return posRoom.gameObject;
+                            }
                         }
                     }
 
-                
+                }
+
+
             }
-            
+
         }
-        
+
 
         return null;
 
     }
-    private GameObject PlaceRoom(Room room,Tuple<int,int> position){
+    private GameObject PlaceRoom(Room room, Tuple<int, int> position)
+    {
         var roomLayout = room.GetRoomLayout();
-        var go = Instantiate(room.gameObject,new Vector3(position.Item1,position.Item2) , new Quaternion(0,0,0,0));
+        var go = Instantiate(room.gameObject, new Vector3(position.Item1, position.Item2), new Quaternion(0, 0, 0, 0));
         var arrayPos = ConvertFromGridToArrayIndex(position);
 
-        foreach(var pos in roomLayout){
-            
-            var x = arrayPos.Item1 + pos.xPos / roomBaseLength;
-            var y = arrayPos.Item2 - pos.yPos / roomBaseLength;
-            worldLayout[y,x].roomId = room.RoomId;
-            worldLayout[y,x].hasEDoor = pos.hasEDoor;
-            worldLayout[y,x].hasNDoor = pos.hasNDoor;
-            worldLayout[y,x].hasSDoor = pos.hasSDoor;
-            worldLayout[y,x].hasWDoor = pos.hasWDoor;
-            availableGridPositions[y,x] = false;
-            
-         }
+        foreach (var pos in roomLayout)
+        {
+            if (pos.roomId < 0)
+            {
+                continue;
+            }
+            var x = arrayPos.Item1 + pos.xPos / StageController.roomXBaseLength;
+            var y = arrayPos.Item2 - pos.yPos / StageController.roomYBaseLength;
+            worldLayout[y, x].roomId = room.RoomId;
+            worldLayout[y, x].hasEDoor = pos.hasEDoor;
+            worldLayout[y, x].hasNDoor = pos.hasNDoor;
+            worldLayout[y, x].hasSDoor = pos.hasSDoor;
+            worldLayout[y, x].hasWDoor = pos.hasWDoor;
+            availableGridPositions[y, x] = false;
+
+        }
+        Vector3 posStart = startRoom.transform.position;
+        Vector3 posRoom = go.transform.position;
+        Room goRoom = go.GetComponent<Room>();
+        goRoom.DistanceToStart = (int)Vector3.Distance(posStart, posRoom);
+
         return go;
     }
-    public Tuple<int,int> ConvertFromGridToArrayIndex(Tuple<int,int> position){
-        Tuple<int,int> arrayPosition = null;
-        for(int y = worldLayout.GetLowerBound(0); y < worldLayout.GetUpperBound(0);y++){
-            for(int x = worldLayout.GetLowerBound(1); x < worldLayout.GetUpperBound(1);x++){
-            if(worldLayout[y,x].xPos == position.Item1 && worldLayout[y,x].yPos == position.Item2){
-                arrayPosition = new Tuple<int, int>(x,y);
+    public Tuple<int, int> ConvertFromGridToArrayIndex(Tuple<int, int> position)
+    {
+        Tuple<int, int> arrayPosition = null;
+        for (int y = worldLayout.GetLowerBound(0); y < worldLayout.GetUpperBound(0); y++)
+        {
+            for (int x = worldLayout.GetLowerBound(1); x < worldLayout.GetUpperBound(1); x++)
+            {
+                if (worldLayout[y, x].xPos == position.Item1 && worldLayout[y, x].yPos == position.Item2)
+                {
+                    arrayPosition = new Tuple<int, int>(x, y);
                     break;
+                }
             }
         }
-        }
         return arrayPosition;
-        
+
     }
-    public Tuple<int,int> ConvertFromArrayIndexToGrid(Tuple<int,int> arrayPosition){
-        return new Tuple<int, int>(worldLayout[arrayPosition.Item2,arrayPosition.Item1].xPos,worldLayout[arrayPosition.Item2,arrayPosition.Item1].yPos);
-    }  
+    public Tuple<int, int> ConvertFromArrayIndexToGrid(Tuple<int, int> arrayPosition)
+    {
+        return new Tuple<int, int>(worldLayout[arrayPosition.Item2, arrayPosition.Item1].xPos, worldLayout[arrayPosition.Item2, arrayPosition.Item1].yPos);
+    }
     /// <summary>
     /// Checks if the room could be placed on the given startposition
     /// </summary>
     /// <param name="room">Room object of new room</param>
     /// <param name="position">starting position of new room (x,y) </param>
     /// <returns></returns>
-    private GameObject CheckPosition(Room room,Tuple<int,int> position){
+    private GameObject CheckPosition(Room room, Tuple<int, int> position)
+    {
         var roomLayout = room.GetRoomLayout();
         var arrayPos = ConvertFromGridToArrayIndex(position);
-        foreach(var pos in roomLayout){
-            var x = arrayPos.Item1 + pos.xPos / roomBaseLength;
-            var y = arrayPos.Item2 - pos.yPos / roomBaseLength;
-        
-            if(!availableGridPositions[y,x]){
+        foreach (var pos in roomLayout)
+        {
+            var x = arrayPos.Item1 + pos.xPos / roomXBaseLength;
+            var y = arrayPos.Item2 - pos.yPos / roomYBaseLength;
+
+            if (pos.roomId < 0)
+            {
+                continue;
+            }
+            if (!availableGridPositions[y, x])
+            {
                 return null;
             }
-            if(pos.hasEDoor){
-                if(x+1 > 0 && x+1 < worldLayout.GetLength(0) ){
-                    if(worldLayout[y,x+1].roomId > -1 &&worldLayout[y,x+1].hasWDoor == false){
+
+
+            if (x + 1 > 0 && x + 1 < worldLayout.GetLength(0))
+            {
+                if (pos.hasEDoor)
+                {
+
+                    if (worldLayout[y, x + 1].roomId > -1 && worldLayout[y, x + 1].hasWDoor == false)
+                    {
+                        return null;
+                    }
+
+
+
+                }
+                else
+                {
+
+                    if (worldLayout[y, x + 1].roomId != room.RoomId && worldLayout[y, x + 1].hasWDoor == true)
+                    {
+                        return null;
+                    }
+
+
+                }
+
+            }
+
+            if (x - 1 > 0 && x - 1 < worldLayout.GetLength(0))
+            {
+                if (pos.hasWDoor)
+                {
+
+                    if (worldLayout[y, x - 1].roomId > -1 && worldLayout[y, x - 1].hasEDoor == false)
+                    {
                         return null;
                     }
                 }
-                
+                else
+                {
+                    if (worldLayout[y, x - 1].roomId != room.RoomId && worldLayout[y, x - 1].hasEDoor == true)
+                    {
+                        return null;
+                    }
+
+                }
+
             }
-            if(pos.hasWDoor){
-                if(x-1 > 0 && x-1 < worldLayout.GetLength(0) ){
-                    if(worldLayout[y,x-1].roomId > -1 &&worldLayout[y,x-1].hasEDoor == false){
+
+            if (y - 1 > 0 && y - 1 < worldLayout.GetLength(0))
+            {
+                if (pos.hasSDoor)
+                {
+
+                    if (worldLayout[y + 1, x].roomId > -1 && worldLayout[y + 1, x].hasNDoor == false)
+                    {
                         return null;
                     }
                 }
-                
+                else
+                {
+                    if (worldLayout[y + 1, x].roomId != room.RoomId && worldLayout[y + 1, x].hasNDoor == true)
+                    {
+                        return null;
+                    }
+
+                }
+
             }
-            if(pos.hasSDoor){
-                if(y-1 > 0 && y-1 < worldLayout.GetLength(0) ){
-                    if(worldLayout[y-1,x].roomId > -1 &&worldLayout[y-1,x].hasNDoor == false){
+            if (y + 1 > 0 && y + 1 < worldLayout.GetLength(0))
+            {
+                if (pos.hasNDoor)
+                {
+
+                    if (worldLayout[y - 1, x].roomId > -1 && worldLayout[y - 1, x].hasSDoor == false)
+                    {
                         return null;
                     }
                 }
-                
-            }
-            if(pos.hasNDoor){
-                if(y+1 > 0 && y+1 < worldLayout.GetLength(0) ){
-                    if(worldLayout[y+1,x].roomId > -1 && worldLayout[y+1,x].hasSDoor == false){
+                else
+                {
+                    if (worldLayout[y - 1, x].roomId != room.RoomId && worldLayout[y - 1, x].hasSDoor == true)
+                    {
                         return null;
                     }
+
                 }
-                
+
             }
-            
+
+
         }
 
-        
+
         return room.gameObject;
-        
-
-        
 
 
-       
+
+
+
+
     }
-    void SetStartRoomStats(GameObject roomGO,bool hasED, bool hasWD, bool hasSD, bool hasND)
+    void SetStartRoomStats(GameObject roomGO, bool hasED, bool hasWD, bool hasSD, bool hasND)
     {
 
         Room room = roomGO.GetComponent<Room>();
         room.RoomId = nextRoomId;
 
-        availableGridPositions[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))] = false;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].roomId = room.RoomId;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasEDoor = hasED;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasNDoor = hasND;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasSDoor = hasSD;
-        worldLayout[(int)((room.transform.position.y / roomBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomBaseLength) + (worldLayout.GetLength(0) / 2))].hasWDoor = hasWD;
-        
+        availableGridPositions[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))] = false;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].roomId = room.RoomId;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasEDoor = hasED;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasNDoor = hasND;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasSDoor = hasSD;
+        worldLayout[(int)((room.transform.position.y / roomYBaseLength) + (worldLayout.GetLength(0) / 2)), (int)((room.transform.position.x / roomXBaseLength) + (worldLayout.GetLength(0) / 2))].hasWDoor = hasWD;
+
         nextRoomId++;
     }
     void CreateStage()
     {
+        //Creates Start room
         SetStartRoom();
-        while(worldRooms.Count() < maxRooms){
+        //Creates player
+        CreatePlayer();
+        int counter = 0;
+        //creates normal rooms
+        while (worldRooms.Count() < maxRooms && counter < 100)
+        {
             var room = AddRoom();
-            Debug.Log(room.GetComponent<Room>().RoomId);
-            Debug.Log(room.transform.position);
+
+            if (room is null)
+                counter++;
+
 
         }
-        
+        //creates end room
+        var endRoom = CreateEndRoom();
+        worldRooms.Add(endRoom.GetComponent<Room>());
+        Debug.Log("Rooms: " + nextRoomId);
+        currentStageCounter++;
 
     }
+
+    private GameObject CreateEndRoom()
+    {
+        Random random = new Random();
+        var endRoom = Utils.loadAssetFromAssetPack(assets, "end").GetComponent<Room>();
+
+
+        foreach (var room in worldRooms.ToList().OrderByDescending(room => room.DistanceToStart).Select(room => room.GetComponent<Room>()))
+        {
+            room.SetDoors();
+
+            foreach (var door in room.doors.Shuffle().Select(door => door.GetComponent<Door>()))
+            {
+                if (door.ConnectedDoor == null)
+                {
+                    Tuple<int, int> posPosition = null;
+                    var xOffset = random.Next(0, endRoom.lenX / StageController.roomXBaseLength) * StageController.roomXBaseLength;
+                    var yOffset = random.Next(0, endRoom.lenY / StageController.roomYBaseLength) * StageController.roomYBaseLength;
+
+                    switch (door.direction)
+                    {
+                        case Door.Direction.East:
+                            posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomXBaseLength) - endRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomXBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                            break;
+                        case Door.Direction.South:
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomYBaseLength) - endRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomYBaseLength);
+                            break;
+                        case Door.Direction.West:
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - endRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
+                            break;
+                        case Door.Direction.North:
+                            posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, (int)room.gameObject.transform.position.y + endRoom.GetYLength(xOffset));
+                            break;
+
+                    }
+                    endRoom.RoomId = nextRoomId;
+
+                    if (CheckPosition(endRoom, posPosition) is null)
+                    {
+
+                        continue;
+                    }
+                    else
+                    {
+                        var newRoom = PlaceRoom(endRoom, posPosition);
+                        worldRooms.Add(newRoom.GetComponent<Room>());
+                        return endRoom.gameObject;
+                    }
+                }
+            }
+
+        }
+
+
+
+
+
+        return null;
+    }
+
     void InitWorldLayout()
     {
-        for (int i = 0; i < availableGridPositions.GetLength(0); i++)
-        {
-            for (int j = 0; j < availableGridPositions.GetLength(1); j++)
-            {
-                availableGridPositions[i, j] = true;
-            }
-        }
         int gpx;
         int gpy;
-        gpy = (worldLayout.GetLength(0) / 2) * roomBaseLength ;
+        gpy = (worldLayout.GetLength(0) / 2) * roomYBaseLength;
         for (int y = 0; y < worldLayout.GetLength(0); y++)
         {
-            gpx = worldLayout.GetLength(0) / 2 * roomBaseLength * -1;
+            gpx = worldLayout.GetLength(0) / 2 * roomXBaseLength * -1;
             for (int x = 0; x < worldLayout.GetLength(1); x++)
             {
-                worldLayout[y,x] = new GridPosdataType(gpx,gpy);
-                gpx += roomBaseLength;
+                availableGridPositions[y, x] = true;
+                worldLayout[y, x] = new GridPosdataType(gpx, gpy);
+                gpx += roomXBaseLength;
             }
-            
 
-            gpy -= roomBaseLength;
+
+            gpy -= roomYBaseLength;
         }
 
 
     }
-    public void SetEveryRoomInvisable()
+    public void SetEveryRoomInvisible()
     {
-        var roomObjects = GameObject.FindObjectsOfType(typeof(Room)) as Room[];
+        var roomObjects = FindObjectsOfType<Room>().Where(room => room.RoomId != startRoom.GetComponent<Room>().RoomId);
         foreach (Room room in roomObjects)
         {
-            foreach (Renderer r in room.GetComponentsInChildren<Renderer>())
-            {
-                if (room.RoomId != 0)
-                    r.enabled = false;
-            }
+            room.gameObject.SetActive(!room.gameObject.active);
         }
     }
-    void InstantiateAssetGroupOnZero(GameObject[] assets)
+    Dictionary<string, GameObject> InstantiateAssetGroupOnZero(GameObject[] assets)
+
     {
+        var result = new Dictionary<string, GameObject>();
         foreach (var item in assets)
         {
             var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            result.Add(go.name, go);
         }
+        return result;
 
+
+    }
+    void InstantiatePlayer()
+    {
+
+        if (this.player is null)
+        {
+            var playerAssetsFile = Utils.loadAssetPack("player");
+            var item = Utils.loadAssetFromAssetPack(playerAssetsFile, "Player");
+            player = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            this.player = player;
+            var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
+            var playerManager = gameManager.GetComponent<PlayerManager>();
+            if (playerManager.player == null)
+                playerManager.player = player;
+            playerAssetsFile.Unload(false);
+        }
 
     }
     void CreatePlayer()
     {
-       if (player == null)
-        {
-            var playerAssetsFile = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), "player"));
-            var playerAssets = playerAssetsFile.LoadAllAssets<GameObject>();
-            Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
-            GameObject player;
-            GameObject camera;
-            foreach (var item in playerAssets)
-            {
 
-                if (item.CompareTag("MainCamera"))
-                {
-                    camera = Instantiate(item);
-                }
-                else if (item.CompareTag("Player"))
-                {
-                    player = Instantiate(item, playerPosition, new Quaternion(0, 0, 0, 0));
-                    this.player = player;
-                    var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
-                    var playerManager = gameManager.GetComponent<PlayerManager>();
-                    try
-                    {
-                        if (playerManager.player == null)
-                            playerManager.player = player;
-                    }
-                    catch (System.Exception)
-                    {
+        var playerAssetsFile = Utils.loadAssetPack("player");
+        var playerAssets = Utils.LoadAllAssetsOfAssetPack(playerAssetsFile);
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
+        if (player == null)
+            InstantiatePlayer();
 
-                        throw;
-                    }
-                }
-                else
-                {
-                    var go = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-                }
+        playerAssets = playerAssets.ToList().FindAll(item => item.CompareTag("Player") == false).ToArray();
 
-            }
-        }
 
+        this.player.transform.position = playerPosition;
+
+        var gos = InstantiateAssetGroupOnZero(playerAssets);
+        camera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main")).Select(x => x.Value).First();
+        HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
+        playerAssetsFile.Unload(false);
 
     }
-    void InstantiateAssetGroup(GameObject[] assets, Vector3 position)
+    Dictionary<string, GameObject> InstantiateAssetGroup(GameObject[] assets, Vector3 position)
     {
+        var result = new Dictionary<string, GameObject>();
         foreach (var item in assets)
         {
-            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            result.Add(go.name, go);
         }
-    }
-    
+        return result;
 
+    }
 }
