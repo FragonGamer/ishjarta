@@ -85,7 +85,12 @@ public class PauseMenuController : BaseMenuController
     {
         if (pauseMenuContainer != null)
         {
+            Time.timeScale = 0f;
             pauseMenuContainer.SetActive(!pauseMenuContainer.activeSelf);
+            if (!pauseMenuContainer.activeSelf)
+            {
+                Time.timeScale = 1f;
+            }
             if (HUD != null)
             {
                 HUD.SetActive(!HUD.activeSelf);
