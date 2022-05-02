@@ -92,7 +92,7 @@ public class StageController : MonoBehaviour
             }
         }
     }
-    private void Start()
+    private void Awake()
     {
         stageNames = new List<string>();
         stageNames.AddRange(new string[] { "forest", "forest", "test" });

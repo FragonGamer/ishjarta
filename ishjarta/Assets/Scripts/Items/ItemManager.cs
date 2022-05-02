@@ -21,7 +21,6 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
-        player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         inputMaster = new InputMaster();
     }
     private void OnEnable()
@@ -35,6 +34,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
+        player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         inputMaster.Player.PickUpItem.performed += PickUpItem;
     }
 

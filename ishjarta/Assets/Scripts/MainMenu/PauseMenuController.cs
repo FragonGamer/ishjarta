@@ -83,6 +83,7 @@ public class PauseMenuController : BaseMenuController
 
     private void PauseMenuAction(InputAction.CallbackContext obj)
     {
+        HUD = GameObject.FindGameObjectWithTag("HUD");
         if (pauseMenuContainer != null)
         {
             Time.timeScale = 0f;
