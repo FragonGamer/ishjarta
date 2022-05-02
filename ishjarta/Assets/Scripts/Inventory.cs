@@ -192,14 +192,14 @@ public class Inventory : MonoBehaviour
     }
 
     public void ChangeWeapon()
-    {
-        if (CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)) && MeleeWeapon != null)
+    {        
+        if (CurrentWeapon.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = MeleeWeapon;
             player.AddEffectRange(CurrentWeapon.OwnerEffects);
         }
-        else if (CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)) && RangedWeapon != null)
+        else if (CurrentWeapon.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = RangedWeapon;
