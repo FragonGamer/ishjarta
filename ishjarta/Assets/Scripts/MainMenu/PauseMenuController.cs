@@ -15,6 +15,8 @@ public class PauseMenuController : BaseMenuController
     [SerializeField] private GameObject pauseMenuContainer = null;
     [SerializeField] private GameObject HUD = null;
     [SerializeField] private GameObject pauseImageContainer = null;
+    [SerializeField] private GameObject individualSettingsContainer = null;
+    [SerializeField] private GameObject settingsMenuContainer = null;
     InputMaster inputMaster;
     private void Awake()
     {
@@ -73,6 +75,8 @@ public class PauseMenuController : BaseMenuController
     {
         pauseMenuContainer.SetActive(false);
         pauseImageContainer.SetActive(false);
+        individualSettingsContainer.SetActive(false);
+        settingsMenuContainer.SetActive(false);
         if (HUD!=null)
         {
             HUD.SetActive(true);
@@ -83,22 +87,33 @@ public class PauseMenuController : BaseMenuController
 
     private void PauseMenuAction(InputAction.CallbackContext obj)
     {
-        HUD = GameObject.FindGameObjectWithTag("HUD");
         if (pauseMenuContainer != null)
         {
             Time.timeScale = 0f;
             pauseMenuContainer.SetActive(!pauseMenuContainer.activeSelf);
-            if (!pauseMenuContainer.activeSelf)
+            if (pauseMenuContainer.activeSelf == false)
             {
                 Time.timeScale = 1f;
             }
-            if (HUD != null)
+            if (HUD != null && pauseMenuContainer.activeSelf == true)
             {
-                HUD.SetActive(!HUD.activeSelf);
+                HUD.SetActive(false);
+            }
+            else if(pauseMenuContainer.activeSelf == false)
+            {
+                HUD.SetActive(true);
             }
             if (pauseImageContainer != null)
             {
                 pauseImageContainer.SetActive(!pauseImageContainer.activeSelf);
+            }
+            if (individualSettingsContainer != null&& individualSettingsContainer.activeSelf==true)
+            {
+                individualSettingsContainer.SetActive(false);
+            }
+            if (settingsMenuContainer != null && settingsMenuContainer.activeSelf == true)
+            {
+                settingsMenuContainer.SetActive(false);
             }
         }
     }

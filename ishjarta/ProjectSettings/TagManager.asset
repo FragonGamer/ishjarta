@@ -14,6 +14,8 @@ TagManager:
   - StartRoom
   - Room
   - EndPosition
+  - HUD
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

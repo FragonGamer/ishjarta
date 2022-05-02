@@ -467,7 +467,7 @@ public class Inventory : MonoBehaviour
 
     public void UseActiveItem()
     {
-        if (state == ActiveItemState.ready)
+        if (ActiveItem != null&&state == ActiveItemState.ready)
         {
             ActiveItem.Activate(gameObject);
             state = ActiveItemState.active;

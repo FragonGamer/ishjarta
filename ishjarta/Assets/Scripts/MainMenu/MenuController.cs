@@ -17,13 +17,13 @@ public class MenuController : BaseMenuController
     public void NewGameDialogYes()
     {
         new SerializationManager().DeleteSaveFile("system");
-        SceneManager.LoadScene(newGameLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void LoadGameDialogYes()
     {
         if (SerializationManager.ExistsSaveFile("system"))
-            SceneManager.LoadScene(newGameLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else if(noSavedGameDialog != null)
             noSavedGameDialog.SetActive(true);
     }

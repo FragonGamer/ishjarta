@@ -14,6 +14,7 @@ public class StageController : MonoBehaviour
     public GameObject camera;
     GameObject HUD;
     int nextRoomId = 0;
+    public bool CreateRooms = true;
 
     public List<Room> worldRooms { get; private set; } = new List<Room>();
 
@@ -97,7 +98,11 @@ public class StageController : MonoBehaviour
         stageNames = new List<string>();
         stageNames.AddRange(new string[] { "forest", "forest", "test" });
         currentStageCounter = 0;
-        CreateGame();
+        if (CreateRooms == true)
+        {
+            CreateGame();
+        }
+
     }
     public void CreateGame()
     {

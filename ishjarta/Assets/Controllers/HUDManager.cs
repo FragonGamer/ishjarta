@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,8 @@ public class HUDManager : MonoBehaviour
     [SerializeField] Image MeleeWeaponSelectedSprite;
     [SerializeField] Image RangedWeaponSprite;
     [SerializeField] Image RangedWeaponSelectedSprite;
-    [SerializeField] Text ArmorValueText;
+    [SerializeField] TMP_Text ArmorValueText;
+    [SerializeField] TMP_Text CoinValueText;
     [SerializeField] Inventory playerInventory;
     [SerializeField] Player player;
 
@@ -37,26 +39,32 @@ public class HUDManager : MonoBehaviour
 
         UpdateWeaponSprites();
         ArmorValueText.text = $"{Mathf.RoundToInt(player.GetResistence() * 100)} %";
+        CoinValueText.text = playerInventory.GetCoins().Amount.ToString();
     }
     public void UpdateWeaponSprites()
     {
         if (playerInventory.GetMeleeWeapon() != null)
+        {
+            MeleeWeaponSprite.gameObject.SetActive(true);
             MeleeWeaponSprite.sprite = playerInventory.GetMeleeWeapon().GetSprite();
+        }
         if (playerInventory.GetRangedWeapon() != null)
+        {
+            RangedWeaponSprite.gameObject.SetActive(true);
             RangedWeaponSprite.sprite = playerInventory.GetRangedWeapon().GetSprite();
-
+        }
         UpdateSelectedWeaponSprites();
     }
     public void UpdateSelectedWeaponSprites()
     {
         if (playerInventory.CurrentWeapon != null)
         {
-            if (playerInventory.CurrentWeapon.GetType().IsSubclassOf(typeof(MeleeWeapon)))
+            if (playerInventory.CurrentWeapon.GetType() == typeof(MeleeWeapon))
             {
                 MeleeWeaponSelectedSprite.gameObject.SetActive(true);
                 RangedWeaponSelectedSprite.gameObject.SetActive(false);
             }
-            else if (playerInventory.CurrentWeapon.GetType().IsSubclassOf(typeof(RangedWeapon)))
+            else if (playerInventory.CurrentWeapon.GetType() == typeof(RangedWeapon))
             {
                 MeleeWeaponSelectedSprite.gameObject.SetActive(false);
                 RangedWeaponSelectedSprite.gameObject.SetActive(true);

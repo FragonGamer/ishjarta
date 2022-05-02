@@ -3,7 +3,7 @@ CRC: 3274060036
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b682390fc45fe284951cbd73138de165
+    Hash: 3648072a9eea08d777e9f8331c152e17
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3dc7dba7b7c50a13e7f7c4130eb5d466
@@ -36,4 +36,4 @@ Assets:
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
 - Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/passivitem

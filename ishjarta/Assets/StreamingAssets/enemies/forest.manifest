@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 517628074
+CRC: 1824992434
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6b801f1c469c07fcb5d659fc1aa30180
+    Hash: 775dafe4c3f6995360e709ab7ab9e6f3
   TypeTreeHash:
     serializedVersion: 2
     Hash: 962383f3559cf1459dd126646e05031b
@@ -64,4 +64,5 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/RangedSlime.prefab
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 - Assets/Prefabs/Enemys/Meele/Slime.prefab
-Dependencies: []
+Dependencies:
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab

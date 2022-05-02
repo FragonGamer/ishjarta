@@ -13,7 +13,7 @@ public class UsableItem : Item
         armor
     }
     public UsableItem.UsableItemtype type;
-    public int Amount { get; set; }
+    public int Amount {get;set;}
     public int MaxAmount { get; set; }
 
     public void Init( int a, UsableItemtype Itype, int ma)

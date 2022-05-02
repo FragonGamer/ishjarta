@@ -7552,7 +7552,7 @@ MonoBehaviour:
   qualityDropdown: {fileID: 0}
   fullScreenToggle: {fileID: 0}
   resolutionDropdown: {fileID: 0}
-  newGameLevel: Tutorial
+  newGameLevel: ITCHIOGAME
   noSavedGameDialog: {fileID: 90991558}
 --- !u!4 &1477315817
 Transform:
