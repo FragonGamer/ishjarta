@@ -94,6 +94,8 @@ public class Enemy : Entity
             Die();
         }
     }
+
+    [SerializeField] public EnemyLootDropTable enemyLootDropTable;
     protected override void Die()
     {
         if (gameObject.GetComponent<CircleCollider2D>() != null)
@@ -108,6 +110,14 @@ public class Enemy : Entity
         gameObject.GetComponent<AIPath>().canMove = false;
         animator.SetBool("isDead", true);
 
+        if(enemyLootDropTable != null)
+        {
+            GameObject drop = enemyLootDropTable.GetDrop();
+            if (drop != null)
+            {
+                Instantiate(drop, this.transform.position, Quaternion.identity);
+            }
+        }
     }
 
     public enum EnemyEnum
