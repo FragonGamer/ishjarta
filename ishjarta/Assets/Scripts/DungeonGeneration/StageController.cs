@@ -603,6 +603,8 @@ public class StageController : MonoBehaviour
         camera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main")).Select(x => x.Value).First();
         HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
         playerAssetsFile.Unload(false);
+        if (startRoom != null)
+            player.GetComponent<Player>().currentRoom = startRoom.GetComponent<Room>();
 
     }
     Dictionary<string, GameObject> InstantiateAssetGroup(GameObject[] assets, Vector3 position)

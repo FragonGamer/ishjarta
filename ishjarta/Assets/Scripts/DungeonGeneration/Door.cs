@@ -46,6 +46,7 @@ public class Door : MonoBehaviour
         room.enteredDoor = null;
         room.isEntered = false;
         ConnectedDoorRoom.enteredDoor = ConnectedDoor.GetComponent<Door>();
+        player.GetComponent<Player>().currentRoom = ConnectedDoorRoom;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

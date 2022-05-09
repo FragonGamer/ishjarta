@@ -11,6 +11,7 @@ public class Player : Entity
     [SerializeField] int luck;
     [SerializeField] private float timeRanged = 0.0f;
     [SerializeField] private float timeMelee = 0.0f;
+    [SerializeField] public Room currentRoom;
     //[SerializeField] int maxResistance;
 
     [SerializeField] private HealthBar hpBar;
