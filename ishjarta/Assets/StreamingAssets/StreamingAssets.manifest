@@ -1,48 +1,47 @@
 ManifestFileVersion: 0
-CRC: 1816286738
+CRC: 4144079738
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: player
-      Dependencies: {}
-    Info_1:
-      Name: meleeweapon
-      Dependencies: {}
-    Info_2:
       Name: stage/forest
       Dependencies:
         Dependency_0: enemies/forest
+    Info_1:
+      Name: enemy
+      Dependencies: {}
+    Info_2:
+      Name: player
+      Dependencies: {}
     Info_3:
-      Name: enemies/forest
-      Dependencies:
-        Dependency_0: usableitemprefab
-    Info_4:
-      Name: meleeweaponprefab
-      Dependencies:
-        Dependency_0: meleeweapon
-    Info_5:
-      Name: passivitem
-      Dependencies: {}
-    Info_6:
-      Name: rangedweaponprefab
-      Dependencies: {}
-    Info_7:
-      Name: usableitemprefab
-      Dependencies:
-        Dependency_0: usableitem
-    Info_8:
       Name: activeitemprefab
       Dependencies:
         Dependency_0: activeitem
-    Info_9:
+    Info_4:
       Name: passivitemprefab
-      Dependencies:
-        Dependency_0: passivitem
-    Info_10:
-      Name: activeitem
       Dependencies: {}
+    Info_5:
+      Name: meleeweapon
+      Dependencies: {}
+    Info_6:
+      Name: meleeweaponprefab
+      Dependencies:
+        Dependency_0: meleeweapon
+    Info_7:
+      Name: enemies/forest
+      Dependencies:
+        Dependency_0: usableitemprefab
+    Info_8:
+      Name: passivitem
+      Dependencies: {}
+    Info_9:
+      Name: rangedweaponprefab
+      Dependencies: {}
+    Info_10:
+      Name: usableitemprefab
+      Dependencies:
+        Dependency_0: usableitem
     Info_11:
-      Name: enemy
+      Name: activeitem
       Dependencies: {}
     Info_12:
       Name: usableitem

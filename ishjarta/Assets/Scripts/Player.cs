@@ -32,6 +32,18 @@ public class Player : Entity
     }
     #endregion SaveSystem
 
+    public void AddToMaxHealth(int health)
+    {
+        MaxHealth += health;
+    }
+    public void RemoveFromMaxHealth(int health)
+    {
+        MaxHealth -= health;
+    }
+    public void AddToCurrentHealth(int health)
+    {
+        CurrentHealth += health;
+    }
     public int GetBaseDamage() { return BaseDamage; }
     public void SetBaseDamage(int value) { BaseDamage = value; }
 
@@ -65,7 +77,7 @@ public class Player : Entity
     public void CalcResistence()
     {
         int armorAmount = inventory.GetArmor().Amount;
-        Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+        Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.3f;
         CurrentResistance = Resistance;
     }
 

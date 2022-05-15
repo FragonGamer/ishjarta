@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class PassiveItem : Item
+public abstract class PassiveItem : Item, PassivItemInterface
 {
     public PassivItemtype ItemType { get; set; }
+    [SerializeField] public string description;
 
     public enum PassivItemtype
     {
@@ -25,4 +26,9 @@ public class PassiveItem : Item
         }
     }
     #endregion SaveSystem
+
+
+    public abstract void triggerEffect();
+    public abstract void removeEffect();
+
 }
