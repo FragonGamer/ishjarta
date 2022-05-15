@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4144079738
+CRC: 801160926
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -30,6 +30,7 @@ AssetBundleManifest:
       Name: enemies/forest
       Dependencies:
         Dependency_0: usableitemprefab
+        Dependency_1: usableitem
     Info_8:
       Name: passivitem
       Dependencies: {}

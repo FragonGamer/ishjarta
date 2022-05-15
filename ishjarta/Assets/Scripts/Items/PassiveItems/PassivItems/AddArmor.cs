@@ -25,6 +25,12 @@ public class AddArmor : PassiveItem
 
     public override void removeEffect()
     {
-        throw new System.NotImplementedException();
+        var p = Utils.loadAssetPack("usableitem");
+        var asdf = p.LoadAllAssets();
+        var armor = p.LoadAsset("Armor") as UsableItem;
+        var inv = Inventory.instance;
+        armor.Amount = Amount;
+        p.Unload(true);
+        Inventory.instance.DropItem(armor);
     }
 }

@@ -3,7 +3,7 @@ CRC: 517628074
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 26c1de4f474d4b1760a3a3ed28cb899f
+    Hash: b5bc0416000c00bcf9222c3194bbaa57
   TypeTreeHash:
     serializedVersion: 2
     Hash: 962383f3559cf1459dd126646e05031b
@@ -65,4 +65,5 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 - Assets/Prefabs/Enemys/Meele/Slime.prefab
 Dependencies:
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitem
 - /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab

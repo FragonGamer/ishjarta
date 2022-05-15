@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2253712257
+CRC: 66402253
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f62bac6eed5a49c17a51e9bf480de47a
+    Hash: e140db590ff9d3890b0fd2ea529c73ba
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4b779d60e6a4cb7bc4406169fd0d4c7b
@@ -20,4 +20,5 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Items/Armor.asset
+- Assets/Items/Coin.asset
 Dependencies: []

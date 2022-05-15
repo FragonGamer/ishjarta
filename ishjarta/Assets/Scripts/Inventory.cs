@@ -462,6 +462,14 @@ public class Inventory : MonoBehaviour
                 }
 
                 break;
+            case UsableItem.UsableItemtype.armor:
+                if (Armor.Amount - item.Amount >= 0)
+                {
+                    Armor.Amount -= item.Amount;
+                }
+                player.CalcResistence();
+
+                break;
         }
 
 
@@ -471,6 +479,7 @@ public class Inventory : MonoBehaviour
     private void PrintInventory()
     {
         Debug.Log($"Armor : {this.Armor.Amount} : {player.GetResistence() * 100}%");
+        Debug.Log($"Coins : {this.Coins.Amount} ");
         Debug.Log($"Melee Weapon: {(MeleeWeapon != null ? MeleeWeapon.name : 'f')} | Ranged Weapon: {(RangedWeapon != null ? RangedWeapon.name : 'f')} | Active Weapon: {(CurrentWeapon != null ? CurrentWeapon.name : 'f')}");
     }
 
