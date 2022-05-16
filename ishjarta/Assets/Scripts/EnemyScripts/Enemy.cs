@@ -79,7 +79,6 @@ public class Enemy : Entity
 
     public void Update()
     {
-        HandleEffects();
     }
 
     public override void Attack(Vector2 vector, float attackChargeModifier)
@@ -100,6 +99,8 @@ public class Enemy : Entity
             Die();
         }
     }
+
+    [SerializeField] public EnemyLootDropTable enemyLootDropTable;
     protected override void Die()
     {
         if (gameObject.GetComponent<CircleCollider2D>() != null)
@@ -109,6 +110,15 @@ public class Enemy : Entity
         if (gameObject.GetComponent<BoxCollider2D>() != null)
         {
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        if (enemyLootDropTable != null)
+        {
+            GameObject drop = enemyLootDropTable.GetDrop();
+            if (drop != null)
+            {
+                Instantiate(drop, this.transform.position, Quaternion.identity);
+            }
         }
 
         gameObject.GetComponent<AIPath>().canMove = false;

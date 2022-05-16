@@ -13,19 +13,46 @@ public class MenuController : BaseMenuController
     public string newGameLevel = null;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
+    [Header("LoadBar")]
+    [SerializeField] private GameObject loadScreen = null;
+    [SerializeField] private Slider loadSlider = null;
+    [SerializeField] private TMP_Text loadText = null;
+
 
     public void NewGameDialogYes()
     {
         new SerializationManager().DeleteSaveFile("system");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LoadScene();
     }
 
     public void LoadGameDialogYes()
     {
         if (SerializationManager.ExistsSaveFile("system"))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LoadScene();
         else if(noSavedGameDialog != null)
             noSavedGameDialog.SetActive(true);
+    }
+
+    public void LoadScene()
+    {
+        StartCoroutine(LoadAsynchronously());
+    }
+
+    IEnumerator LoadAsynchronously()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+        loadScreen.SetActive(true);
+
+        while(!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+
+            loadSlider.value = progress;
+            loadText.text = $"{progress * 100f} %";
+
+            yield return null;
+        }
     }
 
     public void ExitButton()

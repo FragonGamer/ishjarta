@@ -7,6 +7,7 @@ public class SaveManager : MonoBehaviour
 {
     private static string fileName = "system";
 
+    public EnemyLootDropTable e;
     void Start()
     {
         bool loaded;
@@ -14,6 +15,9 @@ public class SaveManager : MonoBehaviour
         if (loaded)
         {
             Debug.Log("File loaded");
+
+            PlayerData playerData = SaveData.Instance.playerData;
+            Player player = PlayerManager.instance.player.GetComponent<Player>();
 
             foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
             {
@@ -25,17 +29,28 @@ public class SaveManager : MonoBehaviour
                 {
                     Destroy(o);
                 }
+                else if(o.GetComponent<Room>() != null)
+                {
+                    if(playerData.roomId < 0)
+                    {
+                        //var room = o.GetComponent<Room>();
+                        //if (room.RoomId == playerData.roomId)
+                        //{
+                        //    o.SetActive(true);
+                        //    player.currentRoom = room;
+                        //}
+                        //else
+                        //    o.SetActive(false);
+                    }
+                }
             }
 
-            PlayerData playerData = SaveData.Instance.playerData;
-
-            Player player = PlayerManager.instance.player.GetComponent<Player>();
 
             player.Init(playerData);
 
             var enemyData = SaveData.Instance.enemyData;
 
-            var enemyBundle = Utils.loadAssetPack("enemy");
+            var enemyBundle = Utils.loadAssetPack("enemies/forest");
 
             foreach (var ed in enemyData)
             {
@@ -43,6 +58,7 @@ public class SaveManager : MonoBehaviour
                 {
                     var slime = Utils.loadAssetFromAssetPack(enemyBundle, "slime");
                     slime.GetComponent<Enemy>().Init(ed);
+                    slime.GetComponent<Enemy>().enemyLootDropTable = e;
                     Instantiate(slime, ed.position, Quaternion.identity);
                 }
                 else if (ed.enemyType == (int)Enemy.EnemyEnum.rangedSlime)
@@ -266,13 +282,17 @@ public class SaveManager : MonoBehaviour
             Utils.UnloadAssetPack(usableItemPrefabBundle);
             Utils.UnloadAssetPack(usableItemBundle);
 
-
             SaveData.Instance.ClearAll();
         }
         HUDManager.instance.UpdateAllSpritesAndText();
     }
 
     public void OnApplicationQuit()
+    {
+        Save();
+    }
+
+    public static void Save()
     {
         var objects = GameObject.FindObjectsOfType(typeof(MonoBehaviour));
 
@@ -310,7 +330,7 @@ public class SaveManager : MonoBehaviour
                 {
                     SaveData.Instance.passivItemData.Add(new PassivItemData(pi, position));
                 }
-                else if (im.GetItem() is UsableItem ui)
+                else if (item is UsableItem ui)
                 {
                     SaveData.Instance.usableItemData.Add(new UsableItemData(ui, position));
                 }

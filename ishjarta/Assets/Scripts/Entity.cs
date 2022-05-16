@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -76,22 +78,46 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
+    CancellationTokenSource tokenSource;
+    StatusEffectHandler statusEffectHandler;
     private void Awake()
     {
+        tokenSource = new CancellationTokenSource();
         statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
+        HandleEffects();
+    }
+    void OnDisable()
+    {
+        tokenSource.Cancel();
     }
 
     private float timeCounter = 0;
-    public void HandleEffects()
+
+    public async Task HandleEffects()
     {
-        timeCounter += Time.deltaTime;
-        if (timeCounter >= 1)
+        await Task.Run(async () =>
         {
-            timeCounter = 0;
-            ExecuteEffects();
-        }
+            while (true)
+            {
+                if (tokenSource.IsCancellationRequested)
+                    return;
+
+                await Task.Delay(1000);
+                ExecuteEffects();
+            }
+        }, tokenSource.Token);
     }
-    StatusEffectHandler statusEffectHandler;
+
+    //public void HandleEffects()
+    //{
+    //    timeCounter += Time.deltaTime;
+    //    if (timeCounter >= 1)
+    //    {
+    //        timeCounter = 0;
+    //        ExecuteEffects();
+    //    }
+    //}
+
     public void ExecuteEffects()
     {
         float speedBoost = 0, speedDelay = 0;
