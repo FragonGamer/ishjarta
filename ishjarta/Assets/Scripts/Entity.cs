@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour , ISaveable
 {
     //Health
     [field: SerializeField] private int currentHealth;
@@ -38,27 +38,7 @@ public abstract class Entity : MonoBehaviour
     [field: SerializeField] public float Width { get; protected set; }
 
     #region SaveSystem
-    private bool isEntityInitialized = false;
-    protected void Init(EntityData entityData)
-    {
-        if(!isEntityInitialized)
-        {
-            isEntityInitialized = true;
 
-            this.CurrentHealth = entityData.currentHealth;
-            this.MaxHealth = entityData.maxHealth;
-            this.BaseHealth = entityData.baseHealth;
-            this.HealthModifier = entityData.healthModifier;
-            this.Resistance = entityData.resistance;
-            this.CurrentResistance = entityData.currentResistance;
-            this.MovementSpeed = entityData.movementSpeed;
-            this.SpeedModifier = entityData.speedModifier;
-            this.BaseDamage = entityData.baseDamage;
-            this.DamageModifier = entityData.damageModifier;
-            this.AttackRate = entityData.attackRate;
-            this.Range = entityData.range;
-        }
-    }
     #endregion SaveSystem
 
     protected abstract void Die();
@@ -338,4 +318,76 @@ public abstract class Entity : MonoBehaviour
 
         return result;
     }
+
+    #region SaveSystem
+    public object SaveState()
+    {
+        return new SaveData()
+        {
+            currentHealth = this.CurrentHealth,
+            baseHealth = this.BaseHealth,
+            maxHealth = this.MaxHealth,
+            resistance = this.Resistance,
+            currentResistance = this.CurrentResistance,
+            movementSpeed = this.MovementSpeed,
+            speedModifier = this.SpeedModifier,
+            baseDamage = this.BaseDamage,
+            damageModifier = this.DamageModifier,
+            attackRate = this.AttackRate,
+            range = this.Range,
+            width = this.Width,
+            posX = this.gameObject.transform.position.x,
+            posY = this.gameObject.transform.position.y
+        };
+    }
+
+    public void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.CurrentHealth = saveData.currentHealth;
+        this.BaseHealth = saveData.baseHealth;
+        this.MaxHealth = saveData.maxHealth;
+        this.Resistance = saveData.resistance;
+        this.CurrentResistance = saveData.currentResistance;
+        this.MovementSpeed = saveData.movementSpeed;
+        this.SpeedModifier = saveData.speedModifier;
+        this.BaseDamage = saveData.baseDamage;
+        this.DamageModifier = saveData.damageModifier;
+        this.AttackRate = saveData.attackRate;
+        this.Range = saveData.range;
+        this.Width = saveData.width;
+        gameObject.transform.position = new Vector3(saveData.posX, saveData.posY,0);
+    }
+    
+    [Serializable]
+    private struct SaveData
+    {
+        public int currentHealth;
+        public int maxHealth;
+        public int baseHealth;
+        // Is used for enemy scaling and for player itembuff
+        public float healthModifier;
+
+        //Armor
+        public float resistance;
+        public float currentResistance;
+        //Movement
+        public int movementSpeed;
+        public float speedModifier;
+        //Damage
+        public int baseDamage;
+        // Is used for enemy scaling and for player itembuff
+        public float damageModifier;
+        //AttackRate
+        public int attackRate;
+        //Range
+        public float range;
+        //Width
+        public float width;
+
+        public float posX;
+        public float posY;
+    }
+        
+    #endregion
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour , ISaveable
 {
     #region Singleton
     public static Inventory instance;
@@ -74,73 +74,7 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    #region SaveSystem
-    private bool isInventoryInitialized = false;
-    public void Init(InventoryData inventoryData)
-    {
-        if (!isInventoryInitialized)
-        {
-            isInventoryInitialized = true;
 
-            if (inventoryData.meleeWeapon != null)
-            {
-                var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
-                AddItem((MeleeWeapon)Utils.loadItemFromAssetPack(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName));
-                Utils.UnloadAssetPack(meleeWeaponItemBundle);
-            }
-
-            if (inventoryData.rangedWeapon != null)
-            {
-                var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
-                AddItem((RangedWeapon)Utils.loadItemFromAssetPack(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName));
-                Utils.UnloadAssetPack(rangedWeaponItemBundle);
-            }
-
-            if (inventoryData.IsCurrentWeaponMelee && MeleeWeapon != null && CurrentWeapon is RangedWeapon)
-                ChangeWeapon();
-
-            var passivItemBundle = Utils.loadAssetPack("passivitem");
-            inventoryData.passiveItems.ForEach(x =>
-            {
-                AddItem((PassiveItem)Utils.loadItemFromAssetPack(passivItemBundle, x.itemName));
-            });
-            Utils.UnloadAssetPack(passivItemBundle);
-
-            if (inventoryData.activeItem != null)
-            {
-                var activeItemBundle = Utils.loadAssetPack("activeitem");
-                AddItem((ActiveItem)Utils.loadItemFromAssetPack(activeItemBundle, inventoryData.activeItem.itemName));
-                Utils.UnloadAssetPack(activeItemBundle);
-            }
-
-            Coins.Init(inventoryData.coins);
-            Bombs.Init(inventoryData.bombs);
-            Keys.Init(inventoryData.keys);
-            Armor.Init(inventoryData.armor);
-
-            //if(inventoryData.meleeWeapon != null)
-            //    MeleeWeapon.Init(inventoryData.meleeWeapon);
-
-            //if (inventoryData.rangedWeapon != null)
-            //    RangedWeapon.Init(inventoryData.rangedWeapon);
-
-            //CurrentWeapon = inventoryData.IsCurrentWeaponMelee ? MeleeWeapon : RangedWeapon;
-
-            //PassiveItems.AddRange(inventoryData.passiveItems.Select(x =>
-            //{
-            //    var passivItem = ScriptableObject.CreateInstance<PassiveItem>();
-            //    passivItem.Init(x);
-            //    return passivItem;
-            //}));
-            //Debug.Log($"ActiveItem: {inventoryData.activeItem}");
-            //ActiveItem.Init(inventoryData.activeItem);
-            //Coins.Init(inventoryData.coins);
-            //Bombs.Init(inventoryData.bombs);
-            //Keys.Init(inventoryData.keys);
-            //Armor.Init(inventoryData.armor);
-        }
-    }
-    #endregion SaveSystem
     private void Start()
     {
         hudManager = HUDManager.instance;
@@ -509,6 +443,49 @@ public class Inventory : MonoBehaviour
                 break;
         }
     }
+    #region SaveSystem
+    public object SaveState()
+    {
+        return new SaveData()
+        {
+            armor = this.Armor,
+            meleeWeapon = this.MeleeWeapon,
+            rangedWeapon = this.RangedWeapon,
+            activeItem = this.ActiveItem,
+            passiveItems = this.PassiveItems,
+            bombs = this.Bombs,
+            keys = this.Keys,
+            coins = this.Coins,
+            currentWeapon = this.CurrentWeapon
+        };
+    }
 
+    public void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.Armor = saveData.armor;
+        this.Keys = saveData.keys;
+        this.Coins = saveData.coins;
+        this.Bombs = saveData.bombs;
+        this.MeleeWeapon = saveData.meleeWeapon;
+        this.RangedWeapon = saveData.rangedWeapon;
+        this.ActiveItem = saveData.activeItem;
+        this.PassiveItems = saveData.passiveItems;
+        this.CurrentWeapon = saveData.currentWeapon;
 
+    }
+    [Serializable]
+    private struct SaveData
+    {
+        public MeleeWeapon meleeWeapon;
+        public RangedWeapon rangedWeapon;
+        public Weapon currentWeapon;
+        public ActiveItem activeItem;
+        public List<PassiveItem> passiveItems;
+        public UsableItem bombs;
+        public UsableItem keys;
+        public UsableItem coins;
+        public UsableItem armor;
+    }
+    #endregion
 }

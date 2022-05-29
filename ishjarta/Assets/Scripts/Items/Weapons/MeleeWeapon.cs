@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class MeleeWeapon : Weapon
 {
+
+
     [field: SerializeField] public float Width { get; set; }
 
     [field: SerializeField] public MeleeWeaponType WeaponType { get; set; }
@@ -17,17 +22,7 @@ public class MeleeWeapon : Weapon
     }
 
     #region SaveSystem
-    private bool isMeleeWeaponInitialized = false;
-    public void Init(MeleeWeaponData meleeWeaponData)
-    {
-        if (!isMeleeWeaponInitialized)
-        {
-            isMeleeWeaponInitialized = true;
-            base.Init(meleeWeaponData);
 
-            WeaponType = (MeleeWeaponType)meleeWeaponData.weaponType;
-        }
-    }
     #endregion SaveSystem
 }
 

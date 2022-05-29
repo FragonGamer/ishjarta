@@ -18,19 +18,6 @@ public class Enemy : Entity
     [field: SerializeField] public EnemyEnum EnemyType { get; set; }
 
 
-    #region SaveSystem
-    private bool isEnemyInitialized = false;
-    public void Init(EnemyData enemyData)
-    {
-        if (!isEnemyInitialized)
-        {
-            isEnemyInitialized = true;
-
-            base.Init(enemyData);
-            EnemyType = (EnemyEnum)enemyData.enemyType;
-        }
-    }
-    #endregion SaveSystem
 
     #region getters and setters
     public int GetMovementSpeed()

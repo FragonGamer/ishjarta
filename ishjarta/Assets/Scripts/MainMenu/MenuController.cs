@@ -21,21 +21,14 @@ public class MenuController : BaseMenuController
 
     public void NewGameDialogYes()
     {
-        new SerializationManager().DeleteSaveFile("system");
-        LoadScene();
     }
 
     public void LoadGameDialogYes()
     {
-        if (SerializationManager.ExistsSaveFile("system"))
-            LoadScene();
-        else if(noSavedGameDialog != null)
-            noSavedGameDialog.SetActive(true);
     }
 
     public void LoadScene()
     {
-        StartCoroutine(LoadAsynchronously());
     }
 
     IEnumerator LoadAsynchronously()

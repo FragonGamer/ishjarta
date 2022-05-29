@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class PassiveItem : Item
 {
+
+
     public PassivItemtype ItemType { get; set; }
 
     public enum PassivItemtype
@@ -12,17 +17,5 @@ public class PassiveItem : Item
         speedFlower
     }
 
-    #region SaveSystem
-    private bool isPassivItemInitialized = false;
-    public void Init(PassivItemData passivItemData)
-    {
-        if (!isPassivItemInitialized)
-        {
-            isPassivItemInitialized = true;
-            base.Init(passivItemData);
 
-            ItemType = (PassivItemtype)passivItemData.passivItemType;
-        }
-    }
-    #endregion SaveSystem
 }

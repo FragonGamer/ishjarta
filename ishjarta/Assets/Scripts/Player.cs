@@ -17,19 +17,7 @@ public class Player : Entity
     [SerializeField] private HealthBar hpBar;
 
     #region SaveSystem
-    private bool isPlayerInitialized = false;
-    public void Init(PlayerData playerData)
-    {
-        if (!isPlayerInitialized)
-        {
-            isPlayerInitialized = true;
 
-            base.Init(playerData);
-
-            this.transform.position = playerData.position;
-            inventory.Init(playerData.inventory);
-        }
-    }
     #endregion SaveSystem
 
     public int GetBaseDamage() { return BaseDamage; }
@@ -145,7 +133,6 @@ public class Player : Entity
 
     protected override void Die()
     {
-        new SerializationManager().DeleteSaveFile("system");
         Debug.Log("Died");
         AssetBundle.UnloadAllAssetBundles(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

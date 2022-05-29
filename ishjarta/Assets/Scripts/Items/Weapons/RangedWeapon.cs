@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class RangedWeapon : Weapon
 {
+
     [field: SerializeField] public int ProjectileVelocity { get; set; }
 
     [field: SerializeField] public RangedWeaponType WeaponType { get; set; }
@@ -15,17 +19,5 @@ public class RangedWeapon : Weapon
         crossbow
     }
 
-    #region SaveSystem
-    private bool isRangedWeaponInitialized = false;
-    public void Init(RangedWeaponData rangedWeaponData)
-    {
-        if (!isRangedWeaponInitialized)
-        {
-            isRangedWeaponInitialized = true;
-            base.Init(rangedWeaponData);
 
-            WeaponType = (RangedWeaponType)rangedWeaponData.weaponType;
-        }
-    }
-    #endregion SaveSystem
 }

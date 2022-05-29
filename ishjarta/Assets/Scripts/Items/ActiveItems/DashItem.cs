@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class DashItem : ActiveItem
 {
     public float dashSpeed;
+
+
 
     public override void Activate(GameObject parent)
     {

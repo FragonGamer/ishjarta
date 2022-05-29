@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2128995530207865042}
   - component: {fileID: 3756161934450164982}
   - component: {fileID: 3511570834529421310}
+  - component: {fileID: 903330816010530424}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -155,6 +156,7 @@ MonoBehaviour:
   luck: 1
   timeRanged: 0
   timeMelee: 0
+  currentRoom: {fileID: 0}
   hpBar: {fileID: 0}
   inventory: {fileID: 1518163295076240293}
 --- !u!114 &264775069492423061
@@ -271,6 +273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &903330816010530424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6607695795067367189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c783382154093244ea8eae1ce107cad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &7494606404856730283
 GameObject:
   m_ObjectHideFlags: 0

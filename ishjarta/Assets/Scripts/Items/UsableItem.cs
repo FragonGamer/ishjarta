@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class UsableItem : Item
 {
     public enum UsableItemtype
@@ -13,6 +16,9 @@ public class UsableItem : Item
         armor
     }
     public UsableItem.UsableItemtype type;
+
+
+
     public int Amount {get;set;}
     public int MaxAmount { get; set; }
 
@@ -23,19 +29,4 @@ public class UsableItem : Item
         Amount = a;
     }
 
-    #region SaveSystem
-    private bool isUsableItemInitialized = false;
-    public void Init(UsableItemData usableItemData)
-    {
-        if (!isUsableItemInitialized)
-        {
-            isUsableItemInitialized = true;
-            base.Init(usableItemData);
-
-            Amount = usableItemData.amount;
-            MaxAmount = usableItemData.maxAmount;
-            type = (UsableItemtype)usableItemData.usabelItemType;
-        }
-    }
-    #endregion SaveSystem
 }

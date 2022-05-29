@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using System.Runtime.Serialization;
+using System;
+[PreferBinarySerialization]
 public abstract class Item : ScriptableObject
 {
     public string ItemName;
@@ -16,22 +18,13 @@ public abstract class Item : ScriptableObject
         return Icon;
     }
 
+
+
     // Effects which the owner gets
     [field: SerializeField] public List<BaseEffect> OwnerEffects { get; set; } = new List<BaseEffect>();
 
     // Effects which will be passed on to the enemy
     [field: SerializeField] public List<BaseEffect> EmitEffects { get; set; } = new List<BaseEffect>();
 
-    #region SaveSystem
-    private bool isItemInitialized = false;
-    protected void Init(ItemData itemData)
-    {
-        if (!isItemInitialized)
-        {
-            isItemInitialized = true;
 
-            ItemName = itemData.itemName;
-        }
-    }
-    #endregion SaveSystem
 }

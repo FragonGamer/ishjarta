@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class ActiveItem : Item
 {
     public float cooldownTime;
     public float activeTime;
 
     public ActiveItemtype ItemType;
+
+
 
     public virtual void Activate(GameObject parent) {}
 
@@ -17,15 +22,5 @@ public class ActiveItem : Item
         speedBraclet
     }
 
-    #region SaveSystem
-    private bool isActiveItemInitialized = false;
-    public void Init(ActiveItemData activeItemData)
-    {
-        if (!isActiveItemInitialized)
-        {
-            isActiveItemInitialized = true;
-            base.Init(activeItemData);
-        }
-    }
-    #endregion SaveSystem
+
 }
