@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbd3e0a602471ae0199fccb3325b0582, type: 3}
-  m_Name: add_25_coins
+  m_Name: Add25Coins
   m_EditorClassIdentifier: 
   ItemName: 
   <Icon>k__BackingField: {fileID: 0}
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
-  description: adds 25 coins to inventory
+  description: Adds 25 Coins
   Amount: 25

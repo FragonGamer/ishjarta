@@ -175,6 +175,7 @@ public class StageController : MonoBehaviour
         worldRooms.Add(startRoomGO.GetComponent<Room>());
         this.startRoom = startRoomGO;
         startRoom.GetComponent<Room>().isEntered = true;
+        startRoom.GetComponent<Room>().hasVisited = true;
     }
 
 
@@ -464,6 +465,7 @@ public class StageController : MonoBehaviour
         worldRooms.Add(endRoom.GetComponent<Room>());
         Debug.Log("Rooms: " + nextRoomId);
         currentStageCounter++;
+        startRoom.GetComponent<Room>().hasVisited = true;
 
     }
 

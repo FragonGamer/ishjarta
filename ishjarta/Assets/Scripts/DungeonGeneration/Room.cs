@@ -8,6 +8,8 @@ using System.Linq;
 public class Room : MonoBehaviour
 {
 
+    [SerializeField]
+    public bool hasVisited = false;
     [SerializeField] public int maxOfThisRoom;
     public bool IsCleared { get; private set; } = false;
     [SerializeField] public bool isEntered = false;
@@ -68,6 +70,12 @@ public class Room : MonoBehaviour
     {
         if (isEntered)
         {
+            if (!hasVisited)
+            {
+                hasVisited = true;
+                player.visitedRooms++;
+                Debug.Log(player.visitedRooms);
+            }
 
             if (!IsCleared)
             {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5520240170576418035}
   - component: {fileID: 5520240170576418032}
   m_Layer: 0
-  m_Name: add_25_coins
+  m_Name: damageMultiOnOdd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: cbcbac4a18e691a3182761e9f57f87cb, type: 2}
+  item: {fileID: 11400000, guid: 02d64973ae94b8b5a9b827c60ef698c1, type: 2}
   player: {fileID: 0}
   isInRange: 0
 --- !u!58 &5520240170576418032

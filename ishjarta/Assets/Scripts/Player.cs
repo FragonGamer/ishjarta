@@ -13,6 +13,7 @@ public class Player : Entity
     [SerializeField] private float timeMelee = 0.0f;
     [SerializeField] public Room currentRoom;
     //[SerializeField] int maxResistance;
+    public int visitedRooms = 1;
 
     [SerializeField] private HealthBar hpBar;
 
@@ -95,6 +96,20 @@ public class Player : Entity
     {
         return inventory;
     }
+    public float GetDamageModifierer()
+    {
+        return DamageModifier;
+    }
+    public void AddDamageModifierer(float DM)
+    {
+        DamageModifier += DM;
+    }
+    public void RemoveDamageModifierer(float DM)
+    {
+        DamageModifier -= DM;
+
+    }
+
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?

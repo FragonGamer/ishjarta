@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3213127792
+CRC: 3389109896
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9a5f7d51c4405807a49c1814570ad990
+    Hash: aeb3196e99de55adb489dd834c594924
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8f477b9bce6a606a2d53d60f0e1817c6
+    Hash: 77f8ffa95f6a301a01e8f0826cb6a7cc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -26,7 +26,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: dbd3e0a602471ae0199fccb3325b0582, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 87736be6d2ab882aa84dded7dfe0d056, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a415209b65a2cb4adba9be967d7c1483, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -35,8 +39,12 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/PassiveItemPrefabs/Add_15_maxhealth.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/Add_15_maxhealth.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_1_coin.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/damageMultiOnOdd.prefab
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/add_armor.prefab
-- Assets/Scripts/Items/PassiveItems/BaseFlower.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/passive_item_template.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_25_coins.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_5_coins.prefab
+- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_armor.prefab
 Dependencies: []
