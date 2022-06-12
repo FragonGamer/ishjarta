@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1880287700973703210}
   - component: {fileID: 7131136116439916128}
+  - component: {fileID: 8570776722010402349}
   m_Layer: 0
-  m_Name: ItemRoom
-  m_TagString: SpecialRoom
+  m_Name: MerchantRoom
+  m_TagString: Merchant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +36,6 @@ Transform:
   - {fileID: 6092759360515711640}
   - {fileID: 8313708045399814315}
   - {fileID: 5258929655851921699}
-  - {fileID: 3339304663505412381}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -65,6 +65,19 @@ MonoBehaviour:
   closedWallLeft: {fileID: 11400000, guid: cc183b2180e76ba41b0eef90fdb7a0bf, type: 2}
   closedWallRight: {fileID: 11400000, guid: 6908df77b152b804da2ff89fcfd1fe5b, type: 2}
   enteredDoor: {fileID: 0}
+--- !u!114 &8570776722010402349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559641727154102414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817cc0c93e8e4100cbad227d1c594517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSix: 0
 --- !u!1 &1079468973363803450
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,70 +956,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
   m_UseDelaunayMesh: 0
---- !u!1001 &2328048890122075882
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 1880287700973703210}
-    m_Modifications:
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3887611097071184741, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-      propertyPath: m_Name
-      value: Itemspawner
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
---- !u!4 &3339304663505412381 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1015970492210503671, guid: 8e00ee5da43cd09e780e0d68fd7c1e87, type: 3}
-  m_PrefabInstance: {fileID: 2328048890122075882}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2426409963523415889
 PrefabInstance:
   m_ObjectHideFlags: 0

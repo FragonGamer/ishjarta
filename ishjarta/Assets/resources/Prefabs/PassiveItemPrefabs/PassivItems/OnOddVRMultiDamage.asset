@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemName: 
   <Icon>k__BackingField: {fileID: 0}
   <Rarity>k__BackingField: 33
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 15
   <SpawnLevelPool>k__BackingField: 
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []

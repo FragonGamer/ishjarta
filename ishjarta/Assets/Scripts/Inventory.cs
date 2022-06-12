@@ -146,7 +146,7 @@ public class Inventory : MonoBehaviour
     {
         hudManager = HUDManager.instance;
     }
-
+    
     /// <summary>
     /// Adds Item 
     /// </summary>
