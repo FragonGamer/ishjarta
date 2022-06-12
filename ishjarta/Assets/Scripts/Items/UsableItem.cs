@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 [Serializable]
-public class UsableItem : Item
+public class UsableItem : Item, ISaveable
 {
     public enum UsableItemtype
     {
@@ -29,4 +29,22 @@ public class UsableItem : Item
         Amount = a;
     }
 
+
+    #region SaveSystem
+    public override object SaveState()
+    {
+        return new SaveData()
+        {
+            ItemName = this.ItemName,
+            ItemType = (int)this.type
+        };
+    }
+
+    public override void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.ItemName = saveData.ItemName;
+        this.type = (UsableItemtype)saveData.ItemType;
+    }
+    #endregion
 }

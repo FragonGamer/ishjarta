@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 [Serializable]
-public class RangedWeapon : Weapon
+public class RangedWeapon : Weapon , ISaveable
 {
 
     [field: SerializeField] public int ProjectileVelocity { get; set; }
@@ -19,5 +19,21 @@ public class RangedWeapon : Weapon
         crossbow
     }
 
+    #region SaveSystem
+    public override object SaveState()
+    {
+        return new SaveData()
+        {
+            ItemName = this.ItemName,
+            ItemType = (int)this.WeaponType
+        };
+    }
 
+    public override void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.ItemName = saveData.ItemName;
+        this.WeaponType = (RangedWeaponType)saveData.ItemType;
+    }
+    #endregion
 }

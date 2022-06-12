@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-public class Inventory : MonoBehaviour , ISaveable
+public class Inventory : MonoBehaviour
 {
     #region Singleton
     public static Inventory instance;
@@ -443,6 +443,8 @@ public class Inventory : MonoBehaviour , ISaveable
                 break;
         }
     }
+    
+    /*
     #region SaveSystem
     public object SaveState()
     {
@@ -488,4 +490,5 @@ public class Inventory : MonoBehaviour , ISaveable
         public UsableItem armor;
     }
     #endregion
+    */
 }

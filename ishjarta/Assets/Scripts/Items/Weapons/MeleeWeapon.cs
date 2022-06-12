@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 [Serializable]
-public class MeleeWeapon : Weapon
+public class MeleeWeapon : Weapon , ISaveable
 {
 
 
@@ -22,8 +22,22 @@ public class MeleeWeapon : Weapon
     }
 
     #region SaveSystem
+    public override object SaveState()
+    {
+        return new SaveData()
+        {
+            ItemName = this.ItemName,
+            ItemType = (int)this.WeaponType
+        };
+    }
 
-    #endregion SaveSystem
+    public override void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.ItemName = saveData.ItemName;
+        this.WeaponType = (MeleeWeaponType)saveData.ItemType;
+    }
+    #endregion
 }
 
 

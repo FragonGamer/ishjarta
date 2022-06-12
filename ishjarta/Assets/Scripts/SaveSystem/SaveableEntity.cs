@@ -14,7 +14,6 @@ public class SaveableEntity : MonoBehaviour
     {
         id = Guid.NewGuid().ToString();
     }
-
     //find all ISaveable components on gameobject
     public object SaveState()
     {

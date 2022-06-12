@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 [Serializable]
-public class PassiveItem : Item
+public class PassiveItem : Item , ISaveable
 {
 
 
@@ -16,6 +16,24 @@ public class PassiveItem : Item
     {
         speedFlower
     }
+
+    #region SaveSystem
+    public override object SaveState()
+    {
+        return new SaveData()
+        {
+            ItemName = this.ItemName,
+            ItemType = (int)this.ItemType
+        };
+    }
+
+    public override void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.ItemName = saveData.ItemName;
+        this.ItemType = (PassivItemtype)saveData.ItemType;
+    }
+    #endregion
 
 
 }

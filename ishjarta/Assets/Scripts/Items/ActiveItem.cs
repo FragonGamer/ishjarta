@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 [Serializable]
-public class ActiveItem : Item
+public class ActiveItem : Item, ISaveable
 {
     public float cooldownTime;
     public float activeTime;
@@ -22,5 +22,22 @@ public class ActiveItem : Item
         speedBraclet
     }
 
+    #region SaveSystem
+    public override object SaveState()
+    {
+        return new SaveData()
+        {
+            ItemName = this.ItemName,
+            ItemType = (int)this.ItemType
+        };
+    }
+
+    public override void LoadState(object state)
+    {
+        var saveData = (SaveData)state;
+        this.ItemName = saveData.ItemName;
+        this.ItemType = (ActiveItemtype)saveData.ItemType;
+    }
+    #endregion
 
 }
