@@ -33,13 +33,15 @@ public class Inventory : MonoBehaviour
     [field: SerializeField] RangedWeapon RangedWeapon { get; set; }
     [field: SerializeField] public Weapon CurrentWeapon { get; set; }
     [field: SerializeField] List<PassiveItem> PassiveItems { get; set; }
+    [field: SerializeField] List<PassiveItem> PeriodiclePassiveItems { get; set; }
+
     [field: SerializeField] ActiveItem ActiveItem { get; set; }
     [field: SerializeField] UsableItem Coins { get; set; }
     [field: SerializeField] UsableItem Bombs { get; set; }
     [field: SerializeField] UsableItem Keys { get; set; }
     [field: SerializeField] UsableItem Armor { get; set; }
     [field: SerializeField] Player player { get; set; }
-
+    
     [SerializeField] private HUDManager hudManager;
 
     #region Getters and Setters
@@ -55,7 +57,6 @@ public class Inventory : MonoBehaviour
     {
         return this.Armor;
     }
-    //Temp method
     public ActiveItem GetActiveItem()
     {
         return ActiveItem;
@@ -86,14 +87,14 @@ public class Inventory : MonoBehaviour
             {
                 var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
                 AddItem((MeleeWeapon)Utils.loadItemFromAssetPack(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName));
-                Utils.UnloadAssetPack(meleeWeaponItemBundle);
+                meleeWeaponItemBundle.Unload(false);
             }
 
             if (inventoryData.rangedWeapon != null)
             {
                 var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
                 AddItem((RangedWeapon)Utils.loadItemFromAssetPack(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName));
-                Utils.UnloadAssetPack(rangedWeaponItemBundle);
+                rangedWeaponItemBundle.Unload(false);
             }
 
             if (inventoryData.IsCurrentWeaponMelee && MeleeWeapon != null && CurrentWeapon is RangedWeapon)
@@ -104,13 +105,13 @@ public class Inventory : MonoBehaviour
             {
                 AddItem((PassiveItem)Utils.loadItemFromAssetPack(passivItemBundle, x.itemName));
             });
-            Utils.UnloadAssetPack(passivItemBundle);
+            passivItemBundle.Unload(false);
 
             if (inventoryData.activeItem != null)
             {
                 var activeItemBundle = Utils.loadAssetPack("activeitem");
                 AddItem((ActiveItem)Utils.loadItemFromAssetPack(activeItemBundle, inventoryData.activeItem.itemName));
-                Utils.UnloadAssetPack(activeItemBundle);
+                activeItemBundle.Unload(false);
             }
 
             Coins.Init(inventoryData.coins);
@@ -187,6 +188,7 @@ public class Inventory : MonoBehaviour
             PrintInventory();
         }
 
+        
         return result;
 
     }
@@ -356,7 +358,14 @@ public class Inventory : MonoBehaviour
     public void AddPassiveItem(PassiveItem item)
     {
         PassiveItems.Add(item);
-        player.AddEffectRange(item.OwnerEffects);
+        PeriodiclePassiveItems.Add(item);
+        
+        //player.AddEffectRange(item.OwnerEffects);
+    }
+
+    public void RemovePeriodiclePassiveItem(PassiveItem item)
+    {
+        PeriodiclePassiveItems.Remove(item);
     }
 
     /// <summary>
@@ -453,6 +462,14 @@ public class Inventory : MonoBehaviour
                 }
 
                 break;
+            case UsableItem.UsableItemtype.armor:
+                if (Armor.Amount - item.Amount >= 0)
+                {
+                    Armor.Amount -= item.Amount;
+                }
+                player.CalcResistence();
+
+                break;
         }
 
 
@@ -462,6 +479,7 @@ public class Inventory : MonoBehaviour
     private void PrintInventory()
     {
         Debug.Log($"Armor : {this.Armor.Amount} : {player.GetResistence() * 100}%");
+        Debug.Log($"Coins : {this.Coins.Amount} ");
         Debug.Log($"Melee Weapon: {(MeleeWeapon != null ? MeleeWeapon.name : 'f')} | Ranged Weapon: {(RangedWeapon != null ? RangedWeapon.name : 'f')} | Active Weapon: {(CurrentWeapon != null ? CurrentWeapon.name : 'f')}");
     }
 
@@ -488,6 +506,17 @@ public class Inventory : MonoBehaviour
         cooldown
     }
     ActiveItemState state = ActiveItemState.ready;
+
+    void ActivateAllperiodicPassivItems()
+    {
+        if (PeriodiclePassiveItems.Count != 0)
+        {
+            for (int i = PeriodiclePassiveItems.Count - 1; i >= 0; i--)
+            {
+                PeriodiclePassiveItems[i].triggerEffect();
+            }
+        }
+    }
     void Update()
     {
         switch (state)
@@ -508,7 +537,10 @@ public class Inventory : MonoBehaviour
                     state = ActiveItemState.ready;
                 break;
         }
+        ActivateAllperiodicPassivItems();
     }
+
+    
 
 
 }

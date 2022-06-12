@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3274060036
+CRC: 3866903864
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3648072a9eea08d777e9f8331c152e17
+    Hash: 7232aa12933cc0db36f2830674f0cefc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3dc7dba7b7c50a13e7f7c4130eb5d466
+    Hash: 9b83ccbee75f7f2b14a980bd436891bc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -22,8 +22,6 @@ ClassTypes:
 - Class: 58
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: 11500000, guid: 9248fb4887562a943b28cee9d316e3cb, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
@@ -34,6 +32,4 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
-Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
+Dependencies: []

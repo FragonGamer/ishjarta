@@ -3,10 +3,10 @@ CRC: 4061141754
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 139111354b1591a7403c4719dd1f5377
+    Hash: 839e0f92ef9b2ccd9da36c333c2da28c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9dc8bbdae72b194d361b975f2e7066e6
+    Hash: 8de588ef8fb5811ecb5700f344adb7cf
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -35,4 +35,4 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/resources/Prefabs/UsableItem/Armor.prefab
 Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/usableitem
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitem

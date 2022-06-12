@@ -13,6 +13,7 @@ public class Player : Entity
     [SerializeField] private float timeMelee = 0.0f;
     [SerializeField] public Room currentRoom;
     //[SerializeField] int maxResistance;
+    public int visitedRooms = 1;
 
     [SerializeField] private HealthBar hpBar;
 
@@ -32,6 +33,18 @@ public class Player : Entity
     }
     #endregion SaveSystem
 
+    public void AddToMaxHealth(int health)
+    {
+        MaxHealth += health;
+    }
+    public void RemoveFromMaxHealth(int health)
+    {
+        MaxHealth -= health;
+    }
+    public void AddToCurrentHealth(int health)
+    {
+        CurrentHealth += health;
+    }
     public int GetBaseDamage() { return BaseDamage; }
     public void SetBaseDamage(int value) { BaseDamage = value; }
 
@@ -65,7 +78,7 @@ public class Player : Entity
     public void CalcResistence()
     {
         int armorAmount = inventory.GetArmor().Amount;
-        Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.25f;
+        Resistance = (1 * armorAmount) / (2.5f + armorAmount) * 0.3f;
         CurrentResistance = Resistance;
     }
 
@@ -83,6 +96,20 @@ public class Player : Entity
     {
         return inventory;
     }
+    public float GetDamageModifierer()
+    {
+        return DamageModifier;
+    }
+    public void AddDamageModifierer(float DM)
+    {
+        DamageModifier += DM;
+    }
+    public void RemoveDamageModifierer(float DM)
+    {
+        DamageModifier -= DM;
+
+    }
+
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?

@@ -8,8 +8,9 @@ public abstract class Item : ScriptableObject
 {
     public string ItemName;
     [field: SerializeField] public Sprite Icon { get; protected set; }
-    public int DropChanceMax { get; protected set; }
-    public int DropChanceMin { get; protected set; }
+    [field: SerializeField]public Rarity Rarity { get; set; }
+    [field: SerializeField]public int Price { get; set; }
+    [field: SerializeField]public LevelName[] SpawnLevelPool { get; set; }
 
     public Sprite GetSprite()
     {

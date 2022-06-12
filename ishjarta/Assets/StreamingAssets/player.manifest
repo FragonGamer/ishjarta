@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3893508195
+CRC: 1656646341
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fae9865c1dd1c27f8769e75d3d5f138d
+    Hash: e4a724864ae2d3a27436ecddbe912d13
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 742ef336cd892ecfba68c9ad134b518a
+    Hash: d5b3f405736ea7a8ee16a56d1f788491
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -73,8 +73,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
@@ -172,8 +170,6 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.UI.Button/ButtonClickedEvent
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.ColorBlock
-- AssemblyName: UnityEngine.UI
-  ClassName: UnityEngine.UI.FontData
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
 - AssemblyName: UnityEngine.UI
