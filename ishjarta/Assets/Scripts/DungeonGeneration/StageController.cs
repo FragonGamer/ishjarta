@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class StageController : MonoBehaviour
 {
+    [SerializeField] public bool ItemRooms;
+    [SerializeField] public int ItemRoomAmount;
     GameObject player;
     Dictionary<Room, int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
@@ -33,9 +35,9 @@ public class StageController : MonoBehaviour
 
     public AssetBundle assets { get; private set; }
     public AssetBundle enemyAssets { get; private set; }
-    public List<string> stageNames { get; private set; }
+    public List<LevelName> stageNames { get; private set; }
     private int currentStageCounter;
-    public string currentStageName { get; private set; }
+    public LevelName currentStageName { get; private set; }
 
     int SetMaxRooms()
     {
@@ -95,8 +97,8 @@ public class StageController : MonoBehaviour
     }
     private void Awake()
     {
-        stageNames = new List<string>();
-        stageNames.AddRange(new string[] { "forest", "forest", "test" });
+        stageNames = new List<LevelName>();
+        stageNames.AddRange(new LevelName[] { LevelName.forest,LevelName.forest,LevelName.end });
         currentStageCounter = 0;
         if (CreateRooms == true)
         {
@@ -109,8 +111,8 @@ public class StageController : MonoBehaviour
         currentStageName = stageNames.ToArray()[currentStageCounter];
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
-        assets = Utils.loadAssetPack($"stage/{currentStageName}");
-        enemyAssets = Utils.loadAssetPack($"enemies/{currentStageName}");
+        assets = Utils.loadAssetPack($"stage/{currentStageName.ToString()}");
+        enemyAssets = Utils.loadAssetPack($"enemies/{currentStageName.ToString()}");
         maxRooms = SetMaxRooms();
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
@@ -428,6 +430,89 @@ public class StageController : MonoBehaviour
 
 
     }
+
+    void CreateSpecialrooms()
+    {
+
+        if (ItemRooms)
+        {
+            bool hasSpawned;
+            for (int i = 0; i < ItemRoomAmount; i++)
+            {
+                hasSpawned = false;
+                Random random = new Random();
+    var itemroom = Utils.loadAssetFromAssetPack(assets, "ItemRoom");
+    var posRoom = itemroom.GetComponent<Room>();
+    
+        
+                foreach (var room in (worldRooms.ToList().Shuffle().Select(room => room.GetComponent<Room>())))
+                {
+                    if(room.CompareTag("ItemRoom"))
+                        continue;
+                    room.SetDoors();
+                    
+
+                    foreach (var door in room.doors.Shuffle().Select(door => door.GetComponent<Door>()))
+                    {
+                        if (door.ConnectedDoor == null)
+                        {
+                            Tuple<int, int> posPosition = null;
+                            var xOffset = random.Next(0, posRoom.lenX / StageController.roomXBaseLength) * StageController.roomXBaseLength;
+                            var yOffset = random.Next(0, posRoom.lenY / StageController.roomYBaseLength) * StageController.roomYBaseLength;
+
+                            switch (door.direction)
+                            {
+                                case Door.Direction.East:
+                                    posPosition = new Tuple<int, int>(((int)room.gameObject.transform.position.x + StageController.roomXBaseLength) - posRoom.GetIndexOfFirstXRoomCell(yOffset) * StageController.roomXBaseLength, (int)room.gameObject.transform.position.y + yOffset);
+                                    break;
+                                case Door.Direction.South:
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, ((int)room.gameObject.transform.position.y - StageController.roomYBaseLength) + posRoom.GetIndexOfFirstYRoomCell(xOffset) * StageController.roomYBaseLength);
+                                    break;
+                                case Door.Direction.West:
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - posRoom.GetXLength(yOffset), (int)room.gameObject.transform.position.y + yOffset);
+                                    break;
+                                case Door.Direction.North:
+                                    posPosition = new Tuple<int, int>((int)room.gameObject.transform.position.x - xOffset, (int)room.gameObject.transform.position.y + posRoom.GetYLength(xOffset));
+                                    break;
+
+                            }
+                            posRoom.RoomId = nextRoomId;
+
+                            if (CheckPosition(posRoom, posPosition) is null)
+                            {
+
+                                continue;
+                            }
+                            else
+                            {
+                                var newRoom = PlaceRoom(posRoom, posPosition);
+                                nextRoomId++;
+                                worldRooms.Add(newRoom.GetComponent<Room>());
+                                hasSpawned = true;
+                                break;
+                            }
+                        }
+                        
+                    }
+
+                    if (hasSpawned)
+                        break;
+
+                }
+                
+            }
+        }
+
+
+            
+
+        
+
+
+
+
+    }
+
     void SetStartRoomStats(GameObject roomGO, bool hasED, bool hasWD, bool hasSD, bool hasND)
     {
 
@@ -460,9 +545,13 @@ public class StageController : MonoBehaviour
 
 
         }
+        
         //creates end room
         var endRoom = CreateEndRoom();
+        //Creates special rooms
+        CreateSpecialrooms();
         worldRooms.Add(endRoom.GetComponent<Room>());
+        
         Debug.Log("Rooms: " + nextRoomId);
         currentStageCounter++;
         startRoom.GetComponent<Room>().hasVisited = true;

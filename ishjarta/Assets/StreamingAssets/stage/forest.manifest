@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2624264665
+CRC: 1514326302
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a71ff8f5be820d9c80465c2206300c32
+    Hash: 298539d8de65cc43960a36b1ae52f5b8
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 78c699fa13efbc2cb1cf2ee3aa81e316
+    Hash: 7e5ee52043d991b0be51f0a18108e127
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -44,6 +44,10 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
@@ -61,6 +65,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: a57232a70f6d52045bd243cf66f51aa3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 35c80754e0629fa4a9622954c02741cb, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -90,6 +96,8 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/Start.prefab
 - Assets/_Bundles/Stages/Forest/Environment/End.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 3.prefab
+- Assets/_Bundles/Stages/Forest/Environment/ItemRoom.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
 - /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab

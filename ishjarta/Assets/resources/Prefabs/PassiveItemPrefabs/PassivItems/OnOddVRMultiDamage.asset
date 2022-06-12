@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: 
   <Icon>k__BackingField: {fileID: 0}
+  <Rarity>k__BackingField: 33
+  <Price>k__BackingField: 0
+  <SpawnLevelPool>k__BackingField: 
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
   description: On odd number of visited rooms increse damage with multiplier
@@ -21,4 +24,4 @@ MonoBehaviour:
   isOdd: 0
   multiplier: 1.5
   lastNumberOfVisitedRooms: 0
-  player: {fileID: 0}
+  playerObject: {fileID: 0}
