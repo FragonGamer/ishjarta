@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1514326302
+CRC: 3808713804
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 298539d8de65cc43960a36b1ae52f5b8
+    Hash: 028e9e2583eb1194bab053280c26a54e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7e5ee52043d991b0be51f0a18108e127
+    Hash: 7eaeaee0092d6e2184554fa7b12da9df
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -54,6 +54,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 817cc0c93e8e4100cbad227d1c594517, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: f6f0d7f5352c48f4ba5eba2cdf560f70, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: eedbe3daf179c874cbeb764e68ef40af, type: 3}
@@ -94,6 +96,7 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/test 1.prefab
 - Assets/_Bundles/Stages/Forest/Environment/test.prefab
 - Assets/_Bundles/Stages/Forest/Environment/Start.prefab
+- Assets/_Bundles/Stages/Forest/Environment/MerchantRoom.prefab
 - Assets/_Bundles/Stages/Forest/Environment/End.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 3.prefab
 - Assets/_Bundles/Stages/Forest/Environment/ItemRoom.prefab
@@ -101,3 +104,4 @@ Assets:
 Dependencies:
 - /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
 - /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/special

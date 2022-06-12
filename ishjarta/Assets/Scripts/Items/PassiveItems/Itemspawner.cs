@@ -2,28 +2,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Random = System.Random;
 
 public class Itemspawner : MonoBehaviour
 {
+
     private LevelName levelname;
+    private List<GameObject> gos = new List<GameObject>();
+    
     [field: SerializeField]public int itemAmount { get; set; }
-    private void Start()
+
+    
+    private void Awake()
     {
         levelname = FindObjectOfType<StageController>().currentStageName;
         var Bundle = Utils.loadAssetPack("item");
         var assets = Bundle.LoadAllAssets<GameObject>();
-
-        var gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(this.levelname)).ToList();
-        for (int i = 0; i < itemAmount; i++)
-        {
-            this.SpawnItem(gos);
-        }
+        gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(this.levelname)).ToList();
+        
         Bundle.Unload(false);
     }
 
-    private void SpawnItem(List<GameObject> items)
+    public GameObject[] Spawn()
+    {
+        List<GameObject> items = new List<GameObject>();
+        
+        for (int i = 0; i < itemAmount; i++)
+        {
+            items.Add(this.SpawnItem(gos));
+        }
+
+        return items.ToArray();
+    }
+    private GameObject SpawnItem(List<GameObject> items)
     {
         var random = new Random();
         var randVal = random.Next(0, 101);
@@ -40,7 +53,7 @@ public class Itemspawner : MonoBehaviour
             item = itemsNew.First();
             var position = this.transform.position;
 
-            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
         }
         else if (randVal >= RarityRange.UncommonRange["Min"] && randVal <= RarityRange.UncommonRange["Max"])
         {
@@ -51,7 +64,7 @@ public class Itemspawner : MonoBehaviour
             item = itemsNew.First();
             var position = this.transform.position;
 
-            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
         }
         else if (randVal >= RarityRange.RareRange["Min"] && randVal <= RarityRange.RareRange["Max"])
         {
@@ -62,7 +75,7 @@ public class Itemspawner : MonoBehaviour
             item = itemsNew.First();
             var position = this.transform.position;
 
-            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
         }
         else if (randVal >= RarityRange.LegendaryRange["Min"] && randVal <= RarityRange.LegendaryRange["Max"])
         {
@@ -73,8 +86,9 @@ public class Itemspawner : MonoBehaviour
             item = itemsNew.First();
             var position = this.transform.position;
 
-            Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
         }
 
+        return null;
     }
 }
