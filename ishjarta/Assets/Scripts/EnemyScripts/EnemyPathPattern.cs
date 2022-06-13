@@ -8,6 +8,8 @@ public class EnemyPathPattern : MonoBehaviour
 {
     [SerializeField] AIPath aiPath;
 
+    [SerializeField] MovePathern currentMove;
+
     private Vector3 targetPosition;
     private Vector3 thisPosition;
 
@@ -16,11 +18,25 @@ public class EnemyPathPattern : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (targetPosition == null || aiPath.destination != targetPosition)
-            targetPosition = aiPath.destination;
-        thisPosition = this.transform.position;
+        if(currentMove != MovePathern.None)
+        {
+            if (targetPosition == null || aiPath.destination != targetPosition)
+                targetPosition = aiPath.destination;
+            thisPosition = this.transform.position;
 
-        MoveInCircle();
+            if (currentMove == MovePathern.Circle)
+            {
+                MoveInCircle();
+            }
+            else if (currentMove == MovePathern.ZikZak)
+            {
+                MoveInZikZak();
+            }
+            else if (currentMove == MovePathern.Distance)
+            {
+                MoveWithDistance();
+            }
+        }
     }
 
 
@@ -286,6 +302,15 @@ public class EnemyPathPattern : MonoBehaviour
         {
             aiPath.isStopped = false;
         }
+    }
+
+
+    public enum MovePathern
+    {
+        None,
+        Circle,
+        ZikZak,
+        Distance
     }
 }
 

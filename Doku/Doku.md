@@ -3,6 +3,7 @@ Ishjarta - Doku
 
 Das soll eine Dokumentation des Projekts Ishjarta sein, welche die verschiedenen Komponenten des Spiels in Zweck und Umsetzung erklärt.
 
+____________
 ## Inhaltsverzeichnis
 1. [Entitäten](#entitäten)  
 2. [Spielerbewegung](#spielerbewegung)  
@@ -22,7 +23,9 @@ Das soll eine Dokumentation des Projekts Ishjarta sein, welche die verschiedenen
 
 ## Spielerbewegung
 
+Die Spielerbewegung soll dem Spieler ermöglichen, den Spielercharakter bewegen zu können.
 
+Bewegen kann sich der Spieler mit den Pfeiltasten.
 
 
 
