@@ -258,7 +258,35 @@ public class EnemyPathPattern : MonoBehaviour
         aiPath.Move(v);
     }
 
-    
+    void MoveWithDistance()
+    {
+        Vector2 lookdir = targetPosition - thisPosition;
+        float angle = Mathf.Atan2(lookdir.y, lookdir.x);
+        if (angle < 0)
+            angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
+
+        float attackAngle;
+        Debug.Log(lookdir.magnitude);
+        if (lookdir.magnitude <= 2.5)
+        {
+            aiPath.isStopped = true;
+
+            if (lookdir.magnitude <= 2)
+            {
+                attackAngle = (angle - 180);
+                if (attackAngle >= 360)
+                    attackAngle -= 360;
+                if (attackAngle < 0)
+                    attackAngle += 360;
+
+                aiPath.Move(Entity.RotateVector2(new Vector2(Time.fixedDeltaTime, 0), attackAngle));
+            }
+        }
+        else
+        {
+            aiPath.isStopped = false;
+        }
+    }
 }
 
 //float attackAngle;
