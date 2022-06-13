@@ -15,6 +15,11 @@ public class EntityDamageTrigger : MonoBehaviour
             //enemy.ReceiveDamage(player.DealingDamage);
             //enemy.AddEffectRange(player.GetCurrentEffects);
 
+            //public AudioSource audiosource;     //Audio source
+
+            //[SerializeField]
+            //private AudioClip hitsound = null;
+
             if (this.gameObject.tag == "Enemy")
             {
                 Player player = FindObjectOfType<Player>();
@@ -22,8 +27,6 @@ public class EntityDamageTrigger : MonoBehaviour
 
                 enemy.ReceiveDamage(player.DealingDamage);
                 enemy.AddEffectRange(player.GetCurrentEffects);
-
-                
             }
             else if (this.gameObject.tag == "Player")
             {
