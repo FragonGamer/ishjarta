@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3978452591
+CRC: 2534652184
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 56ed40632d7c299c60b378dcf123f2b1
+    Hash: ea4f54c0fcfe661485fdbd68cdd8aaf9
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8de588ef8fb5811ecb5700f344adb7cf
@@ -36,4 +36,4 @@ Assets:
 - Assets/resources/Prefabs/UsableItem/Coin.prefab
 - Assets/resources/Prefabs/UsableItem/Armor.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitem
+- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/usableitem

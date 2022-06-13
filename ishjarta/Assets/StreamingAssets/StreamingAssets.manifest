@@ -1,56 +1,56 @@
 ManifestFileVersion: 0
-CRC: 537881464
+CRC: 4126471782
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
+      Name: meleeweaponprefab
+      Dependencies:
+        Dependency_0: meleeweapon
+    Info_1:
       Name: stage/forest
       Dependencies:
-        Dependency_0: enemies/forest
+        Dependency_0: rangedweaponprefab
         Dependency_1: special
-        Dependency_2: rangedweaponprefab
-    Info_1:
-      Name: enemy
-      Dependencies: {}
     Info_2:
+      Name: item
+      Dependencies: {}
+    Info_3:
+      Name: player
+      Dependencies: {}
+    Info_4:
+      Name: passivitem
+      Dependencies: {}
+    Info_5:
+      Name: usableitemprefab
+      Dependencies:
+        Dependency_0: usableitem
+    Info_6:
       Name: enemies/forest
       Dependencies:
         Dependency_0: usableitemprefab
-    Info_3:
-      Name: item
-      Dependencies: {}
-    Info_4:
-      Name: player
-      Dependencies: {}
-    Info_5:
-      Name: meleeweapon
-      Dependencies: {}
-    Info_6:
-      Name: activeitemprefab
-      Dependencies:
-        Dependency_0: activeitem
     Info_7:
       Name: usableitem
       Dependencies: {}
     Info_8:
-      Name: special
-      Dependencies: {}
-    Info_9:
-      Name: passivitemprefab
-      Dependencies: {}
-    Info_10:
-      Name: meleeweaponprefab
-      Dependencies:
-        Dependency_0: meleeweapon
-    Info_11:
-      Name: passivitem
-      Dependencies: {}
-    Info_12:
-      Name: usableitemprefab
-      Dependencies:
-        Dependency_0: usableitem
-    Info_13:
       Name: activeitem
       Dependencies: {}
-    Info_14:
+    Info_9:
       Name: rangedweaponprefab
+      Dependencies: {}
+    Info_10:
+      Name: activeitemprefab
+      Dependencies:
+        Dependency_0: activeitem
+    Info_11:
+      Name: enemy
+      Dependencies: {}
+    Info_12:
+      Name: meleeweapon
+      Dependencies: {}
+    Info_13:
+      Name: passivitemprefab
+      Dependencies:
+        Dependency_0: passivitem
+    Info_14:
+      Name: special
       Dependencies: {}

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3866903864
+CRC: 1198647079
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7232aa12933cc0db36f2830674f0cefc
+    Hash: 82876dc52fb7a684cb4c13d0c4899184
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9b83ccbee75f7f2b14a980bd436891bc
+    Hash: 6287eb027ac306b0d3ea582160d33035
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -22,6 +22,8 @@ ClassTypes:
 - Class: 58
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 11500000, guid: 9248fb4887562a943b28cee9d316e3cb, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
@@ -32,4 +34,6 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
-Dependencies: []
+- Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
+Dependencies:
+- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
