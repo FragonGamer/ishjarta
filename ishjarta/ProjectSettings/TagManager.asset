@@ -17,6 +17,7 @@ TagManager:
   - HUD
   - PauseMenu
   - SpecialRoom
+  - ItemRoom
   layers:
   - Default
   - TransparentFX
