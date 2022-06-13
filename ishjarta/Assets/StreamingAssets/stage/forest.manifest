@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2573969152
+CRC: 1557850811
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 31155a86ac744f81564f9e92fe7ee36c
+    Hash: 71729bdc6f5358b9dae1588e66e050b8
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 7eaeaee0092d6e2184554fa7b12da9df
+    Hash: 9f4c19a59dc717528af02eb2ab5be590
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -46,15 +46,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 817cc0c93e8e4100cbad227d1c594517, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f6f0d7f5352c48f4ba5eba2cdf560f70, type: 3}
 - Class: 114
@@ -69,6 +65,10 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 35c80754e0629fa4a9622954c02741cb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 817cc0c93e8e4100cbad227d1c594517, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -102,6 +102,6 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/ItemRoom.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/special
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/special
