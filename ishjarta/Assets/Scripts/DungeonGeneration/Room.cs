@@ -75,6 +75,11 @@ public class Room : MonoBehaviour
                 hasVisited = true;
                 player.visitedRooms++;
                 Debug.Log(player.visitedRooms);
+
+                var test = GetComponentInChildren<Itemspawner>();
+                if (test != null)
+                    test.Spawn();
+
             }
 
             if (!IsCleared)
