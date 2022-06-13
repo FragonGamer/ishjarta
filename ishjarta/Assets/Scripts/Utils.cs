@@ -42,6 +42,14 @@ public static class Utils
     {
         assetBundle.Unload(false);
     }
+
+    public static UsableItem GetCoinObject()
+    {
+        var p = Utils.loadAssetPack("usableitem");
+        var coins = p.LoadAsset("Coin") as UsableItem;
+        p.Unload(false);
+        return coins;
+    }
     public static void PrintGridPosDataTypeMatrix(GridPosdataType[,] matrix)
     {
         StringBuilder sb = new StringBuilder();

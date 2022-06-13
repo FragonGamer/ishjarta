@@ -58,6 +58,14 @@ public class ItemManager : MonoBehaviour
     {
         if (isInRange)
         {
+            if (player.currentRoom.CompareTag("Merchant"))
+            {
+                if (!player.currentRoom.GetComponent<Merchant>().BuyItem(player,item))
+                {
+                    Debug.Log("Not enough money!");
+                    return;
+                }
+            }
             if (player.inventory.AddItem(item) == true)
             {
                 Debug.Log("Pick ups item");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EntityDamageTrigger : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class EntityDamageTrigger : MonoBehaviour
 
                 enemy.ReceiveDamage(player.DealingDamage);
                 enemy.AddEffectRange(player.GetCurrentEffects);
+
+                
             }
             else if (this.gameObject.tag == "Player")
             {

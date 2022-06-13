@@ -3,10 +3,10 @@ CRC: 1880289733
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b0c2d2214bbe4c7d277acf2ba0173def
+    Hash: 28330f110a95e15ee1f0450ae46c7348
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 589c4bab40a0007e4122093bae3be291
+    Hash: 9adee71a3bf3f4416be28d8f4fa2d082
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,4 +36,4 @@ Assets:
 - Assets/resources/Prefabs/ActiveItemPrefabs/BaseBraclet.prefab
 - Assets/resources/Prefabs/ActiveItemPrefabs/SpeedBraclet.prefab
 Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/activeitem

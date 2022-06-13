@@ -16,6 +16,7 @@ TagManager:
   - EndPosition
   - HUD
   - PauseMenu
+  - SpecialRoom
   layers:
   - Default
   - TransparentFX

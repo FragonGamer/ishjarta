@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 3919851531
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3d18a1ba93f5c3df68ac931fb1f12ea4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 61de4852a55ad58d4e30117c29e2e06a
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 102
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Bundles/Itemspawner.prefab
+- Assets/_Bundles/ItemPriceTag.prefab
+Dependencies: []
