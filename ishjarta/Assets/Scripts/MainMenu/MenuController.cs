@@ -9,8 +9,8 @@ using System.IO;
 public class MenuController : BaseMenuController
 {
 
-    [Header("Level")]
-    public string newGameLevel = null;
+    //[Header("Level")]
+    //public string newGameLevel = null;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
     [Header("LoadBar")]

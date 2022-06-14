@@ -64,6 +64,7 @@ public class PauseMenuController : BaseMenuController
     private string mainMenu = "MainMenu";
     public void QuitButton()
     {
+        SaveManager.Save();
         SceneManager.LoadScene(mainMenu);
     }
 

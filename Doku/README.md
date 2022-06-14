@@ -7,8 +7,7 @@ ____________
 ## Inhaltsverzeichnis
 1. [Entitäten](#entitäten)  
 2. [Spielerbewegung](#spielerbewegung)  
-3. [Spielerangriff](#spielerangriff)  
-4. [Gegnerangriff](#gegnerangriff)  
+3. [Entitätenangriff](#entitätenangriff)    
 5. [Inventarsystem und Item-Pick-Ups des Spielers](#inventarsystem-und-item-Pick-Ups-des-Spielers) 
 6. [Statuseffektsystem](#statuseffektsystem)  
 7. [Statuseffektsystem](#statuseffektsystem)
@@ -79,7 +78,7 @@ Bewegen kann sich der Spieler mit den Pfeiltasten.
 Ermöglicht wird die Spielerbewegung durch die Move-Methode im Playercontroller-Script.
 
 
-## Spielerangriff
+## Entitätenangriff
 
 ![](PlayerAndSlime.png)
 
@@ -93,11 +92,6 @@ Ermöglicht wird die Spielerbewegung durch die Move-Methode im Playercontroller-S
 ![](PlayerSlimeCollisionProcess4.png)
 ![](PlayerSlimeCollisionProcess5.png)
 ![](PlayerSlimeCollisionProcess6.png)
-## Gegnerangriff
-
-
-
-
 
 
 ## Inventarsystem und Item-Pick-Ups des Spielers
