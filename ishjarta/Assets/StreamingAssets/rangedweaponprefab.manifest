@@ -1,17 +1,9 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-CRC: 1333188664
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: a731ce970c7c7a6a3710648cbcbc5b1a
-=======
 CRC: 643821145
 Hashes:
   AssetFileHash:
     serializedVersion: 2
     Hash: 54b183e48c744c10f0def4c11bbe415e
->>>>>>> origin/merchant
   TypeTreeHash:
     serializedVersion: 2
     Hash: b81af375ac900cc40685fac80bf331e7

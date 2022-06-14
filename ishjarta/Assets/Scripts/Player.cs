@@ -84,7 +84,7 @@ public class Player : Entity
             
             }
 
-            if (closest.isInRange)
+            if (closest != null && closest.isInRange)
             {
                 closest.isNearest = true;
 

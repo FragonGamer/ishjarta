@@ -1,49 +1,5 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-CRC: 2832692300
-AssetBundleManifest:
-  AssetBundleInfos:
-    Info_0:
-      Name: player
-      Dependencies: {}
-    Info_1:
-      Name: enemy
-      Dependencies: {}
-    Info_2:
-      Name: meleeweapon
-      Dependencies: {}
-    Info_3:
-      Name: usableitem
-      Dependencies: {}
-    Info_4:
-      Name: activeitem
-      Dependencies: {}
-    Info_5:
-      Name: passivitem
-      Dependencies: {}
-    Info_5:
-      Name: usableitemprefab
-      Dependencies:
-        Dependency_0: usableitem
-    Info_6:
-      Name: meleeweaponprefab
-      Dependencies:
-        Dependency_0: meleeweapon
-    Info_7:
-      Name: usableitemprefab
-      Dependencies:
-        Dependency_0: usableitem
-    Info_8:
-      Name: activeitemprefab
-      Dependencies:
-        Dependency_0: activeitem
-    Info_9:
-      Name: passivitemprefab
-      Dependencies:
-        Dependency_0: passivitem
-    Info_10:
-=======
-CRC: 4009463466
+CRC: 3101465793
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -54,21 +10,21 @@ AssetBundleManifest:
         Dependency_2: special
         Dependency_3: rangedweaponprefab
     Info_1:
+      Name: player
+      Dependencies: {}
+    Info_2:
       Name: meleeweaponprefab
       Dependencies:
         Dependency_0: meleeweapon
-    Info_2:
+    Info_3:
       Name: enemy
       Dependencies: {}
-    Info_3:
+    Info_4:
       Name: enemies/forest
       Dependencies:
         Dependency_0: usableitemprefab
-    Info_4:
-      Name: item
-      Dependencies: {}
     Info_5:
-      Name: player
+      Name: item
       Dependencies: {}
     Info_6:
       Name: meleeweapon
@@ -85,35 +41,18 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: usableitem
     Info_10:
-      Name: special
-      Dependencies: {}
-    Info_11:
       Name: passivitemprefab
+      Dependencies:
+        Dependency_0: passivitem
+    Info_11:
+      Name: special
       Dependencies: {}
     Info_12:
       Name: passivitem
       Dependencies: {}
     Info_13:
->>>>>>> origin/merchant
       Name: rangedweaponprefab
       Dependencies: {}
-    Info_11:
-      Name: stage/forest
-      Dependencies:
-        Dependency_0: rangedweaponprefab
-        Dependency_1: enemies/forest
-        Dependency_2: special
-    Info_12:
-      Name: enemies/forest
-      Dependencies:
-        Dependency_0: usableitemprefab
-    Info_13:
-      Name: item
-      Dependencies: {}
-    Info_13:
-      Name: passivitemprefab
-      Dependencies:
-        Dependency_0: passivitem
     Info_14:
       Name: activeitem
       Dependencies: {}

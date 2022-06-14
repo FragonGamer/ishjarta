@@ -1,17 +1,9 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-CRC: 2708140714
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: b0c2d2214bbe4c7d277acf2ba0173def
-=======
 CRC: 3116514490
 Hashes:
   AssetFileHash:
     serializedVersion: 2
     Hash: 4c880e2d22fd3d29b8de5346bdf627d3
->>>>>>> origin/merchant
   TypeTreeHash:
     serializedVersion: 2
     Hash: be344272f8b5d581a0360fc8a5010486
@@ -44,8 +36,4 @@ Assets:
 - Assets/resources/Prefabs/ActiveItemPrefabs/BaseBraclet.prefab
 - Assets/resources/Prefabs/ActiveItemPrefabs/SpeedBraclet.prefab
 Dependencies:
-<<<<<<< HEAD
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
-=======
-- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
->>>>>>> FelixSound
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/activeitem

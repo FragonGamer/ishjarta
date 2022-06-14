@@ -1,31 +1,12 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-CRC: 501906567
+CRC: 550010749
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5e0c9a06657508f470d625fc875a43bb
-=======
-CRC: 1195014902
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: 774cbb9f0f952dabec4474fdca06968c
->>>>>>> origin/merchant
-  TypeTreeHash:
-    serializedVersion: 2
-    Hash: 5b1b5642ad7be16a4b46a733f58ba7d7
-=======
-CRC: 1884453237
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: cbfe1fe60f5bf1d34dc6d9957f9d2362
+    Hash: 9b6722a635a895f258e30c5bf96628eb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 77b06dacdbca1107875906a2ade8b418
->>>>>>> FelixSound
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -74,8 +55,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ca4c26ef7fa10054b863d98c3fdb3065, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -96,8 +75,4 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 - Assets/Prefabs/Enemys/Meele/Slime.prefab
 Dependencies:
-<<<<<<< HEAD
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
-=======
-- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
->>>>>>> FelixSound
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab

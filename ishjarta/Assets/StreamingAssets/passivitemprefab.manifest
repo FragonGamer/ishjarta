@@ -1,23 +1,12 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-CRC: 1198647079
+CRC: 3702470266
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 82876dc52fb7a684cb4c13d0c4899184
+    Hash: d79571db9c8fb0f41f86f9b9c1fc0acb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6287eb027ac306b0d3ea582160d33035
-=======
-CRC: 1159442079
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: 3f166c9f226a49ab346a90ad0da9ef04
-  TypeTreeHash:
-    serializedVersion: 2
-    Hash: 45a9343ecebd00f9e2c159c5cb39dde8
->>>>>>> origin/merchant
+    Hash: 2888affb6d758bc4783103d81f9db82f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -47,8 +36,4 @@ Assets:
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
 - Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
 Dependencies:
-<<<<<<< HEAD
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
-=======
-- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
->>>>>>> FelixSound
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/passivitem

@@ -1,24 +1,12 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
 CRC: 1680778368
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7750cd62e34609e55f749bbf07256bec
-=======
-CRC: 2026546008
-Hashes:
-  AssetFileHash:
-    serializedVersion: 2
-    Hash: badaf7cbe12c94f65d88fa48b3f19942
->>>>>>> origin/merchant
+    Hash: 0193b54e3c384f9a8b6aabf367bc77d6
   TypeTreeHash:
     serializedVersion: 2
-<<<<<<< HEAD
-    Hash: 4b9edd4a8774ea72508ac224cd007340
-=======
     Hash: b2a134aa1decc822f26cee95c2222404
->>>>>>> FelixSound
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -59,8 +47,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: ca4c26ef7fa10054b863d98c3fdb3065, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6c03e4f36fe982d4c8dbbf593b2b1dd2, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ca4c26ef7fa10054b863d98c3fdb3065, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
