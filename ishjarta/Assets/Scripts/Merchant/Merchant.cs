@@ -15,6 +15,7 @@ public class Merchant : MonoBehaviour
         var assets = Utils.loadAssetPack("special");
         var itemspawner = Utils.loadAssetFromAssetPack(assets, "Itemspawner");
         var itemPriceTag = Utils.loadAssetFromAssetPack(assets, "ItemPriceTag");
+        
         assets.Unload(false);
         List<GameObject> spawners = new List<GameObject>();
         if (isSix)

@@ -54,14 +54,18 @@ public class ItemManager : MonoBehaviour
         if (isNearest && isInRange)
         {
             GetComponentInChildren<SpriteRenderer>().color = Color.gray;
-            TextMesh tm = new TextMesh();
+            var tm = Instantiate(Utils.loadAssetFromAssetPack(Utils.loadAssetPack("special"), "ItemPriceTag"));
             tm.transform.parent = gameObject.transform;
             tm.transform.position = transform.position + Vector3.up*1.5f;
-            tm.text = item.ItemName;
+            tm.GetComponentInChildren<TextMesh>().text = item.ItemName;
         }
         else if (!isNearest)
         {
-            
+            var tm = GetComponentInChildren<TextMesh>().transform.parent;
+            if (tm != null)
+            {
+                Destroy(tm);
+            }
             GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         }
