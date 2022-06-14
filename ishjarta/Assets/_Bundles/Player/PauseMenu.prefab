@@ -949,8 +949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88755cc5ec25ae4199ab941054d60e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTextValue: {fileID: 0}
-  volumeSlider: {fileID: 0}
+  volumeTextValue: {fileID: 5164863294757216461}
+  volumeSlider: {fileID: 5164863294215348005}
   defaultVolume: 0.5
   controllerSensitivityTextValue: {fileID: 5164863295102017504}
   controllerSensitivitySlider: {fileID: 5164863295203806919}

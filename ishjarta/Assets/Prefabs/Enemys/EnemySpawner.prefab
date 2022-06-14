@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &150379457208846794
 SpriteRenderer:
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: eab51b339aa1a82459b5e9e9b4f7bb73, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4adf8f390b7dcd94195e19c1d01ead06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 3
+  amount: 5
   time: 0
 --- !u!114 &6846134887575486159
 MonoBehaviour:
@@ -130,4 +132,6 @@ MonoBehaviour:
   <hasSpottedPlayer>k__BackingField: 0
   <isInRange>k__BackingField: 0
   room: {fileID: 0}
+  <EnemyType>k__BackingField: 0
   <EmitEffect>k__BackingField: {fileID: 0}
+  enemyLootDropTable: {fileID: 0}
