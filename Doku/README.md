@@ -20,17 +20,55 @@ ____________
 
 ## Entitäten
 
-Es gibt zwi Kategorien von Entitäten:
-- Spieler
+Es exisistieren zwei Kategorien von Entitäten:
 - Gegner
+- Spieler
 
-
-### Spieler
-![Player](Doku/Player.JPG)  
 
 ### Gegner
+
+Es existieren zwei Kategorien von Gegner:
 - Nahkampf
 - Fernkampf
+
+##### Nahkampf
+
+Nahkampf-Gegner verursachen dem Spieler schaden in dem Sie sich zum Spieler zu bewegen.
+
+
+#### Fernkampf
+
+Fernkampf-Gegner verursachen dem Spieler schaden in dem Sie Projektile auf den Gegner schießen.
+
+### Spieler
+
+Der Spieler ist in der Lage dem Gegner Nachkampf- und Fernkampfschaden zuzufügen.
+
+## Items
+
+Es existieren drei Kategorien von Items:
+- Passive Items
+- Active Items
+- Usable Items
+
+### Passive Items
+
+Passive Items sind Items, die dem Spieler passiv bestimmte Effekte verleihen können. Von dieser Art von Item kann der Spieler praktisch unendlich viele halten.
+
+### Active Items
+
+Active Items sind Items, die dem Spieler nur bestimmte Effekte verleihen können, wenn er dieses Item auch aktiviert. Von dieser Art von Item kann der Spieler nur maximal eins halten.
+
+### Usable Items
+
+Es gibt vier verschiedene Kategorien von Usable Items:
+- Key
+- Coin
+- Bomb
+- Armor
+
+Usable Items sind Items, die der Spieler während des Gameplays für bestimmte Tätigkeiten nutzen kann.
+
 
 ## Spielerbewegung
 
