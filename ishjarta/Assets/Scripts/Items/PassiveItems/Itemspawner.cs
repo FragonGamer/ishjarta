@@ -53,7 +53,9 @@ public class Itemspawner : MonoBehaviour
             item = itemsNew.First();
             var position = this.transform.position;
 
-            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            
+            return go;
         }
         else if (randVal >= RarityRange.UncommonRange["Min"] && randVal <= RarityRange.UncommonRange["Max"])
         {
@@ -63,8 +65,9 @@ public class Itemspawner : MonoBehaviour
             itemsNew.ToList().Shuffle();           
             item = itemsNew.First();
             var position = this.transform.position;
-
-            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            
+            return go;
         }
         else if (randVal >= RarityRange.RareRange["Min"] && randVal <= RarityRange.RareRange["Max"])
         {
@@ -74,9 +77,9 @@ public class Itemspawner : MonoBehaviour
             itemsNew.ToList().Shuffle();
             item = itemsNew.First();
             var position = this.transform.position;
-
-            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
-        }
+            
+            var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            return go;        }
         else if (randVal >= RarityRange.LegendaryRange["Min"] && randVal <= RarityRange.LegendaryRange["Max"])
         {
            var itemsNew = items.Where(i => i.GetComponent<ItemManager>().GetItem().Rarity.Equals(Rarity.legendary));
@@ -86,8 +89,8 @@ public class Itemspawner : MonoBehaviour
             item = itemsNew.First();
             var position = this.transform.position;
 
-            return Instantiate(item, position, new Quaternion(0, 0, 0, 0));
-        }
+            var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
+            return go;        }
 
         return null;
     }

@@ -1,5 +1,6 @@
 ManifestFileVersion: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 CRC: 1557850811
 Hashes:
   AssetFileHash:
@@ -18,6 +19,16 @@ Hashes:
     serializedVersion: 2
     Hash: 43099891e9a3772b5696d88f63495ce3
 >>>>>>> FelixSound
+=======
+CRC: 3254566992
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1fa4ea22b57d91ed2eca0727b482e53e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fa74811a1c5bdbe82ae4bb900d86d4af
+>>>>>>> origin/merchant
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -39,12 +50,16 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 4adf8f390b7dcd94195e19c1d01ead06, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3dbb573ba6286b85ab33fbf71752d51c, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 9d5480c8ebff9304f92acc46d6ff9dcf, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 114
 <<<<<<< HEAD
   Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dbd3e0a602471ae0199fccb3325b0582, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
 - Class: 114
@@ -65,9 +80,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 35c80754e0629fa4a9622954c02741cb, type: 3}
 - Class: 114
+<<<<<<< HEAD
   Script: {fileID: 11500000, guid: 817cc0c93e8e4100cbad227d1c594517, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
+=======
+  Script: {fileID: 11500000, guid: 87736be6d2ab882aa84dded7dfe0d056, type: 3}
+>>>>>>> origin/merchant
 - Class: 115
   Script: {instanceID: 0}
 - Class: 212
@@ -95,6 +114,7 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/special
@@ -102,3 +122,9 @@ Dependencies:
 - C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
 - C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/special
 >>>>>>> FelixSound
+=======
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/item
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/special
+>>>>>>> origin/merchant

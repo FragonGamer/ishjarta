@@ -1,4 +1,5 @@
 ManifestFileVersion: 0
+<<<<<<< HEAD
 CRC: 3344773250
 Hashes:
   AssetFileHash:
@@ -7,6 +8,16 @@ Hashes:
   TypeTreeHash:
     serializedVersion: 2
     Hash: 78e8b06b1c8b9df425ba95ffee574d40
+=======
+CRC: 3566331183
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4323bcb31e2b53708268646bd120ba26
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c42a27e2e82e8473314b64e800739214
+>>>>>>> origin/merchant
 HashAppended: 0
 ClassTypes:
 - Class: 1

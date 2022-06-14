@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd3e0a602471ae0199fccb3325b0582, type: 3}
   m_Name: Add5Coins
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: Adds 5 Coins
   <Icon>k__BackingField: {fileID: 0}
   <Rarity>k__BackingField: 50
   <Price>k__BackingField: 1

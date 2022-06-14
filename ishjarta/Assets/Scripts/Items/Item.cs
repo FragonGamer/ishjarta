@@ -7,6 +7,9 @@ using System.Linq;
 public abstract class Item : ScriptableObject
 {
     public string ItemName;
+    [SerializeField] public string description;
+    [SerializeField] public string fullDescription;
+
     [field: SerializeField] public Sprite Icon { get; protected set; }
     [field: SerializeField]public Rarity Rarity { get; set; }
     [field: SerializeField]public int Price { get; set; }

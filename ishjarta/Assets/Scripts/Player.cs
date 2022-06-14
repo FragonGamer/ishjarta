@@ -8,6 +8,7 @@ public class Player : Entity
 {
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
+    [SerializeField] public ItemManager nearestItemManager = null;
     [SerializeField] int luck;
     [SerializeField] private float timeRanged = 0.0f;
     [SerializeField] private float timeMelee = 0.0f;
@@ -60,10 +61,46 @@ public class Player : Entity
 
     }
 
+    private ItemManager GetNearestItemManager()
+    {
+        var managers = FindObjectsOfType<ItemManager>();
+        if (managers != null)
+        {
+            ItemManager closest = null;
+            float distance = Mathf.Infinity;
+            Vector3 position = transform.position;
+            foreach (var manager in managers)
+            {
+                manager.isNearest = false;
+                Vector3 diff = manager.gameObject.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    closest = manager;
+                    distance = curDistance;
+                }
+            
+
+            
+            }
+
+            if (closest.isInRange)
+            {
+                closest.isNearest = true;
+
+            }
+            
+            return closest;
+        }
+        else
+        {
+            return null;
+        }
+    }
     private void Update()
     {
         UpdateHealthBar();
-
+        nearestItemManager = GetNearestItemManager();
         HandleEffects();
         if (inventory.GetMeleeWeapon() != null && timeMelee < inventory.GetMeleeWeapon().AttackRate)
         {

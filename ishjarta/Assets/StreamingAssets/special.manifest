@@ -1,12 +1,20 @@
 ManifestFileVersion: 0
+<<<<<<< HEAD
 CRC: 2492511387
 Hashes:
   AssetFileHash:
     serializedVersion: 2
     Hash: c5c1df2e031ae78e27029e020347f3d7
+=======
+CRC: 113868308
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c4ef6f4ffed0a8fd3b0facf9654c9462
+>>>>>>> origin/merchant
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 61de4852a55ad58d4e30117c29e2e06a
+    Hash: 768d036825b9ae9056b6064d096b3c83
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,8 +37,10 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 212
   Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/_Bundles/Itemspawner.prefab
-- Assets/_Bundles/ItemPriceTag.prefab
+- Assets/_Bundles/TextObject.prefab
 Dependencies: []

@@ -6,7 +6,6 @@ using UnityEngine;
 public abstract class PassiveItem : Item, PassivItemInterface
 {
     public PassivItemtype ItemType { get; set; }
-    [SerializeField] public string description;
 
     public enum PassivItemtype
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87736be6d2ab882aa84dded7dfe0d056, type: 3}
   m_Name: Add_15_maxhealth
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: plus health
   <Icon>k__BackingField: {fileID: 0}
   <Rarity>k__BackingField: 33
   <Price>k__BackingField: 3
