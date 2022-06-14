@@ -20,6 +20,17 @@ ____________
 
 ## Entitäten
 
+Es gibt zwi Kategorien von Entitäten:
+- Spieler
+- Gegner
+
+
+### Spieler
+![Player](Doku/Player.JPG)  
+
+### Gegner
+- Nahkampf
+- Fernkampf
 
 ## Spielerbewegung
 
