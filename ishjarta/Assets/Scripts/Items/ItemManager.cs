@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] Item item;
     [SerializeField] Player player;
     [SerializeField] InputMaster inputMaster;
+    [SerializeField] public bool isNearest;
     public bool isInRange;
 
     public Item GetItem()
@@ -42,12 +44,32 @@ public class ItemManager : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            isInRange = true;
+            
+                isInRange = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (isNearest && isInRange)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.gray;
+            TextMesh tm = new TextMesh();
+            tm.transform.parent = gameObject.transform;
+            tm.transform.position = transform.position + Vector3.up*1.5f;
+            tm.text = item.ItemName;
+        }
+        else if (!isNearest)
+        {
+            
+            GetComponentInChildren<SpriteRenderer>().color = Color.white;
+
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        
         if (other.tag == "Player")
         {
             isInRange = false;
@@ -56,7 +78,7 @@ public class ItemManager : MonoBehaviour
 
     public void PickUpItem(InputAction.CallbackContext context)
     {
-        if (isInRange)
+        if (isInRange && isNearest)
         {
             if (player.currentRoom.CompareTag("Merchant"))
             {
