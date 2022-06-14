@@ -172,7 +172,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        new SerializationManager().DeleteSaveFile("system");
+        SaveManager.DeleteSave(SceneManager.GetActiveScene().name);
         Debug.Log("Died");
         AssetBundle.UnloadAllAssetBundles(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

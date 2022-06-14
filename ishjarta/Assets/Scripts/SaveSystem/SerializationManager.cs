@@ -13,8 +13,6 @@ public class SerializationManager
     {
         BinaryFormatter binaryFormatter = GetBinaryFormatter();
 
-        //Debug.Log(savePath);
-
         if (!Directory.Exists(savePath))
             Directory.CreateDirectory(savePath);
 
@@ -74,7 +72,7 @@ public class SerializationManager
         return binaryFormatter;
     }
 
-    public bool DeleteSaveFile(string fileName)
+    public static bool DeleteSaveFile(string fileName)
     {
         if(File.Exists(savePath + @"\" + fileName + ".save"))
         {

@@ -21,13 +21,13 @@ public class MenuController : BaseMenuController
 
     public void NewGameDialogYes()
     {
-        new SerializationManager().DeleteSaveFile("system");
+        SaveManager.DeleteSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex + 1).name);
         LoadScene();
     }
 
     public void LoadGameDialogYes()
     {
-        if (SerializationManager.ExistsSaveFile("system"))
+        if (SaveManager.ExistsSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex+1).name))
             LoadScene();
         else if(noSavedGameDialog != null)
             noSavedGameDialog.SetActive(true);

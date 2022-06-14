@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
-    private static string fileName = "system";
+    private static string fileName = "fail";
 
-    public EnemyLootDropTable e;
+    public static string FileName => fileName;
+
     void Start()
     {
+        fileName = SceneManager.GetActiveScene().name;
+        Debug.Log(fileName);
+
         bool loaded;
         SaveData.Instance = (SaveData)SerializationManager.Load(fileName, out loaded);
         if (loaded)
@@ -33,14 +38,14 @@ public class SaveManager : MonoBehaviour
                 {
                     if(playerData.roomId < 0)
                     {
-                        //var room = o.GetComponent<Room>();
-                        //if (room.RoomId == playerData.roomId)
-                        //{
-                        //    o.SetActive(true);
-                        //    player.currentRoom = room;
-                        //}
-                        //else
-                        //    o.SetActive(false);
+                        var room = o.GetComponent<Room>();
+                        if (room.RoomId == playerData.roomId)
+                        {
+                            o.SetActive(true);
+                            player.currentRoom = room;
+                        }
+                        else
+                            o.SetActive(false);
                     }
                 }
             }
@@ -58,7 +63,6 @@ public class SaveManager : MonoBehaviour
                 {
                     var slime = Utils.loadAssetFromAssetPack(enemyBundle, "slime");
                     slime.GetComponent<Enemy>().Init(ed);
-                    slime.GetComponent<Enemy>().enemyLootDropTable = e;
                     Instantiate(slime, ed.position, Quaternion.identity);
                 }
                 else if (ed.enemyType == (int)Enemy.EnemyEnum.rangedSlime)
@@ -337,5 +341,15 @@ public class SaveManager : MonoBehaviour
             }
         }
         SerializationManager.Save(fileName, SaveData.Instance);
+    }
+
+    public static bool DeleteSave(string saveFile)
+    {
+        return SerializationManager.DeleteSaveFile(saveFile);
+    }
+
+    public static bool ExistsSave(string saveFile)
+    {
+        return SerializationManager.ExistsSaveFile(saveFile);
     }
 }
