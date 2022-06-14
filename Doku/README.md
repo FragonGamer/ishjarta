@@ -87,6 +87,12 @@ Ermöglicht wird die Spielerbewegung durch die Move-Methode im Playercontroller-S
 
 ![](PlayerAndTwoSlimesWithCollision.png)
 
+![](PlayerSlimeCollisionProcess1.png)
+![](PlayerSlimeCollisionProcess2.png)
+![](PlayerSlimeCollisionProcess3.png)
+![](PlayerSlimeCollisionProcess4.png)
+![](PlayerSlimeCollisionProcess5.png)
+![](PlayerSlimeCollisionProcess6.png)
 ## Gegnerangriff
 
 
