@@ -36,4 +36,8 @@ Assets:
 - Assets/resources/Prefabs/ActiveItemPrefabs/BaseBraclet.prefab
 - Assets/resources/Prefabs/ActiveItemPrefabs/SpeedBraclet.prefab
 Dependencies:
+<<<<<<< HEAD
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
+=======
+- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
+>>>>>>> FelixSound

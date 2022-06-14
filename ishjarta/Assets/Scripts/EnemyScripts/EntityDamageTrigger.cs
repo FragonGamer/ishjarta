@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class EntityDamageTrigger : MonoBehaviour
 {
+
     public void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider is PolygonCollider2D)
@@ -17,8 +18,7 @@ public class EntityDamageTrigger : MonoBehaviour
 
             //public AudioSource audiosource;     //Audio source
 
-            //[SerializeField]
-            //private AudioClip hitsound = null;
+            
 
             if (this.gameObject.tag == "Enemy")
             {
@@ -27,6 +27,11 @@ public class EntityDamageTrigger : MonoBehaviour
 
                 enemy.ReceiveDamage(player.DealingDamage);
                 enemy.AddEffectRange(player.GetCurrentEffects);
+                var audiosource = enemy.GetComponent<AudioSource>();
+                audiosource.Play();
+
+                //hitsound.Play();
+
             }
             else if (this.gameObject.tag == "Player")
             {

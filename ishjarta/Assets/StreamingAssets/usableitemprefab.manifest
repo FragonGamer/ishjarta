@@ -36,4 +36,8 @@ Assets:
 - Assets/resources/Prefabs/UsableItem/Coin.prefab
 - Assets/resources/Prefabs/UsableItem/Armor.prefab
 Dependencies:
+<<<<<<< HEAD
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/usableitem
+=======
+- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/usableitem
+>>>>>>> FelixSound

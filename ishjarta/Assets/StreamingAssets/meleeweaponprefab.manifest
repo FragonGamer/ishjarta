@@ -36,4 +36,8 @@ Assets:
 - Assets/resources/Prefabs/WeaponPrefab/Melee/Sword.prefab
 - Assets/resources/Prefabs/WeaponPrefab/Melee/RedSword.prefab
 Dependencies:
+<<<<<<< HEAD
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/meleeweapon
+=======
+- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/meleeweapon
+>>>>>>> FelixSound

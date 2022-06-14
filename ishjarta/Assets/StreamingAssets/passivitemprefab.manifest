@@ -36,4 +36,8 @@ Assets:
 - Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
 - Assets/resources/Prefabs/PassiveItemPrefabs/SpeedFlower.prefab
 Dependencies:
+<<<<<<< HEAD
 - C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
+=======
+- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/passivitem
+>>>>>>> FelixSound

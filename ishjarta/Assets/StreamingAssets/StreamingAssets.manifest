@@ -20,6 +20,10 @@ AssetBundleManifest:
     Info_5:
       Name: passivitem
       Dependencies: {}
+    Info_5:
+      Name: usableitemprefab
+      Dependencies:
+        Dependency_0: usableitem
     Info_6:
       Name: meleeweaponprefab
       Dependencies:
@@ -52,6 +56,10 @@ AssetBundleManifest:
     Info_13:
       Name: item
       Dependencies: {}
+    Info_13:
+      Name: passivitemprefab
+      Dependencies:
+        Dependency_0: passivitem
     Info_14:
       Name: special
       Dependencies: {}
