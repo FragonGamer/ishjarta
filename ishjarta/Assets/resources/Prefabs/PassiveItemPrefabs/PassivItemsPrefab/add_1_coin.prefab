@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 7522b50ab0e0a8135af909c717efbdb3, type: 2}
   player: {fileID: 0}
+  isNearest: 0
   isInRange: 0
 --- !u!58 &5520240170576418032
 CircleCollider2D:

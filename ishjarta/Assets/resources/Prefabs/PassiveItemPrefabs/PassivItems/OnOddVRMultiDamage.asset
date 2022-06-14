@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a415209b65a2cb4adba9be967d7c1483, type: 3}
   m_Name: OnOddVRMultiDamage
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: multidamage
   <Icon>k__BackingField: {fileID: 0}
   <Rarity>k__BackingField: 33
   <Price>k__BackingField: 15

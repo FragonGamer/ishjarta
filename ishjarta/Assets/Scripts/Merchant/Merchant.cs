@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,7 +15,7 @@ public class Merchant : MonoBehaviour
         midPoint = Room.transform.position + new Vector3(Room.lenX / 2, -Room.lenY / 2);
         var assets = Utils.loadAssetPack("special");
         var itemspawner = Utils.loadAssetFromAssetPack(assets, "Itemspawner");
-        var itemPriceTag = Utils.loadAssetFromAssetPack(assets, "ItemPriceTag");
+        var itemPriceTag = Utils.loadAssetFromAssetPack(assets, "TextObject");
         
         assets.Unload(false);
         List<GameObject> spawners = new List<GameObject>();
@@ -78,7 +79,6 @@ public class Merchant : MonoBehaviour
             var price = Instantiate(priceTag,item.transform.position + new Vector3(0,-0.5f),new Quaternion(0,0,0,0));
             var text = price.GetComponentInChildren<TextMesh>();
              text.text = item.GetComponent<ItemManager>().GetItem().Price.ToString();
-             text.characterSize = 0.1f;
              text.fontSize = 20;
             price.transform.parent = item.gameObject.transform;
         }
