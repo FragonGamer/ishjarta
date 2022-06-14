@@ -31,7 +31,7 @@ Es existieren zwei Kategorien von Gegner:
 - Nahkampf
 - Fernkampf
 
-##### Nahkampf
+#### Nahkampf
 
 Nahkampf-Gegner verursachen dem Spieler schaden in dem Sie sich zum Spieler zu bewegen.
 
@@ -76,12 +76,16 @@ Die Spielerbewegung soll dem Spieler ermöglichen, den Spielercharakter bewegen z
 
 Bewegen kann sich der Spieler mit den Pfeiltasten.
 
+Ermöglicht wird die Spielerbewegung durch die Move-Methode im Playercontroller-Script.
 
 
 ## Spielerangriff
 
+![](PlayerAndSlime.png)
 
+![](PlayerAndSlimeWithCollision.png)
 
+![](PlayerAndTwoSlimesWithCollision.png)
 
 ## Gegnerangriff
 
