@@ -66,8 +66,13 @@ public class Merchant : MonoBehaviour
         var itemsp = go.GetComponent<Itemspawner>();
         itemsp.itemAmount = 1;
         var items = itemsp.Spawn();
+        go.transform.SetParent(Room.gameObject.transform);
+        foreach (var item in items)
+        {
+            item.gameObject.transform.SetParent(go.transform);
+        }
         SetPriceOfItems(items,priceTag);
-        go.transform.parent = Room.gameObject.transform;
+        
         return go;
     }
 

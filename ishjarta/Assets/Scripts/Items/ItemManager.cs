@@ -56,8 +56,8 @@ public class ItemManager : MonoBehaviour
         
         
         Name.transform.position = transform.position + new Vector3(.2f,0,0);
-        Description.transform.position = Name.gameObject.transform.position + new Vector3(0,.1f,0);
-        FullDescription.transform.position = Name.gameObject.transform.position + new Vector3(0,.1f,0);
+        Description.transform.position = Name.gameObject.transform.position + new Vector3(0,-.15f,0);
+        FullDescription.transform.position = Name.gameObject.transform.position + new Vector3(0,-.15f,0);
         
         Name.text = item.ItemName;
         Description.text = item.description;
