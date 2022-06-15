@@ -5,9 +5,17 @@ Das soll eine Dokumentation des Projekts Ishjarta sein, welche die verschiedenen
 
 ____________
 ## Inhaltsverzeichnis
-1. [Entitäten](#entitäten)  
-2. [Spielerbewegung](#spielerbewegung)  
-3. [Entitätenangriff](#entitätenangriff)    
+1. [Entitäten](#entitäten) 
+    1. [Gegner](#gegner)
+    2. [Spieler](#spieler)
+2. [Items](#items)
+     1. [Passive Items](#passive-items)
+     2. [Active Items](#active-item)
+     3. [Usable Items](#usable-items)
+3. [Spielerbewegung](#spielerbewegung)  
+4. [Entitätenangriff](#entitätenangriff)
+    1. [Nahkampf](#nahkampf)
+    2. [Fernkampf](#fernkampf)
 5. [Inventarsystem und Item-Pick-Ups des Spielers](#inventarsystem-und-item-Pick-Ups-des-Spielers) 
 6. [Statuseffektsystem](#statuseffektsystem)  
 7. [Statuseffektsystem](#statuseffektsystem)
@@ -80,11 +88,26 @@ Ermöglicht wird die Spielerbewegung durch die Move-Methode im Playercontroller-S
 
 ## Entitätenangriff
 
-![](PlayerAndSlime.png)
+### Nahkampf
 
+Der Nahkampf ermöglicht es dem Spieler dem Gegner von der Nähe schaden zuzufügen.
+Die Funktionsweise des Nahkampfs erfolgt dadurch, dass vor dem Spieler für eine sehr kurze Zeit ein Kollisionsfeld aufgebaut wird und alle Gegner die sich in diesem Feld befinden schaden zugefügt bekommen.
+Die Größe vom Feld wird von der Angriffsreichweite und Angriffsweite der Nahkampfwaffe bestimmt.
+
+![](PlayerAndSlime.png)
 ![](PlayerAndSlimeWithCollision.png)
 
+Diese Funktionsweise ermöglicht es dem Spieler, bei einer dementsprechenden Angriffsweite der Nahkampfwaffe, mehreren Gegnern Flächenschaden zuzufügen.
+
 ![](PlayerAndTwoSlimesWithCollision.png)
+
+Der Nachteil dieser Funktionsweise ist das Berechnen der Eckpunkte des Kollisionsfeld. Da sich das Kollisionsfeld nach der Angriffsrichtung ausrichtet und die Eckpunkte mit Koordinaten angegeben werden müssen, ist das berechnen der Eckpunktskoordinaten besonders schwer.
+
+Zum Berechnen der Eckpunktskoordinaten wird folgender Lösungsweg benützt:
+
+Das Kollsionsfeld wird auf der X-Achse aufgebaut, da man die Angriffsreichweite und Angriffsweite da relativ gut als Koordinaten darstellen kann.
+Danach wird der Winkel zwischen der X-Achse und dem Gegner berechnet, was auch relativ einfach ist (siehe code).
+Zum Ende werden die Eckpunktkoordinaten um diesen bestimmten Winkel um den Ursprung rotiert und man bekommt das fertige Kollisionsfeld um den Gegner.
 
 ![](PlayerSlimeCollisionProcess1.png)
 ![](PlayerSlimeCollisionProcess2.png)
@@ -93,6 +116,7 @@ Ermöglicht wird die Spielerbewegung durch die Move-Methode im Playercontroller-S
 ![](PlayerSlimeCollisionProcess5.png)
 ![](PlayerSlimeCollisionProcess6.png)
 
+### Fernkampf
 
 ## Inventarsystem und Item-Pick-Ups des Spielers
 
