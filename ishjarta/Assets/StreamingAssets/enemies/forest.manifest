@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 550010749
+CRC: 1943848992
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9b6722a635a895f258e30c5bf96628eb
+    Hash: 3d64b61a3fd595fa9800471f62f58c94
   TypeTreeHash:
     serializedVersion: 2
     Hash: 77b06dacdbca1107875906a2ade8b418
@@ -62,8 +62,6 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
-- AssemblyName: Assembly-CSharp
-  ClassName: EnemyLootDropTable/LootDrop
 - AssemblyName: AstarPathfindingProject
   ClassName: Pathfinding.AutoRepathPolicy
 - AssemblyName: AstarPathfindingProject
@@ -73,6 +71,5 @@ SerializeReferenceClassIdentifiers:
 Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/RangedSlime.prefab
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
-- Assets/Prefabs/Enemys/Meele/Slime.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/loottable

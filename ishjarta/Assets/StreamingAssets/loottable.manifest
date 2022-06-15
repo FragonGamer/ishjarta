@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 3971067105
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4ccb08679c9a950111d96f99b15ed63d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 258bb85e29a5de7c2c9d5c9386269d26
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 953e13c946b683b4584e8238e82de90d, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: EnemyLootDropTable/LootDrop
+Assets:
+- Assets/Items/SlimeLootTable.asset
+Dependencies:
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
