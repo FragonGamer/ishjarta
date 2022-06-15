@@ -21,13 +21,15 @@ public class MenuController : BaseMenuController
 
     public void NewGameDialogYes()
     {
-        SaveManager.DeleteSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex + 1).name);
+        //SaveManager.DeleteSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex + 1).name);
+        Debug.Log($"Length: {SceneManager.sceneCount}");
+        SaveManager.DeleteSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex).name);
         LoadScene();
     }
 
     public void LoadGameDialogYes()
     {
-        if (SaveManager.ExistsSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex+1).name))
+        if (SaveManager.ExistsSave(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex).name))
             LoadScene();
         else if(noSavedGameDialog != null)
             noSavedGameDialog.SetActive(true);

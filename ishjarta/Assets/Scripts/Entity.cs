@@ -84,39 +84,39 @@ public abstract class Entity : MonoBehaviour
     {
         tokenSource = new CancellationTokenSource();
         statusEffectHandler = ScriptableObject.CreateInstance<StatusEffectHandler>();
-        HandleEffects();
     }
-    void OnDisable()
-    {
-        tokenSource.Cancel();
-    }
+    //void OnDisable()
+    //{
+    //    tokenSource.Cancel();
+    //}
+
+
+    //public async Task HandleEffects()
+    //{
+    //    await Task.Run(async () =>
+    //    {
+    //        while (true)
+    //        {
+    //            if (tokenSource.IsCancellationRequested)
+    //                return;
+
+    //            await Task.Delay(1000);
+    //            ExecuteEffects();
+    //        }
+    //    }, tokenSource.Token);
+    //}
 
     private float timeCounter = 0;
 
-    public async Task HandleEffects()
+    public void HandleEffects()
     {
-        await Task.Run(async () =>
+        timeCounter += Time.deltaTime;
+        if (timeCounter >= 1)
         {
-            while (true)
-            {
-                if (tokenSource.IsCancellationRequested)
-                    return;
-
-                await Task.Delay(1000);
-                ExecuteEffects();
-            }
-        }, tokenSource.Token);
+            timeCounter = 0;
+            ExecuteEffects();
+        }
     }
-
-    //public void HandleEffects()
-    //{
-    //    timeCounter += Time.deltaTime;
-    //    if (timeCounter >= 1)
-    //    {
-    //        timeCounter = 0;
-    //        ExecuteEffects();
-    //    }
-    //}
 
     public void ExecuteEffects()
     {

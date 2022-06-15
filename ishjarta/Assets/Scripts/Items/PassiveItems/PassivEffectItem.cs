@@ -7,11 +7,11 @@ public class PassivEffectItem : PassiveItem
 {
     public override void triggerEffect()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void removeEffect()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }

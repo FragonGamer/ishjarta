@@ -27,7 +27,7 @@ public static class Utils
             = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), assetPack));
         if (myLoadedAssetBundle == null)
         {
-            throw new System.Exception("Failed to load AssetBundle!");
+            throw new System.Exception($"Failed to load AssetBundle! -> {assetPack}");
         }
 
         return myLoadedAssetBundle;
@@ -38,6 +38,12 @@ public static class Utils
         var item = assetBundle.LoadAsset<Item>(asset);
         return item;
     }
+    public static EnemyLootDropTable[] loadEnemyLootDropTableFromAssetPack(AssetBundle assetBundle, string asset)
+    {
+        var item = assetBundle.LoadAssetWithSubAssets<EnemyLootDropTable>(asset);
+        return item;
+    }
+
     public static void UnloadAssetPack(AssetBundle assetBundle)
     {
         assetBundle.Unload(false);

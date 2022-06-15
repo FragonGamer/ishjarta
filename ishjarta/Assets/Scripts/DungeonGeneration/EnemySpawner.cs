@@ -51,6 +51,9 @@ public class EnemySpawner : MonoBehaviour
     {
 
         var enemy = possibleEnemies.Shuffle().First();
+
+        enemy.GetComponent<Enemy>().enemyLootDropTable = EnemyLootDropTable.GetEnemyLootDropTableOfSlime();
+
         var go = Instantiate(enemy, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0));
         room.Enemies.Add(go.GetComponent<Enemy>());
         go.transform.parent = room.gameObject.transform;

@@ -16,8 +16,9 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: e07e788bcb4073e4cb8d6b5d2387da84, type: 3}
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 500
   <Range>k__BackingField: 1.2
   <AttackRate>k__BackingField: 1
+  <IsChargable>k__BackingField: 0
   <Width>k__BackingField: 0.3
   <WeaponType>k__BackingField: 0

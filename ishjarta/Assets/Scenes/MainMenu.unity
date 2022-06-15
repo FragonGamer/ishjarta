@@ -417,7 +417,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: VolumeApply
         m_Mode: 1
@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -6296,7 +6296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: GameplayApply
         m_Mode: 1
@@ -6760,7 +6760,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: SetBrightness
         m_Mode: 0
@@ -7155,7 +7155,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: ResetButton
         m_Mode: 5
@@ -7961,6 +7961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477315817}
   - component: {fileID: 1477315816}
+  - component: {fileID: 1477315818}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -7993,7 +7994,6 @@ MonoBehaviour:
   qualityDropdown: {fileID: 1698039491}
   fullScreenToggle: {fileID: 2002066014}
   resolutionDropdown: {fileID: 394913459}
-  newGameLevel: Stage_1
   noSavedGameDialog: {fileID: 90991558}
   loadScreen: {fileID: 869366464}
   loadSlider: {fileID: 142289371}
@@ -8013,6 +8013,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1477315818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477315815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8f9b216f5d0fa4883bda3b110e1711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canUse: 1
+  menuController: {fileID: 1477315816}
+  volumeTextValue: {fileID: 186274508}
+  volumeSlider: {fileID: 1947670811}
+  brightnessTextValue: {fileID: 920088970}
+  brightnessSlider: {fileID: 1222250085}
+  qualityDropdown: {fileID: 1698039491}
+  fullScreenToggle: {fileID: 2002066014}
+  controllerSensitivityTextValue: {fileID: 28825651}
+  controllerSensitivitySlider: {fileID: 1714345343}
 --- !u!1 &1485008762
 GameObject:
   m_ObjectHideFlags: 0
@@ -8443,7 +8465,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: ResetButton
         m_Mode: 5
@@ -8940,7 +8962,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: GraphicsApply
         m_Mode: 1
@@ -9722,7 +9744,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 0
@@ -9866,7 +9888,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: SetControllerSensitivity
         m_Mode: 0
@@ -10649,7 +10671,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: SetVolume
         m_Mode: 0
@@ -11174,7 +11196,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: SetFullScreen
         m_Mode: 0
@@ -11794,7 +11816,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1477315816}
         m_TargetAssemblyTypeName: BaseMenuController, Assembly-CSharp
         m_MethodName: ResetButton
         m_Mode: 5
