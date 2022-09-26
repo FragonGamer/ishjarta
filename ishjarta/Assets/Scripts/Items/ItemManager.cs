@@ -15,7 +15,10 @@ public class ItemManager : MonoBehaviour
     private TextMesh Description;
     private TextMesh FullDescription;
     private bool showFullDescription;
+    Vector3 NamePosition;
+    Vector3 FullDescriptionPosition;
 
+Vector3 DescriptionPosition;
     public Item GetItem()
     {
         return item;
@@ -53,11 +56,9 @@ public class ItemManager : MonoBehaviour
         Description.transform.parent = gameObject.transform;
         FullDescription.transform.parent = gameObject.transform;
         
-        
-        
-        Name.transform.position = transform.position + new Vector3(.2f,0,0);
-        Description.transform.position = Name.gameObject.transform.position + new Vector3(0,-.15f,0);
-        FullDescription.transform.position = Name.gameObject.transform.position + new Vector3(0,-.15f,0);
+        NamePosition = new Vector3(.2f,0,0);
+        DescriptionPosition = new Vector3(.2f,-.15f,0);
+        FullDescriptionPosition =  new Vector3(.2f,-.15f,0);
         
         Name.text = item.ItemName;
         Description.text = item.description;
@@ -79,11 +80,37 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (isNearest && isInRange)
         {
+            float horizontalPosition =  gameObject.transform.position.x - player.transform.position.x;
+            if(horizontalPosition < 0){
+                Vector3 pos = NamePosition;
+                pos.x  = pos.x *-1;
+                Name.transform.position = gameObject.transform.position + pos ;
+                Name.anchor = TextAnchor.MiddleRight;
+                pos = DescriptionPosition;
+                pos.x  = pos.x *-1;
+                Description.transform.position = gameObject.transform.position  + pos;
+                Description.anchor = TextAnchor.MiddleRight;
+                pos = FullDescriptionPosition;
+                pos.x  = pos.x *-1;
+                FullDescription.transform.position  = gameObject.transform.position + pos;
+                FullDescription.anchor = TextAnchor.MiddleRight;
+            }
+            else{
+                Name.transform.position = gameObject.transform.position + NamePosition;
+                
+               Name.anchor = TextAnchor.MiddleLeft;
+                Description.transform.position = gameObject.transform.position + DescriptionPosition;
+                Description.anchor = TextAnchor.MiddleLeft;
+                FullDescription.transform.position  = gameObject.transform.position + FullDescriptionPosition;
+                FullDescription.anchor = TextAnchor.MiddleLeft;
+            }
             GetComponentInChildren<SpriteRenderer>().color = Color.gray;
             Name.gameObject.SetActive(true);
             Description.gameObject.SetActive(true);
+
         }
         else if (!isNearest)
         {
