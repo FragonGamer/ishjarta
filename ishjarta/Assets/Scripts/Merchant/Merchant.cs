@@ -85,6 +85,7 @@ public class Merchant : MonoBehaviour
             var text = price.GetComponentInChildren<TextMesh>();
              text.text = item.GetComponent<ItemManager>().GetItem().Price.ToString();
              text.fontSize = 20;
+             text.characterSize = 0.07f;
             price.transform.parent = item.gameObject.transform;
         }
         
