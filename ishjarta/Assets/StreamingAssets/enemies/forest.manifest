@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1884453237
+CRC: 1550905198
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cbfe1fe60f5bf1d34dc6d9957f9d2362
+    Hash: e9a67a75f5bc71df8b30205b0ea9cc22
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 77b06dacdbca1107875906a2ade8b418
+    Hash: 10e54aa845c9f7148d6673cbd9922e6c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -39,6 +39,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 17450eec3d6b3c946b0dc6d3d0bc2550, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
 - Class: 114
@@ -75,4 +77,4 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 - Assets/Prefabs/Enemys/Meele/Slime.prefab
 Dependencies:
-- C:/Users/felix/Downloads/Isharta/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
+- E:/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
