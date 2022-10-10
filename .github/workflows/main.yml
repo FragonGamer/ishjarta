@@ -64,6 +64,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        projectPath:
+          - ishjarta
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -86,7 +89,7 @@ jobs:
       - name: Restore Library cache
         uses: actions/cache@v2
         with:
-          path: Library
+          path: ${{ matrix.projectPath }}/Library
           key: Library-build-WebGL
           restore-keys: |
             Library-build-
