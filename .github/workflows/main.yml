@@ -12,6 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        projectPath:
+          - ishjarta
         testMode:
           - EditMode
           - PlayMode
@@ -46,6 +48,7 @@ jobs:
         uses: game-ci/unity-test-runner@v2
         id: testRunner
         with:
+          projectPath: ${{ matrix.projectPath }}
           testMode: ${{ matrix.testMode }}
           checkName: ${{ matrix.testMode }} test results
           githubToken: ${{ secrets.GITHUB_TOKEN }}
