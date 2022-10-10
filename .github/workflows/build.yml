@@ -17,6 +17,8 @@ jobs:
           #- iOS # Build an iOS player.
           #- Android # Build an Android .apk standalone app.
           - WebGL # WebGL.
+        projectPath:
+               - ishjarta
     steps:
       - uses: actions/checkout@v2
         with:
