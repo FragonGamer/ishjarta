@@ -1,52 +1,52 @@
 ManifestFileVersion: 0
-CRC: 496718105
+CRC: 3324797457
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: player
-      Dependencies: {}
-    Info_1:
-      Name: meleeweapon
-      Dependencies: {}
-    Info_2:
-      Name: stage/forest
-      Dependencies:
-        Dependency_0: enemies/forest
-        Dependency_1: rangedweaponprefab
-        Dependency_2: item
-        Dependency_3: special
-        Dependency_4: loottable
-    Info_3:
-      Name: enemies/forest
-      Dependencies:
-        Dependency_0: loottable
-    Info_4:
-      Name: meleeweaponprefab
-      Dependencies:
-        Dependency_0: meleeweapon
-    Info_5:
-      Name: rangedweaponprefab
-      Dependencies: {}
-    Info_6:
       Name: usableitemprefab
       Dependencies: {}
-    Info_7:
-      Name: activeitemprefab
+    Info_1:
+      Name: stage/forest
       Dependencies:
-        Dependency_0: activeitem
-    Info_8:
-      Name: passivitemprefab
-      Dependencies: {}
-    Info_9:
-      Name: activeitem
-      Dependencies: {}
-    Info_10:
+        Dependency_0: item
+        Dependency_1: loottable
+        Dependency_2: enemies/forest
+        Dependency_3: special
+        Dependency_4: rangedweaponprefab
+    Info_2:
       Name: item
       Dependencies: {}
-    Info_11:
-      Name: special
+    Info_3:
+      Name: player
       Dependencies: {}
-    Info_12:
+    Info_4:
+      Name: passivitemprefab
+      Dependencies: {}
+    Info_5:
       Name: loottable
       Dependencies:
         Dependency_0: usableitemprefab
+    Info_6:
+      Name: enemies/forest
+      Dependencies:
+        Dependency_0: loottable
+    Info_7:
+      Name: meleeweapon
+      Dependencies: {}
+    Info_8:
+      Name: special
+      Dependencies: {}
+    Info_9:
+      Name: meleeweaponprefab
+      Dependencies:
+        Dependency_0: meleeweapon
+    Info_10:
+      Name: activeitem
+      Dependencies: {}
+    Info_11:
+      Name: activeitemprefab
+      Dependencies:
+        Dependency_0: activeitem
+    Info_12:
+      Name: rangedweaponprefab
+      Dependencies: {}

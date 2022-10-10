@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.2d.animation": {
-      "version": "8.0.1",
+      "version": "8.0.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -33,11 +33,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.psdimporter": {
-      "version": "7.0.0",
+      "version": "7.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.2d.animation": "8.0.0",
+        "com.unity.2d.animation": "8.0.2",
         "com.unity.2d.common": "7.0.0",
         "com.unity.2d.sprite": "1.0.0"
       },
@@ -86,7 +86,7 @@
       "hash": "b7c279278d1a343c6957c9f15b45173d3211f01c"
     },
     "com.unity.burst": {
-      "version": "1.7.1",
+      "version": "1.7.2",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -95,7 +95,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.15.17",
+      "version": "1.15.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
