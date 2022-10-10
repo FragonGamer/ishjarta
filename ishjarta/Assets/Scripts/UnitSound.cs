@@ -21,6 +21,8 @@ public class UnitSound : MonoBehaviour
 
     void Start(){
         nma = GetComponent<NavMeshAgent>();
+        audioSource.clip = sounds[0];
+        audioSource.Play();
     }
 
     void FixedUpdate(){
