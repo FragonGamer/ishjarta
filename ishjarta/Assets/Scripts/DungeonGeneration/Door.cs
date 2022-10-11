@@ -64,7 +64,7 @@ private void UnlockDoor(InputAction.CallbackContext context){
 }
 private void CalculatRange(){
     float distance = GetPlayerDistanceToDoor(this.player);
-    if( distance <= range || distance >= -range){
+    if( distance <= range){
         isInRange = true;
     }
     else{
