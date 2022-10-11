@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1477478022
+CRC: 1022924315
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 25013b56fede1caa2087b5b17eb379c9
+    Hash: eba0728bdce8a1b6c7906eec7775ff9c
   TypeTreeHash:
     serializedVersion: 2
     Hash: ae3367f546b619d0dee1ee87cf1cbc06
@@ -116,8 +116,8 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/ItemRoom.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/item
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/loottable
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/special
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/item
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/loottable
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/special

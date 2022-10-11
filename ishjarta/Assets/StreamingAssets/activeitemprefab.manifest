@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3116514490
+CRC: 3316153156
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4c880e2d22fd3d29b8de5346bdf627d3
+    Hash: 208dd4e616bf310aa366836f974c2b43
   TypeTreeHash:
     serializedVersion: 2
     Hash: be344272f8b5d581a0360fc8a5010486
@@ -36,4 +36,4 @@ Assets:
 - Assets/resources/Prefabs/ActiveItemPrefabs/BaseBraclet.prefab
 - Assets/resources/Prefabs/ActiveItemPrefabs/SpeedBraclet.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/activeitem

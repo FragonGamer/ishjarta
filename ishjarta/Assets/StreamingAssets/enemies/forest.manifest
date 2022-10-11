@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2597434244
+CRC: 2355390402
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4f27b5255e947bdd3da7ff7ae0c568e9
+    Hash: 3d64b61a3fd595fa9800471f62f58c94
   TypeTreeHash:
     serializedVersion: 2
     Hash: 77b06dacdbca1107875906a2ade8b418
@@ -72,4 +72,4 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/RangedSlime.prefab
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
 Dependencies:
-- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/loottable
+- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/loottable
