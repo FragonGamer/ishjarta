@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Unlock Door",
+                    "type": "Button",
+                    "id": "19639927-2b8a-4a54-a2e0-abb2ff054074",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -294,6 +303,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3aefac69-0cb2-430a-b9e6-b5ae5adbae82",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Unlock Door",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
