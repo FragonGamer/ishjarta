@@ -46,6 +46,9 @@ public class Room : MonoBehaviour
     }
     private void Start()
     {
+        if(gameObject.CompareTag("StartRoom")){
+            isEntered = true;
+        }
         ObstacleTileMap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.ToLower().Contains("obstacle"));
         //Gets all enemies in the current room
         Enemies = GetComponentsInChildren<Enemy>().ToList();
@@ -68,13 +71,17 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
+         LockRoom();
         if (isEntered)
         {
+           
             if (!hasVisited)
             {
+                LockRoom();
                 hasVisited = true;
                 player.visitedRooms++;
                 Debug.Log(player.visitedRooms);
+                
 
                 var test = GetComponentInChildren<Itemspawner>();
                 if (test != null)
@@ -101,7 +108,13 @@ public class Room : MonoBehaviour
                 }
 
 
+
             }
+            else{
+                UnlockRoom();
+            }
+            
+
 
 
         }
@@ -129,10 +142,22 @@ public class Room : MonoBehaviour
     /// </summary>
     private void CloseRoom()
     {
-        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
+        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && door.GetComponent<Door>().isLocked == false).Select(go => go.GetComponent<Door>()))
         {
             ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.closedDoorTile);
             door.doorIsOpen = false;
+        }
+    }
+    private void LockRoom(){
+        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && door.GetComponent<Door>().isLocked).Select(go => go.GetComponent<Door>()))
+        {
+            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.lockedDoorTile);
+
+        }
+    }
+    public void UnlockRoom(){
+         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && !door.GetComponent<Door>().isLocked && door.GetComponent<Door>().wasLocked).Select(go => go.GetComponent<Door>())){
+        ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
         }
     }
 

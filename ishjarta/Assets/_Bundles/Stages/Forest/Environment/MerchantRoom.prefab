@@ -1016,6 +1016,10 @@ PrefabInstance:
       propertyPath: direction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: lockedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
@@ -1084,6 +1088,14 @@ PrefabInstance:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: closedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 61e28e36a32b5b34da42e96264c91baa, type: 2}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: lockedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -1160,6 +1172,14 @@ PrefabInstance:
       propertyPath: direction
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: closedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 54991e97d6877d74ba80725fa1c6b2de, type: 2}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: lockedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.y
       value: 1
@@ -1232,6 +1252,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: closedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 15cfe5bc93a3c4943a7f263958dcbeeb, type: 2}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: lockedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
       value: 1
