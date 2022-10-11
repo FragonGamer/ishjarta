@@ -1007,6 +1007,10 @@ PrefabInstance:
       propertyPath: closedDoorTile
       value: 
       objectReference: {fileID: 11400000, guid: 54991e97d6877d74ba80725fa1c6b2de, type: 2}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: lockedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.y
       value: 1
@@ -1359,6 +1363,10 @@ PrefabInstance:
       propertyPath: closedDoorTile
       value: 
       objectReference: {fileID: 11400000, guid: ceb20cf203ee29f408ecafaa749b9c2b, type: 2}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: lockedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
