@@ -1,9 +1,6 @@
 name: Ishjarta 🎮
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   testAllModes:
@@ -70,6 +67,7 @@ jobs:
           path: ${{ matrix.projectPath }}/Library
           key: Library-build-WebGL
           restore-keys: |
+            Library-build-
             Library-
       - uses: game-ci/unity-builder@v2
         env:
@@ -95,7 +93,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: build-WebGL
-          path: build/WebGL
+          path: build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
