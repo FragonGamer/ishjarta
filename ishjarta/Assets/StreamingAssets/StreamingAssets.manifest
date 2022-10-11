@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3324797457
+CRC: 1367111565
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -8,11 +8,12 @@ AssetBundleManifest:
     Info_1:
       Name: stage/forest
       Dependencies:
-        Dependency_0: item
-        Dependency_1: loottable
-        Dependency_2: enemies/forest
-        Dependency_3: special
-        Dependency_4: rangedweaponprefab
+        Dependency_0: usableitemprefab
+        Dependency_1: item
+        Dependency_2: loottable
+        Dependency_3: enemies/forest
+        Dependency_4: special
+        Dependency_5: rangedweaponprefab
     Info_2:
       Name: item
       Dependencies: {}

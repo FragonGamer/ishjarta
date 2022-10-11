@@ -107,6 +107,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Unlock Door"",
+                    ""type"": ""Button"",
+                    ""id"": ""19639927-2b8a-4a54-a2e0-abb2ff054074"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -318,6 +327,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3aefac69-0cb2-430a-b9e6-b5ae5adbae82"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Unlock Door"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -402,6 +422,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_DropItem = m_Player.FindAction("Drop Item", throwIfNotFound: true);
         m_Player_DungeonGenerationTest = m_Player.FindAction("DungeonGenerationTest", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+        m_Player_UnlockDoor = m_Player.FindAction("Unlock Door", throwIfNotFound: true);
         // References
         m_References = asset.FindActionMap("References", throwIfNotFound: true);
         m_References_MousePosition = m_References.FindAction("MousePosition", throwIfNotFound: true);
@@ -476,6 +497,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DropItem;
     private readonly InputAction m_Player_DungeonGenerationTest;
     private readonly InputAction m_Player_Reload;
+    private readonly InputAction m_Player_UnlockDoor;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -489,6 +511,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
         public InputAction @DungeonGenerationTest => m_Wrapper.m_Player_DungeonGenerationTest;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
+        public InputAction @UnlockDoor => m_Wrapper.m_Player_UnlockDoor;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -525,6 +548,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @UnlockDoor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnlockDoor;
+                @UnlockDoor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnlockDoor;
+                @UnlockDoor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnlockDoor;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -556,6 +582,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @UnlockDoor.started += instance.OnUnlockDoor;
+                @UnlockDoor.performed += instance.OnUnlockDoor;
+                @UnlockDoor.canceled += instance.OnUnlockDoor;
             }
         }
     }
@@ -655,6 +684,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnDropItem(InputAction.CallbackContext context);
         void OnDungeonGenerationTest(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnUnlockDoor(InputAction.CallbackContext context);
     }
     public interface IReferencesActions
     {

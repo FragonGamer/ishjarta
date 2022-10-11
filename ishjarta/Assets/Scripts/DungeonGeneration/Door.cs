@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Tilemaps;
+using UnityEngine.InputSystem;
+
 
 
 public class Door : MonoBehaviour
@@ -18,17 +20,61 @@ public class Door : MonoBehaviour
     public bool doorIsOpen;
     public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
-
+    
     [SerializeField] public Tile closedDoorTile;
+    [SerializeField]public bool isLocked;
+    public bool wasLocked;
+    [SerializeField] public Tile lockedDoorTile;
+    [SerializeField] public float range = 1f;
+    private Player player;
+    InputMaster inputMaster;
+    public bool isInRange;
 
     public Room room;
+    
+private void Start() {
+    player = FindObjectOfType<Player>();
+    inputMaster.Player.UnlockDoor.performed += UnlockDoor;
+}
+private void Update() {
+    
+    if(room.IsCleared){
+        CalculatRange();
+        if(isLocked)
+            wasLocked = true;
 
-
-
-
+    }
+}
+private void OnEnable()
+    {
+        inputMaster.Enable();
+    }
+    private void OnDisable()
+    {
+        inputMaster.Disable();
+    }
+private void UnlockDoor(InputAction.CallbackContext context){
+    if(isInRange&&isLocked){
+        var inventory= player.inventory;
+        if(inventory.GetKeys().Amount > 0){
+            inventory.DropItem(new UsableItem(){type = UsableItem.UsableItemtype.key,Amount = 1});
+            isLocked = false;
+        }
+    }
+}
+private void CalculatRange(){
+    float distance = GetPlayerDistanceToDoor(this.player);
+    if( distance <= range){
+        isInRange = true;
+    }
+    else{
+        isInRange=false;
+    }
+}
     public Room ConnectedDoorRoom;
     private void Awake()
     {
+        inputMaster = new InputMaster();
         room = GetComponentInParent<Room>();
     }
 
