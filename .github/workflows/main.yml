@@ -76,6 +76,8 @@ jobs:
         env:
           projectPath: ${{ matrix.projectPath }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
       - uses: actions/upload-artifact@v2
