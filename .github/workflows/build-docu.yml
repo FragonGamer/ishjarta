@@ -5,20 +5,6 @@ on:
     branches:
       - main
 
-inputs:
-  branch:
-    description: 'Branch name for pushing GitHub pages files'
-    required: true
-    default: "docu-pages"
-  folder:
-    description: 'Folder where Doxygen will generate the HTML build files'
-    required: true
-    default: "DocuTest/docu"
-  config_file:
-    description: 'Path of the Doxygen configuration file'
-    required: true
-    default: "DocuTest/docs/testCounter.cs"
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -33,16 +19,16 @@ jobs:
       shell: bash
 
     - name: Generate Doxygen Documentation
-      run: doxygen ${{ inputs.config_file }}
+      run: doxygen DocuTest/docs/testCounter.cs
       shell: bash
       
     - name: Create .nojekyll (ensures pages with underscores work on gh pages)
-      run: touch ${{ inputs.folder }}/.nojekyll
+      run: touch DocuTest/docu/.nojekyll
       shell: bash
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ inputs.branch }}
-        folder: ${{ inputs.folder }}
+        branch: docu-pages
+        folder: DocuTest/docu
