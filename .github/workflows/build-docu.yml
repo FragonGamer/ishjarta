@@ -1,19 +1,47 @@
-name: Documentation
+name: 'Doxygen GitHub Pages Deploy Action'
 
 on:
   push:
     branches:
       - main
 
-jobs:
-  build-docu:
-    name: Build the documentation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mattnotmitt/doxygen-action@v1.9.4
-        with:
-          working-directory: 'DocuTest/docu'
-          doxyfile-path: 'DocuTest/docs'
-          enable-latex: true
+inputs:
+  branch:
+    description: 'Branch name for pushing GitHub pages files'
+    required: true
+    default: "docu-pages"
+  folder:
+    description: 'Folder where Doxygen will generate the HTML build files'
+    required: true
+    default: "DocuTest/docu"
+  config_file:
+    description: 'Path of the Doxygen configuration file'
+    required: true
+    default: "DocuTest/docs/testCounter.cs"
 
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        submodules: "true"
 
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen graphviz -y
+      shell: bash
+
+    - name: Generate Doxygen Documentation
+      run: doxygen ${{ inputs.config_file }}
+      shell: bash
+      
+    - name: Create .nojekyll (ensures pages with underscores work on gh pages)
+      run: touch ${{ inputs.folder }}/.nojekyll
+      shell: bash
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ inputs.branch }}
+        folder: ${{ inputs.folder }}

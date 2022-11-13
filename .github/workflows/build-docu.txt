@@ -1,0 +1,19 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-docu:
+    name: Build the documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mattnotmitt/doxygen-action@v1.9.4
+        with:
+          working-directory: 'DocuTest/docu'
+          doxyfile-path: 'DocuTest/docs'
+          enable-latex: true
+
+
