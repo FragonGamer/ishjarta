@@ -23,7 +23,7 @@ jobs:
       shell: bash
       
     - name: Create .nojekyll (ensures pages with underscores work on docu pages)
-      run: touch DocuTest/docu/.nojekyll
+      run: touch docs/html/.nojekyll
       shell: bash
 
     - name: Deploy to GitHub Pages
@@ -31,4 +31,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: docu-pages
-        #folder: DocuTest/docu
+        folder: docs/html
