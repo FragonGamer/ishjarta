@@ -19,7 +19,7 @@ jobs:
       shell: bash
 
     - name: Generate Doxygen Documentation
-      run: doxygen DocuTest/DoxyFile
+      run: doxygen -u DocuTest/DoxyFile
       shell: bash
 
 
@@ -32,7 +32,7 @@ jobs:
       with:
         name: build-Docu
         path: build
-        
+
       
     #- name: Create .nojekyll (ensures pages with underscores work on docu pages)
     #  run: touch docs/html/.nojekyll
