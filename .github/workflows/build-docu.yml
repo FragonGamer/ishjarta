@@ -19,9 +19,10 @@ inputs:
     required: true
     default: "DocuTest/docs/testCounter.cs"
 
-runs:
-  using: "composite"
-  steps:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
