@@ -1,3 +1,4 @@
 PROJECT_NAME    = "Ishjarta"
+INPUT           = DocuTest/docs
 INLINE_SOURCES  = YES
 SOURCE_BROWSER  = YES
