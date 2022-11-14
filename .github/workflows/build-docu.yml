@@ -27,9 +27,9 @@ jobs:
         name: build-docu
         path: DocuTest/docu
       
-    #- name: Create .nojekyll (ensures pages with underscores work on docu pages)
-    #  run: touch docs/html/.nojekyll
-    #  shell: bash
+    - name: Create .nojekyll (ensures pages with underscores work on docu pages)
+      run: touch DocuTest/docu/.nojekyll
+      shell: bash
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.4
