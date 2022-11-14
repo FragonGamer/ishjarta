@@ -21,18 +21,6 @@ jobs:
     - name: Generate Doxygen Documentation
       run: doxygen -u DocuTest/DoxyFile
       shell: bash
-
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: build-Docu
-        path: build/docu
-
-    - uses: actions/download-artifact@v2
-      with:
-        name: build-Docu
-        path: build
-
       
     #- name: Create .nojekyll (ensures pages with underscores work on docu pages)
     #  run: touch docs/html/.nojekyll
@@ -43,4 +31,4 @@ jobs:
       with:
         #github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: docu-pages
-        folder: docs/html
+        folder: DocuTest/docu
