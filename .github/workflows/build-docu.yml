@@ -25,7 +25,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: build-docu
-        path: build/docu
+        path: DocuTest/docu
       
     #- name: Create .nojekyll (ensures pages with underscores work on docu pages)
     #  run: touch docs/html/.nojekyll
@@ -36,4 +36,4 @@ jobs:
       with:
         #github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: docu-pages
-        folder: build/docu
+        folder: DocuTest/docu
