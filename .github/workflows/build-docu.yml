@@ -22,10 +22,10 @@ jobs:
       run: doxygen DocuTest/DoxyFile
       shell: bash
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: build-docu
-        path: DocuTest/docu
+    #- uses: actions/upload-artifact@v2
+    #  with:
+    #    name: build-docu
+    #    path: DocuTest/docu
       
     #- name: Create .nojekyll (ensures pages with underscores work on docu pages)
     #  run: touch docs/html/.nojekyll
