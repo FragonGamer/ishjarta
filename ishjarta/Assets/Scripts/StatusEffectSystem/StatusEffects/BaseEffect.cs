@@ -2,16 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The base from which all other effects inherit
+/// </summary>
 public abstract class BaseEffect : ScriptableObject
 {
+    /// <summary>
+    /// This field specifies how long the effect lasts
+    /// </summary>
     [field: SerializeField] public float Duration { get; protected set; } = 0f;
+
+    /// <summary>
+    /// This field specifies how long the effect remains
+    /// </summary>
     public float DurationRemaining { get; protected set; }
 
     //[field: SerializeField] public float LastSecond { get; protected set; } = 0f;
+
+    /// <summary>
+    /// This field specifies if the effect is active
+    /// </summary>
     public bool IsActive => IsPermanent || DurationRemaining > 0f;
 
+    /// <summary>
+    /// This field specifies if the effect is an one-time effect
+    /// </summary>
     public bool HasOneTimeEffect { get; protected set; }
+
+    /// <summary>
+    /// This field specifies if the effect has an influence over time
+    /// </summary>
     public bool HasEffectOverTime { get; protected set; }
+
+    /// <summary>
+    /// This field specifies if the effect is permanent
+    /// </summary>
     [field: SerializeField] public bool IsPermanent { get; protected set; } = false;
 
     protected void Awake()
@@ -20,6 +45,10 @@ public abstract class BaseEffect : ScriptableObject
         //LastSecond = Duration;
     }
 
+    /// <summary>
+    /// Should be executed every second and reduces DurationRemaining for 1 second
+    /// </summary>
+    /// <returns></returns>
     protected bool TickPerSecondEffect()
     {
         if (IsActive && !IsPermanent)
@@ -42,25 +71,42 @@ public abstract class BaseEffect : ScriptableObject
         return true;
     }
 
-    // Virtual Method to override for the FrostEffect, SpeedEffect and StrengthEffect
+    /// <summary>
+    /// Virtual Method to override for FrostEffect, SpeedEffect and StrengthEffect
+    /// </summary>
+    /// <returns></returns>
     public virtual float Effect()
     {
         return 0.0f;
     }
 
-    // Virtual Method to override for the PoisoningEffect and RegenerationEffect
+    /// <summary>
+    /// Virtual Method to override for PoisoningEffect and RegenerationEffect
+    /// </summary>
+    /// <param name="i"></param>
+    /// <returns></returns>
     public virtual int Effect(int i)
     {
         return i;
     }
 
-    // Virtual Method to override for the IncinerationEffect
+    /// <summary>
+    /// Virtual Method to override for the IncinerationEffect
+    /// </summary>
+    /// <param name="f"></param>
+    /// <param name="h"></param>
+    /// <returns></returns>
     public virtual float Effect(float f, ref int h)
     {
         h = (int)f;
         return f;
     }
 
+    /// <summary>
+    /// Creates a copy of the given effect
+    /// </summary>
+    /// <param name="resource"></param>
+    /// <returns></returns>
     public static BaseEffect ReturnCopy(BaseEffect resource)
     {
         if (resource == null)

@@ -1,6 +1,10 @@
 PROJECT_NAME        = "Ishjarta"
-INPUT               = DocuTest/docs
-OUTPUT_DIRECTORY    = DocuTest/docu
-OUTPUT_LANGUAGE     = German
+INPUT               = ishjarta/Assets/Scripts
+RECURSIVE           = YES
+OUTPUT_DIRECTORY    = docs/docu
+OUTPUT_LANGUAGE     = English
+USE_PDFLATEX        = YES
+PDF_HYPERLINKS      = YES
 INLINE_SOURCES      = YES
 SOURCE_BROWSER      = YES
+AUTOLINK_SUPPORT    = NO

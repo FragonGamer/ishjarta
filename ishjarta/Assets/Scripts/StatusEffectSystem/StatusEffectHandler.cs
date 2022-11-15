@@ -4,16 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/// <summary>
+/// This class handles the effects of an entity
+/// </summary>
 public class StatusEffectHandler : ScriptableObject
 {
+    /// <summary>
+    /// This field specifies the FrostStatus
+    /// </summary>
     public FrostStatus FrostStat { get; private set; } = new FrostStatus();
+    /// <summary>
+    /// This field specifies the PoisoningStatus
+    /// </summary>
     public PoisoningStatus PoisoningStat { get; private set; } = new PoisoningStatus();
+    /// <summary>
+    /// This field specifies the IncinerationStatus
+    /// </summary>
     public IncinerationStatus IncinerationStat { get; private set; } = new IncinerationStatus();
 
+    /// <summary>
+    /// This field specifies the RegenerationStatus
+    /// </summary>
     public RegenerationStatus RegenerationStat { get; private set; } = new RegenerationStatus();
+    /// <summary>
+    /// This field specifies the SpeedStatus
+    /// </summary>
     public SpeedStatus SpeedStat { get; private set; } = new SpeedStatus();
+    /// <summary>
+    /// This field specifies the StrengthStatus
+    /// </summary>
     public StrengthStatus StrengthStat { get; private set; } = new StrengthStatus();
 
+    /// <summary>
+    /// This method adds an effect to the already existing effects
+    /// </summary>
+    /// <param name="effect">The new effect</param>
     public void AddEffect(BaseEffect effect)
     {
         if (effect != null)
@@ -311,6 +336,10 @@ public class StatusEffectHandler : ScriptableObject
         //}
     }
 
+    /// <summary>
+    /// This method adds a list of effects to the already existing effects
+    /// </summary>
+    /// <param name="effects">The new effects</param>
     public void AddEffectRange(BaseEffect[] effects)
     {
         for(int i = 0; i < effects.Length; i++)
@@ -319,27 +348,49 @@ public class StatusEffectHandler : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// This method removes the short-lasting FrostEffect
+    /// </summary>
     public void RemoveFrost()
     {
         FrostStat.Frost = null;
     }
+
+    /// <summary>
+    /// This method removes the short-lasting PoisoningEffect
+    /// </summary>
     public void RemovePoisining()
     {
         PoisoningStat.Poisoning = null;
     }
 
+    /// <summary>
+    /// This method removes the short-lasting IncinerationEffect
+    /// </summary>
     public void RemoveIncineration()
     {
         IncinerationStat.Incineration = null;
     }
+
+    /// <summary>
+    /// This method removes the short-lasting RegenerationEffect
+    /// </summary>
     public void RemoveRegeneration()
     {
         RegenerationStat.Regeneration = null;
     }
+
+    /// <summary>
+    /// This method removes the short-lasting SpeedEffect
+    /// </summary>
     public void RemoveSpeed()
     {
         SpeedStat.Speed = null;
     }
+
+    /// <summary>
+    /// This method removes the short-lasting StrengthEffect
+    /// </summary>
     public void RemoveStrengh()
     {
         StrengthStat.Strength = null;
@@ -375,6 +426,10 @@ public class StatusEffectHandler : ScriptableObject
     //    return result;
     //}
 
+    /// <summary>
+    /// This method removes the given effect
+    /// </summary>
+    /// <param name="effect">The effect that should be removed</param>
     public void RemoveEffect(BaseEffect effect)
     {
         //if (effect != null)

@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.StatusEffects
 {
+    /// <summary>
+    /// The interface that enables items to have an effect
+    /// </summary>
     public interface IEffective
     {
-        // Effects which the owner gets
+        /// <summary>
+        /// This field specifies the effects which the owner gets
+        /// </summary>
         public List<BaseEffect> OwnerEffects { get; set; }
 
-        // Effects which will be passed on to the enemy
+        /// <summary>
+        /// This field specifies the effects which will be passed on to the enemy
+        /// </summary>
         public List<BaseEffect> EmitEffects { get; set; }
     }
 }
