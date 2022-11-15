@@ -83,7 +83,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-WebGL
-          path: build/WebGL
+          path: docs/game
 
 
 
@@ -104,6 +104,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: publish
-          folder: build/WebGL
+          folder: docs/game
           target-folder: game
      
