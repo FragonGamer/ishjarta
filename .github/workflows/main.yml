@@ -95,14 +95,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-WebGL
-          path: docs #path: build
+      #- uses: actions/download-artifact@v2
+      #  with:
+      #    name: build-WebGL
+      #    path: docs #path: build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: publish
-          folder: docs/game #folder: build/WebGL
+          folder: docs #folder: build/WebGL
      
