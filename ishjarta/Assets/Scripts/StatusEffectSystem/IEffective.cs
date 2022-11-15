@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.StatusEffects
+namespace Assets.Scripts.StatusEffectSystem
 {
     /// <summary>
     /// The interface that enables items to have an effect
