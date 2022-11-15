@@ -105,4 +105,5 @@ jobs:
         with:
           branch: publish
           folder: build/WebGL
+          target-folder: game
      
