@@ -1,5 +1,6 @@
 PROJECT_NAME        = "Ishjarta"
-INPUT               = ishjarta/Assets/Scripts/
+INPUT               = ishjarta/Assets/Scripts
+RECURSIVE           = YES
 OUTPUT_DIRECTORY    = DocuTest/docu
 OUTPUT_LANGUAGE     = German
 USE_PDFLATEX        = YES
