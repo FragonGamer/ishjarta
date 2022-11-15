@@ -1,5 +1,5 @@
 h1 {
-    font-size: 40pt;
+    font-size: 60pt;
     text-align: center;
     font-style: oblique;
 }
@@ -40,5 +40,5 @@ a:active {
 }
 
 th a {
-    font-size: medium;
+    font-size: xx-large;
 }
