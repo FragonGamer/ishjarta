@@ -22,13 +22,13 @@ jobs:
       run: doxygen DocuTest/DoxyFile
       shell: bash
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: build-docu
-        path: docs/docu
+    #- uses: actions/upload-artifact@v2
+    #  with:
+    #    name: build-docu
+    #    path: docs/docu
       
     - name: Create .nojekyll (ensures pages with underscores work on docu pages)
-      run: touch DocuTest/docu/.nojekyll
+      run: touch docs/docu/.nojekyll
       shell: bash
 
     - name: Deploy to GitHub Pages
