@@ -98,7 +98,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: build-WebGL
-          path: build
+          path: docs #path: build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
