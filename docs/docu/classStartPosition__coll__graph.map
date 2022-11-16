@@ -1,0 +1,6 @@
+<map id="StartPosition" name="StartPosition">
+<area shape="rect" id="node1" title=" " alt="" coords="5,185,111,212"/>
+<area shape="rect" id="node2" title=" " alt="" coords="87,5,211,32"/>
+<area shape="rect" id="node3" href="$classRoom.html" title=" " alt="" coords="119,81,179,108"/>
+<area shape="rect" id="node4" href="$classDoor.html" title=" " alt="" coords="295,185,349,212"/>
+</map>

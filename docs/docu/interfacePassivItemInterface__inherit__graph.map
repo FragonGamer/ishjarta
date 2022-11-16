@@ -1,0 +1,10 @@
+<map id="PassivItemInterface" name="PassivItemInterface">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,156,159"/>
+<area shape="rect" id="node2" href="$classPassiveItem.html" title=" " alt="" coords="204,132,305,159"/>
+<area shape="rect" id="node3" href="$classAddArmor.html" title=" " alt="" coords="421,5,507,32"/>
+<area shape="rect" id="node4" href="$classAddCoins.html" title=" " alt="" coords="423,56,505,83"/>
+<area shape="rect" id="node5" href="$classOnOddOrEvenMultiplyDamage.html" title=" " alt="" coords="353,107,575,133"/>
+<area shape="rect" id="node6" href="$classPassivEffectItem.html" title=" " alt="" coords="399,157,529,184"/>
+<area shape="rect" id="node7" href="$classPlusMaxHealth.html" title=" " alt="" coords="404,208,524,235"/>
+<area shape="rect" id="node8" href="$classTestPeriodic.html" title=" " alt="" coords="414,259,514,285"/>
+</map>
