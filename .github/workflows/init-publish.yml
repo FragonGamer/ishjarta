@@ -1,5 +1,6 @@
 name: Initialize Publish-Branche
-
+on:
+  workflow_dispatch: {}
 jobs:
   create-publish:
     runs-on:
