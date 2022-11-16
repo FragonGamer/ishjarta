@@ -3,9 +3,10 @@ on:
   workflow_dispatch: {}
 jobs:
   create-publish:
-    runs-on:
-      name: Deploy to Publish-Branche
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: publish
-        folder: docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Publish-Branche
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: publish
+          folder: docs
