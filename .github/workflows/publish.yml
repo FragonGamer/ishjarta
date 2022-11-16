@@ -71,9 +71,9 @@ jobs:
     - name: Deploy 📱
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
-        branch: publish
-        folder: docs/docu
-        target-folder: docu
+        branch: main
+        folder: docs/docu/html
+        target-folder: docs/docu
 
 
 
@@ -113,8 +113,8 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: publish
+          branch: main
           folder: build/WebGL/WebGL
-          target-folder: game
+          target-folder: docs/game
 
      
