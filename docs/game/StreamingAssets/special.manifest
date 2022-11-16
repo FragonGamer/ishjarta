@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+CRC: 589775203
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e5ed350373daa01e28e8f2ea2844540f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 768d036825b9ae9056b6064d096b3c83
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 102
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/_Bundles/Itemspawner.prefab
+- Assets/_Bundles/TextObject.prefab
+Dependencies: []
