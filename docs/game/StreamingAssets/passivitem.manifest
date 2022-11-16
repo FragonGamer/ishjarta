@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 2650322426
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 04b65a0ddfe0d891bbe5381e48c4e8c7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2418a7e5495b8f74706f7daa920284d0
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9248fb4887562a943b28cee9d316e3cb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0f1b3b2ffce9f1a4fa3c50ed92e4763f, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Items/SpeedFlower.asset
+Dependencies: []
