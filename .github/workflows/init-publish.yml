@@ -3,7 +3,6 @@ on:
   workflow_dispatch: {}
 jobs:
   create-publish:
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -12,4 +11,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: publish
-          folder: ../docs
+          folder: docs
