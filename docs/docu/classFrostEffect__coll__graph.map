@@ -1,5 +1,0 @@
-<map id="FrostEffect" name="FrostEffect">
-<area shape="rect" id="node1" title="FrostEffect slows an entity down" alt="" coords="25,155,115,181"/>
-<area shape="rect" id="node2" href="$classBaseEffect.html" title="The base from which all other effects inherit" alt="" coords="25,80,115,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,135,32"/>
-</map>

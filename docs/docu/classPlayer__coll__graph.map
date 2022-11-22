@@ -1,9 +1,0 @@
-<map id="Player" name="Player">
-<area shape="rect" id="node1" title=" " alt="" coords="97,185,160,212"/>
-<area shape="rect" id="node2" href="$classEntity.html" title=" " alt="" coords="5,81,65,108"/>
-<area shape="rect" id="node3" title=" " alt="" coords="275,5,399,32"/>
-<area shape="rect" id="node4" href="$classInventory.html" title=" " alt="" coords="89,81,173,108"/>
-<area shape="rect" id="node5" href="$classRoom.html" title=" " alt="" coords="428,81,488,108"/>
-<area shape="rect" id="node6" href="$classDoor.html" title=" " alt="" coords="558,185,611,212"/>
-<area shape="rect" id="node7" href="$classItemManager.html" title=" " alt="" coords="282,81,391,108"/>
-</map>
