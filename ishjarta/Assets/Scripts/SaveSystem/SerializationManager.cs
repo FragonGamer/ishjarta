@@ -5,6 +5,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
+/// <summary>
+/// This class manages the saving, deleting and loading of the game-state
+/// </summary>
 public class SerializationManager
 {
     public static string dataPath = Application.dataPath;

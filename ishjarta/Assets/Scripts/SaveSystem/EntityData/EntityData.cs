@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is the state-storage for Entity
+/// </summary>
+
 [System.Serializable]
 public abstract class EntityData
 {

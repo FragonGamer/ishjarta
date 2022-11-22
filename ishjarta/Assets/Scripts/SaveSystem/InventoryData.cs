@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// This class is the state-storage for Inventory
+/// </summary>
 [System.Serializable]
 public class InventoryData
 {

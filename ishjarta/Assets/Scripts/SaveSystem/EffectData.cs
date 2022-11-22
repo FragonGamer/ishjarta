@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is the state-storage for Effect
+/// </summary>
 [System.Serializable]
 public class EffectData
 {

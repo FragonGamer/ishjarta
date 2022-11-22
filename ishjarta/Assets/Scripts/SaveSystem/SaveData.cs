@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class contains the states of the game-objects
+/// </summary>
 [System.Serializable]
 public class SaveData
 {
