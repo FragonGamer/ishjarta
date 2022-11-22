@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class manages the save-system
+/// </summary>
 public class SaveManager : MonoBehaviour
 {
     private static string fileName = "fail";
