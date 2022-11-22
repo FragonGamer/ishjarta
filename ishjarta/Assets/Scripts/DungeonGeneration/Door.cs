@@ -5,7 +5,9 @@ using System.Linq;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 
-
+/// <summary>
+/// Represents a door of a room. Contains features for connecting to other doors, closing a door etc.
+/// </summary>
 
 public class Door : MonoBehaviour
 {

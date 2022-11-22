@@ -4,7 +4,9 @@ using System.Net.Http;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
-
+/// <summary>
+/// Represents a room of the level. Contains all doors of a room and controls the game flow.
+/// </summary>
 public class Room : MonoBehaviour
 {
 

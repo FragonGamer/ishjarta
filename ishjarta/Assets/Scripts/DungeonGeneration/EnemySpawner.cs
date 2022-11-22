@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+/// <summary>
+/// Represents a static object which spawn an certain amount of enemies after an delay
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
 
