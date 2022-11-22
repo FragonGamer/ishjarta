@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// BaseController for the MainMenuController and the PauseMenuController
+/// </summary>
 public class BaseMenuController : MonoBehaviour
 {
     [Header("Sound Setting")]

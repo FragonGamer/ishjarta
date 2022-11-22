@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This class loads the player-settings
+/// </summary>
 public class LoadPrefs : MonoBehaviour
 {
     [Header("Generals Setting")]

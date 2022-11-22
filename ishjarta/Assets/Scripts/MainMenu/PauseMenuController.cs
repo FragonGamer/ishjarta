@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controller for the PauseMenu
+/// </summary>
 public class PauseMenuController : BaseMenuController
 {
     [Header("Buttons")]

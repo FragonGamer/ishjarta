@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 
+/// <summary>
+/// The controller for the MainMenu
+/// </summary>
 public class MenuController : BaseMenuController
 {
 
