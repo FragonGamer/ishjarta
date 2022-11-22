@@ -73,7 +73,7 @@ jobs:
       with:
         branch: publish
         folder: docs/docu/html
-        target-folder: docs/docu
+        target-folder: docu
 
 
 
@@ -115,6 +115,6 @@ jobs:
         with:
           branch: publish
           folder: docs/game
-          target-folder: docs/game
+          target-folder: game
 
      
