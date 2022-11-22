@@ -37,7 +37,8 @@ public class MenuController : BaseMenuController
 
     public void LoadScene()
     {
-        StartCoroutine(LoadAsynchronously());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //StartCoroutine(LoadAsynchronously());
     }
 
     IEnumerator LoadAsynchronously()
