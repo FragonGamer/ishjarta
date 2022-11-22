@@ -1,6 +1,0 @@
-<map id="PassiveItem" name="PassiveItem">
-<area shape="rect" id="node1" title=" " alt="" coords="82,155,183,181"/>
-<area shape="rect" id="node2" href="$classItem.html" title=" " alt="" coords="44,80,96,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,135,32"/>
-<area shape="rect" id="node4" href="$interfacePassivItemInterface.html" title=" " alt="" coords="120,80,271,107"/>
-</map>
