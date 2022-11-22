@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 118877954
+CRC: 2539214584
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d54ea07b7660045598e06b823baf3a47
+    Hash: 1435326af2b4a58dbbf7c1cbd8e58a08
   TypeTreeHash:
     serializedVersion: 2
     Hash: 45a9343ecebd00f9e2c159c5cb39dde8
@@ -31,5 +31,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/PassiveItemPrefabs/BaseFlower.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/BaseFlower.prefab
 Dependencies: []

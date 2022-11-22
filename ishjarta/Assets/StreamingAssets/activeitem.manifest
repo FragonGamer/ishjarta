@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1962595443
+CRC: 1491502111
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6c9c9e06061f47f08243e494914aa2ea
+    Hash: bd14f882160caf25e0fa25d26c4188b3
   TypeTreeHash:
     serializedVersion: 2
     Hash: b7e0c9c5522f169ceb79c83b1a24adfe
@@ -21,5 +21,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Items/trash/SpeedBraclet.asset
+- Assets/_Bundles/Items/ItemTemplate/trash/SpeedBraclet.asset
 Dependencies: []

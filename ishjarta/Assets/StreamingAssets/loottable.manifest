@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3971067105
+CRC: 910165602
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4ccb08679c9a950111d96f99b15ed63d
+    Hash: da68c9e883954c1a0ad54deb9790c4f3
   TypeTreeHash:
     serializedVersion: 2
     Hash: 258bb85e29a5de7c2c9d5c9386269d26
@@ -19,6 +19,6 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: Assembly-CSharp
   ClassName: EnemyLootDropTable/LootDrop
 Assets:
-- Assets/Items/SlimeLootTable.asset
+- Assets/_Bundles/Items/ItemTemplate/SlimeLootTable.asset
 Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/usableitemprefab

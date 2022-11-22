@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2941695449
+CRC: 2139078686
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 93cd3d907572230d224f3307af06f699
+    Hash: b175b16adb4d21077c06a87f61605ade
   TypeTreeHash:
     serializedVersion: 2
     Hash: c42a27e2e82e8473314b64e800739214
@@ -39,10 +39,10 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/Add_15_maxhealth.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_1_coin.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/damageMultiOnOdd.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_25_coins.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_5_coins.prefab
-- Assets/resources/Prefabs/PassiveItemPrefabs/PassivItemsPrefab/add_armor.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/PassivItemsPrefab/Add_15_maxhealth.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/PassivItemsPrefab/add_1_coin.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/PassivItemsPrefab/damageMultiOnOdd.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/PassivItemsPrefab/add_25_coins.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/PassivItemsPrefab/add_5_coins.prefab
+- Assets/_Bundles/Items/ItemPrefabs/PassiveItemPrefabs/PassivItemsPrefab/add_armor.prefab
 Dependencies: []

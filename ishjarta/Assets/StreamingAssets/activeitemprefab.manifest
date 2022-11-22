@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3116514490
+CRC: 405424994
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 208dd4e616bf310aa366836f974c2b43
+    Hash: 033215479da5e0a87721c559391fc46b
   TypeTreeHash:
     serializedVersion: 2
     Hash: be344272f8b5d581a0360fc8a5010486
@@ -33,7 +33,7 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/ActiveItemPrefabs/BaseBraclet.prefab
-- Assets/resources/Prefabs/ActiveItemPrefabs/SpeedBraclet.prefab
+- Assets/_Bundles/Items/ItemPrefabs/ActiveItemPrefabs/BaseBraclet.prefab
+- Assets/_Bundles/Items/ItemPrefabs/ActiveItemPrefabs/SpeedBraclet.prefab
 Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/activeitem
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/activeitem

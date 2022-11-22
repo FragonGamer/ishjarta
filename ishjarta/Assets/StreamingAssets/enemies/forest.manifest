@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1943848992
+CRC: 1983588513
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3d64b61a3fd595fa9800471f62f58c94
+    Hash: 820b0eb19f130803013b59e495fe4399
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 77b06dacdbca1107875906a2ade8b418
+    Hash: 49378d71bca490ea06c148bde3784111
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -40,6 +40,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 17450eec3d6b3c946b0dc6d3d0bc2550, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5fccf604c4635954fa21592e128034ad, type: 3}
@@ -47,10 +49,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f6f0d7f5352c48f4ba5eba2cdf560f70, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 953e13c946b683b4584e8238e82de90d, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ca4c26ef7fa10054b863d98c3fdb3065, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
 - Class: 114
@@ -71,5 +69,4 @@ SerializeReferenceClassIdentifiers:
 Assets:
 - Assets/_Bundles/Stages/Forest/Enemies/RangedSlime.prefab
 - Assets/_Bundles/Stages/Forest/Enemies/Slime.prefab
-Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/loottable
+Dependencies: []

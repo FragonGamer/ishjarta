@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3215242737
+CRC: 4070963401
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e5ed350373daa01e28e8f2ea2844540f
+    Hash: df5fa39b6a1c96c5f56068aeac8e5781
   TypeTreeHash:
     serializedVersion: 2
     Hash: 768d036825b9ae9056b6064d096b3c83
@@ -33,6 +33,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/_Bundles/Itemspawner.prefab
-- Assets/_Bundles/TextObject.prefab
+- Assets/_Bundles/Entities/Itemspawner.prefab
+- Assets/_Bundles/Entities/TextObject.prefab
 Dependencies: []

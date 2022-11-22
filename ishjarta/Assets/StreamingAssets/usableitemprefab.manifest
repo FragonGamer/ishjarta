@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3205876222
+CRC: 420872513
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 925d081d03e6be027be54ee7a0889aba
+    Hash: 7fcbeda983c5c3bda31a57bb2cfa22dc
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9ad0621fd104374ee0ac870ed87a0a57
@@ -33,6 +33,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/resources/Prefabs/UsableItem/Coin.prefab
-- Assets/resources/Prefabs/UsableItem/Armor.prefab
+- Assets/_Bundles/Items/ItemPrefabs/UsableItem/Coin.prefab
+- Assets/_Bundles/Items/ItemPrefabs/UsableItem/Armor.prefab
 Dependencies: []

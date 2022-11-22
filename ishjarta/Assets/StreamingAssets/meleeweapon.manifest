@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2477091629
+CRC: 3461553577
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f0e633f238edbf634d6ba3bc0711322a
+    Hash: eaaae3fdae2d09abe7657730991112d7
   TypeTreeHash:
     serializedVersion: 2
     Hash: e9c936e562003b6373a6caf2999abbe3
@@ -23,6 +23,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Items/PoisonStrengthSword.asset
-- Assets/Items/Sword.asset
+- Assets/_Bundles/Items/ItemTemplate/PoisonStrengthSword.asset
+- Assets/_Bundles/Items/ItemTemplate/Sword.asset
 Dependencies: []

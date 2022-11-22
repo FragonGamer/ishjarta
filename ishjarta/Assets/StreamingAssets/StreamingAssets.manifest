@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3324797457
+CRC: 4134095129
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -28,8 +28,7 @@ AssetBundleManifest:
         Dependency_0: usableitemprefab
     Info_6:
       Name: enemies/forest
-      Dependencies:
-        Dependency_0: loottable
+      Dependencies: {}
     Info_7:
       Name: meleeweapon
       Dependencies: {}

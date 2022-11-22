@@ -181,7 +181,11 @@ public class Player : Entity
         //Ranged Attack
         else if (inventory.CurrentWeapon is RangedWeapon curWeapon)
         {
+            var assets = Utils.loadAssetPack($"rangedweaponprefab");
+            GameObject arrow = Utils.loadAssetFromAssetPack(assets, "ArrowBasic");
 
+            
+            assets.Unload(false);
             if (timeRanged >= curWeapon.AttackRate)
             {
                 timeRanged = 0f;
@@ -192,7 +196,7 @@ public class Player : Entity
 
                 FirePoint.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-                GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
+                GameObject projectile = Instantiate(arrow,
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
                 projectile.GetComponent<Projectile>().DealingDammage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3144055459
+CRC: 1473064914
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 265c6f4a01dfbdbceb95545b9a56e4fd
+    Hash: 305190f80d93dcd1a0282aff2c7edae1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f47624f0dce179f9fade57e686eab4b8
+    Hash: 1be3b30adcef61964486f8648b951c27
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -50,6 +50,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 2b55e42b245ed244b8677ca4284b463f, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 17450eec3d6b3c946b0dc6d3d0bc2550, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: a78e5bfa7040b2c42bc22a84f093287c, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6a57830e540c225e7a39369266987260, type: 3}
@@ -69,8 +71,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 953e13c946b683b4584e8238e82de90d, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: eedbe3daf179c874cbeb764e68ef40af, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: ca4c26ef7fa10054b863d98c3fdb3065, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
 - Class: 114
@@ -116,8 +116,8 @@ Assets:
 - Assets/_Bundles/Stages/Forest/Environment/ItemRoom.prefab
 - Assets/_Bundles/Stages/Forest/Environment/9x5 1.prefab
 Dependencies:
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/item
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/loottable
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
-- C:/Users/Fragon/Documents/GitHub/ishjarta/ishjarta/Assets/StreamingAssets/special
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/enemies/forest
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/item
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/loottable
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/rangedweaponprefab
+- /home/okhota/Documents/programming/games/ishjarta/ishjarta/Assets/StreamingAssets/special
