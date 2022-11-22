@@ -1,3 +1,6 @@
+/// <summary>
+/// Represents one field in the grid for the room layout
+/// </summary>
 public class GridPosdataType
 {
     public int xPos;

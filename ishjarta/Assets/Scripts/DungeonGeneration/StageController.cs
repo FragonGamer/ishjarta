@@ -5,7 +5,9 @@ using System;
 using Random = System.Random;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// Controls the gameplay flow and construction and connection of the levels. Should only exist once.
+/// </summary>
 public class StageController : MonoBehaviour
 {
     [SerializeField] public bool ItemRooms;
