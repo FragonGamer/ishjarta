@@ -1,0 +1,12 @@
+<map id="SaveData" name="SaveData">
+<area shape="rect" id="node1" title=" " alt="" coords="167,483,253,509"/>
+<area shape="rect" id="node2" href="$classPlayerData.html" title=" " alt="" coords="163,393,257,420"/>
+<area shape="rect" id="node3" href="$classEntityData.html" title=" " alt="" coords="143,304,234,331"/>
+<area shape="rect" id="node4" href="$classInventoryData.html" title=" " alt="" coords="258,304,373,331"/>
+<area shape="rect" id="node5" href="$classMeleeWeaponData.html" title=" " alt="" coords="5,199,151,225"/>
+<area shape="rect" id="node6" href="$classWeaponData.html" title=" " alt="" coords="200,81,305,108"/>
+<area shape="rect" id="node8" href="$classRangedWeaponData.html" title=" " alt="" coords="175,199,330,225"/>
+<area shape="rect" id="node7" href="$classItemData.html" title=" " alt="" coords="326,5,409,32"/>
+<area shape="rect" id="node9" href="$classActiveItemData.html" title=" " alt="" coords="305,132,429,159"/>
+<area shape="rect" id="node10" href="$classUsableItemData.html" title=" " alt="" coords="437,132,565,159"/>
+</map>

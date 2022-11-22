@@ -1,0 +1,5 @@
+<map id="RegenerationEffect" name="RegenerationEffect">
+<area shape="rect" id="node1" title="RegenerationEffect heals an entity over a certain time" alt="" coords="5,155,152,181"/>
+<area shape="rect" id="node2" href="$classBaseEffect.html" title="The base from which all other effects inherit" alt="" coords="33,80,124,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="14,5,143,32"/>
+</map>

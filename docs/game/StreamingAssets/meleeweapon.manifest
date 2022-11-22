@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 475464709
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f0e633f238edbf634d6ba3bc0711322a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e9c936e562003b6373a6caf2999abbe3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: efb16806ea2f4b64a87c5a76ad13c88a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bc38f33701d7ac144a22db031eee96a0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5035d1f88ce307844afea1ac946f2af2, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Items/PoisonStrengthSword.asset
+- Assets/Items/Sword.asset
+Dependencies: []

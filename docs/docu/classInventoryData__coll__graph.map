@@ -1,0 +1,9 @@
+<map id="InventoryData" name="InventoryData">
+<area shape="rect" id="node1" title=" " alt="" coords="259,304,374,331"/>
+<area shape="rect" id="node2" href="$classMeleeWeaponData.html" title=" " alt="" coords="5,199,151,225"/>
+<area shape="rect" id="node3" href="$classWeaponData.html" title=" " alt="" coords="200,81,305,108"/>
+<area shape="rect" id="node5" href="$classRangedWeaponData.html" title=" " alt="" coords="175,199,330,225"/>
+<area shape="rect" id="node4" href="$classItemData.html" title=" " alt="" coords="326,5,409,32"/>
+<area shape="rect" id="node6" href="$classActiveItemData.html" title=" " alt="" coords="305,132,429,159"/>
+<area shape="rect" id="node7" href="$classUsableItemData.html" title=" " alt="" coords="437,132,565,159"/>
+</map>
