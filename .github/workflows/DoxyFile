@@ -1,7 +1,7 @@
 PROJECT_NAME        = "Ishjarta"
 INPUT               = ishjarta/Assets/Scripts
 RECURSIVE           = YES
-OUTPUT_DIRECTORY    = docs/docu
+OUTPUT_DIRECTORY    = build/docu
 OUTPUT_LANGUAGE     = English
 USE_PDFLATEX        = YES
 PDF_HYPERLINKS      = YES

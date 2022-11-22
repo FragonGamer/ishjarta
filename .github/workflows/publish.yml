@@ -72,7 +72,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: publish
-        folder: docs/docu/html
+        folder: build/docu/html
         target-folder: docu
 
 
@@ -109,12 +109,12 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: upload-WebGL
-          path: build/WebGL
+          path: build/game
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: publish
-          folder: build/WebGL/WebGL
+          folder: build/game/WebGL
           target-folder: game
 
      
