@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
         aiPath = GetComponent<AIPath>();
         aiDestinationSetter = GetComponent<AIDestinationSetter>();
         enemyScript = GetComponent<Enemy>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
     private void Start()

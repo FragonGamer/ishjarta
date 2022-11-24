@@ -1,0 +1,16 @@
+name: Initialize Publish-Branche
+on:
+  workflow_dispatch: {}
+jobs:
+  create-publish:
+    name: Create Publish-Branche
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Deploy to Publish-Branche
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: publish
+          folder: docs
