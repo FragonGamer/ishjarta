@@ -13,7 +13,7 @@ public class Merchant : MonoBehaviour
     {
         Room = gameObject.GetComponentInParent<Room>();
         midPoint = Room.transform.position + new Vector3(Room.lenX / 2, -Room.lenY / 2);
-        var assets = Utils.loadAssetPack("special");
+        var assets = Utils.LoadAssetsFromAddressablesByLabel("special");
         var itemspawner = Utils.loadAssetFromAssetPack(assets, "Itemspawner");
         var itemPriceTag = Utils.loadAssetFromAssetPack(assets, "TextObject");
         
