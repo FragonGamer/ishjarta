@@ -5,6 +5,7 @@ using System;
 using Random = System.Random;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 
 public class StageController : MonoBehaviour
 {
@@ -73,7 +74,7 @@ public class StageController : MonoBehaviour
         AssetBundle.UnloadAllAssetBundles(true);
         HUD.SetActive(false);
         camera.GetComponent<Camera>().nearClipPlane = 0;
-        SceneManager.LoadScene("Stage_1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene);
     }
 
     void DestroyAllGOS()

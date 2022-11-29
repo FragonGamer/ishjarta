@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9f95df5b98158af4a87f62955edea5c8
+  m_SerializeEntries:
+  - m_GUID: 824d815170c18c74aa54a57b8165c5dd
+    m_Address: Assets/Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5901336f9b78fc48ade06dba5b4ff53
+    m_Address: Assets/Prefabs/Enemys
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d69f5d956f3789049a78fe42c275e754
+    m_Address: Assets/Prefabs/ItemPrefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e8951b4903f59242a2d20101670560c
+    m_Address: Assets/Prefabs/Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e3869cc74e2903408aafb377b735912
+    m_Address: Assets/Prefabs/RoomPrefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 504a35ac478be5d4bbd02ae344d3422a
+    m_Address: Assets/Prefabs/Stages
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb6720ab642f0f446a667c2ece2c7a26
+    m_Address: Assets/Prefabs/Weapons
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c454d605ced08854fb51970881156c3d, type: 2}
+    - {fileID: 11400000, guid: b3ea6564543c57a4cad9db9f1e52161c, type: 2}
