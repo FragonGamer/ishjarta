@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEngine.AddressableAssets;
 
 public class Inventory : MonoBehaviour
 {
@@ -85,33 +86,33 @@ public class Inventory : MonoBehaviour
 
             if (inventoryData.meleeWeapon != null)
             {
-                var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
-                AddItem((MeleeWeapon)Utils.loadItemFromAssetPack(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName));
-                meleeWeaponItemBundle.Unload(false);
+                var meleeWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("MeleeWeapon");
+                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName).GetComponent<MeleeWeapon>());
+                Utils.UnloadAssetReferences(meleeWeaponItemBundle);
             }
 
             if (inventoryData.rangedWeapon != null)
             {
-                var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
-                AddItem((RangedWeapon)Utils.loadItemFromAssetPack(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName));
-                rangedWeaponItemBundle.Unload(false);
+                var rangedWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("rangedweapon");
+                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName).GetComponent<MeleeWeapon>());
+                Utils.UnloadAssetReferences(rangedWeaponItemBundle);
             }
 
             if (inventoryData.IsCurrentWeaponMelee && MeleeWeapon != null && CurrentWeapon is RangedWeapon)
                 ChangeWeapon();
 
-            var passivItemBundle = Utils.loadAssetPack("passivitem");
             inventoryData.passiveItems.ForEach(x =>
             {
-                AddItem((PassiveItem)Utils.loadItemFromAssetPack(passivItemBundle, x.itemName));
+                var passivItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("PassiveItem");
+                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(passivItemBundle, x.itemName).GetComponent<PassiveItem>());
+                Utils.UnloadAssetReferences(passivItemBundle);
             });
-            passivItemBundle.Unload(false);
 
             if (inventoryData.activeItem != null)
             {
-                var activeItemBundle = Utils.loadAssetPack("activeitem");
-                AddItem((ActiveItem)Utils.loadItemFromAssetPack(activeItemBundle, inventoryData.activeItem.itemName));
-                activeItemBundle.Unload(false);
+                var activeItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("ActiveItem");
+                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(activeItemBundle, inventoryData.activeItem.itemName).GetComponent<ActiveItem>());
+                Utils.UnloadAssetReferences(activeItemBundle);
             }
 
             Coins.Init(inventoryData.coins);

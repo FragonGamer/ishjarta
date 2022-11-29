@@ -10,7 +10,17 @@ public static class Utils
 {
     #region Addressables
 
-
+    /// <summary>
+    /// Loads all Assets with the same Label.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="stringLabel"></param>
+    /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
+    /// <returns></returns>
+    public static T[] LoadAssetsFromAddressablesByLabel<T>(string stringLabel)
+    {
+        return LoadAssetsFromAddressablesByLabel<T>(new string[] { stringLabel });
+    }
     /// <summary>
     /// Loads all Assets with the same Label.
     /// </summary>
@@ -58,7 +68,46 @@ public static class Utils
     {
         return Addressables.LoadAssetAsync<T>(assetReference).WaitForCompletion();
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="assetReference"></param>
+    /// <returns></returns>
+    public static T[] LoadAssetFromAddressablesByReference<T>(AssetReference[] assetReference)
+    {
+        List<T> assets = new List<T>();
+        foreach (var item in assetReference)
+        {
+            assets.Add(Addressables.LoadAssetAsync<T>(item).WaitForCompletion());
+        }
+        return assets.ToArray();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="assetReference"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static GameObject LoadAssetFromAddressablesByReferenceWithName(AssetReference[] assetReference,string name)
+    {
+        List<GameObject> assets = new List<GameObject>();
+        foreach (var item in assetReference)
+        {
+            assets.Add(Addressables.LoadAssetAsync<GameObject>(item).WaitForCompletion());
+        }
+        foreach (var item in assets)
+        {
+            if (item.name == name)
+                return item;
+        }
+        return default(GameObject);
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="assetReference"></param>
+    /// <returns></returns>
     public static GameObject InsantiateFromAddressablesByReference(AssetReference assetReference)
     {
         if (!assetReference.RuntimeKeyIsValid())
@@ -69,49 +118,12 @@ public static class Utils
         return Addressables.InstantiateAsync(assetReference).WaitForCompletion();
 
     }
-    #endregion
-    #region oldAssets
-    private static string assetsDir = Application.streamingAssetsPath;
-    public static string GetAssetsDirectory()
+    public static void UnloadAssetReferences(AssetReference[] assetReference)
     {
-        return assetsDir;
-    }
-    public static GameObject[] LoadAllAssetsOfAssetPack(AssetBundle assetBundle)
-    {
-        var prefabs = assetBundle.LoadAllAssets<GameObject>();
-        return prefabs;
-    }
-    public static GameObject loadAssetFromAssetPack(AssetBundle assetBundle, string asset)
-    {
-        var prefab = assetBundle.LoadAsset<GameObject>(asset);
-        return prefab;
-    }
-    public static AssetBundle loadAssetPack(string assetPack)
-    {
-        var myLoadedAssetBundle
-            = AssetBundle.LoadFromFile(Path.Combine(Utils.GetAssetsDirectory(), assetPack));
-        if (myLoadedAssetBundle == null)
+        foreach (var item in assetReference)
         {
-            throw new System.Exception($"Failed to load AssetBundle! -> {assetPack}");
+            item.ReleaseAsset();
         }
-
-        return myLoadedAssetBundle;
-    }
-
-    public static Item loadItemFromAssetPack(AssetBundle assetBundle, string asset)
-    {
-        var item = assetBundle.LoadAsset<Item>(asset);
-        return item;
-    }
-    public static EnemyLootDropTable[] loadEnemyLootDropTableFromAssetPack(AssetBundle assetBundle, string asset)
-    {
-        var item = assetBundle.LoadAssetWithSubAssets<EnemyLootDropTable>(asset);
-        return item;
-    }
-
-    public static void UnloadAssetPack(AssetBundle assetBundle)
-    {
-        assetBundle.Unload(false);
     }
     #endregion
     public static UsableItem GetCoinObject()

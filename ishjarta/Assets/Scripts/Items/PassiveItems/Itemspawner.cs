@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Random = System.Random;
 
 public class Itemspawner : MonoBehaviour
@@ -18,11 +19,10 @@ public class Itemspawner : MonoBehaviour
     private void Awake()
     {
         levelname = FindObjectOfType<StageController>().currentStageName;
-        var Bundle = Utils.loadAssetPack("item");
-        var assets = Bundle.LoadAllAssets<GameObject>();
+        var reference = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("Item");
+        var assets = Utils.LoadAssetFromAddressablesByReference<GameObject>( reference);
         gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(this.levelname)).ToList();
-        
-        Bundle.Unload(false);
+        Utils.UnloadAssetReferences(reference);
     }
 
     public GameObject[] Spawn()

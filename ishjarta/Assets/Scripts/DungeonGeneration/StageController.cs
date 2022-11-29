@@ -174,7 +174,7 @@ public class StageController : MonoBehaviour
         {
 
         }
-        GameObject startRoom = Utils.LoadAssetsFromAddressablesByLabel<GameObject>(new string[] { "StartRoom" })[0];
+        GameObject startRoom = Utils.LoadAssetFromAddressablesByReferenceWithName(assets,"Start");
         var startRoomGO = Instantiate(startRoom, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         SetStartRoomStats(startRoomGO, true, true, true, true);
@@ -188,7 +188,7 @@ public class StageController : MonoBehaviour
 
     private List<GameObject> GetPossibleRooms()
     {
-        var gos = Utils.LoadAllAssetsOfAssetPack(assets).ToList().FindAll(item => item.CompareTag("Room"));
+        var gos = Utils.LoadAssetFromAddressablesByReference<GameObject>(assets).ToList().FindAll(item => item.CompareTag("Room"));
         return gos;
     }
 
@@ -431,7 +431,7 @@ public class StageController : MonoBehaviour
             {
                 
                 Random random = new Random();
-                var itemroom = Utils.loadAssetFromAssetPack(assets, name);
+                var itemroom = Utils.LoadAssetFromAddressablesByReferenceWithName(assets, name);
                 var posRoom = itemroom.GetComponent<Room>();
 
 
@@ -572,7 +572,7 @@ public class StageController : MonoBehaviour
     private GameObject CreateEndRoom()
     {
         Random random = new Random();
-        var endRoom = Utils.loadAssetFromAssetPack(assets, "end").GetComponent<Room>();
+        var endRoom = Utils.LoadAssetFromAddressablesByReferenceWithName(assets, "end").GetComponent<Room>();
 
 
         foreach (var room in worldRooms.ToList().OrderByDescending(room => room.DistanceToStart)
@@ -681,22 +681,23 @@ public class StageController : MonoBehaviour
     {
         if (this.player is null)
         {
-            var playerAssetsFile = Utils.loadAssetPack("player");
-            var item = Utils.loadAssetFromAssetPack(playerAssetsFile, "Player");
+            var playerAssetsFile = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[]{ "Player" });
+            var item = Utils.LoadAssetFromAddressablesByReferenceWithName(playerAssetsFile, "Player");
+            Utils.UnloadAssetReferences(playerAssetsFile);
             player = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
             this.player = player;
             var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
             var playerManager = gameManager.GetComponent<PlayerManager>();
             if (playerManager.player == null)
                 playerManager.player = player;
-            playerAssetsFile.Unload(false);
         }
     }
 
     void CreatePlayer()
     {
-        var playerAssetsFile = Utils.loadAssetPack("player");
-        var playerAssets = Utils.LoadAllAssetsOfAssetPack(playerAssetsFile);
+        var playerAssetsFile = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Player" });
+        var playerAssets = Utils.LoadAssetFromAddressablesByReference<GameObject>(playerAssetsFile);
+        Utils.UnloadAssetReferences(playerAssetsFile);
         Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
         if (player == null)
             InstantiatePlayer();
@@ -710,7 +711,6 @@ public class StageController : MonoBehaviour
         camera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main"))
             .Select(x => x.Value).First();
         HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
-        playerAssetsFile.Unload(false);
         if (startRoom != null)
             player.GetComponent<Player>().currentRoom = startRoom.GetComponent<Room>();
     }

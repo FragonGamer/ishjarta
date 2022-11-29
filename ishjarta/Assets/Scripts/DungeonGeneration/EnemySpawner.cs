@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 {
 
     AssetReference[] enemyAssets;
-    AssetReference[] possibleEnemies;
+    GameObject[] possibleEnemies;
     StageController stageController;
     [SerializeField] public float delay = 3;
     [SerializeField] public float amount = 5;
@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     {
         stageController = FindObjectOfType<StageController>().GetComponent<StageController>();
         enemyAssets = stageController.enemyAssets;
-        possibleEnemies = Utils.LoadAllAssetsOfAssetPack(enemyAssets);
+        possibleEnemies = Utils.LoadAssetFromAddressablesByReference<GameObject>(enemyAssets);
         room = GetComponentInParent<Room>();
         enemy = this.GetComponent<Enemy>();
         room.SetCleared();

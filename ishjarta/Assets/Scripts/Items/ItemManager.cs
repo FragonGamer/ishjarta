@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 
 public class ItemManager : MonoBehaviour
@@ -45,7 +46,7 @@ Vector3 DescriptionPosition;
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         inputMaster.Player.PickUpItem.performed += PickUpItem;
-        var assets = Utils.loadAssetPack("special");
+        var assets = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("special");
         var t = Utils.loadAssetFromAssetPack(assets, "TextObject");
         Name = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
         Description = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
