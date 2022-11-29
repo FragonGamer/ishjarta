@@ -5,7 +5,7 @@ using System;
 using Random = System.Random;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
-using UnityEditor.SearchService;
+using UnityEngine.AddressableAssets;
 
 public class StageController : MonoBehaviour
 {
@@ -39,8 +39,8 @@ public class StageController : MonoBehaviour
     private int maxRooms;
     [SerializeField] public bool TestGeneration;
 
-    public AssetBundle assets { get; private set; }
-    public AssetBundle enemyAssets { get; private set; }
+    public AssetReference[] assets { get; private set; }
+    public AssetReference[] enemyAssets { get; private set; }
     public List<LevelName> stageNames { get; private set; }
     private int currentStageCounter;
     public LevelName currentStageName { get; private set; }
@@ -74,7 +74,7 @@ public class StageController : MonoBehaviour
         AssetBundle.UnloadAllAssetBundles(true);
         HUD.SetActive(false);
         camera.GetComponent<Camera>().nearClipPlane = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void DestroyAllGOS()
@@ -121,8 +121,8 @@ public class StageController : MonoBehaviour
         currentStageName = stageNames.ToArray()[currentStageCounter];
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
-        assets = Utils.loadAssetPack($"stage/{currentStageName.ToString()}");
-        enemyAssets = Utils.loadAssetPack($"enemies/{currentStageName.ToString()}");
+        assets = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[]{currentStageName.ToString(),"Environment"});
+        enemyAssets = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { currentStageName.ToString(), "Enemy" });
         maxRooms = SetMaxRooms();
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
@@ -170,8 +170,11 @@ public class StageController : MonoBehaviour
 
     void SetStartRoom()
     {
-        GameObject startRoom = Utils.loadAssetFromAssetPack(assets, "start");
+        foreach (var item in assets)
+        {
 
+        }
+        GameObject startRoom = Utils.LoadAssetsFromAddressablesByLabel<GameObject>(new string[] { "StartRoom" })[0];
         var startRoomGO = Instantiate(startRoom, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         SetStartRoomStats(startRoomGO, true, true, true, true);

@@ -1,11 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public static class Utils
 {
+    #region Addressables
+
+
+    /// <summary>
+    /// Loads all Assets with the same Label.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="stringLabel"></param>
+    /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
+    /// <returns></returns>
+    public static T[] LoadAssetsFromAddressablesByLabel<T>(AssetLabelReference[] assetLabelReference)
+    {
+        List<T> assets = new List<T>();
+        Addressables.LoadAssetsAsync<T>(assetLabelReference, (asset) => { assets.Add(asset); }).WaitForCompletion();
+        return assets.ToArray();
+    }
+
+    /// <summary>
+    /// Loads all Assets with the same Label.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="stringLabel"></param>
+    /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
+    /// <returns></returns>
+    public static T[] LoadAssetsFromAddressablesByLabel<T>(string[] stringLabel)
+    {
+        List<T> assets = new List<T>();
+        Addressables.LoadAssetsAsync<T>(stringLabel, (asset) => { assets.Add(asset); }).WaitForCompletion();
+        return assets.ToArray();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="AddressablePath"></param>
+    /// <returns></returns>
+    public static T LoadAssetFromAddressablesByPath<T>(string AddressablePath)
+    {
+        return Addressables.LoadAssetAsync<T>(AddressablePath).WaitForCompletion();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="assetReference"></param>
+    /// <returns></returns>
+    public static T LoadAssetFromAddressablesByReference<T>(AssetReference assetReference)
+    {
+        return Addressables.LoadAssetAsync<T>(assetReference).WaitForCompletion();
+    }
+
+    public static GameObject InsantiateFromAddressablesByReference(AssetReference assetReference)
+    {
+        if (!assetReference.RuntimeKeyIsValid())
+        {
+            Debug.Log("AssetReference is invalid");
+            return null;
+        }
+        return Addressables.InstantiateAsync(assetReference).WaitForCompletion();
+
+    }
+    #endregion
+    #region oldAssets
     private static string assetsDir = Application.streamingAssetsPath;
     public static string GetAssetsDirectory()
     {
@@ -48,13 +113,10 @@ public static class Utils
     {
         assetBundle.Unload(false);
     }
-
+    #endregion
     public static UsableItem GetCoinObject()
     {
-        var p = Utils.loadAssetPack("usableitem");
-        var coins = p.LoadAsset("Coin") as UsableItem;
-        p.Unload(false);
-        return coins;
+        return Utils.LoadAssetFromAddressablesByPath<UsableItem>("UsableItem/Coin.prefab");
     }
     public static void PrintGridPosDataTypeMatrix(GridPosdataType[,] matrix)
     {

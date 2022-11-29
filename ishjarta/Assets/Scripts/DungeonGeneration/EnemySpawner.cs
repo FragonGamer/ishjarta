@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.AddressableAssets;
 
 public class EnemySpawner : MonoBehaviour
 {
 
-    AssetBundle enemyAssets;
-    GameObject[] possibleEnemies;
+    AssetReference[] enemyAssets;
+    AssetReference[] possibleEnemies;
     StageController stageController;
     [SerializeField] public float delay = 3;
     [SerializeField] public float amount = 5;

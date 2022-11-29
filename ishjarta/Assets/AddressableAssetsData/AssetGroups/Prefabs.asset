@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefabs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9f95df5b98158af4a87f62955edea5c8
+  m_SerializeEntries:
+  - m_GUID: afc79e237d128a94f85cdea11894e67e
+    m_Address: Door
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e3869cc74e2903408aafb377b735912
+    m_Address: RoomPrefabs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomPrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fed31afafb4454448b2a4ae876c4b872
+    m_Address: A_
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8994366b04bfcd448b0d87b00f899a42
+    m_Address: DoorTrigger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c022dcb60094a804a9254b193b3a5822
+    m_Address: EndPosition
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 177774f0f542afb4db4e839d464932fd
+    m_Address: EventSystem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EventSystem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da19dc0dfaa7938419241129f02e2d20
+    m_Address: GameManager
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameManager
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4695fb13cc9d9e94aaecd3d880b08e62
+    m_Address: HUD
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HUD
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6ebae92fcf15aa4b83fcc24524c637a
+    m_Address: Assets/Prefabs/Main Camera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainCamera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dfbec9f762024e49b14f52460111f72
+    m_Address: PauseMenu
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PauseMenu
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf8a87ecaebd24e44aee420b1cd659a3
+    m_Address: StartPosition
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c1dde4259c59b5a89ac4f49351744d3
+    m_Address: TextObject
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c454d605ced08854fb51970881156c3d, type: 2}
+    - {fileID: 11400000, guid: b3ea6564543c57a4cad9db9f1e52161c, type: 2}

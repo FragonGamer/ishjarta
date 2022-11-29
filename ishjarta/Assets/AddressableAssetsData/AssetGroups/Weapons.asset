@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Weapons
+  m_EditorClassIdentifier: 
+  m_GroupName: Weapons
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 10f60e9ad24fed24bb8be1f78755d66a
+  m_SerializeEntries:
+  - m_GUID: 197c1bfb0ff8a2f45beb7e0453e1c6b6
+    m_Address: Assets/Prefabs/Weapons/Projectiles
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Projectile
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 732fedfa9cb8d54c4af499aa93f70eac
+    m_Address: Assets/Prefabs/Weapons/Ranged
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RangedWeapon
+    - Weapon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8477c8bc6cb4ec92fbe98acc5f409e4c
+    m_Address: Assets/Prefabs/Weapons/Melee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Weapon
+    - MeeleWeapon
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c3552fb19a715114ead8e9c6da1525ff, type: 2}
+    - {fileID: 11400000, guid: 390aa4af74acfd44da1ec71359dfeb54, type: 2}
