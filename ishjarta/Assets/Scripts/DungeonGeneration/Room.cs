@@ -370,7 +370,7 @@ public class Room : MonoBehaviour
         {
 
 
-            this.gameObject.SetActive(!this.gameObject.active);
+            this.gameObject.SetActive(!this.gameObject.activeSelf);
         }
 
 

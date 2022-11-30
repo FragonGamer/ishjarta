@@ -16,7 +16,7 @@ public class StageController : MonoBehaviour
     GameObject player;
     Dictionary<Room, int> roomCounter = new Dictionary<Room, int>();
     GameObject startRoom;
-    public GameObject camera;
+    public GameObject StageCamera;
     GameObject HUD;
     int nextRoomId = 0;
     public bool CreateRooms = true;
@@ -73,7 +73,7 @@ public class StageController : MonoBehaviour
     {
         AssetBundle.UnloadAllAssetBundles(true);
         HUD.SetActive(false);
-        camera.GetComponent<Camera>().nearClipPlane = 0;
+        StageCamera.GetComponent<Camera>().nearClipPlane = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -108,7 +108,7 @@ public class StageController : MonoBehaviour
     private void Awake()
     {
         stageNames = new List<LevelName>();
-        stageNames.AddRange(new LevelName[] { LevelName.forest, LevelName.forest, LevelName.end });
+        stageNames.AddRange(new LevelName[] { LevelName.Forest, LevelName.Mountain, LevelName.end });
         currentStageCounter = 0;
         if (CreateRooms == true)
         {
@@ -660,7 +660,7 @@ public class StageController : MonoBehaviour
         var roomObjects = FindObjectsOfType<Room>().Where(room => room.RoomId != startRoom.GetComponent<Room>().RoomId);
         foreach (Room room in roomObjects)
         {
-            room.gameObject.SetActive(!room.gameObject.active);
+            room.gameObject.SetActive(!room.gameObject.activeSelf);
         }
     }
 
@@ -684,8 +684,7 @@ public class StageController : MonoBehaviour
             var playerAssetsFile = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[]{ "Player" });
             var item = Utils.LoadGameObjectFromAddressablesByReferenceWithName(playerAssetsFile, "Player");
             Utils.UnloadAssetReferences(playerAssetsFile);
-            player = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-            this.player = player;
+            this.player = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
             var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
             var playerManager = gameManager.GetComponent<PlayerManager>();
             if (playerManager.player == null)
@@ -708,7 +707,7 @@ public class StageController : MonoBehaviour
         this.player.transform.position = playerPosition;
 
         var gos = InstantiateAssetGroupOnZero(playerAssets);
-        camera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main"))
+        StageCamera = gos.Where(x => x.Key.ToLower().Contains("StageCamera") && x.Key.ToLower().Contains("main"))
             .Select(x => x.Value).First();
         HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
         if (startRoom != null)

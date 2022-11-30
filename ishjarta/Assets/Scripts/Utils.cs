@@ -9,7 +9,16 @@ using UnityEngine.AddressableAssets;
 public static class Utils
 {
     #region Addressables
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="assetReference"></param>
+    /// <returns></returns>
+    public static T LoadAssetFromAddressablesByReference<T>(AssetLabelReference assetReference)
+    {
+        return Addressables.LoadAssetAsync<T>(assetReference).WaitForCompletion();
+    }
     /// <summary>
     /// Loads all Assets with the same Label.
     /// </summary>
@@ -19,7 +28,7 @@ public static class Utils
     /// <returns></returns>
     public static T[] LoadAssetsFromAddressablesByLabel<T>(string stringLabel)
     {
-        return LoadAssetsFromAddressablesByLabel<T>(new string[] { stringLabel });
+        return LoadAssetsFromAddressablesByLabel<T>(new List<string> { stringLabel });
     }
     /// <summary>
     /// Loads all Assets with the same Label.
@@ -28,10 +37,16 @@ public static class Utils
     /// <param name="stringLabel"></param>
     /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
     /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByLabel<T>(AssetLabelReference[] assetLabelReference)
+    public static T[] LoadAssetsFromAddressablesByLabel<T>(List<AssetLabelReference> assetLabelReference)
     {
+        foreach (var item in assetLabelReference)
+        {
+            if (!item.RuntimeKeyIsValid())
+                return default(T[]);
+        }
         List<T> assets = new List<T>();
-        Addressables.LoadAssetsAsync<T>(assetLabelReference, (asset) => { assets.Add(asset); }).WaitForCompletion();
+
+        Addressables.LoadAssetsAsync<T>(assetLabelReference, (asset) => { assets.Add(asset); }, Addressables.MergeMode.Intersection).WaitForCompletion();
         return assets.ToArray();
     }
 
@@ -42,11 +57,16 @@ public static class Utils
     /// <param name="stringLabel"></param>
     /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
     /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByLabel<T>(string[] stringLabel)
+    public static T[] LoadAssetsFromAddressablesByLabel<T>(List<string> stringLabels)
     {
         List<T> assets = new List<T>();
-        Addressables.LoadAssetsAsync<T>(stringLabel, (asset) => { assets.Add(asset); }).WaitForCompletion();
+        Addressables.LoadAssetsAsync<T>(stringLabels, (asset) => { assets.Add(asset); }, Addressables.MergeMode.Intersection).WaitForCompletion();
         return assets.ToArray();
+    }
+    public static T[] LoadAssetsFromAddressablesByLabel<T>(string[] stringLabels)
+    {
+        var labels = stringLabels.ToList();
+        return LoadAssetsFromAddressablesByLabel<T>(labels);
     }
     /// <summary>
     /// 
@@ -70,16 +90,7 @@ public static class Utils
         Addressables.LoadAssetsAsync<T>(AddressablePath, (asset) => { assets.Add(asset); }).WaitForCompletion();
         return assets.ToArray();
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="assetReference"></param>
-    /// <returns></returns>
-    public static T LoadAssetFromAddressablesByReference<T>(AssetReference assetReference)
-    {
-        return Addressables.LoadAssetAsync<T>(assetReference).WaitForCompletion();
-    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -121,7 +132,7 @@ public static class Utils
     /// <param name="assetReference"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static GameObject LoadGameObjectFromAddressablesByReferenceWithName(AssetReference[] assetReference,string name)
+    public static GameObject LoadGameObjectFromAddressablesByReferenceWithName(AssetReference[] assetReference, string name)
     {
         List<GameObject> assets = new List<GameObject>();
         foreach (var item in assetReference)

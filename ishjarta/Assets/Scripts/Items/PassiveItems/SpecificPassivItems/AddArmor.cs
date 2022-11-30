@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -11,15 +12,18 @@ public class AddArmor : PassiveItem
 
     public override async void triggerEffect()
     {
-        var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-        var armor = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
-        Utils.UnloadAssetReferences(p);
-        var inv = Inventory.instance;
-        armor.Amount = Amount;
-        inv.AddUsableItem(armor);
+        await new Task(() =>
+        {
+            var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
+            var armor = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
+            Utils.UnloadAssetReferences(p);
+            var inv = Inventory.instance;
+            armor.Amount = Amount;
+            inv.AddUsableItem(armor);
 
 
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
+            Inventory.instance.RemovePeriodiclePassiveItem(this);
+        });
     }
 
     public override void removeEffect()

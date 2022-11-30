@@ -33,6 +33,13 @@ MonoBehaviour:
     - RangedEnemy
     - Enemy
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a27c4febb66b61c41bea61559a6cd106
+    m_Address: Forest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Forest
+    - Environment
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
   m_SchemaSet:
