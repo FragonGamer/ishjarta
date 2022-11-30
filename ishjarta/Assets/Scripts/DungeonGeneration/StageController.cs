@@ -6,6 +6,8 @@ using Random = System.Random;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class StageController : MonoBehaviour
 {
@@ -39,8 +41,8 @@ public class StageController : MonoBehaviour
     private int maxRooms;
     [SerializeField] public bool TestGeneration;
 
-    public AssetReference[] assets { get; private set; }
-    public AssetReference[] enemyAssets { get; private set; }
+    public AsyncOperationHandle<IList<IResourceLocation>> assets { get; private set; }
+    public AsyncOperationHandle<IList<IResourceLocation>> enemyAssets { get; private set; }
     public List<LevelName> stageNames { get; private set; }
     private int currentStageCounter;
     public LevelName currentStageName { get; private set; }
@@ -121,8 +123,8 @@ public class StageController : MonoBehaviour
         currentStageName = stageNames.ToArray()[currentStageCounter];
         worldLayout = new GridPosdataType[worldBaseLength, worldBaseLength];
         availableGridPositions = new bool[worldBaseLength, worldBaseLength];
-        assets = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[]{currentStageName.ToString(),"Environment"});
-        enemyAssets = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { currentStageName.ToString(), "Enemy" });
+        assets = Utils.LoadIRessourceLocations<GameObject>(new string[]{currentStageName.ToString(),"Environment"}.ToList());
+        enemyAssets = Utils.LoadIRessourceLocations<GameObject>(new string[] { currentStageName.ToString(), "Enemy" }.ToList());
         maxRooms = SetMaxRooms();
         var gos = GetPossibleRooms();
         gos.ForEach(item => roomCounter.Add(item.GetComponent<Room>(), 0));
@@ -170,11 +172,7 @@ public class StageController : MonoBehaviour
 
     void SetStartRoom()
     {
-        foreach (var item in assets)
-        {
-
-        }
-        GameObject startRoom = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets,"Start");
+        GameObject startRoom = Utils.LoadObjectWithPredicate<IResourceLocation,GameObject>(assets, item => item.name == "Start");;
         var startRoomGO = Instantiate(startRoom, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         SetStartRoomStats(startRoomGO, true, true, true, true);
@@ -188,7 +186,7 @@ public class StageController : MonoBehaviour
 
     private List<GameObject> GetPossibleRooms()
     {
-        var gos = Utils.LoadAssetsFromAddressablesByReference<GameObject>(assets).ToList().FindAll(item => item.CompareTag("Room"));
+        var gos = Utils.LoadMultipleObjectsWithPredicate<IResourceLocation, GameObject>(assets,item => item.CompareTag("Room"));
         return gos;
     }
 
@@ -431,7 +429,7 @@ public class StageController : MonoBehaviour
             {
                 
                 Random random = new Random();
-                var itemroom = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets, name);
+                var itemroom = Utils.LoadObjectWithPredicate<IResourceLocation,GameObject>(assets,item=>item.name== name);
                 var posRoom = itemroom.GetComponent<Room>();
 
 
@@ -572,7 +570,7 @@ public class StageController : MonoBehaviour
     private GameObject CreateEndRoom()
     {
         Random random = new Random();
-        var endRoom = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets, "end").GetComponent<Room>();
+        var endRoom = Utils.LoadObjectWithPredicate<IResourceLocation,GameObject>(assets,item=>item.name== "end").GetComponent<Room>();
 
 
         foreach (var room in worldRooms.ToList().OrderByDescending(room => room.DistanceToStart)
