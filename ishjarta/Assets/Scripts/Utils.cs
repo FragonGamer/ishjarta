@@ -158,6 +158,8 @@ public static class Utils
         }
     }
     #endregion
+
+    public static void UnloadAssetReferences(AssetBundle asset) { }
     public static UsableItem GetCoinObject()
     {
         return Utils.LoadAssetFromAddressablesByPath<UsableItem>("UsableItem/Coin.prefab");

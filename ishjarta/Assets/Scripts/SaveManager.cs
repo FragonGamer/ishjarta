@@ -145,21 +145,21 @@ public class SaveManager : MonoBehaviour
                    "";
                 if(asset != string.Empty)
                 {
-                    var rangedWeaponPrefab = Utils.loadAssetFromAssetPack(rangedWeaponPrefabBundle, asset);
-                    var rangedWeaponItem = Utils.loadItemFromAssetPack(rangedWeaponItemBundle, rwd.itemName);
+                    var rangedWeaponPrefab = Utils.LoadGameObjectFromAddressablesByReferenceWithName(rangedWeaponPrefabBundle, asset);
+                    var rangedWeaponItem = Utils.LoadGameObjectFromAddressablesByReferenceWithName(rangedWeaponItemBundle, rwd.itemName).GetComponent<Item>();
                     rangedWeaponPrefab.GetComponent<ItemManager>().SetItem(rangedWeaponItem);
 
                     Instantiate(rangedWeaponPrefab, rwd.position, Quaternion.identity);
                 }
             }
-            Utils.UnloadAssetPack(rangedWeaponPrefabBundle);
-            Utils.UnloadAssetPack(rangedWeaponItemBundle);
+            Utils.UnloadAssetReferences(rangedWeaponPrefabBundle);
+            Utils.UnloadAssetReferences(rangedWeaponItemBundle);
 
 
             var activeItemData = SaveData.Instance.activeItemData;
 
-            var activeItemPrefabBundle = Utils.loadAssetPack("activeitemprefab");
-            var activeItemBundle = Utils.loadAssetPack("activeitem");
+            var activeItemPrefabBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "ActiveItem" });
+            var activeItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "ActiveItem" });
 
             foreach (var aid in activeItemData)
             {
@@ -178,21 +178,21 @@ public class SaveManager : MonoBehaviour
                     "";
                 if(asset != string.Empty)
                 {
-                    var activeItemPrefab = Utils.loadAssetFromAssetPack(activeItemPrefabBundle, asset);
-                    var activeItem = Utils.loadItemFromAssetPack(activeItemBundle, aid.itemName);
+                    var activeItemPrefab = Utils.LoadGameObjectFromAddressablesByReferenceWithName(activeItemPrefabBundle, asset);
+                    var activeItem = Utils.LoadGameObjectFromAddressablesByReferenceWithName(activeItemBundle, aid.itemName).GetComponent<Item>();
                     activeItemPrefab.GetComponent<ItemManager>().SetItem(activeItem);
 
                     Instantiate(activeItemPrefab, aid.position, Quaternion.identity);
                 }
             }
-            Utils.UnloadAssetPack(activeItemPrefabBundle);
-            Utils.UnloadAssetPack(activeItemBundle);
+            Utils.UnloadAssetReferences(activeItemPrefabBundle);
+            Utils.UnloadAssetReferences(activeItemBundle);
 
 
             var passivItemData = SaveData.Instance.passivItemData;
 
-            var passivItemPrefabBundle = Utils.loadAssetPack("passivitemprefab");
-            var passivItemBundle = Utils.loadAssetPack("passivitem");
+            var passivItemPrefabBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "PassiveItem" });
+            var passivItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "PassiveItem" });
 
             foreach (var pid in passivItemData)
             {
@@ -211,21 +211,21 @@ public class SaveManager : MonoBehaviour
                     "";
                 if(asset != string.Empty)
                 {
-                    var passivItemPrefab = Utils.loadAssetFromAssetPack(passivItemPrefabBundle, asset);
-                    var passivItem = Utils.loadItemFromAssetPack(passivItemBundle, pid.itemName);
+                    var passivItemPrefab = Utils.LoadGameObjectFromAddressablesByReferenceWithName(passivItemPrefabBundle, asset);
+                    var passivItem = Utils.LoadGameObjectFromAddressablesByReferenceWithName(passivItemBundle, pid.itemName).GetComponent<Item>();
                     passivItemPrefab.GetComponent<ItemManager>().SetItem(passivItem);
 
                     Instantiate(passivItemPrefab, pid.position, Quaternion.identity);
                 }
             }
-            Utils.UnloadAssetPack(passivItemPrefabBundle);
-            Utils.UnloadAssetPack(passivItemBundle);
+            Utils.UnloadAssetReferences(passivItemPrefabBundle);
+            Utils.UnloadAssetReferences(passivItemBundle);
 
 
             var usableItemData = SaveData.Instance.usableItemData;
 
-            var usableItemPrefabBundle = Utils.loadAssetPack("usableitemprefab");
-            var usableItemBundle = Utils.loadAssetPack("usableitem");
+            var usableItemPrefabBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "UseableItem" });
+            var usableItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "UseableItem" });
 
             foreach (var uid in usableItemData)
             {
@@ -277,15 +277,15 @@ public class SaveManager : MonoBehaviour
                     "";
                 if(asset != string.Empty)
                 {
-                    var usabelItemPrefab = Utils.loadAssetFromAssetPack(usableItemPrefabBundle, asset);
-                    var usabelItem = Utils.loadItemFromAssetPack(usableItemBundle, uid.itemName);
+                    var usabelItemPrefab = Utils.LoadGameObjectFromAddressablesByReferenceWithName(usableItemPrefabBundle, asset);
+                    var usabelItem = Utils.LoadGameObjectFromAddressablesByReferenceWithName(usableItemBundle, uid.itemName).GetComponent<Item>();
                     usabelItemPrefab.GetComponent<ItemManager>().SetItem(usabelItem);
 
                     Instantiate(usabelItemPrefab, uid.position, Quaternion.identity);
                 }
             }
-            Utils.UnloadAssetPack(usableItemPrefabBundle);
-            Utils.UnloadAssetPack(usableItemBundle);
+            Utils.UnloadAssetReferences(usableItemPrefabBundle);
+            Utils.UnloadAssetReferences(usableItemBundle);
 
             SaveData.Instance.ClearAll();
         }
