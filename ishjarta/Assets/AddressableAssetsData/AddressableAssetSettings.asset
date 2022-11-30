@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 9f95df5b98158af4a87f62955edea5c8
   m_CachedHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 0000ad465140e642db38f075e94c7222
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -45,12 +45,11 @@ MonoBehaviour:
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: 3c66938d181e0ba44989878e48320593, type: 2}
-  - {fileID: 11400000, guid: 91247f1b475559e459114aaec2278c85, type: 2}
   - {fileID: 11400000, guid: 7a13dc77322ec1949962b26a44bc5a6c, type: 2}
   - {fileID: 11400000, guid: 1e4df96bac7bd744dbfc52735d6b517d, type: 2}
   - {fileID: 11400000, guid: 8966e87da6a2fcc4380c6fed37bd326c, type: 2}
   - {fileID: 11400000, guid: a556f1563a0779648acebfca8793a300, type: 2}
-  - {fileID: 11400000, guid: 6fffb15f29dd719409e7b82eca2bc6b7, type: 2}
+  - {fileID: 11400000, guid: cfec6402b8a8083418fcb0058a05f391, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -114,6 +113,8 @@ MonoBehaviour:
     - MeeleEnemy
     - RangedEnemy
     - Mountain
+    - TextObject
+    - ScriptableObject
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 01c615b8b9864ef41ab6569dbf20b8bc, type: 2}

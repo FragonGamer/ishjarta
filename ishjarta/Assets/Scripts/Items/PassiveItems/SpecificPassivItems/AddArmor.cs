@@ -12,7 +12,7 @@ public class AddArmor : PassiveItem
     public override async void triggerEffect()
     {
         var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-        var armor = Utils.LoadAssetFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
+        var armor = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
         Utils.UnloadAssetReferences(p);
         var inv = Inventory.instance;
         armor.Amount = Amount;
@@ -25,7 +25,7 @@ public class AddArmor : PassiveItem
     public override void removeEffect()
     {
         var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-        var armor = Utils.LoadAssetFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
+        var armor = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
         Utils.UnloadAssetReferences(p);
         var inv = Inventory.instance;
         armor.Amount = Amount;

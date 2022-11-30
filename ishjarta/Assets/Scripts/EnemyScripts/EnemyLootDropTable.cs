@@ -61,10 +61,10 @@ public class EnemyLootDropTable : ScriptableObject
         var usableItemPrefabBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item" ,"UsableItem"});
 
         EnemyLootDropTable.LootDrop lt1 = new EnemyLootDropTable.LootDrop();
-        lt1.drop = Utils.LoadAssetFromAddressablesByReferenceWithName(usableItemPrefabBundle, "Coin");
+        lt1.drop = Utils.LoadGameObjectFromAddressablesByReferenceWithName(usableItemPrefabBundle, "Coin");
         lt1.weight = 25;
         EnemyLootDropTable.LootDrop lt2 = new EnemyLootDropTable.LootDrop();
-        lt2.drop = Utils.LoadAssetFromAddressablesByReferenceWithName(usableItemPrefabBundle, "Armor");
+        lt2.drop = Utils.LoadGameObjectFromAddressablesByReferenceWithName(usableItemPrefabBundle, "Armor");
         Utils.UnloadAssetReferences(usableItemPrefabBundle);
         lt2.weight = 25;
         EnemyLootDropTable.LootDrop lt3 = new EnemyLootDropTable.LootDrop();

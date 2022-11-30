@@ -46,12 +46,12 @@ Vector3 DescriptionPosition;
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         inputMaster.Player.PickUpItem.performed += PickUpItem;
-        var assets = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("special");
-        var t = Utils.loadAssetFromAssetPack(assets, "TextObject");
+        var assets = Utils.LoadAssetsFromAddressablesByPath<AssetReference>("Prefabs");
+        var t = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets, "TextObject");
         Name = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
         Description = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
         FullDescription = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
-        assets.Unload(false);
+        Utils.UnloadAssetReferences(assets);
         
         Name.transform.parent = gameObject.transform;
         Description.transform.parent = gameObject.transform;

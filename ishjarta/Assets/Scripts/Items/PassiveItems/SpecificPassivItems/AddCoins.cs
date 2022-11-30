@@ -11,7 +11,7 @@ public class AddCoins : PassiveItem
     {
 
         var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-        var coins = Utils.LoadAssetFromAddressablesByReferenceWithName(p, "Coin").GetComponent<UsableItem>();
+        var coins = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Coin").GetComponent<UsableItem>();
         Utils.UnloadAssetReferences(p);
         var inv = Inventory.instance;
         coins.Amount = Amount;
@@ -25,7 +25,7 @@ public class AddCoins : PassiveItem
     public override void removeEffect()
     {
         var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-        var coins = Utils.LoadAssetFromAddressablesByReferenceWithName(p, "Coin").GetComponent<UsableItem>();
+        var coins = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Coin").GetComponent<UsableItem>();
         Utils.UnloadAssetReferences(p);
         var inv = Inventory.instance;
         coins.Amount = Amount;

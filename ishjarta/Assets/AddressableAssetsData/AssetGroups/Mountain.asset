@@ -12,14 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Mountain
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Mountain
   m_Data:
     m_SerializedData: []
-  m_GUID: 1a5de38c29c7d9a4bbbbc71dbafb1fc6
-  m_SerializeEntries: []
+  m_GUID: 7bb4d6974c7bd0b4ca68c3912fd01fb7
+  m_SerializeEntries:
+  - m_GUID: c8cd0716c7fb54e47a05e42d2d28773a
+    m_Address: Mountain/Melee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Mountain
+    - MeeleEnemy
+    - Enemy
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57a95e0410452c24eafc381ffce3a07d
+    m_Address: Mountain/Ranged
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Mountain
+    - Enemy
+    - RangedEnemy
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 5577ebc046d396c4db9adf6b4cc40674, type: 2}
-    - {fileID: 11400000, guid: 5d1c324dbb7c5a141b05973d2b9b5836, type: 2}
+    - {fileID: 11400000, guid: 67ff8e1065b706e4ba9cd2cdc705817b, type: 2}
+    - {fileID: 11400000, guid: abea1014f075601409b29f2f88b65bb9, type: 2}

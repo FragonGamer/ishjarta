@@ -32,11 +32,25 @@ MonoBehaviour:
     - Item
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 49ad803b857e9a64f83bc9ee663d1ff5
-    m_Address: UsableItem
+    m_Address: UsableItemPrefabs
     m_ReadOnly: 0
     m_SerializedLabels:
     - Item
     - UsableItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88c4e554062ec724abea57d4b1972dbf
+    m_Address: Assets/Items/MeleeItems
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MeeleWeapon
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dddcb1a8a1dd6ea478f9ed5e9a5bb367
+    m_Address: Assets/Items/RangedItems
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RangedWeapon
+    - ScriptableObject
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}

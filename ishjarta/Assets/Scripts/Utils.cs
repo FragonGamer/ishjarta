@@ -62,6 +62,18 @@ public static class Utils
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <param name="AddressablePath"></param>
+    /// <returns></returns>
+    public static T[] LoadAssetsFromAddressablesByPath<T>(string AddressablePath)
+    {
+        List<T> assets = new List<T>();
+        Addressables.LoadAssetsAsync<T>(AddressablePath, (asset) => { assets.Add(asset); }).WaitForCompletion();
+        return assets.ToArray();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     /// <param name="assetReference"></param>
     /// <returns></returns>
     public static T LoadAssetFromAddressablesByReference<T>(AssetReference assetReference)
@@ -74,7 +86,7 @@ public static class Utils
     /// <typeparam name="T"></typeparam>
     /// <param name="assetReference"></param>
     /// <returns></returns>
-    public static T[] LoadAssetFromAddressablesByReference<T>(AssetReference[] assetReference)
+    public static T[] LoadAssetsFromAddressablesByReference<T>(AssetReference[] assetReference)
     {
         List<T> assets = new List<T>();
         foreach (var item in assetReference)
@@ -89,7 +101,27 @@ public static class Utils
     /// <param name="assetReference"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static GameObject LoadAssetFromAddressablesByReferenceWithName(AssetReference[] assetReference,string name)
+    public static ScriptableObject LoadScriptableObjectFromAddressablesByReferenceWithName(AssetReference[] assetReference, string name)
+    {
+        List<ScriptableObject> assets = new List<ScriptableObject>();
+        foreach (var item in assetReference)
+        {
+            assets.Add(Addressables.LoadAssetAsync<ScriptableObject>(item).WaitForCompletion());
+        }
+        foreach (var item in assets)
+        {
+            if (item.name == name)
+                return item;
+        }
+        return default(ScriptableObject);
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="assetReference"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static GameObject LoadGameObjectFromAddressablesByReferenceWithName(AssetReference[] assetReference,string name)
     {
         List<GameObject> assets = new List<GameObject>();
         foreach (var item in assetReference)

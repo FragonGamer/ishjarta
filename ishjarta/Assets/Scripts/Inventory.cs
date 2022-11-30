@@ -87,14 +87,14 @@ public class Inventory : MonoBehaviour
             if (inventoryData.meleeWeapon != null)
             {
                 var meleeWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("MeleeWeapon");
-                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName).GetComponent<MeleeWeapon>());
+                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName).GetComponent<MeleeWeapon>());
                 Utils.UnloadAssetReferences(meleeWeaponItemBundle);
             }
 
             if (inventoryData.rangedWeapon != null)
             {
                 var rangedWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("rangedweapon");
-                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName).GetComponent<MeleeWeapon>());
+                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName).GetComponent<MeleeWeapon>());
                 Utils.UnloadAssetReferences(rangedWeaponItemBundle);
             }
 
@@ -104,14 +104,14 @@ public class Inventory : MonoBehaviour
             inventoryData.passiveItems.ForEach(x =>
             {
                 var passivItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("PassiveItem");
-                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(passivItemBundle, x.itemName).GetComponent<PassiveItem>());
+                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(passivItemBundle, x.itemName).GetComponent<PassiveItem>());
                 Utils.UnloadAssetReferences(passivItemBundle);
             });
 
             if (inventoryData.activeItem != null)
             {
                 var activeItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("ActiveItem");
-                AddItem(Utils.LoadAssetFromAddressablesByReferenceWithName(activeItemBundle, inventoryData.activeItem.itemName).GetComponent<ActiveItem>());
+                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(activeItemBundle, inventoryData.activeItem.itemName).GetComponent<ActiveItem>());
                 Utils.UnloadAssetReferences(activeItemBundle);
             }
 

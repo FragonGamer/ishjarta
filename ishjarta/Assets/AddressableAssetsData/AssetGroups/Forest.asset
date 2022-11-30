@@ -31,6 +31,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - Forest
     - RangedEnemy
+    - Enemy
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}

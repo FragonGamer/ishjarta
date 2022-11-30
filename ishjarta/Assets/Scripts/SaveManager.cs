@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 
 public class SaveManager : MonoBehaviour
 {
@@ -55,32 +56,32 @@ public class SaveManager : MonoBehaviour
 
             var enemyData = SaveData.Instance.enemyData;
 
-            var enemyBundle = Utils.loadAssetPack("enemies/forest");
+            var enemyBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] {"Enemy","Forest"});
 
             foreach (var ed in enemyData)
             {
                 if (ed.enemyType == (int)Enemy.EnemyEnum.slime)
                 {
-                    var slime = Utils.loadAssetFromAssetPack(enemyBundle, "slime");
+                    var slime = Utils.LoadGameObjectFromAddressablesByReferenceWithName(enemyBundle, "slime");
                     slime.GetComponent<Enemy>().Init(ed);
                     Instantiate(slime, ed.position, Quaternion.identity);
                 }
                 else if (ed.enemyType == (int)Enemy.EnemyEnum.rangedSlime)
                 {
-                    var rangedSlime = Utils.loadAssetFromAssetPack(enemyBundle, "RangedSlime");
+                    var rangedSlime = Utils.LoadGameObjectFromAddressablesByReferenceWithName(enemyBundle, "RangedSlime");
                     rangedSlime.GetComponent<Enemy>().Init(ed);
                     Instantiate(rangedSlime, ed.position, Quaternion.identity);
                 }
             }
-            Utils.UnloadAssetPack(enemyBundle);
+            Utils.UnloadAssetReferences(enemyBundle);
 
 
             string asset = string.Empty;
 
             var meleeWeaponData = SaveData.Instance.meleeWeaponData;
 
-            var meleeWeaponPrefabBundle = Utils.loadAssetPack("meleeweaponprefab");
-            var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
+            var meleeWeaponPrefabBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "MeleeWeapon" , "Weapon"});
+            var meleeWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "MeleeWeapon", "ScriptableObject" });
 
             foreach (var mwd in meleeWeaponData)
             {
@@ -111,21 +112,21 @@ public class SaveManager : MonoBehaviour
                     "";
                 if(asset != string.Empty)
                 {
-                    var meleeWeaponPrefab = Utils.loadAssetFromAssetPack(meleeWeaponPrefabBundle, asset);
-                    var meleeWeaponItem = Utils.loadItemFromAssetPack(meleeWeaponItemBundle, mwd.itemName);
+                    var meleeWeaponPrefab = Utils.LoadGameObjectFromAddressablesByReferenceWithName(meleeWeaponPrefabBundle, asset);
+                    var meleeWeaponItem = Utils.LoadGameObjectFromAddressablesByReferenceWithName(meleeWeaponItemBundle, mwd.itemName).GetComponent<Item>();
                     meleeWeaponPrefab.GetComponent<ItemManager>().SetItem(meleeWeaponItem);
 
                     Instantiate(meleeWeaponPrefab, mwd.position, Quaternion.identity);
                 }
             }
-            Utils.UnloadAssetPack(meleeWeaponPrefabBundle);
-            Utils.UnloadAssetPack(meleeWeaponItemBundle);
+            Utils.UnloadAssetReferences(meleeWeaponPrefabBundle);
+            Utils.UnloadAssetReferences(meleeWeaponItemBundle);
 
 
             var rangedWeaponData = SaveData.Instance.rangedWeaponData;
 
-            var rangedWeaponPrefabBundle = Utils.loadAssetPack("rangedweaponprefab");
-            var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
+            var rangedWeaponPrefabBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "RangedWeapon", "Weapon" });
+            var rangedWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "RangedWeapon", "ScriptableObject" });
 
             foreach (var rwd in rangedWeaponData)
             {

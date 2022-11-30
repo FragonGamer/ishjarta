@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     {
         stageController = FindObjectOfType<StageController>().GetComponent<StageController>();
         enemyAssets = stageController.enemyAssets;
-        possibleEnemies = Utils.LoadAssetFromAddressablesByReference<GameObject>(enemyAssets);
+        possibleEnemies = Utils.LoadAssetsFromAddressablesByReference<GameObject>(enemyAssets);
         room = GetComponentInParent<Room>();
         enemy = this.GetComponent<Enemy>();
         room.SetCleared();
