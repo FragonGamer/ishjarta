@@ -24,7 +24,7 @@ public static class Utils
     {
         assetReference.ReleaseAsset();
     }
-    public static void UnloadReferences(ICollection<AssetReference> assetReferences)
+    public static void UnloadReferences(IEnumerable<AssetReference> assetReferences)
     {
         foreach (var item in assetReferences)
         {
@@ -35,9 +35,16 @@ public static class Utils
     {
         Addressables.Release(resourceLocation);
     }
-    public static void UnloadReferences(ICollection<IResourceLocation> resourceLocation)
+    public static void UnloadReferences(IEnumerable<IResourceLocation> resourceLocation)
     {
         foreach (var item in resourceLocation)
+        {
+            Addressables.Release(item);
+        }
+    }
+    public static void UnloadReferences(AsyncOperationHandle<IList<IResourceLocation>> resourceLocation)
+    {
+        foreach (var item in resourceLocation.Result)
         {
             Addressables.Release(item);
         }
@@ -71,6 +78,10 @@ public static class Utils
     }
     #endregion
     #region LoadingTheIRessourceLocation
+    public static void LoadHandle_Completed(AsyncOperationHandle<IList<IResourceLocation>> handle)
+    {
+
+    }
     public static AsyncOperationHandle<IList<IResourceLocation>> LoadIRessourceLocations<T>(List<string> keys,Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
     {
         return Addressables.LoadResourceLocationsAsync(keys, mergeMode, typeof(T));
@@ -84,7 +95,7 @@ public static class Utils
     public static AsyncOperationHandle<IList<T>> LoadMultipleAssets<T>(ICollection<IResourceLocation> resourceLoctation, Action<T> callback = null)
     {
         BeforeMultipleLoading<T>(ref callback);
-        return Addressables.LoadAssetsAsync(resourceLoctation, callback);
+        return Addressables.LoadAssetsAsync<T>(resourceLoctation, callback);
     }
     public static AsyncOperationHandle<T> LoadAsset<T>(IResourceLocation resourceLoctation)
     {
@@ -94,11 +105,19 @@ public static class Utils
     #region LoadingObjects
     public static T LoadObject<T>(AsyncOperationHandle<T> asyncOperationHandle)
     {
-        return asyncOperationHandle.Result;
+        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            return asyncOperationHandle.Result;
+        else
+            Debug.Log("AsyncOperation was not successfull");
+        return default(T);
     }
     public static List<TResult> LoadAllObjects<T,TResult>(AsyncOperationHandle<IList<T>> asyncOperationHandle)
     {
-        return (List<TResult>)asyncOperationHandle.Result;
+        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            return (List<TResult>)asyncOperationHandle.Result;
+        else
+            Debug.Log("AsyncOperation was not successfull");
+        return default(List<TResult>);
     }
     public static TResult LoadObjectWithPredicate<T, TResult>(AsyncOperationHandle<IList<T>> asyncOperationHandle, Predicate<TResult> predicate)
     {

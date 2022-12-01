@@ -34,7 +34,7 @@ MonoBehaviour:
     - Enemy
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a27c4febb66b61c41bea61559a6cd106
-    m_Address: Forest
+    m_Address: Forest/Environment
     m_ReadOnly: 0
     m_SerializedLabels:
     - Forest
