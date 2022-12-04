@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: SpeedBraclet
   m_EditorClassIdentifier: 
   ItemName: SpeedBraclet
+  description: 
+  fullDescription: 
   <Icon>k__BackingField: {fileID: 21300000, guid: 3e2d000ff7a17cc4eb1fdb56d9735bbf, type: 3}
   <Rarity>k__BackingField: 0
   <Price>k__BackingField: 0
-  <SpawnLevelPool>k__BackingField: 
+  <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField:
   - {fileID: 11400000, guid: 83184015c60e3944f8b235367d5a55d9, type: 2}
   <EmitEffects>k__BackingField: []
-  description: 

@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Coin
   m_EditorClassIdentifier: 
   ItemName: Coin
+  description: 
+  fullDescription: 
   <Icon>k__BackingField: {fileID: 21300000, guid: 74334754e66b53e449eb508af7f64b1f, type: 3}
+  <Rarity>k__BackingField: 0
+  <Price>k__BackingField: 0
+  <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
   type: 1

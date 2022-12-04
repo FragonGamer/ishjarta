@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: OnOddVRMultiDamage
   m_EditorClassIdentifier: 
   ItemName: multidamage
+  description: On odd number of visited rooms increse damage with multiplier
+  fullDescription: 
   <Icon>k__BackingField: {fileID: 0}
   <Rarity>k__BackingField: 33
   <Price>k__BackingField: 15
-  <SpawnLevelPool>k__BackingField: 
+  <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
-  description: On odd number of visited rooms increse damage with multiplier
   onOdd: 1
   isOdd: 0
   multiplier: 1.5
