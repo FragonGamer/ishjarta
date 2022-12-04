@@ -20,11 +20,7 @@ public class Itemspawner : MonoBehaviour
     {
         levelname = FindObjectOfType<StageController>().currentStageName;
         var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
-        var assets = Utils.LoadMultipleObjects<GameObject>(reference);
-        foreach (var item in assets)
-        {
-            item.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(levelname);
-        }
+        var assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
         gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(levelname)).ToList();
     }
 
