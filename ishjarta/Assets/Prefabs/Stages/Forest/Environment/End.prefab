@@ -932,7 +932,7 @@ MonoBehaviour:
   maxOfThisRoom: -1
   isEntered: 0
   isClosed: 0
-  RoomId: 0
+  RoomId: 8
   DistanceToStart: 0
   Enemies: []
   lenX: 9
@@ -999,6 +999,10 @@ PrefabInstance:
       value: Door (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 4558592206793461460}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
@@ -1008,11 +1012,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: 0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1079,16 +1083,20 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 4558592206793461460}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: lockedDoorTile
       value: 
       objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: -0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1155,6 +1163,10 @@ PrefabInstance:
       value: Door (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 4558592206793461460}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: direction
       value: 3
       objectReference: {fileID: 0}
@@ -1164,11 +1176,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: -0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1299,6 +1311,10 @@ PrefabInstance:
       value: Door (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 4558592206793461460}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: direction
       value: 2
       objectReference: {fileID: 0}
@@ -1306,6 +1322,14 @@ PrefabInstance:
       propertyPath: lockedDoorTile
       value: 
       objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
+    - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: afc79e237d128a94f85cdea11894e67e, type: 3}

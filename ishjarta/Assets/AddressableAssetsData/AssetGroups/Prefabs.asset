@@ -31,7 +31,8 @@ MonoBehaviour:
   - m_GUID: fed31afafb4454448b2a4ae876c4b872
     m_Address: A_
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Player
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8994366b04bfcd448b0d87b00f899a42
     m_Address: DoorTrigger
@@ -48,6 +49,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - EventSystem
+    - Player
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da19dc0dfaa7938419241129f02e2d20
     m_Address: GameManager
@@ -60,18 +62,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - HUD
+    - Player
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f6ebae92fcf15aa4b83fcc24524c637a
     m_Address: Assets/Prefabs/Main Camera.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - MainCamera
+    - Player
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8dfbec9f762024e49b14f52460111f72
     m_Address: PauseMenu
     m_ReadOnly: 0
     m_SerializedLabels:
     - PauseMenu
+    - Player
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf8a87ecaebd24e44aee420b1cd659a3
     m_Address: StartPosition

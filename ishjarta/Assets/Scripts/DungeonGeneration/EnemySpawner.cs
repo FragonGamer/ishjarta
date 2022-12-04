@@ -9,7 +9,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class EnemySpawner : MonoBehaviour
 {
 
-    AsyncOperationHandle<IList<IResourceLocation>> enemyAssets;
+    IList<IResourceLocation> enemyAssets;
     GameObject[] possibleEnemies;
     StageController stageController;
     [SerializeField] public float delay = 3;
@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         stageController = FindObjectOfType<StageController>().GetComponent<StageController>();
         enemyAssets = stageController.enemyAssets;
-        possibleEnemies = Utils.LoadAllObjects<IResourceLocation, GameObject>(enemyAssets).ToArray();
+        possibleEnemies = Utils.LoadMultipleObjects<GameObject>(enemyAssets).ToArray();
         room = GetComponentInParent<Room>();
         enemy = this.GetComponent<Enemy>();
         room.SetCleared();

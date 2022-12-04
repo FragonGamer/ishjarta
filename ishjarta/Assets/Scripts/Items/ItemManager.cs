@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
@@ -19,7 +20,7 @@ public class ItemManager : MonoBehaviour
     Vector3 NamePosition;
     Vector3 FullDescriptionPosition;
 
-Vector3 DescriptionPosition;
+    Vector3 DescriptionPosition;
     public Item GetItem()
     {
         return item;
@@ -46,16 +47,14 @@ Vector3 DescriptionPosition;
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         inputMaster.Player.PickUpItem.performed += PickUpItem;
-        var assets = Utils.LoadAssetsFromAddressablesByPath<AssetReference>("Prefabs");
-        var t = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets, "TextObject");
-        Name = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
-        Description = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
-        FullDescription = Instantiate(t,this.gameObject.transform.position,new Quaternion(0,0,0,0)).GetComponentInChildren<TextMesh>();
-        Utils.UnloadAssetReferences(assets);
-        
-        Name.transform.parent = gameObject.transform;
-        Description.transform.parent = gameObject.transform;
-        FullDescription.transform.parent = gameObject.transform;
+        var assets = Utils.LoadIRessourceLocations<GameObject>(new string[] { "TextObject" }).First();
+        Name = Utils.InstantiateGameObject(assets, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponentInChildren<TextMesh>();
+        Description = Utils.InstantiateGameObject(assets, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponentInChildren<TextMesh>();
+        FullDescription = Utils.InstantiateGameObject(assets, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponentInChildren<TextMesh>();
+
+        Name.transform.SetParent(this.gameObject.transform, false);
+        Description.transform.SetParent(this.gameObject.transform, false);
+        FullDescription.transform.SetParent(this.gameObject.transform, false);
         
         NamePosition = new Vector3(.2f,0,0);
         DescriptionPosition = new Vector3(.2f,-.15f,0);
@@ -135,7 +134,7 @@ Vector3 DescriptionPosition;
     {
         if (isInRange && isNearest)
         {
-            if (player.currentRoom.CompareTag("Merchant"))
+            if (player.currentRoom.name == "MerchantRoom")
             {
                 if (!player.currentRoom.GetComponent<Merchant>().BuyItem(player,item))
                 {

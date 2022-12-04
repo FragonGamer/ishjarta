@@ -14,9 +14,8 @@ public class AddArmor : PassiveItem
     {
         await new Task(() =>
         {
-            var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-            var armor = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
-            Utils.UnloadAssetReferences(p);
+            var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
+            var armor = Utils.LoadItemByName<UsableItem>(p, "Armor");
             var inv = Inventory.instance;
             armor.Amount = Amount;
             inv.AddUsableItem(armor);
@@ -28,9 +27,8 @@ public class AddArmor : PassiveItem
 
     public override void removeEffect()
     {
-        var p = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Item", "UsableItem" });
-        var armor = Utils.LoadGameObjectFromAddressablesByReferenceWithName(p, "Armor").GetComponent<UsableItem>();
-        Utils.UnloadAssetReferences(p);
+        var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
+        var armor = Utils.LoadItemByName<UsableItem>(p, "Armor");
         var inv = Inventory.instance;
         armor.Amount = Amount;
         Inventory.instance.DropItem(armor);

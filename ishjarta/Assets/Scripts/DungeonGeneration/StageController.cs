@@ -41,17 +41,12 @@ public class StageController : MonoBehaviour
     private int maxRooms;
     [SerializeField] public bool TestGeneration;
 
-    public AsyncOperationHandle<IList<IResourceLocation>> assets { get; private set; }
-    public AsyncOperationHandle<IList<IResourceLocation>> enemyAssets { get; private set; }
+    public IList<IResourceLocation> assets { get; private set; }
+    public IList<IResourceLocation> enemyAssets { get; private set; }
     public List<LevelName> stageNames { get; private set; }
     private int currentStageCounter;
     public LevelName currentStageName { get; private set; }
 
-    private void OnDestroy()
-    {
-        Utils.UnloadReferences(assets);
-        Utils.UnloadReferences(enemyAssets);
-    }
     int SetMaxRooms()
     {
         float result;
@@ -177,7 +172,7 @@ public class StageController : MonoBehaviour
 
     void SetStartRoom()
     {
-        GameObject startRoom = Utils.LoadObjectWithPredicate<IResourceLocation, GameObject>(assets, item => item.name == "Start"); ;
+        GameObject startRoom = Utils.LoadObjectWithPredicate< GameObject>(assets, item => item.name == "Start"); ;
         var startRoomGO = Instantiate(startRoom, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         SetStartRoomStats(startRoomGO, true, true, true, true);
@@ -191,7 +186,7 @@ public class StageController : MonoBehaviour
 
     private List<GameObject> GetPossibleRooms()
     {
-        var gos = Utils.LoadMultipleObjectsWithPredicate<IResourceLocation, GameObject>(assets, item => item.CompareTag("Room"));
+        var gos = Utils.LoadMultipleObjectsWithPredicate<GameObject>(assets, item => item.CompareTag("Room"));
         return gos;
     }
 
@@ -434,12 +429,13 @@ public class StageController : MonoBehaviour
         {
 
             Random random = new Random();
-            var itemroom = Utils.LoadObjectWithPredicate<IResourceLocation, GameObject>(assets, item => item.name == name);
+            var itemroom = Utils.LoadObjectWithPredicate< GameObject>(assets, item => item.name == name);
             var posRoom = itemroom.GetComponent<Room>();
 
 
             foreach (var room in (worldRooms.ToList().Shuffle().Select(room => room.GetComponent<Room>())))
             {
+                //Maybe needs fixing. Dont know if code is right
                 if (room.CompareTag("SpecialRoom"))
                     continue;
                 room.SetDoors();
@@ -575,7 +571,7 @@ public class StageController : MonoBehaviour
     private GameObject CreateEndRoom()
     {
         Random random = new Random();
-        var endRoom = Utils.LoadObjectWithPredicate<IResourceLocation, GameObject>(assets, item => item.name == "end").GetComponent<Room>();
+        var endRoom = Utils.LoadObjectWithPredicate< GameObject>(assets, item => item.name == "End").GetComponent<Room>();
 
 
         foreach (var room in worldRooms.ToList().OrderByDescending(room => room.DistanceToStart)
@@ -684,10 +680,9 @@ public class StageController : MonoBehaviour
     {
         if (this.player is null)
         {
-            var playerAssetsFile = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Player" });
-            var item = Utils.LoadGameObjectFromAddressablesByReferenceWithName(playerAssetsFile, "Player");
-            Utils.UnloadAssetReferences(playerAssetsFile);
-            this.player = Instantiate(item, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            var playerAssetsFile = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Player" });
+            var player = Utils.LoadObjectWithPredicate<GameObject>(playerAssetsFile, player => player.name == "Player");
+            this.player = Instantiate(player, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
             var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
             var playerManager = gameManager.GetComponent<PlayerManager>();
             if (playerManager.player == null)
@@ -697,9 +692,8 @@ public class StageController : MonoBehaviour
 
     void CreatePlayer()
     {
-        var playerAssetsFile = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>(new string[] { "Player" });
-        var playerAssets = Utils.LoadAssetsFromAddressablesByReference<GameObject>(playerAssetsFile);
-        Utils.UnloadAssetReferences(playerAssetsFile);
+        var playerAssetsFile = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Player" });
+        var playerAssets = Utils.LoadMultipleObjects<GameObject>(playerAssetsFile).ToArray();
         Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
         if (player == null)
             InstantiatePlayer();
@@ -710,7 +704,7 @@ public class StageController : MonoBehaviour
         this.player.transform.position = playerPosition;
 
         var gos = InstantiateAssetGroupOnZero(playerAssets);
-        StageCamera = gos.Where(x => x.Key.ToLower().Contains("StageCamera") && x.Key.ToLower().Contains("main"))
+        StageCamera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main"))
             .Select(x => x.Value).First();
         HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
         if (startRoom != null)

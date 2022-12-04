@@ -14,10 +14,9 @@ public class Merchant : MonoBehaviour
     {
         Room = gameObject.GetComponentInParent<Room>();
         midPoint = Room.transform.position + new Vector3(Room.lenX / 2, -Room.lenY / 2);
-        var assets = Utils.LoadAssetsFromAddressablesByPath<AssetReference>("Prefabs");
-        var itemspawner = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets, "Itemspawner");
-        var itemPriceTag = Utils.LoadGameObjectFromAddressablesByReferenceWithName(assets, "TextObject");
-        Utils.UnloadAssetReferences(assets);
+        var assets = Utils.LoadIRessourceLocations<GameObject>("Prefabs");
+        var itemspawner = Utils.LoadGameObjectByName(assets, "Itemspawner");
+        var itemPriceTag = Utils.LoadGameObjectByName(assets, "TextObject");
         List<GameObject> spawners = new List<GameObject>();
         if (isSix)
         {

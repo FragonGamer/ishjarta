@@ -19,15 +19,18 @@ public class Itemspawner : MonoBehaviour
     private void Awake()
     {
         levelname = FindObjectOfType<StageController>().currentStageName;
-        var reference = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("Item");
-        var assets = Utils.LoadAssetsFromAddressablesByReference<GameObject>( reference);
-        gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(this.levelname)).ToList();
-        Utils.UnloadAssetReferences(reference);
+        var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
+        var assets = Utils.LoadMultipleObjects<GameObject>(reference);
+        foreach (var item in assets)
+        {
+            item.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(levelname);
+        }
+        gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(levelname)).ToList();
     }
 
     public GameObject[] Spawn()
     {
-        List<GameObject> items = new List<GameObject>();
+        List<GameObject> items = new List <GameObject>();
         
         for (int i = 0; i < itemAmount; i++)
         {

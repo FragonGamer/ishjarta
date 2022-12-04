@@ -883,7 +883,7 @@ MonoBehaviour:
   maxOfThisRoom: -1
   isEntered: 0
   isClosed: 0
-  RoomId: 0
+  RoomId: 7
   DistanceToStart: 0
   Enemies: []
   lenX: 9
@@ -1009,11 +1009,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: 0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1089,11 +1089,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4169bb59db3fc5e46bbf1769498867bd, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Offset.x
-      value: 0
+      value: -0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

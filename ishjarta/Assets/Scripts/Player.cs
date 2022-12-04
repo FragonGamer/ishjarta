@@ -152,7 +152,7 @@ public class Player : Entity
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
         inventory.CurrentWeapon.EmitEffects : null;
 
-    public override void Attack(Vector2 mousePos, float damageChargeModifier)
+    public override async void Attack(Vector2 mousePos, float damageChargeModifier)
     {
         //MeleeAttack
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
@@ -191,8 +191,10 @@ public class Player : Entity
 
 
                 FirePoint.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-                GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
+                var arrowvariant = "ArrowBasic";
+                var projectiles = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Projectile" });
+                var projectileObject = Utils.LoadGameObjectByName(projectiles, arrowvariant);
+                GameObject projectile = Instantiate(projectileObject,
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
                 projectile.GetComponent<Projectile>().DealingDammage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);

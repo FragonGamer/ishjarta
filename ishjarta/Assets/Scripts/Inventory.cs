@@ -86,16 +86,14 @@ public class Inventory : MonoBehaviour
 
             if (inventoryData.meleeWeapon != null)
             {
-                var meleeWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("MeleeWeapon");
-                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName).GetComponent<MeleeWeapon>());
-                Utils.UnloadAssetReferences(meleeWeaponItemBundle);
+                var meleeWeaponItemBundle = Utils.LoadIRessourceLocations<GameObject>("MeleeWeapon");
+                AddItem(Utils.LoadGameObjectByName(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName).GetComponent<MeleeWeapon>());
             }
 
             if (inventoryData.rangedWeapon != null)
             {
-                var rangedWeaponItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("rangedweapon");
-                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName).GetComponent<MeleeWeapon>());
-                Utils.UnloadAssetReferences(rangedWeaponItemBundle);
+                var rangedWeaponItemBundle = Utils.LoadIRessourceLocations<GameObject>("rangedweapon");
+                AddItem(Utils.LoadGameObjectByName(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName).GetComponent<MeleeWeapon>());
             }
 
             if (inventoryData.IsCurrentWeaponMelee && MeleeWeapon != null && CurrentWeapon is RangedWeapon)
@@ -103,16 +101,14 @@ public class Inventory : MonoBehaviour
 
             inventoryData.passiveItems.ForEach(x =>
             {
-                var passivItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("PassiveItem");
-                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(passivItemBundle, x.itemName).GetComponent<PassiveItem>());
-                Utils.UnloadAssetReferences(passivItemBundle);
+                var passivItemBundle = Utils.LoadIRessourceLocations<GameObject>("PassiveItem");
+                AddItem(Utils.LoadGameObjectByName(passivItemBundle, x.itemName).GetComponent<PassiveItem>());
             });
 
             if (inventoryData.activeItem != null)
             {
-                var activeItemBundle = Utils.LoadAssetsFromAddressablesByLabel<AssetReference>("ActiveItem");
-                AddItem(Utils.LoadGameObjectFromAddressablesByReferenceWithName(activeItemBundle, inventoryData.activeItem.itemName).GetComponent<ActiveItem>());
-                Utils.UnloadAssetReferences(activeItemBundle);
+                var activeItemBundle = Utils.LoadIRessourceLocations<GameObject>("ActiveItem");
+                AddItem(Utils.LoadGameObjectByName(activeItemBundle, inventoryData.activeItem.itemName).GetComponent<ActiveItem>());
             }
 
             Coins.Init(inventoryData.coins);

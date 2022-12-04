@@ -52,6 +52,27 @@ MonoBehaviour:
     - RangedWeapon
     - ScriptableObject
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfb26959657634241b02a3e02f281ba4
+    m_Address: Assets/Items/ActiveItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActiveItem
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ea90cca67860c84ea5e77b84d54d702
+    m_Address: Assets/Items/PassiveItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PassiveItem
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf262266f7d0d3d4bb9a368eb8950580
+    m_Address: Assets/Items/UsableItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UsableItem
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
   m_SchemaSet:

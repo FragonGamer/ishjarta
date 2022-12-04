@@ -18,6 +18,7 @@ TagManager:
   - PauseMenu
   - SpecialRoom
   - ItemRoom
+  - MerchantRoom
   layers:
   - Default
   - TransparentFX

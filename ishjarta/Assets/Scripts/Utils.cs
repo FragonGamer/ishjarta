@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -31,318 +32,120 @@ public static class Utils
             item.ReleaseAsset();
         }
     }
-    public static void UnloadReferences(IResourceLocation resourceLocation)
-    {
-        Addressables.Release(resourceLocation);
-    }
-    public static void UnloadReferences(IEnumerable<IResourceLocation> resourceLocation)
-    {
-        foreach (var item in resourceLocation)
-        {
-            Addressables.Release(item);
-        }
-    }
-    public static void UnloadReferences(AsyncOperationHandle<IList<IResourceLocation>> resourceLocation)
-    {
-        foreach (var item in resourceLocation.Result)
-        {
-            Addressables.Release(item);
-        }
-    }
+
     #endregion
     #region LoadingAssetsWithAssetPath
-    public static AsyncOperationHandle<T> LoadAssetByPath<T>(string assetPath)
+    public static T LoadAssetByPath<T>(string assetPath)
     {
-        return Addressables.LoadAssetAsync<T>(assetPath);
+        return Addressables.LoadAssetAsync<T>(assetPath).WaitForCompletion();
     }
-    public static AsyncOperationHandle<IList<T>> LoadMultipleAssetsByPath<T>(string assetPath, Action<T> callback = null)
+    public static List<T> LoadMultipleAssetsByPath<T>(string assetPath, Action<T> callback = null, Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
     {
         BeforeMultipleLoading<T>(ref callback);
-        return Addressables.LoadAssetsAsync<T>(assetPath,callback);
+        return Addressables.LoadAssetsAsync<T>(assetPath,callback,mergeMode).WaitForCompletion().ToList();
     }
     #endregion
     #region LoadingAssetsWithAssetReferences
 
-    public static AsyncOperationHandle<T> LoadAssetByGUID<T>(string assetReference)
+    public static T LoadAssetByGUID<T>(string assetReference)
     {
         return LoadAsset<T>(new AssetReference(assetReference));
     }
-    public static AsyncOperationHandle<T> LoadAsset<T>(AssetReference assetReference)
-    {
-        return Addressables.LoadAssetAsync<T>(assetReference);
-    }
-    public static AsyncOperationHandle<IList<T>> LoadMultipleAssets<T>(ICollection<AssetReference> assetReference,Action<T> callback = null)
-    {
-        BeforeMultipleLoading<T>(ref callback);
-        return Addressables.LoadAssetsAsync<T>(assetReference,callback);
-    }
-    #endregion
-    #region LoadingTheIRessourceLocation
-    public static void LoadHandle_Completed(AsyncOperationHandle<IList<IResourceLocation>> handle)
-    {
-
-    }
-    public static AsyncOperationHandle<IList<IResourceLocation>> LoadIRessourceLocations<T>(List<string> keys,Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
-    {
-        return Addressables.LoadResourceLocationsAsync(keys, mergeMode, typeof(T));
-    }
-    public static AsyncOperationHandle<IList<IResourceLocation>> LoadIRessourceLocations<T>(string keys, Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
-    {
-        return Addressables.LoadResourceLocationsAsync(keys, mergeMode, typeof(T));
-    }
-    #endregion
-    #region LoadingAssetsWithIRessourceLocation
-    public static AsyncOperationHandle<IList<T>> LoadMultipleAssets<T>(ICollection<IResourceLocation> resourceLoctation, Action<T> callback = null)
-    {
-        BeforeMultipleLoading<T>(ref callback);
-        return Addressables.LoadAssetsAsync<T>(resourceLoctation, callback);
-    }
-    public static AsyncOperationHandle<T> LoadAsset<T>(IResourceLocation resourceLoctation)
-    {
-        return Addressables.LoadAssetAsync<T>(resourceLoctation);
-    }
-    #endregion
-    #region LoadingObjects
-    public static T LoadObject<T>(AsyncOperationHandle<T> asyncOperationHandle)
-    {
-        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
-            return asyncOperationHandle.Result;
-        else
-            Debug.Log("AsyncOperation was not successfull");
-        return default(T);
-    }
-    public static List<TResult> LoadAllObjects<T,TResult>(AsyncOperationHandle<IList<T>> asyncOperationHandle)
-    {
-        if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
-            return (List<TResult>)asyncOperationHandle.Result;
-        else
-            Debug.Log("AsyncOperation was not successfull");
-        return default(List<TResult>);
-    }
-    public static TResult LoadObjectWithPredicate<T, TResult>(AsyncOperationHandle<IList<T>> asyncOperationHandle, Predicate<TResult> predicate)
-    {
-        return LoadAllObjects<T, TResult>(asyncOperationHandle).Find(predicate);
-    }
-
-    public static List<TResult> LoadMultipleObjectsWithPredicate<T, TResult>(AsyncOperationHandle<IList<T>> asyncOperationHandle, Predicate<TResult> predicate)
-    {
-        return LoadAllObjects<T, TResult>(asyncOperationHandle).FindAll(predicate);
-    }
-    #endregion
-    #endregion
-    #region Addressables
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="assetReference"></param>
-    /// <returns></returns>
-    public static T LoadAssetFromAddressablesByReference<T>(AssetLabelReference assetReference)
+    public static T LoadAsset<T>(AssetReference assetReference)
     {
         return Addressables.LoadAssetAsync<T>(assetReference).WaitForCompletion();
     }
-    /// <summary>
-    /// Loads all Assets with the same Label.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="stringLabel"></param>
-    /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
-    /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByLabel<T>(string stringLabel)
+    public static IEnumerable<T> LoadMultipleAssets<T>(IEnumerable<AssetReference> assetReference,Action<T> callback = null, Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
     {
-        return LoadAssetsFromAddressablesByLabel<T>(new List<string> { stringLabel });
+        BeforeMultipleLoading<T>(ref callback);
+        return Addressables.LoadAssetsAsync<T>(assetReference,callback,mergeMode).WaitForCompletion();
     }
-    /// <summary>
-    /// Loads all Assets with the same Label.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="stringLabel"></param>
-    /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
-    /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByLabel<T>(List<AssetLabelReference> assetLabelReference)
+    public static IEnumerable<T> LoadMultipleAssets<T>(IEnumerable<string> assetReference, Action<T> callback = null, Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
     {
-        foreach (var item in assetLabelReference)
-        {
-            if (!item.RuntimeKeyIsValid())
-                return default(T[]);
-        }
-        List<T> assets = new List<T>();
-
-        Addressables.LoadAssetsAsync<T>(assetLabelReference, (asset) => { assets.Add(asset); }, Addressables.MergeMode.Intersection).WaitForCompletion();
-        return assets.ToArray();
-    }
-
-    /// <summary>
-    /// Loads all Assets with the same Label.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="stringLabel"></param>
-    /// <param name="loadHandle">Please use this handler to Release the loaded Assets after using those with "Addressables.Release(loadHandle)" </param>
-    /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByLabel<T>(List<string> stringLabels)
-    {
-        List<T> assets = new List<T>();
-        Addressables.LoadAssetsAsync<T>(stringLabels, (asset) => { assets.Add(asset); }, Addressables.MergeMode.Intersection).WaitForCompletion();
-        return assets.ToArray();
-    }
-    public static T[] LoadAssetsFromAddressablesByLabel<T>(string[] stringLabels)
-    {
-        var labels = stringLabels.ToList();
-        return LoadAssetsFromAddressablesByLabel<T>(labels);
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="AddressablePath"></param>
-    /// <returns></returns>
-    public static T LoadAssetFromAddressablesByPath<T>(string AddressablePath)
-    {
-        return Addressables.LoadAssetAsync<T>(AddressablePath).WaitForCompletion();
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="AddressablePath"></param>
-    /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByPath<T>(string AddressablePath)
-    {
-        List<T> assets = new List<T>();
-        Addressables.LoadAssetsAsync<T>(AddressablePath, (asset) => { assets.Add(asset); }).WaitForCompletion();
-        return assets.ToArray();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="assetReference"></param>
-    /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByReference<T>(AssetReference[] assetReference)
-    {
-        List<T> assets = new List<T>();
-        foreach (var item in assetReference)
-        {
-            assets.Add(Addressables.LoadAssetAsync<T>(item).WaitForCompletion());
-        }
-        return assets.ToArray();
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="assetReference"></param>
-    /// <returns></returns>
-    public static T[] LoadAssetsFromAddressablesByReference<T>(IResourceLocation[] assetReference)
-    {
-        List<T> assets = new List<T>();
-        foreach (var item in assetReference)
-        {
-            assets.Add(Addressables.LoadAssetAsync<T>(item).WaitForCompletion());
-        }
-        return assets.ToArray();
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="assetReference"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static ScriptableObject LoadScriptableObjectFromAddressablesByReferenceWithName(AssetReference[] assetReference, string name)
-    {
-        List<ScriptableObject> assets = new List<ScriptableObject>();
-        foreach (var item in assetReference)
-        {
-            assets.Add(Addressables.LoadAssetAsync<ScriptableObject>(item).WaitForCompletion());
-        }
-        foreach (var item in assets)
-        {
-            if (item.name == name)
-                return item;
-        }
-        return default(ScriptableObject);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="assetReference"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static GameObject LoadGameObjectFromAddressablesByReferenceWithName(AssetReference[] assetReference, string name)
-    {
-        List<GameObject> assets = new List<GameObject>();
-        foreach (var item in assetReference)
-        {
-            assets.Add(Addressables.LoadAssetAsync<GameObject>(item).WaitForCompletion());
-        }
-        foreach (var item in assets)
-        {
-            if (item.name == name)
-                return item;
-        }
-        return default(GameObject);
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="assetReference"></param>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static GameObject LoadGameObjectFromAddressablesByReferenceWithName(IResourceLocation[] assetReference, string name)
-    {
-        List<GameObject> assets = new List<GameObject>();
-        foreach (var item in assetReference)
-        {
-            assets.Add(Addressables.LoadAssetAsync<GameObject>(item).WaitForCompletion());
-        }
-        foreach (var item in assets)
-        {
-            if (item.name == name)
-                return item;
-        }
-        return default(GameObject);
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="assetReference"></param>
-    /// <returns></returns>
-    public static GameObject InsantiateFromAddressablesByReference(IResourceLocation assetReference)
-    {
-
-        return Addressables.InstantiateAsync(assetReference).WaitForCompletion();
-
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="assetReference"></param>
-    /// <returns></returns>
-    public static GameObject InsantiateFromAddressablesByReference(AssetReference assetReference)
-    {
-        if (!assetReference.RuntimeKeyIsValid())
-        {
-            Debug.Log("AssetReference is invalid");
-            return null;
-        }
-        return Addressables.InstantiateAsync(assetReference).WaitForCompletion();
-
-    }
-    public static void UnloadAssetReferences(AssetReference[] assetReference)
-    {
-        foreach (var item in assetReference)
-        {
-            item.ReleaseAsset();
-        }
+        BeforeMultipleLoading<T>(ref callback);
+        return Addressables.LoadAssetsAsync<T>(assetReference, callback, mergeMode).WaitForCompletion();
     }
     #endregion
+    #region LoadingTheIRessourceLocation
+    public static IList<IResourceLocation> LoadIRessourceLocations<T>(string[] keys, Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
+    {
+        return LoadIRessourceLocations<T>(keys.ToList(), mergeMode);
+    }
+    public static IList<IResourceLocation> LoadIRessourceLocations<T>(IEnumerable<string> keys,Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
+    {
+        return Addressables.LoadResourceLocationsAsync(keys, mergeMode, typeof(T)).WaitForCompletion();
+    }
+    public static IList<IResourceLocation> LoadIRessourceLocations<T>(string keys, Addressables.MergeMode mergeMode = Addressables.MergeMode.Intersection)
+    {
+        return Addressables.LoadResourceLocationsAsync(keys, mergeMode, typeof(T)).WaitForCompletion();
+    }
+    #endregion
+    #region LoadingObjectsWithAssetRefence
+    public static IEnumerable<T> LoadMultipleObjects<T>(IEnumerable<AssetReference> resourceLoctation)
+    {
+        foreach (var item in resourceLoctation)
+        {
+            yield return Addressables.LoadAssetAsync<T>(item).WaitForCompletion();
+        }
+    }
+    public static T LoadObject<T>(AssetReference resourceLoctation)
+    {
+        return Addressables.LoadAssetAsync<T>(resourceLoctation).WaitForCompletion();
+    }
+    public static TResult LoadObjectWithPredicate<TResult>(IEnumerable<AssetReference> ressourceLocation, Predicate<TResult> predicate)
+    {
+        return LoadMultipleObjects<TResult>(ressourceLocation).ToList().Find(predicate);
+    }
 
-    public static void UnloadAssetReferences(AssetBundle asset) { }
+    public static List<TResult> LoadMultipleObjectsWithPredicate<TResult>(IEnumerable<AssetReference> ressourceLocation, Predicate<TResult> predicate)
+    {
+        return LoadMultipleObjects<TResult>(ressourceLocation).ToList().FindAll(predicate);
+    }
+    public static GameObject LoadGameObjectByName(IEnumerable<AssetReference> ressourceLocation, string name)
+    {
+        return LoadMultipleObjects<GameObject>(ressourceLocation).ToList().Find(item => item.name == name);
+    }
+    #endregion
+    #region LoadingObjectsWithIRessourceLocation
+    public static IEnumerable<T> LoadMultipleObjects<T>(IList<IResourceLocation> resourceLoctation)
+    {
+        foreach (var item in resourceLoctation)
+        {
+            yield return Addressables.LoadAssetAsync<T>(item).WaitForCompletion();
+        }
+    }
+    public static T LoadObject<T>(IResourceLocation resourceLoctation)
+    {
+        return Addressables.LoadAssetAsync<T>(resourceLoctation).WaitForCompletion();
+    }
+    public static TResult LoadObjectWithPredicate<TResult>(IList<IResourceLocation> ressourceLocation, Predicate<TResult> predicate)
+    {
+        return LoadMultipleObjects<TResult>(ressourceLocation).ToList().Find(predicate);
+    }
+
+    public static List<TResult> LoadMultipleObjectsWithPredicate<TResult>(IList<IResourceLocation> ressourceLocation, Predicate<TResult> predicate) 
+    {
+        return LoadMultipleObjects<TResult>(ressourceLocation).ToList().FindAll(predicate);
+    }
+    public static GameObject LoadGameObjectByName(IList<IResourceLocation> ressourceLocation, string name)
+    {
+        return LoadMultipleObjects<GameObject>(ressourceLocation).ToList().Find(item => item.name == name);
+    }
+    #endregion
+    #region InstantiatingGameObjects
+    public static GameObject InstantiateGameObject(IResourceLocation location, Vector3 postion, Quaternion quaternion)
+    {
+        return Addressables.InstantiateAsync(location, postion, quaternion).WaitForCompletion();
+    }
+    #endregion
+    #endregion
+
+    public static T LoadItemByName<T>(IList<IResourceLocation> resourceLocation, string name) where T:Item{
+        return LoadMultipleObjects<T>(resourceLocation).ToList().Find(item => item.ItemName == name);
+    }
     public static UsableItem GetCoinObject()
     {
-        return LoadObject(LoadAssetByPath<GameObject>("UsableItem/Coin.prefab")).GetComponent<UsableItem>();
+        return LoadAssetByPath<GameObject>("UsableItem/Coin.prefab").GetComponent<UsableItem>();
     }
     public static void PrintGridPosDataTypeMatrix(GridPosdataType[,] matrix)
     {
