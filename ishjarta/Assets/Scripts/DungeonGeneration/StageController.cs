@@ -686,7 +686,7 @@ public class StageController : MonoBehaviour
             var gameManager = GameObject.FindGameObjectWithTag("GameManager").gameObject;
             var playerManager = gameManager.GetComponent<PlayerManager>();
             if (playerManager.player == null)
-                playerManager.player = player;
+                playerManager.player = this.player;
         }
     }
 
