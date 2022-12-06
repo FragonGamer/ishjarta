@@ -1,0 +1,6 @@
+<map id="BaseMenuController" name="BaseMenuController">
+<area shape="rect" id="node1" title="BaseController for the MainMenuController and the PauseMenuController" alt="" coords="72,80,227,107"/>
+<area shape="rect" id="node3" href="$classMenuController.html" title="The controller for the MainMenu" alt="" coords="5,155,128,181"/>
+<area shape="rect" id="node4" href="$classPauseMenuController.html" title="Controller for the PauseMenu" alt="" coords="152,155,312,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="87,5,211,32"/>
+</map>

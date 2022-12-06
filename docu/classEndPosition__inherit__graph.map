@@ -1,0 +1,4 @@
+<map id="EndPosition" name="EndPosition">
+<area shape="rect" id="node1" title="Represents the end point of a level. For triggering the reset of a level" alt="" coords="18,80,117,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,129,32"/>
+</map>

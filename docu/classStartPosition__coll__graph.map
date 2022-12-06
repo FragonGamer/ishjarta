@@ -1,0 +1,6 @@
+<map id="StartPosition" name="StartPosition">
+<area shape="rect" id="node1" title="Represents the starting position of a level where the player will be spawned. Should only exist once." alt="" coords="5,185,111,212"/>
+<area shape="rect" id="node2" title=" " alt="" coords="87,5,211,32"/>
+<area shape="rect" id="node3" href="$classRoom.html" title="Represents a room of the level. Contains all doors of a room and controls the game flow." alt="" coords="119,81,179,108"/>
+<area shape="rect" id="node4" href="$classDoor.html" title="Represents a door of a room. Contains features for connecting to other doors, closing a door etc." alt="" coords="295,185,349,212"/>
+</map>

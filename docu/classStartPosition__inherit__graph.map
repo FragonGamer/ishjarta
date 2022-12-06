@@ -1,0 +1,4 @@
+<map id="StartPosition" name="StartPosition">
+<area shape="rect" id="node1" title="Represents the starting position of a level where the player will be spawned. Should only exist once." alt="" coords="15,80,120,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,129,32"/>
+</map>

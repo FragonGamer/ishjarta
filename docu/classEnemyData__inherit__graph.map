@@ -1,0 +1,4 @@
+<map id="EnemyData" name="EnemyData">
+<area shape="rect" id="node1" title="This class is the state&#45;storage for Enemy" alt="" coords="5,80,104,107"/>
+<area shape="rect" id="node2" href="$classEntityData.html" title="This class is the state&#45;storage for Entity" alt="" coords="9,5,100,32"/>
+</map>

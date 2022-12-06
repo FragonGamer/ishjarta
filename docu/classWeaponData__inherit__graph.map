@@ -1,0 +1,6 @@
+<map id="WeaponData" name="WeaponData">
+<area shape="rect" id="node1" title="This class is the state&#45;storage for Weapon" alt="" coords="112,80,217,107"/>
+<area shape="rect" id="node3" href="$classMeleeWeaponData.html" title="This class is the state&#45;storage for MeleeWeapon" alt="" coords="5,155,151,181"/>
+<area shape="rect" id="node4" href="$classRangedWeaponData.html" title="This class is the state&#45;storage for RangedWeapon" alt="" coords="175,155,330,181"/>
+<area shape="rect" id="node2" href="$classItemData.html" title="This class is the state&#45;storage for Item" alt="" coords="123,5,206,32"/>
+</map>
