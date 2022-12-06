@@ -293,7 +293,11 @@ public class StageController : MonoBehaviour
 
         return go;
     }
-
+    /// <summary>
+    /// Converts the position in the grid to the position in the array, This is needed because of the negative values in the Grid which cant be used in the array index.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public Tuple<int, int> ConvertFromGridToArrayIndex(Tuple<int, int> position)
     {
         Tuple<int, int> arrayPosition = null;
@@ -311,7 +315,11 @@ public class StageController : MonoBehaviour
 
         return arrayPosition;
     }
-
+/// <summary>
+/// Converts the position of the array index to the position in the grid. This is needed because of the negative values in the Grid which cant be used in the array index.
+/// </summary>
+/// <param name="arrayPosition"></param>
+/// <returns></returns>
     public Tuple<int, int> ConvertFromArrayIndexToGrid(Tuple<int, int> arrayPosition)
     {
         return new Tuple<int, int>(worldLayout[arrayPosition.Item2, arrayPosition.Item1].xPos,
@@ -541,34 +549,7 @@ public class StageController : MonoBehaviour
         nextRoomId++;
     }
 
-    void CreateStage()
-    {
-        //Creates Start room
-        SetStartRoom();
-        //Creates player
-        CreatePlayer();
-        int counter = 0;
-        //creates normal rooms
-        while (worldRooms.Count() < maxRooms && counter < 100)
-        {
-            var room = AddRoom();
-
-            if (room is null)
-                counter++;
-        }
-
-        //creates end room
-        var endRoom = CreateEndRoom();
-        //Creates special rooms
-        CreateSpecialrooms();
-        worldRooms.Add(endRoom.GetComponent<Room>());
-
-        Debug.Log("Rooms: " + nextRoomId);
-        currentStageCounter++;
-        startRoom.GetComponent<Room>().hasVisited = true;
-    }
-
-    private GameObject CreateEndRoom()
+ private GameObject CreateEndRoom()
     {
         Random random = new Random();
         var endRoom = Utils.LoadObjectWithPredicate< GameObject>(assets, item => item.name == "End").GetComponent<Room>();
@@ -633,6 +614,54 @@ public class StageController : MonoBehaviour
 
         return null;
     }
+    void CreateStage()
+    {
+        //Creates Start room
+        SetStartRoom();
+        //Creates player
+        CreatePlayer();
+        int counter = 0;
+        //creates normal rooms
+        while (worldRooms.Count() < maxRooms && counter < 100)
+        {
+            var room = AddRoom();
+
+            if (room is null)
+                counter++;
+        }
+
+        //creates end room
+        var endRoom = CreateEndRoom();
+        //Creates special rooms
+        CreateSpecialrooms();
+        worldRooms.Add(endRoom.GetComponent<Room>());
+
+        Debug.Log("Rooms: " + nextRoomId);
+        currentStageCounter++;
+        startRoom.GetComponent<Room>().hasVisited = true;
+    }
+
+   
+    void CreatePlayer()
+    {
+        var playerAssetsFile = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Player" });
+        var playerAssets = Utils.LoadMultipleObjects<GameObject>(playerAssetsFile).ToArray();
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
+        if (player == null)
+            InstantiatePlayer();
+
+        playerAssets = playerAssets.ToList().FindAll(item => item.CompareTag("Player") == false).ToArray();
+
+
+        this.player.transform.position = playerPosition;
+
+        var gos = InstantiateAssetGroupOnZero(playerAssets);
+        StageCamera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main"))
+            .Select(x => x.Value).First();
+        HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
+        if (startRoom != null)
+            player.GetComponent<Player>().currentRoom = startRoom.GetComponent<Room>();
+    }
 
     void InitWorldLayout()
     {
@@ -690,26 +719,7 @@ public class StageController : MonoBehaviour
         }
     }
 
-    void CreatePlayer()
-    {
-        var playerAssetsFile = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Player" });
-        var playerAssets = Utils.LoadMultipleObjects<GameObject>(playerAssetsFile).ToArray();
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("StartPosition").gameObject.transform.position;
-        if (player == null)
-            InstantiatePlayer();
-
-        playerAssets = playerAssets.ToList().FindAll(item => item.CompareTag("Player") == false).ToArray();
-
-
-        this.player.transform.position = playerPosition;
-
-        var gos = InstantiateAssetGroupOnZero(playerAssets);
-        StageCamera = gos.Where(x => x.Key.ToLower().Contains("camera") && x.Key.ToLower().Contains("main"))
-            .Select(x => x.Value).First();
-        HUD = gos.Where(x => x.Key.ToLower().Contains("hud")).Select(x => x.Value).First();
-        if (startRoom != null)
-            player.GetComponent<Player>().currentRoom = startRoom.GetComponent<Room>();
-    }
+    
 
     Dictionary<string, GameObject> InstantiateAssetGroup(GameObject[] assets, Vector3 position)
     {

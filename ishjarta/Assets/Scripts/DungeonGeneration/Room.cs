@@ -162,17 +162,6 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
-    /// sets all doors in room to be opened
-    /// </summary>
-    private void OpenRoom()
-    {
-        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
-        {
-            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
-            door.doorIsOpen = true;
-        }
-    }
-    /// <summary>
     /// gets the layout of the room with gridposdatatype
     /// 
     /// for example 5*10 room
@@ -226,6 +215,18 @@ public class Room : MonoBehaviour
     }
 
     /// <summary>
+    /// sets all doors in room to be opened
+    /// </summary>
+    private void OpenRoom()
+    {
+        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
+        {
+            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
+            door.doorIsOpen = true;
+        }
+    }
+
+    /// <summary>
     /// gets the index of the first x value in an given y row
     /// </summary>
     /// <param name="offset">y offset of stagecontroller addroom</param>
@@ -246,27 +247,7 @@ public class Room : MonoBehaviour
         return index;
 
     }
-    /// <summary>
-    /// gets the index of the first y value in an given x row
-    /// </summary>
-    /// <param name="offset">x offset of stagecontroller addroom</param>
-    /// <returns>integer of index</returns>
-    public int GetIndexOfFirstYRoomCell(int offset)
-    {
-        if (roomLayout is null) roomLayout = GetRoomLayout();
-        offset /= StageController.roomXBaseLength;
-        int index = 0;
-        for (int i = 0; i < roomLayout.GetLength(0); i++)
-        {
-            if (roomLayout[i, offset].roomId >= 0)
-            {
-                index = i;
-                break;
-            }
-        }
-        return index;
-
-    }
+   
     /// <summary>
     /// gets the length of given x row
     /// </summary>
@@ -307,6 +288,27 @@ public class Room : MonoBehaviour
             }
         }
         return len;
+
+    }
+     /// <summary>
+    /// gets the index of the first y value in an given x row
+    /// </summary>
+    /// <param name="offset">x offset of stagecontroller addroom</param>
+    /// <returns>integer of index</returns>
+    public int GetIndexOfFirstYRoomCell(int offset)
+    {
+        if (roomLayout is null) roomLayout = GetRoomLayout();
+        offset /= StageController.roomXBaseLength;
+        int index = 0;
+        for (int i = 0; i < roomLayout.GetLength(0); i++)
+        {
+            if (roomLayout[i, offset].roomId >= 0)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
 
     }
     /// <summary>
@@ -360,21 +362,7 @@ public class Room : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// toggles the state of the activness of the room gameobject
-    /// </summary>
-    public void ToggleRoomState()
-    {
-
-        if (!FindObjectOfType<StageController>().GetComponent<StageController>().TestGeneration)
-        {
-
-
-            this.gameObject.SetActive(!this.gameObject.activeSelf);
-        }
-
-
-    }
+   
 
     /// <summary>
     /// swaps the tiles of doors which are not connected to an other door
@@ -426,7 +414,21 @@ public class Room : MonoBehaviour
         }
 
     }
+ /// <summary>
+    /// toggles the state of the activness of the room gameobject
+    /// </summary>
+    public void ToggleRoomState()
+    {
 
+        if (!FindObjectOfType<StageController>().GetComponent<StageController>().TestGeneration)
+        {
+
+
+            this.gameObject.SetActive(!this.gameObject.activeSelf);
+        }
+
+
+    }
     /// <summary>
     /// adds all doors of room to the door list of the room
     /// </summary>
