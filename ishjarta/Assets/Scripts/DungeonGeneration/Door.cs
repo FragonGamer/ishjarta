@@ -78,7 +78,12 @@ private void CalculatRange(){
         room = GetComponentInParent<Room>();
     }
 
-  
+    public float GetPlayerDistanceToDoor(Player player)
+    {
+        float distance = Vector3.Distance(this.transform.position, player.gameObject.transform.position);
+        return distance;
+
+    }
     public void TeleportPlayerToDoor()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -87,12 +92,6 @@ private void CalculatRange(){
         room.isEntered = false;
         ConnectedDoorRoom.enteredDoor = ConnectedDoor.GetComponent<Door>();
         player.GetComponent<Player>().currentRoom = ConnectedDoorRoom;
-    }
-      public float GetPlayerDistanceToDoor(Player player)
-    {
-        float distance = Vector3.Distance(this.transform.position, player.gameObject.transform.position);
-        return distance;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -107,7 +106,16 @@ private void CalculatRange(){
         }
     }
 
-    
+    public void AttachClosestDoor()
+    {
+        var door = FindClosestDoor();
+        if (door != null)
+        {
+            ConnectedDoor = door;
+            ConnectedDoorRoom = door.GetComponent<Door>().room;
+        }
+    }
+
     private GameObject FindClosestDoor()
     {
         var sc = FindObjectOfType<StageController>().GetComponent<StageController>();
@@ -141,14 +149,4 @@ private void CalculatRange(){
             return null;
         }
     }
-    public void AttachClosestDoor()
-    {
-        var door = FindClosestDoor();
-        if (door != null)
-        {
-            ConnectedDoor = door;
-            ConnectedDoorRoom = door.GetComponent<Door>().room;
-        }
-    }
-
 }
