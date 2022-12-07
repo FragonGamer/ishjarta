@@ -9,6 +9,11 @@ using UnityEngine.AddressableAssets;
 
 public class Inventory : MonoBehaviour
 {
+    AudioSource audiosource;
+
+
+    [field: SerializeField] public AudioClip arrowsound = new AudioClip();
+
     #region Singleton
     public static Inventory instance;
     private void Awake()
@@ -42,6 +47,7 @@ public class Inventory : MonoBehaviour
     [field: SerializeField] UsableItem Keys { get; set; }
     [field: SerializeField] UsableItem Armor { get; set; }
     [field: SerializeField] Player player { get; set; }
+
     
     [SerializeField] private HUDManager hudManager;
 
@@ -487,6 +493,9 @@ public class Inventory : MonoBehaviour
             ActiveItem.Activate(gameObject);
             state = ActiveItemState.active;
             activeTime = ActiveItem.activeTime;
+
+            audiosource.clip = arrowsound;
+            audiosource.Play();
         }
     }
 
