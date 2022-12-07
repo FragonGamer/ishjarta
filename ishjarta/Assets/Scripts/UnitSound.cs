@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class UnitSound : MonoBehaviour
 {
     AudioSource audioSource;
-    public AudioClip[] sounds = new AudioClip[1];
+    public List<AudioClip> sounds;
 
     private NavMeshAgent nma;
 
@@ -21,15 +21,8 @@ public class UnitSound : MonoBehaviour
 
     void Start(){
         nma = GetComponent<NavMeshAgent>();
+        audioSource= GetComponent<AudioSource>();
         audioSource.clip = sounds[0];
         audioSource.Play();
     }
-
-    void FixedUpdate(){
-        if (walkingSoundRunning == false){
-            StartCoroutine(PlayWalkingSound());
-            walkingSoundRunning = false;
-        }
-    }
-    
 }
