@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     AudioSource audiosource;
 
 
-    [field: SerializeField] public AudioClip arrowsound = new AudioClip();
+    [field: SerializeField] public AudioClip arrowsound;
 
     #region Singleton
     public static Inventory instance;
