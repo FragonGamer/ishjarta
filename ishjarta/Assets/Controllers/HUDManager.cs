@@ -72,6 +72,7 @@ public class HUDManager : MonoBehaviour
     }
     private void UpdateItemInfoUI(){
         nearestItemManager = player.nearestItemManager;
+        if(nearestItemManager == null) return;
         var isItemInRange = nearestItemManager.isInRange ? true : false;
         if(isItemInRange){
             var item = nearestItemManager.GetItem();

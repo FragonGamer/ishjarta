@@ -62,7 +62,7 @@ public class Player : Entity
 
     private ItemManager GetNearestItemManager()
     {
-        var managers = FindObjectsOfType<ItemManager>();
+        var managers = FindObjectsOfType<ItemManager>().Where(item => item);
         if (managers != null)
         {
             ItemManager closest = null;
