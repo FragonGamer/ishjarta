@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class HUDManager : MonoBehaviour
     [SerializeField] TMP_Text CoinValueText;
     [SerializeField] Inventory playerInventory;
     [SerializeField] Player player;
+    private GameObject ItemInfoUI;
+    private TMPro.TextMeshProUGUI ItemInfoText;
+    private ItemManager nearestItemManager;
 
     #region Singleton
     public static HUDManager instance;
@@ -23,6 +27,10 @@ public class HUDManager : MonoBehaviour
         instance = this;
     }
     #endregion
+    void Update()
+    {
+        UpdateItemInfoUI();
+    }
 
     private void Start()
     {
@@ -31,6 +39,7 @@ public class HUDManager : MonoBehaviour
         MeleeWeaponSelectedSprite.gameObject.SetActive(false);
         RangedWeaponSelectedSprite.gameObject.SetActive(false);
         UpdateAllSpritesAndText();
+        InitItemInfoUI();
     }
     public void UpdateAllSpritesAndText()
     {
@@ -54,6 +63,33 @@ public class HUDManager : MonoBehaviour
             RangedWeaponSprite.sprite = playerInventory.GetRangedWeapon().GetSprite();
         }
         UpdateSelectedWeaponSprites();
+    }
+    private void InitItemInfoUI(){
+        ItemInfoUI = GameObject.FindGameObjectWithTag("HUD").transform.Find("ItemInfoContainer").gameObject;
+        ItemInfoText = ItemInfoUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        ItemInfoUI.SetActive(false);
+        
+    }
+    private void UpdateItemInfoUI(){
+        nearestItemManager = player.nearestItemManager;
+        if(nearestItemManager == null) return;
+        var isItemInRange = nearestItemManager.isInRange ? true : false;
+        if(isItemInRange){
+            var item = nearestItemManager.GetItem();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine($"{item.ItemName}");
+            stringBuilder.AppendLine();
+            if(nearestItemManager.showFullDescription) stringBuilder.AppendLine($"{item.fullDescription}");
+            else stringBuilder.AppendLine($"{item.description}");
+            stringBuilder.AppendLine();
+
+            ItemInfoText.text = stringBuilder.ToString();
+            ItemInfoUI.SetActive(true);
+        }
+        else{
+             ItemInfoUI.SetActive(false);
+        }
     }
     public void UpdateSelectedWeaponSprites()
     {

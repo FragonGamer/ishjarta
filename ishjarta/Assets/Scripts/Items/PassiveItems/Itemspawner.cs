@@ -53,7 +53,7 @@ public class Itemspawner : MonoBehaviour
             var position = this.transform.position;
 
             var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
-            
+            go.transform.SetParent(this.gameObject.transform);
             return go;
         }
         else if (randVal >= RarityRange.UncommonRange["Min"] && randVal <= RarityRange.UncommonRange["Max"])
