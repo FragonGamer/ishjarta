@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 00ebc069577d3e04689dbad182b7252a
+guid: 792990390d2b2ef4a9642c6e653266a6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -25,7 +25,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -65,6 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -106,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton_Walk_Side_0
+      name: Human_Walk_Horizontal_0
       rect:
         serializedVersion: 2
         x: 0
@@ -120,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16d6ac23fc5d57e4a98e51eb0f94fad3
-      internalID: 1974436048
+      spriteID: 04d5cfb3e09b6fc488289e69389fadb4
+      internalID: -355656731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton_Walk_Side_1
+      name: Human_Walk_Horizontal_1
       rect:
         serializedVersion: 2
         x: 32
@@ -141,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65e70dc05aa31764783772d5cf8a60e1
-      internalID: -717516124
+      spriteID: 7f985cea0e530ce46965ff677430cdd9
+      internalID: 2105091682
       vertices: []
       indices: 
       edges: []
@@ -158,9 +159,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton_Walk_Side_0: 1974436048
-      Skeleton_Walk_Side_1: -717516124
-  spritePackingTag: 
+      Human_Walk_Horizontal_1: 2105091682
+      Human_Walk_Horizontal_0: -355656731
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 

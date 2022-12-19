@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 0c306a14207ea9e4ab94c95a3bfde618
+guid: f9be76795cbfbd740be8bccec97a54de
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -25,7 +25,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -65,6 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -106,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton_Idle_Side_0
+      name: Skeleton_Walk_Left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -120,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d970c4567b9a3984483546fc31314364
-      internalID: 1263771481
+      spriteID: e46aa120abe6bae4d8373ea0729f26b5
+      internalID: -1471337798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton_Idle_Side_1
+      name: Skeleton_Walk_Left_1
       rect:
         serializedVersion: 2
         x: 32
@@ -141,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 551a43851af07244a94c79dc8e37385b
-      internalID: -1324489014
+      spriteID: a33ea9fc516e1f24aba91e96b9354269
+      internalID: 1152896406
       vertices: []
       indices: 
       edges: []
@@ -158,9 +159,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton_Idle_Side_0: 1263771481
-      Skeleton_Idle_Side_1: -1324489014
-  spritePackingTag: 
+      Skeleton_Walk_Left_0: -1471337798
+      Skeleton_Walk_Left_1: 1152896406
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
