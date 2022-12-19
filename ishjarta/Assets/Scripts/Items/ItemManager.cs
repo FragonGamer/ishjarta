@@ -134,7 +134,7 @@ public class ItemManager : MonoBehaviour
     {
         if (isInRange && isNearest)
         {
-            if (player.currentRoom.name == "MerchantRoom")
+            if (player.currentRoom.name.Contains("MerchantRoom"))
             {
                 if (!player.currentRoom.GetComponent<Merchant>().BuyItem(player,item))
                 {
