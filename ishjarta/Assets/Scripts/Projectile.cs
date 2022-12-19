@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (collider.gameObject == null)
+            return;
         if (collider.GetType() == typeof(BoxCollider2D) && (!Owner.CompareTag("Enemy") && collider.gameObject.tag == "Enemy" || !Owner.CompareTag("Player") && collider.gameObject.tag == "Player"))
         {
             Entity entity = collider.gameObject.GetComponent<Entity>();
