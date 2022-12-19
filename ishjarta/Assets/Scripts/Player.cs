@@ -15,7 +15,6 @@ public class Player : Entity
     [SerializeField] public Room currentRoom;
     //[SerializeField] int maxResistance;
     public int visitedRooms = 1;
-
     [SerializeField] private HealthBar hpBar;
 
     #region SaveSystem
@@ -101,6 +100,8 @@ public class Player : Entity
     {
         UpdateHealthBar();
         nearestItemManager = GetNearestItemManager();
+        
+
         HandleEffects();
         if (inventory.GetMeleeWeapon() != null && timeMelee < inventory.GetMeleeWeapon().AttackRate)
         {
