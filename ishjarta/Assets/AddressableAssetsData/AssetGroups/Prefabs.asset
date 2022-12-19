@@ -87,13 +87,19 @@ MonoBehaviour:
     m_Address: TextObject
     m_ReadOnly: 0
     m_SerializedLabels:
-    - TextObject
+    - Objects
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b490af93043c6b6429d9142841f70e67
     m_Address: EnemySpawner
     m_ReadOnly: 0
     m_SerializedLabels:
     - EnemySpawner
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e00ee5da43cd09e780e0d68fd7c1e87
+    m_Address: Assets/Prefabs/Itemspawner.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Objects
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
