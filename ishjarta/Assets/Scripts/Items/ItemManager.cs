@@ -1,3 +1,4 @@
+using System.Text;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +14,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField] InputMaster inputMaster;
     [SerializeField] public bool isNearest;
     public bool isInRange;
-    private TextMesh Name;
-    private TextMesh Description;
-    private TextMesh FullDescription;
-    private bool showFullDescription;
-    Vector3 NamePosition;
-    Vector3 FullDescriptionPosition;
-
-    Vector3 DescriptionPosition;
+    
+    public bool showFullDescription;
     public Item GetItem()
     {
         return item;
@@ -47,26 +42,8 @@ public class ItemManager : MonoBehaviour
     {
         player = (Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
         inputMaster.Player.PickUpItem.performed += PickUpItem;
-        var assets = Utils.LoadIRessourceLocations<GameObject>(new string[] { "TextObject" }).First();
-        Name = Utils.InstantiateGameObject(assets, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponentInChildren<TextMesh>();
-        Description = Utils.InstantiateGameObject(assets, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponentInChildren<TextMesh>();
-        FullDescription = Utils.InstantiateGameObject(assets, this.gameObject.transform.position, new Quaternion(0, 0, 0, 0)).GetComponentInChildren<TextMesh>();
-
-        Name.transform.SetParent(this.gameObject.transform, false);
-        Description.transform.SetParent(this.gameObject.transform, false);
-        FullDescription.transform.SetParent(this.gameObject.transform, false);
+        var assets = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Objects" }, Addressables.MergeMode.Intersection);
         
-        NamePosition = new Vector3(.2f,0,0);
-        DescriptionPosition = new Vector3(.2f,-.15f,0);
-        FullDescriptionPosition =  new Vector3(.2f,-.15f,0);
-        
-        Name.text = item.ItemName;
-        Description.text = item.description;
-        FullDescription.text = item.fullDescription;
-        
-        Name.gameObject.SetActive(false);
-        Description.gameObject.SetActive(false);
-        FullDescription.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -83,39 +60,14 @@ public class ItemManager : MonoBehaviour
         
         if (isNearest && isInRange)
         {
-            float horizontalPosition =  gameObject.transform.position.x - player.transform.position.x;
-            if(horizontalPosition < 0){
-                Vector3 pos = NamePosition;
-                pos.x  = pos.x *-1;
-                Name.transform.position = gameObject.transform.position + pos ;
-                Name.anchor = TextAnchor.MiddleRight;
-                pos = DescriptionPosition;
-                pos.x  = pos.x *-1;
-                Description.transform.position = gameObject.transform.position  + pos;
-                Description.anchor = TextAnchor.MiddleRight;
-                pos = FullDescriptionPosition;
-                pos.x  = pos.x *-1;
-                FullDescription.transform.position  = gameObject.transform.position + pos;
-                FullDescription.anchor = TextAnchor.MiddleRight;
-            }
-            else{
-                Name.transform.position = gameObject.transform.position + NamePosition;
-                
-               Name.anchor = TextAnchor.MiddleLeft;
-                Description.transform.position = gameObject.transform.position + DescriptionPosition;
-                Description.anchor = TextAnchor.MiddleLeft;
-                FullDescription.transform.position  = gameObject.transform.position + FullDescriptionPosition;
-                FullDescription.anchor = TextAnchor.MiddleLeft;
-            }
+            
             GetComponentInChildren<SpriteRenderer>().color = Color.gray;
-            Name.gameObject.SetActive(true);
-            Description.gameObject.SetActive(true);
+            
 
         }
-        else if (!isNearest)
+        else if (!isNearest)if (!isNearest)
         {
-            Name.gameObject.SetActive(false);
-            Description.gameObject.SetActive(false);
+           
             GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         }
