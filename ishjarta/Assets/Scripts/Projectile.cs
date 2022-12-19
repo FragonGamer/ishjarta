@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int DealingDammage;
+    public int DealingDamage;
     public GameObject Owner;
 
     // Effects which will be passed on to the enemy
@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
             Entity entity = collider.gameObject.GetComponent<Entity>();
             if (entity != null)
             {
-                entity.ReceiveDamage(DealingDammage);
+                entity.ReceiveDamage(DealingDamage);
                 entity.AddEffectRange(EmitEffects);
                 Destroy(this.gameObject);
             }

@@ -198,11 +198,11 @@ public class Player : Entity
                 GameObject projectile = Instantiate(projectileObject,
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
-                projectile.GetComponent<Projectile>().DealingDammage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);
+                projectile.GetComponent<Projectile>().DealingDamage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
                 projectile.GetComponent<Projectile>().Owner = this.gameObject;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
-                Debug.Log(projectile.GetComponent<Projectile>().DealingDammage);
+                Debug.Log(projectile.GetComponent<Projectile>().DealingDamage);
 
                 Destroy(projectile, 10f);
             }

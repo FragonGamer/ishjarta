@@ -66,7 +66,7 @@ public class EnemyRangedAttack : MonoBehaviour
                     // Add effect to the player
                     //projectile.GetComponent<Projectile>().EmitEffects.Add(enemyScript.EmitEffect);
 
-                    projectile.GetComponent<Projectile>().DealingDammage = RangedDamage;
+                    projectile.GetComponent<Projectile>().DealingDamage = RangedDamage;
                     projectile.GetComponent<Projectile>().Owner = this.gameObject;
                     projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * ProjectileVelocity, ForceMode2D.Impulse);
 
