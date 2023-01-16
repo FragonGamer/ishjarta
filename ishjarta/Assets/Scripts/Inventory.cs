@@ -493,11 +493,6 @@ public class Inventory : MonoBehaviour
             ActiveItem.Activate(gameObject);
             state = ActiveItemState.active;
             activeTime = ActiveItem.activeTime;
-
-            audiosource.clip = arrowsound;
-            audiosource.Play();
-
-            Debug.Log("shot arrow");
         }
     }
 

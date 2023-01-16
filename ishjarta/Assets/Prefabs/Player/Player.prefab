@@ -151,6 +151,8 @@ MonoBehaviour:
   <AttackRate>k__BackingField: 1
   <Range>k__BackingField: 0
   <Width>k__BackingField: 0
+  audiosource: {fileID: 1462845246963143995}
+  arrowsound: {fileID: 8300000, guid: 27f5f9d111233664880e718248088359, type: 3}
   FirePoint: {fileID: 8899212196531149792}
   rangeModifier: 1
   nearestItemManager: {fileID: 0}

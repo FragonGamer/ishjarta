@@ -6,6 +6,9 @@ using System.Linq;
 
 public class Player : Entity
 {
+    
+    [SerializeField] AudioSource audiosource;
+    [SerializeField] public AudioClip arrowsound;
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] public ItemManager nearestItemManager = null;
@@ -186,7 +189,7 @@ public class Player : Entity
             if (timeRanged >= curWeapon.AttackRate)
             {
                 timeRanged = 0f;
-
+                
                 Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
                 float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
 
@@ -202,6 +205,12 @@ public class Player : Entity
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
                 projectile.GetComponent<Projectile>().Owner = this.gameObject;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
+                
+                audiosource.clip = arrowsound;
+                audiosource.Play();
+
+                Debug.Log("shot arrow");
+
                 Debug.Log(projectile.GetComponent<Projectile>().DealingDamage);
 
                 Destroy(projectile, 10f);
