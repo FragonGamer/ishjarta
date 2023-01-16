@@ -496,6 +496,8 @@ public class Inventory : MonoBehaviour
 
             audiosource.clip = arrowsound;
             audiosource.Play();
+
+            Debug.Log("shot arrow");
         }
     }
 
