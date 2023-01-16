@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class EnemyRangedAttack : MonoBehaviour
 {
@@ -59,13 +60,13 @@ public class EnemyRangedAttack : MonoBehaviour
                     float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
 
                     FirePoint.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-                    GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/{ProjectileNameInFile}"),
+                    GameObject projectile = Instantiate(Utils.LoadAssetByPath<GameObject>($"Assets/Prefabs/Weapons/Projectiles/{ProjectileNameInFile}.prefab"),
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
                     // Add effect to the player
                     //projectile.GetComponent<Projectile>().EmitEffects.Add(enemyScript.EmitEffect);
 
-                    projectile.GetComponent<Projectile>().DealingDammage = RangedDamage;
+                    projectile.GetComponent<Projectile>().DealingDamage = RangedDamage;
                     projectile.GetComponent<Projectile>().Owner = this.gameObject;
                     projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * ProjectileVelocity, ForceMode2D.Impulse);
 

@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EnemySpawner : MonoBehaviour
 {
 
-    AssetBundle enemyAssets;
+    IList<IResourceLocation> enemyAssets;
     GameObject[] possibleEnemies;
     StageController stageController;
     [SerializeField] public float delay = 3;
@@ -20,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         stageController = FindObjectOfType<StageController>().GetComponent<StageController>();
         enemyAssets = stageController.enemyAssets;
-        possibleEnemies = Utils.LoadAllAssetsOfAssetPack(enemyAssets);
+        possibleEnemies = Utils.LoadMultipleObjects<GameObject>(enemyAssets).ToArray();
         room = GetComponentInParent<Room>();
         enemy = this.GetComponent<Enemy>();
         room.SetCleared();

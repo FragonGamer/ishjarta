@@ -36,7 +36,9 @@ public class EnemyController : MonoBehaviour
         if (distance <= enemyScript.GetSpottingRange() + enemyScript.GetSpottingRange()/10)
         {
             animator.SetBool("hasSpottedPlayer",true);
-            animator.SetFloat("Speed",aiPath.velocity.sqrMagnitude);
+            animator.SetFloat("Speed_Vertical",aiPath.velocity.y);
+            animator.SetFloat("Speed_Horizontal", aiPath.velocity.x);
+            animator.SetFloat("Speed", aiPath.velocity.sqrMagnitude);
             if (distance <= enemyScript.GetSpottingRange())
             {
                 aiPath.canMove = true;

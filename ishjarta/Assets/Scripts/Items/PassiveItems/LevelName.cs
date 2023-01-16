@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum LevelName
 {
-    forest,
+    Forest,
+    Mountain,
     end
 }

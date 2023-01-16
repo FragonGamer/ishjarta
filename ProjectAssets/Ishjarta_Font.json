@@ -1,0 +1,42 @@
+{
+	"$baseURI": "https://yal.cc/r/20/pixelfont/",
+	"$version": "1.0",
+	"in-glyphs": [
+		"ABCDEFGHIJKLMN",
+		"OPQRSTUVWXYZ12",
+		"34567890%.,:;+",
+		"-^~_€[]<>=#'\"!",
+		"?"
+	],
+	"glyph-color": "black",
+	"in-kerning": [
+		""
+	],
+	"glyph-width": 13,
+	"glyph-height": 20,
+	"glyph-ofs-x": 1,
+	"glyph-ofs-y": 1,
+	"glyph-sep-x": 1,
+	"glyph-sep-y": 1,
+	"glyph-base-x": 0,
+	"glyph-baseline": 18,
+	"glyph-spacing": 3,
+	"font-is-mono": false,
+	"font-em-square": 64,
+	"font-line-gap": 120,
+	"font-ascend": 328,
+	"font-descend": -36,
+	"font-px-size": 20,
+	"font-name": "Ishjarta_Font",
+	"font-author": "Danijel Balog",
+	"font-copy": "(c)",
+	"font-version": "Version 1.0",
+	"font-desc": "Nordic Runes",
+	"font-license": "Everyone has the Permission to use this font",
+	"font-license-url": "",
+	"font-sample-text": "HELLO!",
+	"font-preview-text": [
+		"gTHE QUICK BROWN FOX JUMPS OVER A LAZY DOG.",
+		"0123456789"
+	]
+}

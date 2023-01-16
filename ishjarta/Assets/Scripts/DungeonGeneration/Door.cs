@@ -81,7 +81,6 @@ private void CalculatRange(){
     public float GetPlayerDistanceToDoor(Player player)
     {
         float distance = Vector3.Distance(this.transform.position, player.gameObject.transform.position);
-        Debug.Log(distance);
         return distance;
 
     }

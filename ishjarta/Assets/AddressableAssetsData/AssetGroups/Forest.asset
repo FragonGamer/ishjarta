@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Forest
+  m_EditorClassIdentifier: 
+  m_GroupName: Forest
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f690a9935ce0ba84093c32be2d26b2c0
+  m_SerializeEntries:
+  - m_GUID: 6d0968ed54e4a2e41a99b3e15ac2e908
+    m_Address: Forest/Meele
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MeeleEnemy
+    - Enemy
+    - Forest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb7d6abf70bc7114aaf0090bbfa86d4c
+    m_Address: Forest/Ranged
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Forest
+    - RangedEnemy
+    - Enemy
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a27c4febb66b61c41bea61559a6cd106
+    m_Address: Forest/Environment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Forest
+    - Environment
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9048c5c85c3694b47a8700f94e17de54, type: 2}
+    - {fileID: 11400000, guid: e9206e8435879714d993cd69bd411056, type: 2}
