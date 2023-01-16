@@ -8,6 +8,7 @@ using System.Linq;
 public class Room : MonoBehaviour
 {
 
+    public Tuple<int, int> position = new Tuple<int, int>(0,0);
     [SerializeField]
     public bool hasVisited = false;
     [SerializeField] public int maxOfThisRoom;
@@ -71,6 +72,7 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
+        GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<Minimap>().UpdateMinimap();
          LockRoom();
         if (isEntered)
         {

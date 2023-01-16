@@ -179,8 +179,9 @@ public class StageController : MonoBehaviour
 
         worldRooms.Add(startRoomGO.GetComponent<Room>());
         this.startRoom = startRoomGO;
-        startRoom.GetComponent<Room>().isEntered = true;
-        startRoom.GetComponent<Room>().hasVisited = true;
+        startRoomGO.GetComponent<Room>().isEntered = true;
+        startRoomGO.GetComponent<Room>().hasVisited = true;
+        startRoomGO.GetComponent<Room>().position = new Tuple<int, int>(0,0);
     }
 
 
@@ -290,6 +291,7 @@ public class StageController : MonoBehaviour
         Vector3 posRoom = go.transform.position;
         Room goRoom = go.GetComponent<Room>();
         goRoom.DistanceToStart = (int)Vector3.Distance(posStart, posRoom);
+        go.GetComponent<Room>().position = position;
 
         return go;
     }
@@ -566,6 +568,7 @@ public class StageController : MonoBehaviour
         Debug.Log("Rooms: " + nextRoomId);
         currentStageCounter++;
         startRoom.GetComponent<Room>().hasVisited = true;
+        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
     }
 
     private GameObject CreateEndRoom()
