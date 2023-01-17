@@ -626,6 +626,7 @@ public class StageController : MonoBehaviour
                     else
                     {
                         var newRoom = PlaceRoom(endRoom, posPosition);
+                        nextRoomId += 1;
                         worldRooms.Add(newRoom.GetComponent<Room>());
                         return endRoom.gameObject;
                     }

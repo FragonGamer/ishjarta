@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using System.Linq;
 
 public class Minimap : MonoBehaviour
 {
@@ -15,23 +15,63 @@ public class Minimap : MonoBehaviour
     private Color black = new Color(0,0,0);
     private Color white= new Color(1,1,1);
     private List<Tuple<int,Tilemap>> tilemaps = new List<Tuple<int,Tilemap>>();
-    private List<GameObject> folders = new List<GameObject>();
+    private List<Tuple<int,GameObject,Room>> folders = new List<Tuple<int,GameObject,Room>>();
+    private List<Room> rooms = new List<Room>();
+    private Player player;
 
-
-   
-    public void UpdateMinimap(){
+void Start()
+{
+    player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+}
+    private void UpdateColors(){
+        
         foreach(var tilemapdata in tilemaps){
             var tilemap = tilemapdata.Item2;
             if(tilemap.name.ToLower().Contains("back")){
                 tilemap.color = grey;
             }
-            else if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().currentRoom.RoomId == tilemapdata.Item1){
+            else if(player.currentRoom.RoomId == tilemapdata.Item1){
                 tilemap.color = lightgrey;
             }
             else{
-                tilemap.color = darkgrey;
+                var room = rooms.Where(r => r.RoomId == tilemapdata.Item1).First();
+                switch(room.gameObject.tag){
+                    case "ItemRoom":
+                        tilemap.color = Color.yellow;
+                        break;
+                    default:
+                        tilemap.color = darkgrey;
+                        break;
+
+                }
+                
             }
         }
+
+    }
+
+    private void UpdateRooms(){
+        
+        
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        foreach(Room room in rooms){
+            var folder = folders.Where(r => r.Item1 == room.RoomId).Select(r => r.Item2).FirstOrDefault();
+            if(folder == null)
+                continue;
+            if(room.hasVisited){
+                folder.gameObject.SetActive(true); 
+            }
+          
+
+            
+            
+
+        }
+    }
+   
+    public void UpdateMinimap(){
+        UpdateRooms();
+        UpdateColors();
     }
     public void AddRoomsToMinimap(List<Room> rooms){
         foreach(var room in rooms){
@@ -39,6 +79,7 @@ public class Minimap : MonoBehaviour
         }
     }
     public void AddRoomToMinmap(Room room){
+        rooms.Add(room);
         var tileobj = new Tile();
         tileobj.sprite = minimapSprite;
         var folder = new GameObject($"Room {room.RoomId}");
@@ -63,7 +104,8 @@ public class Minimap : MonoBehaviour
 
         }
         folder.transform.position = new Vector3 (room.position.Item1,room.position.Item2,0);
-        folders.Add(folder);
+        folders.Add(new Tuple<int,GameObject,Room>(room.RoomId,folder,room));
+        folder.SetActive(false);
 
 
     }
