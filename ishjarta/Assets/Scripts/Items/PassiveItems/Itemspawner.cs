@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Random = System.Random;
 
 public class Itemspawner : MonoBehaviour
@@ -18,16 +19,14 @@ public class Itemspawner : MonoBehaviour
     private void Awake()
     {
         levelname = FindObjectOfType<StageController>().currentStageName;
-        var Bundle = Utils.loadAssetPack("item");
-        var assets = Bundle.LoadAllAssets<GameObject>();
-        gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(this.levelname)).ToList();
-        
-        Bundle.Unload(false);
+        var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
+        var assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
+        gos = assets.Where(go => go.GetComponent<ItemManager>().GetItem().SpawnLevelPool.Contains(levelname)).ToList();
     }
 
     public GameObject[] Spawn()
     {
-        List<GameObject> items = new List<GameObject>();
+        List<GameObject> items = new List <GameObject>();
         
         for (int i = 0; i < itemAmount; i++)
         {
@@ -54,7 +53,7 @@ public class Itemspawner : MonoBehaviour
             var position = this.transform.position;
 
             var go = Instantiate(item, position, new Quaternion(0, 0, 0, 0));
-            
+            go.transform.SetParent(this.gameObject.transform);
             return go;
         }
         else if (randVal >= RarityRange.UncommonRange["Min"] && randVal <= RarityRange.UncommonRange["Max"])

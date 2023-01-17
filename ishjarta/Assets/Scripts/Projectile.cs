@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int DealingDammage;
+    public int DealingDamage;
     public GameObject Owner;
 
     // Effects which will be passed on to the enemy
@@ -12,12 +12,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (collider.gameObject == null)
+            return;
         if (collider.GetType() == typeof(BoxCollider2D) && (!Owner.CompareTag("Enemy") && collider.gameObject.tag == "Enemy" || !Owner.CompareTag("Player") && collider.gameObject.tag == "Player"))
         {
             Entity entity = collider.gameObject.GetComponent<Entity>();
             if (entity != null)
             {
-                entity.ReceiveDamage(DealingDammage);
+                entity.ReceiveDamage(DealingDamage);
                 entity.AddEffectRange(EmitEffects);
                 Destroy(this.gameObject);
             }

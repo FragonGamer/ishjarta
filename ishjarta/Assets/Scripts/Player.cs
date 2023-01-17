@@ -6,6 +6,9 @@ using System.Linq;
 
 public class Player : Entity
 {
+    
+    [SerializeField] AudioSource audiosource;
+    [SerializeField] public AudioClip arrowsound;
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] public ItemManager nearestItemManager = null;
@@ -15,7 +18,6 @@ public class Player : Entity
     [SerializeField] public Room currentRoom;
     //[SerializeField] int maxResistance;
     public int visitedRooms = 1;
-
     [SerializeField] private HealthBar hpBar;
 
     #region SaveSystem
@@ -63,7 +65,7 @@ public class Player : Entity
 
     private ItemManager GetNearestItemManager()
     {
-        var managers = FindObjectsOfType<ItemManager>();
+        var managers = FindObjectsOfType<ItemManager>().Where(item => item);
         if (managers != null)
         {
             ItemManager closest = null;
@@ -101,6 +103,8 @@ public class Player : Entity
     {
         UpdateHealthBar();
         nearestItemManager = GetNearestItemManager();
+        
+
         HandleEffects();
         if (inventory.GetMeleeWeapon() != null && timeMelee < inventory.GetMeleeWeapon().AttackRate)
         {
@@ -152,7 +156,7 @@ public class Player : Entity
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
         inventory.CurrentWeapon.EmitEffects : null;
 
-    public override void Attack(Vector2 mousePos, float damageChargeModifier)
+    public override async void Attack(Vector2 mousePos, float damageChargeModifier)
     {
         //MeleeAttack
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
@@ -185,21 +189,29 @@ public class Player : Entity
             if (timeRanged >= curWeapon.AttackRate)
             {
                 timeRanged = 0f;
-
+                
                 Vector2 lookdir = (Vector2)Camera.main.ScreenToWorldPoint(mousePos) - GetComponent<Rigidbody2D>().position;
                 float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
 
 
                 FirePoint.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-                GameObject projectile = Instantiate((GameObject)Resources.Load($"Prefabs/Projectiles/ArrowBasic"),
+                var arrowvariant = "ArrowBasic";
+                var projectiles = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Projectile" });
+                var projectileObject = Utils.LoadGameObjectByName(projectiles, arrowvariant);
+                GameObject projectile = Instantiate(projectileObject,
                     (Quaternion.Euler(0f, 0f, angle) * (FirePoint.transform.position - transform.position)) + transform.position, FirePoint.transform.rotation);
 
-                projectile.GetComponent<Projectile>().DealingDammage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);
+                projectile.GetComponent<Projectile>().DealingDamage = Mathf.FloorToInt(DealingDamage * damageChargeModifier);
                 projectile.GetComponent<Projectile>().EmitEffects = GetCurrentEffects;
                 projectile.GetComponent<Projectile>().Owner = this.gameObject;
                 projectile.GetComponent<Rigidbody2D>().AddForce((FirePoint.transform.up) * curWeapon.ProjectileVelocity, ForceMode2D.Impulse);
-                Debug.Log(projectile.GetComponent<Projectile>().DealingDammage);
+                
+                audiosource.clip = arrowsound;
+                audiosource.Play();
+
+                Debug.Log("shot arrow");
+
+                Debug.Log(projectile.GetComponent<Projectile>().DealingDamage);
 
                 Destroy(projectile, 10f);
             }

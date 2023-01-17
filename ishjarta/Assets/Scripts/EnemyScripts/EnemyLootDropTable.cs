@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu]
 public class EnemyLootDropTable : ScriptableObject
@@ -57,23 +58,21 @@ public class EnemyLootDropTable : ScriptableObject
     public static EnemyLootDropTable GetEnemyLootDropTableOfSlime()
     {
         EnemyLootDropTable table = new EnemyLootDropTable();
-        var usableItemPrefabBundle = Utils.loadAssetPack("usableitemprefab");
+        var usableItemPrefabBundle = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" ,"UsableItem"});
 
         EnemyLootDropTable.LootDrop lt1 = new EnemyLootDropTable.LootDrop();
-        lt1.drop = Utils.loadAssetFromAssetPack(usableItemPrefabBundle, "Coin");
+        lt1.drop = Utils.LoadGameObjectByName(usableItemPrefabBundle, "Coin");
         lt1.weight = 25;
         EnemyLootDropTable.LootDrop lt2 = new EnemyLootDropTable.LootDrop();
-        lt2.drop = Utils.loadAssetFromAssetPack(usableItemPrefabBundle, "Armor");
+        lt2.drop = Utils.LoadGameObjectByName(usableItemPrefabBundle, "Armor");
         lt2.weight = 25;
         EnemyLootDropTable.LootDrop lt3 = new EnemyLootDropTable.LootDrop();
         lt2.drop = null;
         lt2.weight = 50;
-
         table.table.Add(lt1);
         table.table.Add(lt2);
         table.table.Add(lt3);
 
-        Utils.UnloadAssetPack(usableItemPrefabBundle);
 
         return table;
     }

@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: PoisonStrengthSword
   m_EditorClassIdentifier: 
   ItemName: PoisonStrengthSword
+  description: 
+  fullDescription: 
   <Icon>k__BackingField: {fileID: 21300000, guid: e07e788bcb4073e4cb8d6b5d2387da84, type: 3}
+  <Rarity>k__BackingField: 0
+  <Price>k__BackingField: 0
+  <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField:
   - {fileID: 11400000, guid: 1268a8205687ad2448334ee024cfea33, type: 2}
   <EmitEffects>k__BackingField:
@@ -21,5 +26,6 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <Range>k__BackingField: 1.2
   <AttackRate>k__BackingField: 1
+  <IsChargable>k__BackingField: 0
   <Width>k__BackingField: 0.3
   <WeaponType>k__BackingField: 1

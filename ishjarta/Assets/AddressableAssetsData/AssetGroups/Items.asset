@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Items
+  m_EditorClassIdentifier: 
+  m_GroupName: Items
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e3a62c7e55d2a1649a5130c1e8c68105
+  m_SerializeEntries:
+  - m_GUID: dd2012966c4cc2c4fabc30a5689bf397
+    m_Address: ActiveItemPrefabs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActiveItem
+    - Item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 953654a73db096e4ea21fe1c38a118a1
+    m_Address: PassiveItemPrefabs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PassiveItem
+    - Item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49ad803b857e9a64f83bc9ee663d1ff5
+    m_Address: UsableItemPrefabs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Item
+    - UsableItem
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88c4e554062ec724abea57d4b1972dbf
+    m_Address: Assets/Items/MeleeItems
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MeeleWeapon
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dddcb1a8a1dd6ea478f9ed5e9a5bb367
+    m_Address: Assets/Items/RangedItems
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RangedWeapon
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfb26959657634241b02a3e02f281ba4
+    m_Address: Assets/Items/ActiveItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActiveItem
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ea90cca67860c84ea5e77b84d54d702
+    m_Address: Assets/Items/PassiveItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PassiveItem
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf262266f7d0d3d4bb9a368eb8950580
+    m_Address: Assets/Items/UsableItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UsableItem
+    - ScriptableObject
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5bc198f855921bf4cbca90490e3da7bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 85a4a7b6baa6a8b489792a6ab1822c77, type: 2}
+    - {fileID: 11400000, guid: 2cf10340e7236164cb976c0f9514b269, type: 2}

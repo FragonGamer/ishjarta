@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Vector3 offset;
+    [SerializeField]
     private Transform PlayerTransform;
     private void Start()
     {
@@ -12,6 +13,8 @@ public class CameraFollow : MonoBehaviour
     }
     private void LateUpdate()
     {
-       transform.position = PlayerTransform.position + offset;
+        if(PlayerTransform== null)
+            PlayerTransform = PlayerManager.instance.player.transform;
+        transform.position = PlayerTransform.position + offset;
     }
 }

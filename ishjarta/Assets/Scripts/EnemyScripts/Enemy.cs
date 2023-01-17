@@ -69,7 +69,7 @@ public class Enemy : Entity
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         room = GetComponentInParent<Room>();
         if (!room.isEntered)
         {

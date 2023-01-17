@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(menuName = "passiv items/AddArmor")]
 public class AddArmor : PassiveItem
@@ -10,27 +12,25 @@ public class AddArmor : PassiveItem
 
     public override async void triggerEffect()
     {
-        var p = Utils.loadAssetPack("usableitem");
-        var asdf = p.LoadAllAssets();
-        var armor = p.LoadAsset("Armor") as UsableItem;
-        var inv = Inventory.instance;
-        armor.Amount = Amount;
-        p.Unload(true);
+        await new Task(() =>
+        {
+            var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
+            var armor = Utils.LoadItemByName<UsableItem>(p, "Armor");
+            var inv = Inventory.instance;
+            armor.Amount = Amount;
+            inv.AddUsableItem(armor);
 
-        inv.AddUsableItem(armor);
 
-
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
+            Inventory.instance.RemovePeriodiclePassiveItem(this);
+        });
     }
 
     public override void removeEffect()
     {
-        var p = Utils.loadAssetPack("usableitem");
-        var asdf = p.LoadAllAssets();
-        var armor = p.LoadAsset("Armor") as UsableItem;
+        var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
+        var armor = Utils.LoadItemByName<UsableItem>(p, "Armor");
         var inv = Inventory.instance;
         armor.Amount = Amount;
-        p.Unload(true);
         Inventory.instance.DropItem(armor);
     }
 }

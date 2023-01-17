@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class Merchant : MonoBehaviour
@@ -13,11 +14,9 @@ public class Merchant : MonoBehaviour
     {
         Room = gameObject.GetComponentInParent<Room>();
         midPoint = Room.transform.position + new Vector3(Room.lenX / 2, -Room.lenY / 2);
-        var assets = Utils.loadAssetPack("special");
-        var itemspawner = Utils.loadAssetFromAssetPack(assets, "Itemspawner");
-        var itemPriceTag = Utils.loadAssetFromAssetPack(assets, "TextObject");
-        
-        assets.Unload(false);
+        var assets = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Objects" }, Addressables.MergeMode.Intersection);
+        var itemspawner = Utils.LoadObjectWithPredicate< GameObject>(assets, item => item.name == "Itemspawner");
+        var itemPriceTag = Utils.LoadObjectWithPredicate< GameObject>(assets, item => item.name == "TextObject");
         List<GameObject> spawners = new List<GameObject>();
         if (isSix)
         {

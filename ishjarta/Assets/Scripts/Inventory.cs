@@ -5,9 +5,15 @@ using System.Reflection;
 using UnityEngine;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEngine.AddressableAssets;
 
 public class Inventory : MonoBehaviour
 {
+    AudioSource audiosource;
+
+
+    [field: SerializeField] public AudioClip arrowsound;
+
     #region Singleton
     public static Inventory instance;
     private void Awake()
@@ -41,6 +47,7 @@ public class Inventory : MonoBehaviour
     [field: SerializeField] UsableItem Keys { get; set; }
     [field: SerializeField] UsableItem Armor { get; set; }
     [field: SerializeField] Player player { get; set; }
+
     
     [SerializeField] private HUDManager hudManager;
 
@@ -85,33 +92,29 @@ public class Inventory : MonoBehaviour
 
             if (inventoryData.meleeWeapon != null)
             {
-                var meleeWeaponItemBundle = Utils.loadAssetPack("meleeweapon");
-                AddItem((MeleeWeapon)Utils.loadItemFromAssetPack(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName));
-                meleeWeaponItemBundle.Unload(false);
+                var meleeWeaponItemBundle = Utils.LoadIRessourceLocations<GameObject>("MeleeWeapon");
+                AddItem(Utils.LoadGameObjectByName(meleeWeaponItemBundle, inventoryData.meleeWeapon.itemName).GetComponent<MeleeWeapon>());
             }
 
             if (inventoryData.rangedWeapon != null)
             {
-                var rangedWeaponItemBundle = Utils.loadAssetPack("rangedweapon");
-                AddItem((RangedWeapon)Utils.loadItemFromAssetPack(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName));
-                rangedWeaponItemBundle.Unload(false);
+                var rangedWeaponItemBundle = Utils.LoadIRessourceLocations<GameObject>("rangedweapon");
+                AddItem(Utils.LoadGameObjectByName(rangedWeaponItemBundle, inventoryData.rangedWeapon.itemName).GetComponent<MeleeWeapon>());
             }
 
             if (inventoryData.IsCurrentWeaponMelee && MeleeWeapon != null && CurrentWeapon is RangedWeapon)
                 ChangeWeapon();
 
-            var passivItemBundle = Utils.loadAssetPack("passivitem");
             inventoryData.passiveItems.ForEach(x =>
             {
-                AddItem((PassiveItem)Utils.loadItemFromAssetPack(passivItemBundle, x.itemName));
+                var passivItemBundle = Utils.LoadIRessourceLocations<GameObject>("PassiveItem");
+                AddItem(Utils.LoadGameObjectByName(passivItemBundle, x.itemName).GetComponent<PassiveItem>());
             });
-            passivItemBundle.Unload(false);
 
             if (inventoryData.activeItem != null)
             {
-                var activeItemBundle = Utils.loadAssetPack("activeitem");
-                AddItem((ActiveItem)Utils.loadItemFromAssetPack(activeItemBundle, inventoryData.activeItem.itemName));
-                activeItemBundle.Unload(false);
+                var activeItemBundle = Utils.LoadIRessourceLocations<GameObject>("ActiveItem");
+                AddItem(Utils.LoadGameObjectByName(activeItemBundle, inventoryData.activeItem.itemName).GetComponent<ActiveItem>());
             }
 
             Coins.Init(inventoryData.coins);
