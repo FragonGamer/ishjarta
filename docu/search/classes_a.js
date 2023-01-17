@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['meleeweapon_199',['MeleeWeapon',['../classMeleeWeapon.html',1,'']]],
-  ['meleeweapondata_200',['MeleeWeaponData',['../classMeleeWeaponData.html',1,'']]],
-  ['menucontroller_201',['MenuController',['../classMenuController.html',1,'']]],
-  ['merchant_202',['Merchant',['../classMerchant.html',1,'']]],
-  ['minimap_203',['Minimap',['../classMinimap.html',1,'']]]
+  ['meleeweapon_204',['MeleeWeapon',['../classMeleeWeapon.html',1,'']]],
+  ['meleeweapondata_205',['MeleeWeaponData',['../classMeleeWeaponData.html',1,'']]],
+  ['menucontroller_206',['MenuController',['../classMenuController.html',1,'']]],
+  ['merchant_207',['Merchant',['../classMerchant.html',1,'']]],
+  ['minimap_208',['Minimap',['../classMinimap.html',1,'']]],
+  ['minimapcamera_209',['MinimapCamera',['../classMinimapCamera.html',1,'']]]
 ];

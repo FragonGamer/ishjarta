@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector2serializationsurrogate_150',['Vector2SerializationSurrogate',['../classVector2SerializationSurrogate.html',1,'']]]
+  ['vector2serializationsurrogate_155',['Vector2SerializationSurrogate',['../classVector2SerializationSurrogate.html',1,'']]]
 ];

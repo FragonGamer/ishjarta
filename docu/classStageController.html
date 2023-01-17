@@ -71,15 +71,12 @@ $(function() {
 <div class="title">StageController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Controls the gameplay flow and construction and connection of the levels. Should only exist once.  
- <a href="classStageController.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for StageController:</div>
 <div class="dyncontent">
 <div class="center"><img src="classStageController__inherit__graph.png" border="0" usemap="#aStageController_inherit__map" alt="Inheritance graph"/></div>
 <map name="aStageController_inherit__map" id="aStageController_inherit__map">
-<area shape="rect" title="Controls the gameplay flow and construction and connection of the levels. Should only exist once." alt="" coords="6,80,129,107"/>
+<area shape="rect" title=" " alt="" coords="6,80,129,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,129,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -88,7 +85,7 @@ Collaboration diagram for StageController:</div>
 <div class="dyncontent">
 <div class="center"><img src="classStageController__coll__graph.png" border="0" usemap="#aStageController_coll__map" alt="Collaboration graph"/></div>
 <map name="aStageController_coll__map" id="aStageController_coll__map">
-<area shape="rect" title="Controls the gameplay flow and construction and connection of the levels. Should only exist once." alt="" coords="6,80,129,107"/>
+<area shape="rect" title=" " alt="" coords="6,80,129,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,129,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -128,9 +125,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MerchantRooms</b></td
 <tr class="memitem:aac6cff24e1a88017db5a5935a8cc5bd5"><td class="memItemLeft" align="right" valign="top"><a id="aac6cff24e1a88017db5a5935a8cc5bd5"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>MerchantRoomAmount</b></td></tr>
 <tr class="separator:aac6cff24e1a88017db5a5935a8cc5bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3924789ba8dea814ea2a494bae1fa7e"><td class="memItemLeft" align="right" valign="top"><a id="ad3924789ba8dea814ea2a494bae1fa7e"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>camera</b></td></tr>
-<tr class="separator:ad3924789ba8dea814ea2a494bae1fa7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19f3f7540be3bb497aadaaa73fa4754"><td class="memItemLeft" align="right" valign="top"><a id="af19f3f7540be3bb497aadaaa73fa4754"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>StageCamera</b></td></tr>
+<tr class="separator:af19f3f7540be3bb497aadaaa73fa4754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3031b832138f1139992ea3fc7323a099"><td class="memItemLeft" align="right" valign="top"><a id="a3031b832138f1139992ea3fc7323a099"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>CreateRooms</b> = true</td></tr>
 <tr class="separator:a3031b832138f1139992ea3fc7323a099"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,12 +152,12 @@ Properties</h2></td></tr>
 <tr class="memitem:af635fe74106a7417ffb113f67ca6a353"><td class="memItemLeft" align="right" valign="top"><a id="af635fe74106a7417ffb113f67ca6a353"></a>
 List&lt; <a class="el" href="classRoom.html">Room</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>worldRooms</b> = new List&lt;<a class="el" href="classRoom.html">Room</a>&gt;()<code> [get]</code></td></tr>
 <tr class="separator:af635fe74106a7417ffb113f67ca6a353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ddd17ecf6b12ed73023d9508a4afe45"><td class="memItemLeft" align="right" valign="top"><a id="a5ddd17ecf6b12ed73023d9508a4afe45"></a>
-AssetBundle&#160;</td><td class="memItemRight" valign="bottom"><b>assets</b><code> [get]</code></td></tr>
-<tr class="separator:a5ddd17ecf6b12ed73023d9508a4afe45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31c579819de7d4f806cbdceda8017127"><td class="memItemLeft" align="right" valign="top"><a id="a31c579819de7d4f806cbdceda8017127"></a>
-AssetBundle&#160;</td><td class="memItemRight" valign="bottom"><b>enemyAssets</b><code> [get]</code></td></tr>
-<tr class="separator:a31c579819de7d4f806cbdceda8017127"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f67731e5b7e9ec72dfde259d4d7b40"><td class="memItemLeft" align="right" valign="top"><a id="a06f67731e5b7e9ec72dfde259d4d7b40"></a>
+IList&lt; IResourceLocation &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>assets</b><code> [get]</code></td></tr>
+<tr class="separator:a06f67731e5b7e9ec72dfde259d4d7b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add0449d664605e75716f7505949eae06"><td class="memItemLeft" align="right" valign="top"><a id="add0449d664605e75716f7505949eae06"></a>
+IList&lt; IResourceLocation &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>enemyAssets</b><code> [get]</code></td></tr>
+<tr class="separator:add0449d664605e75716f7505949eae06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10a0a49158424779983090274832b31"><td class="memItemLeft" align="right" valign="top"><a id="ae10a0a49158424779983090274832b31"></a>
 List&lt; LevelName &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stageNames</b><code> [get]</code></td></tr>
 <tr class="separator:ae10a0a49158424779983090274832b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,9 +166,8 @@ LevelName&#160;</td><td class="memItemRight" valign="bottom"><b>currentStageName
 <tr class="separator:ae0f10c1da6269b13747ed2bbd73b1c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Controls the gameplay flow and construction and connection of the levels. Should only exist once. </p>
-
-<p class="definition">Definition at line <a class="el" href="StageController_8cs_source.html#l00011">11</a> of file <a class="el" href="StageController_8cs_source.html">StageController.cs</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="StageController_8cs_source.html#l00012">12</a> of file <a class="el" href="StageController_8cs_source.html">StageController.cs</a>.</p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>ishjarta/Assets/Scripts/DungeonGeneration/<a class="el" href="StageController_8cs_source.html">StageController.cs</a></li>
 </ul>

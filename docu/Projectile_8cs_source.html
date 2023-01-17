@@ -75,7 +75,7 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="classProjectile.html">    5</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classProjectile.html">Projectile</a> : MonoBehaviour</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> DealingDammage;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span> DealingDamage;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">public</span> GameObject Owner;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="comment">// Effects which will be passed on to the enemy</span></div>
@@ -83,23 +83,25 @@ $(function() {
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> OnTriggerEnter2D(Collider2D collider)</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (collider.GetType() == typeof(BoxCollider2D) &amp;&amp; (!Owner.CompareTag(<span class="stringliteral">&quot;Enemy&quot;</span>) &amp;&amp; collider.gameObject.tag == <span class="stringliteral">&quot;Enemy&quot;</span> || !Owner.CompareTag(<span class="stringliteral">&quot;Player&quot;</span>) &amp;&amp; collider.gameObject.tag == <span class="stringliteral">&quot;Player&quot;</span>))</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="classEntity.html">Entity</a> entity = collider.gameObject.GetComponent&lt;<a class="code" href="classEntity.html">Entity</a>&gt;();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordflow">if</span> (entity != <span class="keyword">null</span>)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                entity.ReceiveDamage(DealingDammage);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                entity.AddEffectRange(EmitEffects);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                Destroy(this.gameObject);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="comment">// 3 is obstacle layer and 6 is wall layer</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (collider.gameObject.layer == 3 || collider.gameObject.layer == 6 || collider.CompareTag(<span class="stringliteral">&quot;Obstacle&quot;</span>) || collider.CompareTag(<span class="stringliteral">&quot;Door&quot;</span>))</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            Destroy(this.gameObject);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (collider.gameObject == <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span> (collider.GetType() == typeof(BoxCollider2D) &amp;&amp; (!Owner.CompareTag(<span class="stringliteral">&quot;Enemy&quot;</span>) &amp;&amp; collider.gameObject.tag == <span class="stringliteral">&quot;Enemy&quot;</span> || !Owner.CompareTag(<span class="stringliteral">&quot;Player&quot;</span>) &amp;&amp; collider.gameObject.tag == <span class="stringliteral">&quot;Player&quot;</span>))</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="classEntity.html">Entity</a> entity = collider.gameObject.GetComponent&lt;<a class="code" href="classEntity.html">Entity</a>&gt;();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">if</span> (entity != <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                entity.ReceiveDamage(DealingDamage);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                entity.AddEffectRange(EmitEffects);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                Destroy(this.gameObject);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="comment">// 3 is obstacle layer and 6 is wall layer</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (collider.gameObject.layer == 3 || collider.gameObject.layer == 6 || collider.CompareTag(<span class="stringliteral">&quot;Obstacle&quot;</span>) || collider.CompareTag(<span class="stringliteral">&quot;Door&quot;</span>))</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            Destroy(this.gameObject);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="Entity_8cs_source.html#l00009">Entity.cs:10</a></div></div>
 <div class="ttc" id="aclassProjectile_html"><div class="ttname"><a href="classProjectile.html">Projectile</a></div><div class="ttdef"><b>Definition:</b> <a href="Projectile_8cs_source.html#l00005">Projectile.cs:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

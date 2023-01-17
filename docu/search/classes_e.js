@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['savedata_222',['SaveData',['../classSaveData.html',1,'']]],
-  ['savemanager_223',['SaveManager',['../classSaveManager.html',1,'']]],
-  ['serializationmanager_224',['SerializationManager',['../classSerializationManager.html',1,'']]],
-  ['spawnitem_225',['SpawnItem',['../classSpawnItem.html',1,'']]],
-  ['speedeffect_226',['SpeedEffect',['../classSpeedEffect.html',1,'']]],
-  ['speedstatus_227',['SpeedStatus',['../classSpeedStatus.html',1,'']]],
-  ['stagecontroller_228',['StageController',['../classStageController.html',1,'']]],
-  ['startposition_229',['StartPosition',['../classStartPosition.html',1,'']]],
-  ['statuseffecthandler_230',['StatusEffectHandler',['../classStatusEffectHandler.html',1,'']]],
-  ['strengtheffect_231',['StrengthEffect',['../classStrengthEffect.html',1,'']]],
-  ['strengthstatus_232',['StrengthStatus',['../classStrengthStatus.html',1,'']]]
+  ['savedata_228',['SaveData',['../classSaveData.html',1,'']]],
+  ['savemanager_229',['SaveManager',['../classSaveManager.html',1,'']]],
+  ['serializationmanager_230',['SerializationManager',['../classSerializationManager.html',1,'']]],
+  ['spawnitem_231',['SpawnItem',['../classSpawnItem.html',1,'']]],
+  ['speedeffect_232',['SpeedEffect',['../classSpeedEffect.html',1,'']]],
+  ['speedstatus_233',['SpeedStatus',['../classSpeedStatus.html',1,'']]],
+  ['stagecontroller_234',['StageController',['../classStageController.html',1,'']]],
+  ['startposition_235',['StartPosition',['../classStartPosition.html',1,'']]],
+  ['statuseffecthandler_236',['StatusEffectHandler',['../classStatusEffectHandler.html',1,'']]],
+  ['strengtheffect_237',['StrengthEffect',['../classStrengthEffect.html',1,'']]],
+  ['strengthstatus_238',['StrengthStatus',['../classStrengthStatus.html',1,'']]]
 ];

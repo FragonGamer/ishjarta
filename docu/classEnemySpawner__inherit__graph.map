@@ -1,4 +1,4 @@
 <map id="EnemySpawner" name="EnemySpawner">
-<area shape="rect" id="node1" title="Represents a static object which spawn an certain amount of enemies after an delay" alt="" coords="6,80,129,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="6,80,129,107"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,5,129,32"/>
 </map>

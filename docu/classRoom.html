@@ -137,6 +137,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>UnlockRoom</b> ()</td
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:adde865506239cbd7684f04808eb836ef"><td class="memItemLeft" align="right" valign="top"><a id="adde865506239cbd7684f04808eb836ef"></a>
+Tuple&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> = new Tuple&lt;int, int&gt;(0,0)</td></tr>
+<tr class="separator:adde865506239cbd7684f04808eb836ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6840b72ba9098483bb786c611296889f"><td class="memItemLeft" align="right" valign="top"><a id="a6840b72ba9098483bb786c611296889f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasVisited</b> = false</td></tr>
 <tr class="separator:a6840b72ba9098483bb786c611296889f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,15 +210,15 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 
 <p>connects door to door of the nearest room </p>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00485">485</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    {</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160; </div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> doors)</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        {</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;            item.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;().AttachClosestDoor();</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        }</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00487">487</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    {</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> doors)</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;        {</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;            item.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;().AttachClosestDoor();</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160; </div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        }</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    }</div>
 <div class="ttc" id="aclassDoor_html"><div class="ttname"><a href="classDoor.html">Door</a></div><div class="ttdoc">Represents a door of a room. Contains features for connecting to other doors, closing a door etc.</div><div class="ttdef"><b>Definition:</b> <a href="Door_8cs_source.html#l00012">Door.cs:13</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -253,24 +256,24 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>integer of index</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00235">235</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    {</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordtype">int</span> index = 0;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(1); i++)</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">if</span> (roomLayout[offset, i].roomId &gt;= 0)</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                index = i;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        }</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">return</span> index;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    }</div>
-<div class="ttc" id="aclassRoom_html_a3ba50b54062e3e532baaa0ec6d86b716"><div class="ttname"><a href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">Room.GetRoomLayout</a></div><div class="ttdeci">GridPosdataType[,] GetRoomLayout()</div><div class="ttdoc">gets the layout of the room with gridposdatatype</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00189">Room.cs:189</a></div></div>
-<div class="ttc" id="aclassStageController_html"><div class="ttname"><a href="classStageController.html">StageController</a></div><div class="ttdoc">Controls the gameplay flow and construction and connection of the levels. Should only exist once.</div><div class="ttdef"><b>Definition:</b> <a href="StageController_8cs_source.html#l00011">StageController.cs:12</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00237">237</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordtype">int</span> index = 0;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(1); i++)</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">if</span> (roomLayout[offset, i].roomId &gt;= 0)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                index = i;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keywordflow">return</span> index;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    }</div>
+<div class="ttc" id="aclassRoom_html_a3ba50b54062e3e532baaa0ec6d86b716"><div class="ttname"><a href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">Room.GetRoomLayout</a></div><div class="ttdeci">GridPosdataType[,] GetRoomLayout()</div><div class="ttdoc">gets the layout of the room with gridposdatatype</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00191">Room.cs:191</a></div></div>
+<div class="ttc" id="aclassStageController_html"><div class="ttname"><a href="classStageController.html">StageController</a></div><div class="ttdef"><b>Definition:</b> <a href="StageController_8cs_source.html#l00012">StageController.cs:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -307,22 +310,22 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>integer of index</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00256">256</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordtype">int</span> index = 0;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(0); i++)</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        {</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">if</span> (roomLayout[i, offset].roomId &gt;= 0)</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                index = i;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        }</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">return</span> index;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00258">258</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    {</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keywordtype">int</span> index = 0;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(0); i++)</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        {</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <span class="keywordflow">if</span> (roomLayout[i, offset].roomId &gt;= 0)</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                index = i;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="keywordflow">return</span> index;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -355,48 +358,48 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 <p>( (0/0) hasSDoor=false hasNDoor = true hasWDoor = true hasEDoor = true roomId = 1) ( (0/5) hasSDoor=true hasNDoor = false hasWDoor = true hasEDoor = true roomId = 1 )</p>
 <dl class="section return"><dt>Returns</dt><dd>GridPosDataType array of the current room layout</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00189">189</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        roomLayout = <span class="keyword">new</span> <a class="code" href="classGridPosdataType.html">GridPosdataType</a>[lenY / <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength, lenX / <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength];</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        var x = 0;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        var y = 0;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        var tilemap = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;().ToList().Find(comp =&gt; comp.name.Contains(<span class="stringliteral">&quot;Background&quot;</span>));</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(0); i++)</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; roomLayout.GetLength(1); j++)</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                roomLayout[i, j] = <span class="keyword">new</span> <a class="code" href="classGridPosdataType.html">GridPosdataType</a>(x, y);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="comment">//tile map begins in the left upper corner with 0/0 </span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                var tile = tilemap.GetTile(<span class="keyword">new</span> Vector3Int(x + 4, y - 2, 0));</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordflow">if</span> (tile != <span class="keyword">null</span>)</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    <span class="keywordflow">if</span> (doors.Count &gt; 0)</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                        CalcDoorsOfRoomCell(this.gameObject, <span class="keyword">new</span> Tuple&lt;int, int&gt;(i, j), x, y);</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    }</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                        <a class="code" href="classRoom.html#a57e43acc971f27c87e3f821670f2ccc8">SetDoors</a>();</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                        CalcDoorsOfRoomCell(this.gameObject, <span class="keyword">new</span> Tuple&lt;int, int&gt;(i, j), x, y);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    }</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                }</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                x += <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            x = 0;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            y -= <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">return</span> roomLayout;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00191">191</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        roomLayout = <span class="keyword">new</span> <a class="code" href="classGridPosdataType.html">GridPosdataType</a>[lenY / <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength, lenX / <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength];</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        var x = 0;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        var y = 0;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        var tilemap = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;().ToList().Find(comp =&gt; comp.name.Contains(<span class="stringliteral">&quot;Background&quot;</span>));</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(0); i++)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        {</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; roomLayout.GetLength(1); j++)</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                roomLayout[i, j] = <span class="keyword">new</span> <a class="code" href="classGridPosdataType.html">GridPosdataType</a>(x, y);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="comment">//tile map begins in the left upper corner with 0/0 </span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                var tile = tilemap.GetTile(<span class="keyword">new</span> Vector3Int(x + 4, y - 2, 0));</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">if</span> (tile != <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    <span class="keywordflow">if</span> (doors.Count &gt; 0)</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    {</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                        CalcDoorsOfRoomCell(this.gameObject, <span class="keyword">new</span> Tuple&lt;int, int&gt;(i, j), x, y);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                    {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                        <a class="code" href="classRoom.html#a57e43acc971f27c87e3f821670f2ccc8">SetDoors</a>();</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                        CalcDoorsOfRoomCell(this.gameObject, <span class="keyword">new</span> Tuple&lt;int, int&gt;(i, j), x, y);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                    }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                x += <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            x = 0;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            y -= <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="keywordflow">return</span> roomLayout;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    }</div>
 <div class="ttc" id="aclassGridPosdataType_html"><div class="ttname"><a href="classGridPosdataType.html">GridPosdataType</a></div><div class="ttdoc">Represents one field in the grid for the room layout</div><div class="ttdef"><b>Definition:</b> <a href="GridPosdataType_8cs_source.html#l00004">GridPosdataType.cs:5</a></div></div>
-<div class="ttc" id="aclassRoom_html_a57e43acc971f27c87e3f821670f2ccc8"><div class="ttname"><a href="classRoom.html#a57e43acc971f27c87e3f821670f2ccc8">Room.SetDoors</a></div><div class="ttdeci">void SetDoors()</div><div class="ttdoc">adds all doors of room to the door list of the room</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00435">Room.cs:435</a></div></div>
+<div class="ttc" id="aclassRoom_html_a57e43acc971f27c87e3f821670f2ccc8"><div class="ttname"><a href="classRoom.html#a57e43acc971f27c87e3f821670f2ccc8">Room.SetDoors</a></div><div class="ttdeci">void SetDoors()</div><div class="ttdoc">adds all doors of room to the door list of the room</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00437">Room.cs:437</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -433,22 +436,22 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>integer of length</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00277">277</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordtype">int</span> len = 0;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(1); i++)</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        {</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <span class="keywordflow">if</span> (roomLayout[offset, i].roomId &gt;= 0)</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            {</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                len += <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        }</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordflow">return</span> len; ;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00279">279</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    {</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keywordtype">int</span> len = 0;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(1); i++)</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        {</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">if</span> (roomLayout[offset, i].roomId &gt;= 0)</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                len += <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            }</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        <span class="keywordflow">return</span> len; ;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -485,22 +488,22 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>integer of length</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00298">298</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    {</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordtype">int</span> len = 0;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(0); i++)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <span class="keywordflow">if</span> (roomLayout[i, offset].roomId &gt;= 0)</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                len += <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            }</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordflow">return</span> len;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00300">300</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    {</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordflow">if</span> (roomLayout is <span class="keyword">null</span>) roomLayout = <a class="code" href="classRoom.html#a3ba50b54062e3e532baaa0ec6d86b716">GetRoomLayout</a>();</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        offset /= <a class="code" href="classStageController.html">StageController</a>.roomXBaseLength;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordtype">int</span> len = 0;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; roomLayout.GetLength(0); i++)</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        {</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            <span class="keywordflow">if</span> (roomLayout[i, offset].roomId &gt;= 0)</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                len += <a class="code" href="classStageController.html">StageController</a>.roomYBaseLength;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        }</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="keywordflow">return</span> len;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -536,10 +539,10 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00045">45</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        Enemies.Remove(enemy);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00046">46</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        Enemies.Remove(enemy);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -568,15 +571,15 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 
 <p>If the List of enemies in the room is empty (for example if all enemies are dead) the cleared status will be set to true </p>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00064">64</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> (Enemies.Count == 0)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            IsCleared = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            IsCleared = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00065">65</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span> (Enemies.Count == 0)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            IsCleared = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            IsCleared = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -605,38 +608,38 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 
 <p>adds all doors of room to the door list of the room </p>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00435">435</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    {</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160; </div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        var gos = this.GetComponentsInChildren&lt;Door&gt;();</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> gos)</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        {</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="keywordflow">if</span> (!doors.Contains(item.gameObject))</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;            {</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                var col = item.GetComponent&lt;BoxCollider2D&gt;();</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;                <span class="keywordflow">switch</span> (item.direction)</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                {</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.East:</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(0.45f, 0);</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(0.05f, 1);</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.West:</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(-0.45f, 0);</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(0.05f, 1);</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.South:</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(0, -0.45f);</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(1, 0.05f);</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.North:</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(0, 0.45f);</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(1, 0.05f);</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;                }</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;                doors.Add(item.gameObject);</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            }</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        }</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00437">437</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    {</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        var gos = this.GetComponentsInChildren&lt;Door&gt;();</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> gos)</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        {</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            <span class="keywordflow">if</span> (!doors.Contains(item.gameObject))</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            {</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                var col = item.GetComponent&lt;BoxCollider2D&gt;();</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;                <span class="keywordflow">switch</span> (item.direction)</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;                {</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.East:</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(0.45f, 0);</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(0.05f, 1);</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.West:</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(-0.45f, 0);</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(0.05f, 1);</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.South:</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(0, -0.45f);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(1, 0.05f);</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                    <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.North:</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;                        col.offset = <span class="keyword">new</span> Vector2(0, 0.45f);</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;                        col.size = <span class="keyword">new</span> Vector2(1, 0.05f);</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;                }</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;                doors.Add(item.gameObject);</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;            }</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        }</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -665,16 +668,16 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 
 <p>sets the room to all doors in doors list </p>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00471">471</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    {</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160; </div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        <span class="keywordflow">foreach</span> (var door <span class="keywordflow">in</span> doors)</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        {</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;            door.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;().room = gameObject.GetComponent&lt;<a class="code" href="classRoom.html">Room</a>&gt;();</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        }</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; </div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160; </div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00473">473</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    {</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        <span class="keywordflow">foreach</span> (var door <span class="keywordflow">in</span> doors)</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        {</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;            door.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;().room = gameObject.GetComponent&lt;<a class="code" href="classRoom.html">Room</a>&gt;();</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;        }</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160; </div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    }</div>
 <div class="ttc" id="aclassRoom_html"><div class="ttname"><a href="classRoom.html">Room</a></div><div class="ttdoc">Represents a room of the level. Contains all doors of a room and controls the game flow.</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00010">Room.cs:11</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -704,53 +707,53 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 
 <p>swaps the tiles of doors which are not connected to an other door </p>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00384">384</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    {</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        var tilemaps = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;();</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keywordflow">foreach</span> (Tilemap tilemap <span class="keywordflow">in</span> tilemaps)</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        {</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            <span class="keywordflow">if</span> (tilemap.name.Contains(<span class="stringliteral">&quot;Obstacle&quot;</span>))</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            {</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                <span class="keywordflow">foreach</span> (var door <span class="keywordflow">in</span> doors.Select(item =&gt; item.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;()))</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                {</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                    <span class="keywordflow">if</span> (door.ConnectedDoor == <span class="keyword">null</span>)</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                    {</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; </div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                        <span class="keywordflow">switch</span> (door.direction)</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                        {</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.East:</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallRight);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y + 1), closedWallRight);</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y - 1), closedWallRight);</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.South:</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallDown);</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x + 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallDown);</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x - 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallDown);</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.West:</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallLeft);</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y + 1), closedWallLeft);</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y - 1), closedWallLeft);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.North:</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallUp);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x + 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallUp);</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x - 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallUp);</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                        }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00386">386</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    {</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        var tilemaps = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;();</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="keywordflow">foreach</span> (Tilemap tilemap <span class="keywordflow">in</span> tilemaps)</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        {</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="keywordflow">if</span> (tilemap.name.Contains(<span class="stringliteral">&quot;Obstacle&quot;</span>))</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            {</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                <span class="keywordflow">foreach</span> (var door <span class="keywordflow">in</span> doors.Select(item =&gt; item.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;()))</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                    <span class="keywordflow">if</span> (door.ConnectedDoor == <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                    {</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                        <span class="keywordflow">switch</span> (door.direction)</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                        {</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.East:</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallRight);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y + 1), closedWallRight);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y - 1), closedWallRight);</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.South:</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallDown);</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x + 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallDown);</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x - 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallDown);</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.West:</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallLeft);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y + 1), closedWallLeft);</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y - 1), closedWallLeft);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                            <span class="keywordflow">case</span> <a class="code" href="classDoor.html">Door</a>.Direction.North:</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallUp);</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x + 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallUp);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                                tilemap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x - 1, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), closedWallUp);</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160; </div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                    }</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                }</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160; </div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            }</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        }</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160; </div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    }</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                        }</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                    }</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                }</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160; </div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            }</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        }</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -779,18 +782,18 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 
 <p>toggles the state of the activness of the room gameobject </p>
 
-<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00368">368</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    {</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="keywordflow">if</span> (!FindObjectOfType&lt;StageController&gt;().GetComponent&lt;StageController&gt;().TestGeneration)</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        {</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            this.gameObject.SetActive(!this.gameObject.active);</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        }</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Room_8cs_source.html#l00370">370</a> of file <a class="el" href="Room_8cs_source.html">Room.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keywordflow">if</span> (!FindObjectOfType&lt;StageController&gt;().GetComponent&lt;StageController&gt;().TestGeneration)</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160; </div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            this.gameObject.SetActive(!this.gameObject.activeSelf);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
