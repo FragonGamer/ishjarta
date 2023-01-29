@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using UnityEngine.InputSystem;
+
+enum mapState{
+    mini,
+    max,
+}
 public struct ColorData{
     public ColorData(float hue,float saturation,float value){
         this._hue=hue;
@@ -34,6 +40,11 @@ public struct ColorData{
 }
 public class Minimap : MonoBehaviour
 {
+    
+
+    private mapState minimapState; 
+    [SerializeField] InputMaster inputMaster;
+
     [SerializeField] private Sprite minimapSprite;
     [SerializeField] private Grid minimapGrid;
     #region color
@@ -49,15 +60,64 @@ public class Minimap : MonoBehaviour
     private float darkModifier = 0.3f;
     private float lightModifier = 1.5f;
     #endregion
+    
     private List<Tuple<int, Tilemap,ColorData>> tilemaps = new List<Tuple<int, Tilemap,ColorData>>();
     private List<Tuple<int, GameObject, Room>> folders = new List<Tuple<int, GameObject, Room>>();
     private List<Room> rooms = new List<Room>();
     private Player player;
+    private GameObject renderTexture;
+    private RectTransform transform;
 
+void Awake()
+    {
+                inputMaster = new InputMaster();
+                minimapState = mapState.mini;
+
+    }
+private void OnEnable()
+    {
+        inputMaster.Enable();
+    }
+    private void OnDisable()
+    {
+        inputMaster.Disable();
+    }
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        inputMaster.Player.ToggleMap.performed += ToggleMap;
+        renderTexture = this.gameObject.GetComponentInChildren<RectTransform>().gameObject;
+        transform = renderTexture.GetComponent<RectTransform>();
     }
+
+    public void ToggleMap(InputAction.CallbackContext context)
+    {
+        Vector3 position = new Vector3(0,0,0);
+        Vector3 scale = new Vector3(0,0,0);
+        Vector2 size = new Vector2(0,0);
+
+        
+        switch(minimapState){
+            case mapState.max:
+                position = new Vector3(530,345,0);
+                scale = new Vector3(1,1,1);
+                size= new Vector2(300,300);
+                break;
+            case mapState.mini:
+                position = new Vector3(-60,-35,0);
+                scale = new Vector3(5,3,1);
+                size= new Vector2(300,300);
+                break;
+            default:
+                return;
+        }
+        transform.SetPositionAndRotation(position,new Quaternion(0,0,0,0));
+        transform.localScale = scale;
+        transform.sizeDelta = size;
+
+
+    }
+
     private void UpdateColors()
     {
 
