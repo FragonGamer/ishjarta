@@ -56,11 +56,13 @@ public class Minimap : MonoBehaviour
     // default color for rooms
     // wall colors
     // standard room
-    [SerializeField] private ColorData lightGrey = new ColorData(0, 0, 70);
+    private ColorData lightGrey = new ColorData(0, 0, 60);
     // item rooms
-    [SerializeField] private ColorData yellow = new ColorData(60, 100, 70);
+    private ColorData yellow = new ColorData(60, 100, 60);
+        private ColorData blue = new ColorData(225, 100, 60);
+
     // floor colors
-    [SerializeField] private ColorData grey = new ColorData(0, 0, 40);
+    private ColorData grey = new ColorData(0, 0, 40);
     // modifiers
     private float darkModifier = 0.3f;
     private float lightModifier = 1.5f;
@@ -267,6 +269,9 @@ if(tmo.name.ToLower().Contains("obstacle")){
             if (room.gameObject.name.ToLower().Contains("itemroom"))
             {
                 colorData = yellow;
+            }
+            else if(room.gameObject.name.ToLower().Contains("merchant")){
+                colorData = blue;
             }
             else
             {
