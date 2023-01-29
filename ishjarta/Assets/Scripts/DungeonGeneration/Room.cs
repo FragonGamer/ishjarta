@@ -150,7 +150,7 @@ public class Room : MonoBehaviour
             door.doorIsOpen = false;
         }
     }
-    private void LockRoom(){
+    public void LockRoom(){
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && door.GetComponent<Door>().isLocked).Select(go => go.GetComponent<Door>()))
         {
             ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.lockedDoorTile);
@@ -387,7 +387,7 @@ public class Room : MonoBehaviour
         var tilemaps = this.gameObject.GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
         {
-            if (tilemap.name.Contains("Obstacle"))
+            if (tilemap.name.Contains("Walls"))
             {
 
                 foreach (var door in doors.Select(item => item.GetComponent<Door>()))

@@ -6,32 +6,37 @@ using UnityEngine.Tilemaps;
 using System.Linq;
 using UnityEngine.InputSystem;
 
-enum mapState{
+enum mapState
+{
     mini,
     max,
 }
-public struct ColorData{
-    public ColorData(float hue,float saturation,float value){
-        this._hue=hue;
-        this._saturation=saturation;
-        this._value=value;
-        modifier=1.0f;
+public struct ColorData
+{
+    public ColorData(float hue, float saturation, float value)
+    {
+        this._hue = hue;
+        this._saturation = saturation;
+        this._value = value;
+        modifier = 1.0f;
     }
     private float _hue;
-    public float hue{
-        set => _hue=value;
-        get => Convert.ToSingle(_hue/360);
+    public float hue
+    {
+        set => _hue = value;
+        get => Convert.ToSingle(_hue / 360);
     }
     private float _saturation;
     public float saturation
     {
         set => _saturation = value;
-        get => Convert.ToSingle(_saturation/100);
+        get => Convert.ToSingle(_saturation / 100);
     }
     private float _value;
-    public float value{
+    public float value
+    {
         set => _value = value;
-        get => Convert.ToSingle(_value/100);
+        get => Convert.ToSingle(_value / 100);
     }
 
     public float modifier;
@@ -40,9 +45,9 @@ public struct ColorData{
 }
 public class Minimap : MonoBehaviour
 {
-    
 
-    private mapState minimapState; 
+
+    private mapState minimapState;
     [SerializeField] InputMaster inputMaster;
 
     [SerializeField] private Sprite minimapSprite;
@@ -51,17 +56,17 @@ public class Minimap : MonoBehaviour
     // default color for rooms
     // wall colors
     // standard room
-    [SerializeField]private ColorData lightGrey= new ColorData(0,0,70);
+    [SerializeField] private ColorData lightGrey = new ColorData(0, 0, 70);
     // item rooms
-    [SerializeField]private ColorData yellow = new ColorData(60,100,70);
+    [SerializeField] private ColorData yellow = new ColorData(60, 100, 70);
     // floor colors
-    [SerializeField]private ColorData grey = new ColorData(0,0,40);
+    [SerializeField] private ColorData grey = new ColorData(0, 0, 40);
     // modifiers
     private float darkModifier = 0.3f;
     private float lightModifier = 1.5f;
     #endregion
-    
-    private List<Tuple<int, Tilemap,ColorData>> tilemaps = new List<Tuple<int, Tilemap,ColorData>>();
+
+    private List<Tuple<int, Tilemap, ColorData>> tilemaps = new List<Tuple<int, Tilemap, ColorData>>();
     private List<Tuple<int, GameObject, Room>> folders = new List<Tuple<int, GameObject, Room>>();
     private List<Room> rooms = new List<Room>();
     private Player player;
@@ -69,12 +74,12 @@ public class Minimap : MonoBehaviour
     private GameObject minimapCam;
     private RectTransform transform;
 
-void Awake()
+    void Awake()
     {
-                inputMaster = new InputMaster();
-                minimapState = mapState.mini;
+        inputMaster = new InputMaster();
+        minimapState = mapState.mini;
     }
-private void OnEnable()
+    private void OnEnable()
     {
         inputMaster.Enable();
     }
@@ -92,29 +97,31 @@ private void OnEnable()
 
     public void ToggleMap(InputAction.CallbackContext context)
     {
-        if (minimapCam == null){
+        if (minimapCam == null)
+        {
             minimapCam = GameObject.FindGameObjectWithTag("MainCamera").transform.GetChild(0).gameObject;
 
         }
-        Vector3 position = new Vector3(0,0,0);
-        Vector3 scale = new Vector3(0,0,0);
-        Vector2 size = new Vector2(0,0);
+        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 scale = new Vector3(0, 0, 0);
+        Vector2 size = new Vector2(0, 0);
 
-        
-        switch(minimapState){
+
+        switch (minimapState)
+        {
             case mapState.max:
-                position = new Vector3(530,345,0);
-                scale = new Vector3(1,1,1);
-                size= new Vector2(300,300);
-                                minimapCam.GetComponent<MinimapCamera>().SetStatic(false);
+                position = new Vector3(530, 345, 0);
+                scale = new Vector3(1, 1, 1);
+                size = new Vector2(300, 300);
+                minimapCam.GetComponent<MinimapCamera>().SetStatic(false);
 
                 minimapCam.GetComponent<Camera>().orthographicSize = 20;
-                minimapState=mapState.mini;
+                minimapState = mapState.mini;
                 break;
             case mapState.mini:
-                position = new Vector3(-60,-35,0);
-                scale = new Vector3(5,3,1);
-                size= new Vector2(1500,900);
+                position = new Vector3(-60, -35, 0);
+                scale = new Vector3(5, 3, 1);
+                size = new Vector2(1500, 900);
                 minimapCam.GetComponent<MinimapCamera>().SetStatic(true);
                 minimapCam.GetComponent<Camera>().orthographicSize = 40;
                 minimapState = mapState.max;
@@ -122,7 +129,7 @@ private void OnEnable()
             default:
                 return;
         }
-        transform.SetLocalPositionAndRotation(position,new Quaternion(0,0,0,0));
+        transform.SetLocalPositionAndRotation(position, new Quaternion(0, 0, 0, 0));
         transform.sizeDelta = size;
 
 
@@ -154,23 +161,24 @@ private void OnEnable()
             }
             if (tilemap.gameObject.name.ToLower().Contains("back"))
             {
-                tilemap.color = Color.HSVToRGB(grey.hue,grey.saturation,grey.value * grey.modifier);
-                
-            }
-            else if (tilemap.gameObject.name.ToLower().Contains("obstacle"))
-            {
-                tilemap.color = Color.HSVToRGB(colorData.hue,colorData.saturation,colorData.value * colorData.modifier);
-                
+                tilemap.color = Color.HSVToRGB(grey.hue, grey.saturation, grey.value * grey.modifier);
 
             }
-            
+            else if (tilemap.gameObject.name.ToLower().Contains("wall"))
+            {
+                tilemap.color = Color.HSVToRGB(colorData.hue, colorData.saturation, colorData.value * colorData.modifier);
+
+
+            }
+
         }
 
     }
 
-    private List<Room>GetConnectedRooms(Room room){
+    private List<Room> GetConnectedRooms(Room room)
+    {
         List<Door> doors = room.doors.Where(d => d.GetComponent<Door>() != null).Select(d => d.GetComponent<Door>()).ToList();
-        List<Room> connectedRooms = doors.Where(d => d.ConnectedDoorRoom != null).Select(d => d.ConnectedDoorRoom).ToList(); 
+        List<Room> connectedRooms = doors.Where(d => d.ConnectedDoorRoom != null).Select(d => d.ConnectedDoorRoom).ToList();
         return connectedRooms;
     }
 
@@ -188,16 +196,18 @@ private void OnEnable()
             {
                 folder.gameObject.SetActive(true);
                 var rooms = GetConnectedRooms(room);
-                foreach(Room r in rooms){
+                foreach (Room r in rooms)
+                {
                     if (r == null)
                         continue;
                     var roomFolder = folders.Where(f => f.Item1 == r.RoomId).Select(f => f.Item2).FirstOrDefault();
-                    if(roomFolder != null && !roomFolder.active){
+                    if (roomFolder != null && !roomFolder.active)
+                    {
                         roomFolder.SetActive(true);
                     }
                 }
             }
-            
+
 
 
 
@@ -230,30 +240,40 @@ private void OnEnable()
         var tilemapObjects = room.GetComponentInChildren<Grid>().gameObject.transform;
         foreach (Transform tmo in tilemapObjects)
         {
-
+if(tmo.name.ToLower().Contains("obstacle")){
+                continue;
+            }
             var newtmo = Instantiate(tmo.gameObject, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
             var tilemap = newtmo.GetComponent<Tilemap>();
             var tilecollider = newtmo.GetComponent<TilemapCollider2D>();
+            
             if (tilecollider != null)
                 Destroy(tilecollider);
             foreach (TileData tile in tilemap.GetAllTiles())
             {
-                tilemap.SetTile(new Vector3Int(tile.X, tile.Y), tileobj);
+                    
+                  
+                     tilemap.SetTile(new Vector3Int(tile.X, tile.Y), tileobj);
+                   
+
+                
             }
 
             newtmo.layer = 7;
 
             newtmo.transform.SetParent(folder.transform);
             ColorData colorData;
-            
-            if(room.gameObject.name.ToLower().Contains("itemroom")){
+
+            if (room.gameObject.name.ToLower().Contains("itemroom"))
+            {
                 colorData = yellow;
             }
-            else{
+            else
+            {
                 colorData = lightGrey;
             }
 
-            tilemaps.Add(new Tuple<int, Tilemap,ColorData>(room.RoomId, tilemap,colorData));
+            tilemaps.Add(new Tuple<int, Tilemap, ColorData>(room.RoomId, tilemap, colorData));
 
         }
         folder.transform.position = new Vector3(room.position.Item1, room.position.Item2, 0);
