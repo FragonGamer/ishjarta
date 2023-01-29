@@ -9,11 +9,22 @@ public class Minimap : MonoBehaviour
 {
     [SerializeField] private Sprite minimapSprite;
     [SerializeField] private Grid minimapGrid;
-    private Color grey = new Color(0.5f,0.5f,0.5f);
+    #region color
+    // default color for rooms
+    // wall colors
+    // standard room
     private Color lightgrey = new Color(0.7f,0.7f,0.7f);
-    private Color darkgrey = new Color(0.3f,0.3f,0.3f);
-    private Color black = new Color(0,0,0);
-    private Color white= new Color(1,1,1);
+    // item rooms
+    private Color yellow = new Color(1,0.92f,0.016f);
+    // floor colors
+   private Color grey = new Color(0.5f,0.5f,0.5f);
+    // color multiplier
+    // color for entered room
+    private Color light = new Color(0.9f,0.9f,0.9f);
+    // color for discovered room
+    // color for surrounded but not discovered room
+    private Color dark = new Color(0.1f,0.1f,0.1f);
+    #endregion
     private List<Tuple<int,Tilemap>> tilemaps = new List<Tuple<int,Tilemap>>();
     private List<Tuple<int,GameObject,Room>> folders = new List<Tuple<int,GameObject,Room>>();
     private List<Room> rooms = new List<Room>();
@@ -27,24 +38,29 @@ void Start()
         
         foreach(var tilemapdata in tilemaps){
             var tilemap = tilemapdata.Item2;
-            if(tilemap.name.ToLower().Contains("back")){
-                tilemap.color = grey;
+            if(!tilemap.gameObject.transform.parent.gameObject.active){
+                continue;
             }
-            else if(player.currentRoom.RoomId == tilemapdata.Item1){
-                tilemap.color = lightgrey;
-            }
-            else{
                 var room = rooms.Where(r => r.RoomId == tilemapdata.Item1).First();
-                switch(room.gameObject.tag){
+            if(tilemap.gameObject.name.ToLower().Contains("back")){
+                tilemap.color=grey;
+            }
+            else if( tilemap.gameObject.name.ToLower().Contains("obstacle")){
+                switch(room.gameObject.name){
                     case "ItemRoom":
-                        tilemap.color = Color.yellow;
-                        break;
+                        tilemap.color = yellow;
+                        break;   
                     default:
-                        tilemap.color = darkgrey;
+                        tilemap.color = lightgrey;
                         break;
 
                 }
-                
+            }
+            if(player.currentRoom.RoomId == tilemapdata.Item1){
+                tilemap.color = tilemap.color * light;
+            }
+            else if(!room.hasVisited){
+                tilemap.color = tilemap.color * dark;
             }
         }
 

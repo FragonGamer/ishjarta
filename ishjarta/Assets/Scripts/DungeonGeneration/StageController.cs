@@ -160,6 +160,8 @@ public class StageController : MonoBehaviour
         {
             SetEveryRoomInvisible();
         }
+
+        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
     }
 
     void SetEveryFreeDoorClosed()
@@ -568,7 +570,6 @@ public class StageController : MonoBehaviour
         Debug.Log("Rooms: " + nextRoomId);
         currentStageCounter++;
         startRoom.GetComponent<Room>().hasVisited = true;
-        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
     }
 
     private GameObject CreateEndRoom()
