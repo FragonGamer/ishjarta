@@ -22,11 +22,11 @@
 	"glyph-baseline": 18,
 	"glyph-spacing": 3,
 	"font-is-mono": false,
-	"font-em-square": 64,
-	"font-line-gap": 120,
-	"font-ascend": 328,
-	"font-descend": -36,
-	"font-px-size": 20,
+	"font-em-square": 640,
+	"font-line-gap": 64,
+	"font-ascend": 512,
+	"font-descend": -64,
+	"font-px-size": 32,
 	"font-name": "Ishjarta_Font",
 	"font-author": "Danijel Balog",
 	"font-copy": "(c)",
@@ -36,7 +36,7 @@
 	"font-license-url": "",
 	"font-sample-text": "HELLO!",
 	"font-preview-text": [
-		"gTHE QUICK BROWN FOX JUMPS OVER A LAZY DOG.",
-		"0123456789"
+		"°°^^^^`´´´DasdadadasdadaADD",
+		"____-abcHELLO WORLD"
 	]
 }
