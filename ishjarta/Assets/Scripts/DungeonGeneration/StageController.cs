@@ -156,12 +156,14 @@ public class StageController : MonoBehaviour
         }
 
         SetEveryFreeDoorClosed();
+        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
+
         if (!TestGeneration)
         {
             SetEveryRoomInvisible();
         }
+        
 
-        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
     }
 
     void SetEveryFreeDoorClosed()
