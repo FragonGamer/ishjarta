@@ -66,13 +66,13 @@ public class Minimap : MonoBehaviour
     private List<Room> rooms = new List<Room>();
     private Player player;
     private GameObject renderTexture;
+    private GameObject minimapCam;
     private RectTransform transform;
 
 void Awake()
     {
                 inputMaster = new InputMaster();
                 minimapState = mapState.mini;
-
     }
 private void OnEnable()
     {
@@ -86,12 +86,16 @@ private void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         inputMaster.Player.ToggleMap.performed += ToggleMap;
-        renderTexture = this.gameObject.GetComponentInChildren<RectTransform>().gameObject;
+        renderTexture = this.gameObject.transform.GetChild(0).gameObject;
         transform = renderTexture.GetComponent<RectTransform>();
     }
 
     public void ToggleMap(InputAction.CallbackContext context)
     {
+        if (minimapCam == null){
+            minimapCam = GameObject.FindGameObjectWithTag("MainCamera").transform.GetChild(0).gameObject;
+
+        }
         Vector3 position = new Vector3(0,0,0);
         Vector3 scale = new Vector3(0,0,0);
         Vector2 size = new Vector2(0,0);
@@ -102,17 +106,23 @@ private void OnEnable()
                 position = new Vector3(530,345,0);
                 scale = new Vector3(1,1,1);
                 size= new Vector2(300,300);
+                                minimapCam.GetComponent<MinimapCamera>().SetStatic(false);
+
+                minimapCam.GetComponent<Camera>().orthographicSize = 20;
+                minimapState=mapState.mini;
                 break;
             case mapState.mini:
                 position = new Vector3(-60,-35,0);
                 scale = new Vector3(5,3,1);
-                size= new Vector2(300,300);
+                size= new Vector2(1500,900);
+                minimapCam.GetComponent<MinimapCamera>().SetStatic(true);
+                minimapCam.GetComponent<Camera>().orthographicSize = 40;
+                minimapState = mapState.max;
                 break;
             default:
                 return;
         }
-        transform.SetPositionAndRotation(position,new Quaternion(0,0,0,0));
-        transform.localScale = scale;
+        transform.SetLocalPositionAndRotation(position,new Quaternion(0,0,0,0));
         transform.sizeDelta = size;
 
 
