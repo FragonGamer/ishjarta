@@ -240,7 +240,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 120, y: 0}
-  m_SizeDelta: {x: 100, y: 70}
+  m_SizeDelta: {x: 110, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7306578246729818666
 CanvasRenderer:
@@ -297,14 +297,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1040,10 +1040,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 %
+  m_text: 0%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e2ee6998b5bb91c4db4170587520b5ec, type: 2}
+  m_sharedMaterial: {fileID: -2862248104568450153, guid: e2ee6998b5bb91c4db4170587520b5ec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1299,11 +1299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3463015209156136544, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 3.4464722
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 3463015209156136544, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.1710815
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3463015209156136544, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1356,10 +1356,6 @@ PrefabInstance:
     - target: {fileID: 3463015209156136545, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
       propertyPath: m_Name
       value: PlayerHealthBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463015209156136558, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
-      propertyPath: m_Value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3463015209695227746, guid: 1809bfe7e0fc9fa488b84631982b6782, type: 3}
       propertyPath: m_AnchorMax.x
