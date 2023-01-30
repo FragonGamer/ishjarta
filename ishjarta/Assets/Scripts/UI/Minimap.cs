@@ -104,7 +104,7 @@ public class Minimap : MonoBehaviour
             minimapCam = GameObject.FindGameObjectWithTag("MainCamera").transform.GetChild(0).gameObject;
 
         }
-        Vector3 position = new Vector3(0, 0, 0);
+        Vector3 position = new Vector3(-50, -50, 0);
         Vector3 scale = new Vector3(0, 0, 0);
         Vector2 size = new Vector2(0, 0);
 
@@ -112,7 +112,7 @@ public class Minimap : MonoBehaviour
         switch (minimapState)
         {
             case mapState.max:
-                position = new Vector3(530, 345, 0);
+                position = new Vector3(0, 0, 0);
                 scale = new Vector3(1, 1, 1);
                 size = new Vector2(300, 300);
                 minimapCam.GetComponent<MinimapCamera>().SetStatic(false);
@@ -121,9 +121,9 @@ public class Minimap : MonoBehaviour
                 minimapState = mapState.mini;
                 break;
             case mapState.mini:
-                position = new Vector3(-60, -35, 0);
-                scale = new Vector3(5, 3, 1);
-                size = new Vector2(1500, 900);
+                position = new Vector3(-800, -300, 0);
+                scale = new Vector3(1, 1, 1);
+                size = new Vector2(1500, 700);
                 minimapCam.GetComponent<MinimapCamera>().SetStatic(true);
                 minimapCam.GetComponent<Camera>().orthographicSize = 40;
                 minimapState = mapState.max;
