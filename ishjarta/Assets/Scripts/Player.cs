@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEditor;
 
 public class Player : Entity
 {
@@ -156,6 +157,16 @@ public class Player : Entity
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
         inventory.CurrentWeapon.EmitEffects : null;
 
+    private void ChangeAngleOfAttackParticleSystem(float angle)
+    {
+        /*
+        var so = new SerializedObject( attackParticleSystem);
+        so.FindProperty("ShapeModule.angle").floatValue = angle;
+        so.ApplyModifiedProperties();
+        */
+        ParticleSystem.ShapeModule shape=attackParticleSystem.shape;
+        shape.angle = angle;
+    }
     private void MeeleeAttack(Vector2 mousePos, MeleeWeapon melWeapon)
     {
         if (GetComponent<PolygonCollider2D>() == null)
@@ -177,6 +188,11 @@ public class Player : Entity
                 PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();
                 pc.isTrigger = true;
                 pc.points = v;
+                var angleOfAttack = Vector2.Angle(v[1],v[3]);
+                ChangeAngleOfAttackParticleSystem(angleOfAttack);
+
+                attackParticleSystem.transform.localRotation = Quaternion.Euler(0, 0, (angle * Mathf.Rad2Deg)-angleOfAttack/2);
+                attackParticleSystem.Play();
                 Destroy(pc, 0.2f);
             }
         }
