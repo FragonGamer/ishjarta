@@ -157,16 +157,6 @@ public class Player : Entity
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
         inventory.CurrentWeapon.EmitEffects : null;
 
-    private void ChangeAngleOfAttackParticleSystem(float angle)
-    {
-        /*
-        var so = new SerializedObject( attackParticleSystem);
-        so.FindProperty("ShapeModule.angle").floatValue = angle;
-        so.ApplyModifiedProperties();
-        */
-        ParticleSystem.ShapeModule shape=attackParticleSystem.shape;
-        shape.angle = angle;
-    }
     private void MeeleeAttack(Vector2 mousePos, MeleeWeapon melWeapon)
     {
         if (GetComponent<PolygonCollider2D>() == null)
@@ -189,9 +179,11 @@ public class Player : Entity
                 pc.isTrigger = true;
                 pc.points = v;
                 var angleOfAttack = Vector2.Angle(v[1],v[3]);
-                ChangeAngleOfAttackParticleSystem(angleOfAttack);
 
+                //TODO: Give the particle system the right angle
                 attackParticleSystem.transform.localRotation = Quaternion.Euler(0, 0, (angle * Mathf.Rad2Deg)-angleOfAttack/2);
+                var shape = attackParticleSystem.shape;
+                shape.arc = angleOfAttack;
                 attackParticleSystem.Play();
                 Destroy(pc, 0.2f);
             }
