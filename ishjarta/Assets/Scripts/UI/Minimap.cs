@@ -234,7 +234,7 @@ public class Minimap : MonoBehaviour
     public void AddRoomToMinmap(Room room)
     {
         rooms.Add(room);
-        var tileobj = new Tile();
+        var tileobj = (Tile)ScriptableObject.CreateInstance(typeof(Tile));
         tileobj.sprite = minimapSprite;
         var folder = new GameObject($"Room {room.RoomId}");
         folder.transform.SetParent(minimapGrid.transform);
