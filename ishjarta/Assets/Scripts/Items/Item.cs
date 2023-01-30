@@ -9,6 +9,7 @@ public abstract class Item : ScriptableObject
     public string ItemName;
     [SerializeField] public string description;
     [SerializeField] public string fullDescription;
+    public bool isBuyable = false;
 
     [field: SerializeField] public Sprite Icon { get; protected set; }
     [field: SerializeField]public Rarity Rarity { get; set; }

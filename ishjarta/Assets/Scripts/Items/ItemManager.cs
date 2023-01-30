@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using System;
 using System.Collections;
@@ -23,6 +24,9 @@ public class ItemManager : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
+    }
+    public void SetIsBuyable(bool isBuyable){
+        item.isBuyable = isBuyable;
     }
 
     private void Awake()
@@ -86,7 +90,7 @@ public class ItemManager : MonoBehaviour
     {
         if (isInRange && isNearest)
         {
-            if (player.currentRoom.name.Contains("MerchantRoom"))
+            if (this.item.isBuyable)
             {
                 if (!player.currentRoom.GetComponent<Merchant>().BuyItem(player,item))
                 {

@@ -64,10 +64,12 @@ public class Merchant : MonoBehaviour
         var go = Instantiate(itemspawner,pos,new Quaternion(0,0,0,0));
         var itemsp = go.GetComponent<Itemspawner>();
         itemsp.itemAmount = 1;
+
         var items = itemsp.Spawn();
         go.transform.SetParent(Room.gameObject.transform);
         foreach (var item in items)
         {
+            item.gameObject.GetComponent<ItemManager>().SetIsBuyable(true);
             item.gameObject.transform.SetParent(go.transform);
         }
         SetPriceOfItems(items,priceTag);

@@ -145,7 +145,7 @@ public static class Utils
     }
     public static UsableItem GetCoinObject()
     {
-        return LoadAssetByPath<GameObject>("UsableItem/Coin.prefab").GetComponent<UsableItem>();
+        return LoadAssetByPath<GameObject>("UsableItem/Coin.prefab").GetComponent<ItemManager>().GetItem() as UsableItem;
     }
     public static void PrintGridPosDataTypeMatrix(GridPosdataType[,] matrix)
     {
