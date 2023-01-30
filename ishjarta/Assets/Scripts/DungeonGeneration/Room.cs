@@ -50,7 +50,7 @@ public class Room : MonoBehaviour
         if(gameObject.CompareTag("StartRoom")){
             isEntered = true;
         }
-        ObstacleTileMap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.ToLower().Contains("obstacle"));
+        ObstacleTileMap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.ToLower().Contains("wall"));
         //Gets all enemies in the current room
         Enemies = GetComponentsInChildren<Enemy>().ToList();
         SetCleared();
