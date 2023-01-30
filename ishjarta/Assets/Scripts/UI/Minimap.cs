@@ -74,7 +74,7 @@ public class Minimap : MonoBehaviour
     private Player player;
     private GameObject renderTexture;
     private GameObject minimapCam;
-    private RectTransform transform;
+    private RectTransform rectTransform;
 
     void Awake()
     {
@@ -94,7 +94,7 @@ public class Minimap : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         inputMaster.Player.ToggleMap.performed += ToggleMap;
         renderTexture = this.gameObject.transform.GetChild(0).gameObject;
-        transform = renderTexture.GetComponent<RectTransform>();
+        rectTransform = renderTexture.GetComponent<RectTransform>();
     }
 
     public void ToggleMap(InputAction.CallbackContext context)
@@ -131,8 +131,8 @@ public class Minimap : MonoBehaviour
             default:
                 return;
         }
-        transform.SetLocalPositionAndRotation(position, new Quaternion(0, 0, 0, 0));
-        transform.sizeDelta = size;
+        rectTransform.SetLocalPositionAndRotation(position, new Quaternion(0, 0, 0, 0));
+        rectTransform.sizeDelta = size;
 
 
     }
@@ -144,7 +144,7 @@ public class Minimap : MonoBehaviour
         {
             var tilemap = tilemapdata.Item2;
             var colorData = tilemapdata.Item3;
-            if (!tilemap.gameObject.transform.parent.gameObject.active)
+            if (!tilemap.gameObject.transform.parent.gameObject.activeSelf)
             {
                 continue;
             }
@@ -203,7 +203,7 @@ public class Minimap : MonoBehaviour
                     if (r == null)
                         continue;
                     var roomFolder = folders.Where(f => f.Item1 == r.RoomId).Select(f => f.Item2).FirstOrDefault();
-                    if (roomFolder != null && !roomFolder.active)
+                    if (roomFolder != null && !roomFolder.activeSelf)
                     {
                         roomFolder.SetActive(true);
                     }

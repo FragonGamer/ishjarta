@@ -8,11 +8,12 @@ public class EntityDamageTrigger : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        ContactPoint2D[] contacts = new ContactPoint2D[4];
+        ContactPoint2D[] contacts = new ContactPoint2D[20];
         collider.GetContacts(contacts);
         foreach (var item in contacts)
         {
-            if (collider is PolygonCollider2D && item.otherCollider is BoxCollider2D && item.otherCollider.gameObject == this.gameObject)
+            Debug.Log(item.otherCollider);
+            if (collider is PolygonCollider2D && item.otherCollider is BoxCollider2D)
             {
                 //Player player = collider.gameObject.GetComponent<Player>();
                 //Enemy enemy = this.gameObject.GetComponent<Enemy>();
