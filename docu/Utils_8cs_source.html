@@ -216,9 +216,9 @@ $(function() {
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code" href="classUsableItem.html">UsableItem</a> GetCoinObject()</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordflow">return</span> LoadAssetByPath&lt;GameObject&gt;(<span class="stringliteral">&quot;UsableItem/Coin.prefab&quot;</span>).GetComponent&lt;<a class="code" href="classUsableItem.html">UsableItem</a>&gt;();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordflow">return</span> LoadAssetByPath&lt;GameObject&gt;(<span class="stringliteral">&quot;UsableItem/Coin.prefab&quot;</span>).GetComponent&lt;<a class="code" href="classItemManager.html">ItemManager</a>&gt;().GetItem() as <a class="code" href="classUsableItem.html">UsableItem</a>;</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> PrintGridPosDataTypeMatrix(<a class="code" href="classGridPosdataType.html">GridPosdataType</a>[,] matrix)</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    public static <span class="keywordtype">void</span> PrintGridPosDataTypeMatrix(<a class="code" href="classGridPosdataType.html">GridPosdataType</a>[,] matrix)</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    {</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; matrix.GetLength(0); i++)</div>
@@ -240,6 +240,7 @@ $(function() {
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
 <div class="ttc" id="aclassGridPosdataType_html"><div class="ttname"><a href="classGridPosdataType.html">GridPosdataType</a></div><div class="ttdoc">Represents one field in the grid for the room layout</div><div class="ttdef"><b>Definition:</b> <a href="GridPosdataType_8cs_source.html#l00004">GridPosdataType.cs:5</a></div></div>
+<div class="ttc" id="aclassItemManager_html"><div class="ttname"><a href="classItemManager.html">ItemManager</a></div><div class="ttdef"><b>Definition:</b> <a href="ItemManager_8cs_source.html#l00011">ItemManager.cs:12</a></div></div>
 <div class="ttc" id="aclassItem_html"><div class="ttname"><a href="classItem.html">Item</a></div><div class="ttdef"><b>Definition:</b> <a href="Item_8cs_source.html#l00007">Item.cs:8</a></div></div>
 <div class="ttc" id="aclassUsableItem_html"><div class="ttname"><a href="classUsableItem.html">UsableItem</a></div><div class="ttdef"><b>Definition:</b> <a href="UsableItem_8cs_source.html#l00006">UsableItem.cs:7</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

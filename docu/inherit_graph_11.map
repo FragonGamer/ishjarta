@@ -1,3 +1,29 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classPoisoningStatus.html" title="PoisoningStatus contains the short&#45;lasting and the permanent PoisoningEffects" alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node1" href="$interfacePassivItemInterface.html" title=" " alt="" coords="187,309,338,336"/>
+<area shape="rect" id="node2" href="$classPassiveItem.html" title=" " alt="" coords="413,309,515,336"/>
+<area shape="rect" id="node3" href="$classAddArmor.html" title=" " alt="" coords="653,385,739,412"/>
+<area shape="rect" id="node4" href="$classAddCoins.html" title=" " alt="" coords="655,132,737,159"/>
+<area shape="rect" id="node5" href="$classOnOddOrEvenMultiplyDamage.html" title=" " alt="" coords="585,183,807,209"/>
+<area shape="rect" id="node6" href="$classPassivEffectItem.html" title=" " alt="" coords="631,233,761,260"/>
+<area shape="rect" id="node7" href="$classPlusMaxHealth.html" title=" " alt="" coords="636,284,756,311"/>
+<area shape="rect" id="node8" href="$classTestPeriodic.html" title=" " alt="" coords="646,335,746,361"/>
+<area shape="rect" id="node9" title=" " alt="" coords="5,309,135,336"/>
+<area shape="rect" id="node10" href="$classBaseEffect.html" title="The base from which all other effects inherit" alt="" coords="217,157,308,184"/>
+<area shape="rect" id="node17" href="$classEnemyLootDropTable.html" title=" " alt="" coords="183,360,343,387"/>
+<area shape="rect" id="node18" href="$classItem.html" title=" " alt="" coords="237,461,289,488"/>
+<area shape="rect" id="node27" href="$classStatusEffectHandler.html" title="This class handles the effects of an entity" alt="" coords="187,259,338,285"/>
+<area shape="rect" id="node11" href="$classFrostEffect.html" title="FrostEffect slows an entity down" alt="" coords="419,157,509,184"/>
+<area shape="rect" id="node12" href="$classIncinerationEffect.html" title="IncinerationEffect damages an entity and reduces its resistance over a certain time" alt="" coords="396,208,532,235"/>
+<area shape="rect" id="node13" href="$classPoisoningEffect.html" title="PoisoningEffect damages an entity over a certain time" alt="" coords="403,259,525,285"/>
+<area shape="rect" id="node14" href="$classRegenerationEffect.html" title="RegenerationEffect heals an entity over a certain time" alt="" coords="391,5,537,32"/>
+<area shape="rect" id="node15" href="$classSpeedEffect.html" title="SpeedEffect speeds an entity up" alt="" coords="415,56,513,83"/>
+<area shape="rect" id="node16" href="$classStrengthEffect.html" title="StrengthEffect increases the strength of an entity" alt="" coords="407,107,521,133"/>
+<area shape="rect" id="node19" href="$classActiveItem.html" title=" " alt="" coords="417,537,511,564"/>
+<area shape="rect" id="node23" href="$classUsableItem.html" title=" " alt="" coords="415,588,513,615"/>
+<area shape="rect" id="node24" href="$classWeapon.html" title=" " alt="" coords="427,461,501,488"/>
+<area shape="rect" id="node20" href="$classActiveEffectItem.html" title=" " alt="" coords="631,537,761,564"/>
+<area shape="rect" id="node21" href="$classDashItem.html" title=" " alt="" coords="653,588,739,615"/>
+<area shape="rect" id="node22" href="$classSpawnItem.html" title=" " alt="" coords="649,639,743,665"/>
+<area shape="rect" id="node25" href="$classMeleeWeapon.html" title=" " alt="" coords="639,487,753,513"/>
+<area shape="rect" id="node26" href="$classRangedWeapon.html" title=" " alt="" coords="635,436,757,463"/>
 </map>

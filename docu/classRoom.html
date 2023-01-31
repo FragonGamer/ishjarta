@@ -101,6 +101,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2da4f58c1b5cabf2fa8ae49c7e28b7ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoom.html#a2da4f58c1b5cabf2fa8ae49c7e28b7ff">SetCleared</a> ()</td></tr>
 <tr class="memdesc:a2da4f58c1b5cabf2fa8ae49c7e28b7ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the List of enemies in the room is empty (for example if all enemies are dead) the cleared status will be set to true  <a href="classRoom.html#a2da4f58c1b5cabf2fa8ae49c7e28b7ff">More...</a><br /></td></tr>
 <tr class="separator:a2da4f58c1b5cabf2fa8ae49c7e28b7ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31aa4558efb5639922664f600dba9fc6"><td class="memItemLeft" align="right" valign="top"><a id="a31aa4558efb5639922664f600dba9fc6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LockRoom</b> ()</td></tr>
+<tr class="separator:a31aa4558efb5639922664f600dba9fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a174b3e4e1c51068b15e7e637974d65"><td class="memItemLeft" align="right" valign="top"><a id="a3a174b3e4e1c51068b15e7e637974d65"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UnlockRoom</b> ()</td></tr>
 <tr class="separator:a3a174b3e4e1c51068b15e7e637974d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -713,7 +716,7 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        var tilemaps = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;();</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="keywordflow">foreach</span> (Tilemap tilemap <span class="keywordflow">in</span> tilemaps)</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        {</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="keywordflow">if</span> (tilemap.name.Contains(<span class="stringliteral">&quot;Obstacle&quot;</span>))</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="keywordflow">if</span> (tilemap.name.Contains(<span class="stringliteral">&quot;Walls&quot;</span>))</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            {</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                <span class="keywordflow">foreach</span> (var door <span class="keywordflow">in</span> doors.Select(item =&gt; item.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;()))</div>

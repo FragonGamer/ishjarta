@@ -135,39 +135,41 @@ $(function() {
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        var go = Instantiate(itemspawner,pos,<span class="keyword">new</span> Quaternion(0,0,0,0));</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        var itemsp = go.GetComponent&lt;<a class="code" href="classItemspawner.html">Itemspawner</a>&gt;();</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        itemsp.itemAmount = 1;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        var items = itemsp.Spawn();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        go.transform.SetParent(<a class="code" href="classRoom.html">Room</a>.gameObject.transform);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> items)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            item.gameObject.transform.SetParent(go.transform);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        SetPriceOfItems(items,priceTag);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> go;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> SetPriceOfItems(GameObject[] items,GameObject priceTag)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> items)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            var price = Instantiate(priceTag,item.transform.position + <span class="keyword">new</span> Vector3(0,-0.5f),<span class="keyword">new</span> Quaternion(0,0,0,0));</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            var text = price.GetComponentInChildren&lt;TextMesh&gt;();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;             text.text = item.GetComponent&lt;<a class="code" href="classItemManager.html">ItemManager</a>&gt;().GetItem().Price.ToString();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;             text.fontSize = 20;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;             text.characterSize = 0.07f;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            price.transform.parent = item.gameObject.transform;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        var items = itemsp.Spawn();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        go.transform.SetParent(<a class="code" href="classRoom.html">Room</a>.gameObject.transform);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> items)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            item.gameObject.GetComponent&lt;<a class="code" href="classItemManager.html">ItemManager</a>&gt;().SetIsBuyable(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            item.gameObject.transform.SetParent(go.transform);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        SetPriceOfItems(items,priceTag);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> go;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> SetPriceOfItems(GameObject[] items,GameObject priceTag)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">foreach</span> (var item <span class="keywordflow">in</span> items)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            var price = Instantiate(priceTag,item.transform.position + <span class="keyword">new</span> Vector3(0,-0.5f),<span class="keyword">new</span> Quaternion(0,0,0,0));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            var text = price.GetComponentInChildren&lt;TextMesh&gt;();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;             text.text = item.GetComponent&lt;<a class="code" href="classItemManager.html">ItemManager</a>&gt;().GetItem().Price.ToString();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;             text.fontSize = 20;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;             text.characterSize = 0.07f;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            price.transform.parent = item.gameObject.transform;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
 <div class="ttc" id="aclassInventory_html_a95696f9b4e4c0640422f538619c9acbf"><div class="ttname"><a href="classInventory.html#a95696f9b4e4c0640422f538619c9acbf">Inventory.DropItem</a></div><div class="ttdeci">void DropItem(Item item)</div><div class="ttdoc">Drops Item from Inventory and spawns it back into the world</div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00386">Inventory.cs:386</a></div></div>
-<div class="ttc" id="aclassItemManager_html"><div class="ttname"><a href="classItemManager.html">ItemManager</a></div><div class="ttdef"><b>Definition:</b> <a href="ItemManager_8cs_source.html#l00010">ItemManager.cs:11</a></div></div>
+<div class="ttc" id="aclassItemManager_html"><div class="ttname"><a href="classItemManager.html">ItemManager</a></div><div class="ttdef"><b>Definition:</b> <a href="ItemManager_8cs_source.html#l00011">ItemManager.cs:12</a></div></div>
 <div class="ttc" id="aclassItem_html"><div class="ttname"><a href="classItem.html">Item</a></div><div class="ttdef"><b>Definition:</b> <a href="Item_8cs_source.html#l00007">Item.cs:8</a></div></div>
 <div class="ttc" id="aclassItemspawner_html"><div class="ttname"><a href="classItemspawner.html">Itemspawner</a></div><div class="ttdef"><b>Definition:</b> <a href="Itemspawner_8cs_source.html#l00010">Itemspawner.cs:11</a></div></div>
 <div class="ttc" id="aclassMerchant_html"><div class="ttname"><a href="classMerchant.html">Merchant</a></div><div class="ttdef"><b>Definition:</b> <a href="Merchant_8cs_source.html#l00008">Merchant.cs:9</a></div></div>
-<div class="ttc" id="aclassPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdef"><b>Definition:</b> <a href="Player_8cs_source.html#l00007">Player.cs:8</a></div></div>
+<div class="ttc" id="aclassPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdef"><b>Definition:</b> <a href="Player_8cs_source.html#l00008">Player.cs:9</a></div></div>
 <div class="ttc" id="aclassRoom_html"><div class="ttname"><a href="classRoom.html">Room</a></div><div class="ttdoc">Represents a room of the level. Contains all doors of a room and controls the game flow.</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00010">Room.cs:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

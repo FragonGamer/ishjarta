@@ -116,7 +116,7 @@ $(function() {
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span>(gameObject.CompareTag(<span class="stringliteral">&quot;StartRoom&quot;</span>)){</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            isEntered = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        ObstacleTileMap = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;().ToList().Find(comp =&gt; comp.name.ToLower().Contains(<span class="stringliteral">&quot;obstacle&quot;</span>));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        ObstacleTileMap = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;().ToList().Find(comp =&gt; comp.name.ToLower().Contains(<span class="stringliteral">&quot;wall&quot;</span>));</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="comment">//Gets all enemies in the current room</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        Enemies = GetComponentsInChildren&lt;Enemy&gt;().ToList();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classRoom.html#a2da4f58c1b5cabf2fa8ae49c7e28b7ff">SetCleared</a>();</div>
@@ -207,7 +207,7 @@ $(function() {
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            door.doorIsOpen = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> LockRoom(){</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> LockRoom(){</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">foreach</span> (<a class="code" href="classDoor.html">Door</a> door <span class="keywordflow">in</span> doors.Where(door =&gt; door.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;().ConnectedDoor != <span class="keyword">null</span> &amp;&amp; door.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;().isLocked).Select(go =&gt; go.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;()))</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        {</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            ObstacleTileMap.SetTile(<span class="keyword">new</span> Vector3Int((<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.x, (<span class="keywordtype">int</span>)door.gameObject.transform.localPosition.y), door.lockedDoorTile);</div>
@@ -396,7 +396,7 @@ $(function() {
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        var tilemaps = this.gameObject.GetComponentsInChildren&lt;Tilemap&gt;();</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        <span class="keywordflow">foreach</span> (Tilemap tilemap <span class="keywordflow">in</span> tilemaps)</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        {</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="keywordflow">if</span> (tilemap.name.Contains(<span class="stringliteral">&quot;Obstacle&quot;</span>))</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <span class="keywordflow">if</span> (tilemap.name.Contains(<span class="stringliteral">&quot;Walls&quot;</span>))</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            {</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                <span class="keywordflow">foreach</span> (var door <span class="keywordflow">in</span> doors.Select(item =&gt; item.GetComponent&lt;<a class="code" href="classDoor.html">Door</a>&gt;()))</div>
@@ -496,9 +496,9 @@ $(function() {
 <div class="ttc" id="aclassDoor_html"><div class="ttname"><a href="classDoor.html">Door</a></div><div class="ttdoc">Represents a door of a room. Contains features for connecting to other doors, closing a door etc.</div><div class="ttdef"><b>Definition:</b> <a href="Door_8cs_source.html#l00012">Door.cs:13</a></div></div>
 <div class="ttc" id="aclassEnemy_html"><div class="ttname"><a href="classEnemy.html">Enemy</a></div><div class="ttdef"><b>Definition:</b> <a href="Enemy_8cs_source.html#l00007">Enemy.cs:8</a></div></div>
 <div class="ttc" id="aclassGridPosdataType_html"><div class="ttname"><a href="classGridPosdataType.html">GridPosdataType</a></div><div class="ttdoc">Represents one field in the grid for the room layout</div><div class="ttdef"><b>Definition:</b> <a href="GridPosdataType_8cs_source.html#l00004">GridPosdataType.cs:5</a></div></div>
-<div class="ttc" id="aclassMinimap_html"><div class="ttname"><a href="classMinimap.html">Minimap</a></div><div class="ttdef"><b>Definition:</b> <a href="Minimap_8cs_source.html#l00008">Minimap.cs:9</a></div></div>
+<div class="ttc" id="aclassMinimap_html"><div class="ttname"><a href="classMinimap.html">Minimap</a></div><div class="ttdef"><b>Definition:</b> <a href="Minimap_8cs_source.html#l00046">Minimap.cs:47</a></div></div>
 <div class="ttc" id="aclassPlayerManager_html"><div class="ttname"><a href="classPlayerManager.html">PlayerManager</a></div><div class="ttdef"><b>Definition:</b> <a href="PlayerManager_8cs_source.html#l00005">PlayerManager.cs:6</a></div></div>
-<div class="ttc" id="aclassPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdef"><b>Definition:</b> <a href="Player_8cs_source.html#l00007">Player.cs:8</a></div></div>
+<div class="ttc" id="aclassPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdef"><b>Definition:</b> <a href="Player_8cs_source.html#l00008">Player.cs:9</a></div></div>
 <div class="ttc" id="aclassRoom_html"><div class="ttname"><a href="classRoom.html">Room</a></div><div class="ttdoc">Represents a room of the level. Contains all doors of a room and controls the game flow.</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00010">Room.cs:11</a></div></div>
 <div class="ttc" id="aclassRoom_html_a15a4838dba8f859677227d07d78e3b20"><div class="ttname"><a href="classRoom.html#a15a4838dba8f859677227d07d78e3b20">Room.GetXLength</a></div><div class="ttdeci">int GetXLength(int offset)</div><div class="ttdoc">gets the length of given x row</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00279">Room.cs:279</a></div></div>
 <div class="ttc" id="aclassRoom_html_a2b5a95bdead262ef7780ce548a492c16"><div class="ttname"><a href="classRoom.html#a2b5a95bdead262ef7780ce548a492c16">Room.ToggleRoomState</a></div><div class="ttdeci">void ToggleRoomState()</div><div class="ttdoc">toggles the state of the activness of the room gameobject</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00370">Room.cs:370</a></div></div>
