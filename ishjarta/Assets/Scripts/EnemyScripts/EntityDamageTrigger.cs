@@ -33,6 +33,8 @@ public class EntityDamageTrigger : MonoBehaviour
 
                 //hitsound.Play();
 
+                Vector2 recoilDirection = (enemy.transform.position - player.transform.position).normalized;
+                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * 100);
             }
             else if (this.gameObject.tag == "Player")
             {
@@ -41,7 +43,21 @@ public class EntityDamageTrigger : MonoBehaviour
 
                 player.ReceiveDamage(enemy.DealingDamage);
                 player.AddEffect(enemy.EmitEffect);
+
+                Vector2 recoilDirection = (player.transform.position - enemy.transform.position).normalized;
+                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * 100);
+
+                StartCoroutine(ChangeColor(this.gameObject));
             }
         }
+    }
+
+    private IEnumerator ChangeColor(GameObject go)
+    {
+        go.GetComponent<SpriteRenderer>().enabled = true;
+        go.GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0.5f, 0.7f);
+        yield return new WaitForSeconds(0.1f);
+        go.GetComponent<SpriteRenderer>().color = Color.white;
+        go.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
