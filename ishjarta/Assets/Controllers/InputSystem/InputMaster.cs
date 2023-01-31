@@ -116,6 +116,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f7f16f4-4a8a-4e53-8e59-eb1bea865d7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -308,17 +317,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2e67caea-730c-4a1b-80a7-e9e07b8e0278"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""DungeonGenerationTest"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0259dcba-63ee-45fd-8a73-3fa2d9764aa5"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": ""Hold(duration=1)"",
@@ -336,6 +334,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Unlock Door"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7a75e01-e7e8-4135-8b93-ecd93d7952f5"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ToggleMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -423,6 +432,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_DungeonGenerationTest = m_Player.FindAction("DungeonGenerationTest", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_UnlockDoor = m_Player.FindAction("Unlock Door", throwIfNotFound: true);
+        m_Player_ToggleMap = m_Player.FindAction("ToggleMap", throwIfNotFound: true);
         // References
         m_References = asset.FindActionMap("References", throwIfNotFound: true);
         m_References_MousePosition = m_References.FindAction("MousePosition", throwIfNotFound: true);
@@ -498,6 +508,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DungeonGenerationTest;
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_UnlockDoor;
+    private readonly InputAction m_Player_ToggleMap;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -512,6 +523,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @DungeonGenerationTest => m_Wrapper.m_Player_DungeonGenerationTest;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @UnlockDoor => m_Wrapper.m_Player_UnlockDoor;
+        public InputAction @ToggleMap => m_Wrapper.m_Player_ToggleMap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -551,6 +563,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @UnlockDoor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnlockDoor;
                 @UnlockDoor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnlockDoor;
                 @UnlockDoor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnlockDoor;
+                @ToggleMap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleMap;
+                @ToggleMap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleMap;
+                @ToggleMap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleMap;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -585,6 +600,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @UnlockDoor.started += instance.OnUnlockDoor;
                 @UnlockDoor.performed += instance.OnUnlockDoor;
                 @UnlockDoor.canceled += instance.OnUnlockDoor;
+                @ToggleMap.started += instance.OnToggleMap;
+                @ToggleMap.performed += instance.OnToggleMap;
+                @ToggleMap.canceled += instance.OnToggleMap;
             }
         }
     }
@@ -685,6 +703,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnDungeonGenerationTest(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnUnlockDoor(InputAction.CallbackContext context);
+        void OnToggleMap(InputAction.CallbackContext context);
     }
     public interface IReferencesActions
     {

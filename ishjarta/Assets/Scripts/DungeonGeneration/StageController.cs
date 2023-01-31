@@ -110,7 +110,7 @@ public class StageController : MonoBehaviour
     private void Awake()
     {
         stageNames = new List<LevelName>();
-        stageNames.AddRange(new LevelName[] { LevelName.Forest, LevelName.Mountain, LevelName.end });
+        stageNames.AddRange(new LevelName[] { LevelName.Forest,LevelName.Forest, LevelName.Mountain, LevelName.end });
         currentStageCounter = 0;
         if (CreateRooms == true)
         {
@@ -156,10 +156,14 @@ public class StageController : MonoBehaviour
         }
 
         SetEveryFreeDoorClosed();
+        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
+
         if (!TestGeneration)
         {
             SetEveryRoomInvisible();
         }
+        
+
     }
 
     void SetEveryFreeDoorClosed()
@@ -508,7 +512,10 @@ public class StageController : MonoBehaviour
         {
             for (int i = 0; i < ItemRoomAmount; i++)
             {
-                AddSpecialRoom("ItemRoom", ItemRoomAmount);
+                var itemroom = AddSpecialRoom("ItemRoom", ItemRoomAmount);
+                if(currentStageCounter > 0 ){
+                    itemroom.GetComponent<Room>().LockRoom();
+                }
             }
         }
 
@@ -568,7 +575,6 @@ public class StageController : MonoBehaviour
         Debug.Log("Rooms: " + nextRoomId);
         currentStageCounter++;
         startRoom.GetComponent<Room>().hasVisited = true;
-        HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
     }
 
     private GameObject CreateEndRoom()

@@ -19,6 +19,8 @@ TagManager:
   - SpecialRoom
   - ItemRoom
   - MerchantRoom
+  - TextObject
+  - Wall
   layers:
   - Default
   - TransparentFX

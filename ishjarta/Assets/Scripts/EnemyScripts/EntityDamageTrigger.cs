@@ -8,7 +8,8 @@ public class EntityDamageTrigger : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider is PolygonCollider2D)
+
+        if (collider is PolygonCollider2D && collider.IsTouching(GetComponent<BoxCollider2D>()))
         {
             //Player player = collider.gameObject.GetComponent<Player>();
             //Enemy enemy = this.gameObject.GetComponent<Enemy>();
@@ -18,7 +19,7 @@ public class EntityDamageTrigger : MonoBehaviour
 
             //public AudioSource audiosource;     //Audio source
 
-            
+
 
             if (this.gameObject.tag == "Enemy")
             {

@@ -52,9 +52,7 @@ public class EnemyRangedAttack : MonoBehaviour
             {
                 Debug.Log("Raycasting");
                 var hit = Physics2D.Raycast(transform.position, target.position - transform.position, Mathf.Infinity, LayerMask.GetMask("Player"));
-                Debug.Log(hit);
-                Debug.Log(hit.collider.tag);
-                if (hit && hit.collider.tag == "Player")
+                if (hit == true && hit.collider.CompareTag("Player"))
                 {
                     Debug.Log("Hit a player");
                     float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;

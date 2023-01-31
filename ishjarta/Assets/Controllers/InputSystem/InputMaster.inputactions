@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleMap",
+                    "type": "Button",
+                    "id": "0f7f16f4-4a8a-4e53-8e59-eb1bea865d7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -286,17 +295,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2e67caea-730c-4a1b-80a7-e9e07b8e0278",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "DungeonGenerationTest",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0259dcba-63ee-45fd-8a73-3fa2d9764aa5",
                     "path": "<Keyboard>/r",
                     "interactions": "Hold(duration=1)",
@@ -314,6 +312,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Unlock Door",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7a75e01-e7e8-4135-8b93-ecd93d7952f5",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "ToggleMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
