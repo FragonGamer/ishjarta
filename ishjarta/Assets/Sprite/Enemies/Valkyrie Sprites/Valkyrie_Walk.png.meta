@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6b5491ba032b84b4082154f1e24aafd6
+guid: 592a9674fe1c82d4ba0e39787354f660
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton_Walk_Left_0
+      name: Valkyrie_Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e46aa120abe6bae4d8373ea0729f26b5
-      internalID: -1471337798
+      spriteID: 35bd1bf28a411d44082fa38d6a6e0374
+      internalID: -1428346287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton_Walk_Left_1
+      name: Valkyrie_Walk_1
       rect:
         serializedVersion: 2
         x: 32
@@ -142,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a33ea9fc516e1f24aba91e96b9354269
-      internalID: 1152896406
+      spriteID: 4c0b4d955a2ca9d44a19c4aa71c9d573
+      internalID: -559165582
       vertices: []
       indices: 
       edges: []
@@ -159,8 +159,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton_Walk_Left_0: -1471337798
-      Skeleton_Walk_Left_1: 1152896406
+      Valkyrie_Walk_0: -1428346287
+      Valkyrie_Walk_1: -559165582
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
