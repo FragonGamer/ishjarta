@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 4775998212428457440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5230681451430374148}
@@ -172,7 +172,7 @@ MonoBehaviour:
   <AttackRate>k__BackingField: 0
   <Range>k__BackingField: 0
   <Width>k__BackingField: 0
-  animator: {fileID: 0}
+  animator: {fileID: 1147722404055063327}
   spottingRange: 1
   <dropRate>k__BackingField: 0
   <hasSpottedPlayer>k__BackingField: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24b591296facb8b2aa5843527476df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1147722404055063327}
   MeeleDamage: 0
   AttackRate: 0
 --- !u!114 &2490956884238193051
