@@ -73,7 +73,6 @@ public class SaveManager : MonoBehaviour
                     //Debug.Log("RoomId: " + rd.roomId + " == PlayerRoomID: " + playerData.roomId);
 
 
-                    room.GetComponent<Room>().Init(rd);
 
                     //if(playerData.roomId == -1 && rd.itemName == "Start")
                     //{
