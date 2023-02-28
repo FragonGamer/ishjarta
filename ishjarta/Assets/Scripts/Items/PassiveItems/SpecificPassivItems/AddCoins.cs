@@ -18,7 +18,6 @@ public class AddCoins : PassiveItem
         inv.AddUsableItem(coins);
 
 
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
     }
 
     public override void removeEffect()
