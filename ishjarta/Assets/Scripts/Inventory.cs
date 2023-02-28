@@ -426,23 +426,31 @@ public class Inventory : MonoBehaviour
 
     private void SpawnItem(Item item)
     {
+        GameObject go = null;
+         var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
+        var assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
+        var gos = assets.Where(a => a.GetComponent<ItemManager>().GetItem() != null);
         Vector2 playerPos = gameObject.transform.position;
         Type type = item.GetType();
         if (type == typeof(MeleeWeapon) || item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
         {
-            GameObject meleeWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Melee/{item.name}") as GameObject;
-            Instantiate(meleeWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
+            GameObject meleeWeapon = assets.Where(i => i.GetComponent<ItemManager>().GetItem().ItemName == item.ItemName).FirstOrDefault();
+            go = Instantiate(meleeWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
         else if (type == typeof(RangedWeapon) || item.GetType().IsSubclassOf(typeof(RangedWeapon)))
         {
-            GameObject rangedWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Ranged/{item.name}") as GameObject;
-            Instantiate(rangedWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
+            GameObject rangedWeapon = assets.Where(i => i.GetComponent<ItemManager>().GetItem().ItemName == item.ItemName).FirstOrDefault();
+            go = Instantiate(rangedWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
         else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
-            GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
-            Instantiate(activeItem, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
+           
+            GameObject activeItem = assets.Where(i => i.GetComponent<ItemManager>().GetItem().ItemName == item.ItemName).FirstOrDefault();
+            if (activeItem != null)
+            // GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
+                go = Instantiate(activeItem, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
+        go.transform.SetParent(player.currentRoom.gameObject.transform);
 
     }
     private void DropUsableItem(UsableItem item)
