@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 [CreateAssetMenu(menuName = "active items/Gjallarhorn")]
 
 public class Gjallarhorn : ActiveItem
@@ -14,7 +15,7 @@ public class Gjallarhorn : ActiveItem
         var room = player.currentRoom;
         if(room == null)
             return;
-        var enemies = room.GetComponent<Room>().Enemies.ToArray();
+        var enemies = room.GetComponent<Room>().Enemies.Where(e => e.EnemyType != Enemy.EnemyEnum.spawner).ToArray();
         for (int i = 0; i < enemies.Length; i++)
         {
             enemies[i].GetComponent<Enemy>().ReceiveDamage(damage);

@@ -130,7 +130,8 @@ public class Enemy : Entity
     {
         slime,
         rangedSlime,
-        skeleton
+        skeleton,
+        spawner
     }
 
 }
