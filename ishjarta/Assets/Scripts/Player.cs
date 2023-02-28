@@ -13,6 +13,7 @@ public class Player : Entity
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] public ItemManager nearestItemManager = null;
+    public bool canSeeFullDesc = false;
     [SerializeField] int luck;
     [SerializeField] private float timeRanged = 0.0f;
     [SerializeField] private float timeMelee = 0.0f;
@@ -151,7 +152,24 @@ public class Player : Entity
         DamageModifier -= DM;
 
     }
+ public void AddSpeedModifierer(float sp)
+    {
+        this.SpeedModifier += sp;
+    }
+    public void RemoveSpeedModifierer(float sp)
+    {
+        SpeedModifier -= sp;
 
+    }
+    public void AddAttackRate(int ar)
+    {
+        AttackRate += ar;
+    }
+    public void RemoveAttackRate(int ar)
+    {
+        AttackRate -= ar;
+
+    }
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
