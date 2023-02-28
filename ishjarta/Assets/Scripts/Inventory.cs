@@ -511,13 +511,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
+    public ActiveItemState GetState(){
+        return state;
+    }
     // Active Item Usage
 
     float cooldownTime;
     float activeTime;
 
-    enum ActiveItemState
+    public enum ActiveItemState
     {
         ready,
         active,

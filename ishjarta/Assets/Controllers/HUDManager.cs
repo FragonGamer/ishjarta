@@ -75,7 +75,15 @@ public class HUDManager : MonoBehaviour
     }
    
     private void UpdateItemInfoUI(){
-        
+        var activeitem = Inventory.instance.GetActiveItem();
+        if (activeitem != null){
+            if(Inventory.instance.GetState() == Inventory.ActiveItemState.cooldown){
+                ActiveItemSprite.color  = new Color32(150,150,150,100);
+            }
+            else{
+                ActiveItemSprite.color  = new Color32(255,255,225,100);
+            }
+        }
         nearestItemManager = player.nearestItemManager;
         if(nearestItemManager == null) return;
         var isItemInRange = nearestItemManager.isInRange ? true : false;
