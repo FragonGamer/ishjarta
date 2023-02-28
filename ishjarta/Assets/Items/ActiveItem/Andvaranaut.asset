@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b0f14696eafc765a485183df319173, type: 3}
+  m_Name: Andvaranaut
+  m_EditorClassIdentifier: 
+  ItemName: Andvaranaut
+  description: A gold ring, with the ability to multiply gold, but there is a curse
+    on it that brings death to anyone who acquires it
+  fullDescription: Chance to double your coins or die instantly
+  isBuyable: 0
+  <Icon>k__BackingField: {fileID: -1471337798, guid: 7607478821233cfa884a8b96129a2e7a, type: 3}
+  <Rarity>k__BackingField: 15
+  <Price>k__BackingField: 15
+  <SpawnLevelPool>k__BackingField: 00000000
+  <OwnerEffects>k__BackingField: []
+  <EmitEffects>k__BackingField: []
+  cooldownTime: 0
+  activeTime: 0
+  ItemType: 0
