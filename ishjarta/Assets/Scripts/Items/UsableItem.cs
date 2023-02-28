@@ -13,7 +13,7 @@ public class UsableItem : Item
         armor
     }
     public UsableItem.UsableItemtype type;
-    [SerializeField]public int Amount {get;set;}
+    [SerializeField]public int Amount {get;set;} = 1;
     public int MaxAmount { get; set; }
 
     public void Init( int a, UsableItemtype Itype, int ma)
