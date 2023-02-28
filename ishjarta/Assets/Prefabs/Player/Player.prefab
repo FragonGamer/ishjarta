@@ -4975,7 +4975,7 @@ MonoBehaviour:
   <Resistance>k__BackingField: 0
   <CurrentResistance>k__BackingField: 0
   <MovementSpeed>k__BackingField: 2
-  <SpeedModifier>k__BackingField: 0.75
+  <SpeedModifier>k__BackingField: 1
   <BaseDamage>k__BackingField: 5
   <DamageModifier>k__BackingField: 1
   <AttackRate>k__BackingField: 1

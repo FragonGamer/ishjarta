@@ -275,7 +275,7 @@ public class Inventory : MonoBehaviour
     /// <param name="item"></param>
     public void AddUsableItem(UsableItem item)
     {
-        int itemAmount = 1;
+        int itemAmount = 0;
 
         if (item.Amount > 1)
         {
@@ -361,7 +361,9 @@ public class Inventory : MonoBehaviour
     public void AddPassiveItem(PassiveItem item)
     {
         PassiveItems.Add(item);
-        PeriodiclePassiveItems.Add(item);
+        item.triggerEffect();
+        if(item.isPeriodicle)
+            PeriodiclePassiveItems.Add(item);
         
         //player.AddEffectRange(item.OwnerEffects);
     }
@@ -390,8 +392,13 @@ public class Inventory : MonoBehaviour
             Debug.Log(item.GetType());
             if (item.GetType() == typeof(PassiveItem))
             {
+                ((PassiveItem)item).removeEffect();
+                if(((PassiveItem)item).isPeriodicle)
+                    PeriodiclePassiveItems.Remove((PassiveItem)item);
                 if (PassiveItems.Remove((PassiveItem)item))
                     player.RemoveEffectRange(item.OwnerEffects);
+                    
+                
 
             }
             else if (item.GetType() == typeof(UsableItem))
@@ -519,6 +526,13 @@ public class Inventory : MonoBehaviour
                 PeriodiclePassiveItems[i].triggerEffect();
             }
         }
+    }
+    public UsableItem GetUsableItem(UsableItem.UsableItemtype itemtype){
+        var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
+        var name = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemtype.ToString().ToLower());
+        var item = Utils.LoadItemByName<UsableItem>(p, name);
+        
+        return item;
     }
     void Update()
     {
