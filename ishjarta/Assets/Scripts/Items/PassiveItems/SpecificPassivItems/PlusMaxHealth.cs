@@ -10,7 +10,6 @@ public class PlusMaxHealth : PassiveItem
         var player = PlayerManager.instance.player.GetComponent<Player>();
         player.AddToMaxHealth(Amount);
         player.AddToCurrentHealth(Amount);
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
     }
 
     public override void removeEffect()
