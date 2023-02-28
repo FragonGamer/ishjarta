@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3090b6f6738dd8551964ac29149e70ce, type: 3}
+  m_Name: Met
+  m_EditorClassIdentifier: 
+  ItemName: Met of Suttungr
+  description: A mythical drink, who drinks it becomes a scholar to recite any information
+    and solve any question
+  fullDescription: You can see the full description of all items
+  isBuyable: 0
+  <Icon>k__BackingField: {fileID: -1471337798, guid: bffcfb61fa3794b1a9a21da96f6395cc, type: 3}
+  <Rarity>k__BackingField: 15
+  <Price>k__BackingField: 30
+  <SpawnLevelPool>k__BackingField: 00000000
+  <OwnerEffects>k__BackingField: []
+  <EmitEffects>k__BackingField: []
+  isPeriodicle: 0
