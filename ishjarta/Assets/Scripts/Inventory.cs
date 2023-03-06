@@ -197,14 +197,14 @@ public class Inventory : MonoBehaviour
     }
 
     public void ChangeWeapon()
-    {        
-        if (CurrentWeapon.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
+    {      
+        if (CurrentWeapon?.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = MeleeWeapon;
             player.AddEffectRange(CurrentWeapon.OwnerEffects);
         }
-        else if (CurrentWeapon.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
+        else if (CurrentWeapon?.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = RangedWeapon;
@@ -212,8 +212,10 @@ public class Inventory : MonoBehaviour
         }
         if (hudManager != null)
             hudManager.UpdateWeaponSprites();
-        player.SetBaseDamage(CurrentWeapon.Damage);
-        PrintInventory();
+        if (CurrentWeapon != null) {
+            player.SetBaseDamage(CurrentWeapon.Damage);
+            PrintInventory();
+        }
     }
 
     private void AddWeapon(Item item)
