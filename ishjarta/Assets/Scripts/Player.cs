@@ -198,7 +198,6 @@ public class Player : Entity
                 pc.points = v;
                 var angleOfAttack = Vector2.Angle(v[1],v[3]);
 
-                //TODO: Give the particle system the right angle
                 attackParticleSystem.transform.localRotation = Quaternion.Euler(0, 0, (angle * Mathf.Rad2Deg)-angleOfAttack/2);
                 var shape = attackParticleSystem.shape;
                 shape.arc = angleOfAttack;

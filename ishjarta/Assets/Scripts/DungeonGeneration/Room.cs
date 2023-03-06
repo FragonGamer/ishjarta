@@ -178,7 +178,6 @@ public class Room : MonoBehaviour
         {
             ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.closedDoorTile);
             door.doorIsOpen = false;
-            door.DarkenLockedDoorIconColor();
         }
     }
     public void LockRoom()
@@ -204,9 +203,9 @@ public class Room : MonoBehaviour
     {
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
         {
-            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
+            if(!door.doorIsOpen && !door.isLocked)
+                ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
             door.doorIsOpen = true;
-            door.BrightenLockedDoorIconColor();
         }
     }
     /// <summary>

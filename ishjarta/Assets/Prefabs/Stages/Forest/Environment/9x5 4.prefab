@@ -2738,6 +2738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockRoom: 0
+  lockLevelAmount: 0
   hasVisited: 0
   maxOfThisRoom: 1
   isEntered: 0
@@ -4191,7 +4193,7 @@ PrefabInstance:
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: closedDoorTile
       value: 
-      objectReference: {fileID: 11400000, guid: 15cfe5bc93a3c4943a7f263958dcbeeb, type: 2}
+      objectReference: {fileID: 11400000, guid: 61e28e36a32b5b34da42e96264c91baa, type: 2}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: lockedDoorTile
       value: 
@@ -4839,7 +4841,7 @@ PrefabInstance:
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: closedDoorTile
       value: 
-      objectReference: {fileID: 11400000, guid: 15cfe5bc93a3c4943a7f263958dcbeeb, type: 2}
+      objectReference: {fileID: 11400000, guid: 61e28e36a32b5b34da42e96264c91baa, type: 2}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: lockedDoorTile
       value: 

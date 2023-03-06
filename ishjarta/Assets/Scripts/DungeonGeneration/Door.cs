@@ -30,9 +30,9 @@ public class Door : MonoBehaviour
     public bool isInRange;
     [SerializeField] private GameObject LockedDoorUIElement;
     public Room room;
-
-    public void DarkenLockedDoorIconColor() => LockedDoorUIElement.GetComponentInChildren<RawImage>().color = Color.gray;
-    public void BrightenLockedDoorIconColor() => LockedDoorUIElement.GetComponentInChildren<RawImage>().color = Color.white;
+    private RawImage LockedDoorImage;
+    private void DarkenLockedDoorIconColor() => LockedDoorImage.color = Color.gray;
+    private void BrightenLockedDoorIconColor() => LockedDoorImage.color = Color.white;
 
     private void Start()
     {
@@ -41,11 +41,13 @@ public class Door : MonoBehaviour
         lockedDoorTile = closedDoorTile;
 
         if (!isLocked)
+        {
             LockedDoorUIElement.SetActive(false);
+            LockedDoorImage = LockedDoorUIElement.GetComponentInChildren<RawImage>();
+        }
     }
     private void Update()
     {
-
         if (room.IsCleared)
         {
             CalculatRange();
@@ -53,6 +55,10 @@ public class Door : MonoBehaviour
                 wasLocked = true;
 
         }
+        if (room.IsCleared && LockedDoorImage?.color == Color.gray)
+            BrightenLockedDoorIconColor();
+        else if (!room.IsCleared && LockedDoorImage?.color == Color.white)
+            DarkenLockedDoorIconColor();
     }
     private void OnEnable()
     {
