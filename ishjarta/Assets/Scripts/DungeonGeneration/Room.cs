@@ -1,3 +1,4 @@
+using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,6 +11,9 @@ public class Room : MonoBehaviour
 
     public Tuple<int, int> position = new Tuple<int, int>(0,0);
     [SerializeField]
+    private bool lockRoom = false;
+    [SerializeField]
+    private int lockLevelAmount = 0; 
     public bool hasVisited = false;
     [SerializeField] public int maxOfThisRoom;
     public bool IsCleared { get; private set; } = false;
@@ -67,6 +71,15 @@ public class Room : MonoBehaviour
         else
         {
             IsCleared = false;
+        }
+    }
+    public void InitLocking(){
+        if(lockRoom){
+            if(GameObject.FindGameObjectWithTag("GameManager").GetComponent<StageController>().GetCurrentStageCounter() >= lockLevelAmount){
+                foreach(var door in doors.Where(d =>  d.GetComponent<Door>().ConnectedDoor != null).Select(d => d.GetComponent<Door>().ConnectedDoor.GetComponent<Door>())){
+                    door.isLocked = true;
+                }
+            }
         }
     }
 

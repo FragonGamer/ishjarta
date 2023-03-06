@@ -44,6 +44,9 @@ public class StageController : MonoBehaviour
     public IList<IResourceLocation> enemyAssets { get; private set; }
     public List<LevelName> stageNames { get; private set; }
     private int currentStageCounter;
+    public int GetCurrentStageCounter(){
+        return currentStageCounter;
+    }
     public LevelName currentStageName { get; private set; }
 
     int SetMaxRooms()
@@ -142,6 +145,7 @@ public class StageController : MonoBehaviour
         {
             room.ConnectDoors();
         }
+       
 
         foreach (var item in worldRooms)
         {
@@ -158,6 +162,9 @@ public class StageController : MonoBehaviour
         HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
 
         AstarPath.active.Scan();
+         foreach (var room in worldRooms){
+            room.InitLocking();
+        }
         if (!TestGeneration)
         {
             SetEveryRoomInvisible();
