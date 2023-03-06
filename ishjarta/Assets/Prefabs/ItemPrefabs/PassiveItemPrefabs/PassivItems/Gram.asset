@@ -23,6 +23,6 @@ MonoBehaviour:
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
   isPeriodicle: 0
-  damageAmount: 1
-  speedAmount: 1
+  damageAmount: 0.8
+  speedAmount: 0.2
   attackspeedAmount: 1

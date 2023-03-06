@@ -235,7 +235,7 @@ public class Inventory : MonoBehaviour
         {
             if (RangedWeapon != null)
             {
-                DropItem(MeleeWeapon);
+                DropItem(RangedWeapon);
                 //player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
                 CurrentWeapon = null;
             }
@@ -277,7 +277,7 @@ public class Inventory : MonoBehaviour
     {
         int itemAmount = 0;
 
-        if (item.Amount > 1)
+        if (item.Amount > 0)
         {
             itemAmount = item.Amount;
         }
@@ -426,10 +426,19 @@ public class Inventory : MonoBehaviour
 
     private void SpawnItem(Item item)
     {
-        GameObject go = null;
-         var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
-        var assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
-        var gos = assets.Where(a => a.GetComponent<ItemManager>().GetItem() != null);
+        var item_type = item.GetType();
+        GameObject go = null;  
+         var assets = new List<GameObject>();
+         var gos = new List<GameObject>();
+        if(item_type.IsSubclassOf(typeof(Weapon))){
+           var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Weapon" });
+           assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
+        }
+        else{
+           var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
+           assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
+        }
+        
         Vector2 playerPos = gameObject.transform.position;
         Type type = item.GetType();
         if (type == typeof(MeleeWeapon) || item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
