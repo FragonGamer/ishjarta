@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockRoom: 1
+  lockLevelAmount: 0
   hasVisited: 0
   maxOfThisRoom: -1
   isEntered: 0
