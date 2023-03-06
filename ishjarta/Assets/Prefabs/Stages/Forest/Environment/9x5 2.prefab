@@ -1564,7 +1564,7 @@ MonoBehaviour:
   maxOfThisRoom: -1
   isEntered: 0
   isClosed: 0
-  RoomId: 0
+  RoomId: 7
   DistanceToStart: 0
   Enemies: []
   lenX: 9

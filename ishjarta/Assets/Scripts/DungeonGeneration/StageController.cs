@@ -22,7 +22,6 @@ public class StageController : MonoBehaviour
     GameObject HUD;
     int nextRoomId = 0;
     public bool CreateRooms = true;
-
     public List<Room> worldRooms { get; private set; } = new List<Room>();
 
     //2D array for tracking position and doors of room cells
@@ -158,6 +157,7 @@ public class StageController : MonoBehaviour
         SetEveryFreeDoorClosed();
         HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
 
+        AstarPath.active.Scan();
         if (!TestGeneration)
         {
             SetEveryRoomInvisible();

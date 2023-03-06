@@ -239,7 +239,7 @@ public class Player : Entity
             Destroy(projectile, 10f);
         }
     }
-    public override async void Attack(Vector2 mousePos, float damageChargeModifier)
+    public override void Attack(Vector2 mousePos, float damageChargeModifier)
     {
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
         {

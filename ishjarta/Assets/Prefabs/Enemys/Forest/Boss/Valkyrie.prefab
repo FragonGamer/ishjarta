@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 4307048939063441005}
   - component: {fileID: 3478575018441804299}
   - component: {fileID: 3551335905052359647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Valkyrie
   m_TagString: Enemy
   m_Icon: {fileID: 0}

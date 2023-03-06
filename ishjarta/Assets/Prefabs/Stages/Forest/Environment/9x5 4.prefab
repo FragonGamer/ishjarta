@@ -2742,7 +2742,7 @@ MonoBehaviour:
   maxOfThisRoom: 1
   isEntered: 0
   isClosed: 0
-  RoomId: 0
+  RoomId: 1
   DistanceToStart: 0
   Enemies: []
   lenX: 27
