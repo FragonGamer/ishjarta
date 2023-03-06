@@ -83,8 +83,20 @@ public class Room : MonoBehaviour
         }
     }
 
+    private bool hasMinimap = true;
     private void Update()
-    {                GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<Minimap>().UpdateMinimap();
+    {
+        if (hasMinimap)
+        {
+            try
+            {
+                GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<Minimap>().UpdateMinimap();
+            }
+            catch (NullReferenceException)
+            {
+                hasMinimap= false;
+            }
+        }
          LockRoom();
         if (isEntered)
         {
