@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Megingiard
   description: The power-giving belt of the god Thor
-  fullDescription: Adds 1.5 to your damage modifier
+  fullDescription: Adds 0.5 to your damage modifier
   isBuyable: 0
   <Icon>k__BackingField: {fileID: -1471337798, guid: 25c67a4d6c57556af9bb5cca769e599f, type: 3}
   <Rarity>k__BackingField: 33

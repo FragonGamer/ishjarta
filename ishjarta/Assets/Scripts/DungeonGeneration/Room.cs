@@ -71,8 +71,7 @@ public class Room : MonoBehaviour
     }
 
     private void Update()
-    {
-        GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<Minimap>().UpdateMinimap();
+    {                GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<Minimap>().UpdateMinimap();
          LockRoom();
         if (isEntered)
         {
