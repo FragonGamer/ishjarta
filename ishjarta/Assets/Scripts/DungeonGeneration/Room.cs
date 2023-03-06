@@ -9,11 +9,11 @@ using System.Linq;
 public class Room : MonoBehaviour
 {
 
-    public Tuple<int, int> position = new Tuple<int, int>(0,0);
+    public Tuple<int, int> position = new Tuple<int, int>(0, 0);
     [SerializeField]
     private bool lockRoom = false;
     [SerializeField]
-    private int lockLevelAmount = 0; 
+    private int lockLevelAmount = 0;
     public bool hasVisited = false;
     [SerializeField] public int maxOfThisRoom;
     public bool IsCleared { get; private set; } = false;
@@ -51,7 +51,8 @@ public class Room : MonoBehaviour
     }
     private void Start()
     {
-        if(gameObject.CompareTag("StartRoom")){
+        if (gameObject.CompareTag("StartRoom"))
+        {
             isEntered = true;
         }
         ObstacleTileMap = this.gameObject.GetComponentsInChildren<Tilemap>().ToList().Find(comp => comp.name.ToLower().Contains("wall"));
@@ -73,10 +74,14 @@ public class Room : MonoBehaviour
             IsCleared = false;
         }
     }
-    public void InitLocking(){
-        if(lockRoom){
-            if(GameObject.FindGameObjectWithTag("GameManager").GetComponent<StageController>().GetCurrentStageCounter() >= lockLevelAmount){
-                foreach(var door in doors.Where(d =>  d.GetComponent<Door>().ConnectedDoor != null).Select(d => d.GetComponent<Door>().ConnectedDoor.GetComponent<Door>())){
+    public void InitLocking()
+    {
+        if (lockRoom)
+        {
+            if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<StageController>().GetCurrentStageCounter() >= lockLevelAmount)
+            {
+                foreach (var door in doors.Where(d => d.GetComponent<Door>().ConnectedDoor != null).Select(d => d.GetComponent<Door>().ConnectedDoor.GetComponent<Door>()))
+                {
                     door.isLocked = true;
                 }
             }
@@ -94,20 +99,20 @@ public class Room : MonoBehaviour
             }
             catch (NullReferenceException)
             {
-                hasMinimap= false;
+                hasMinimap = false;
             }
         }
-         LockRoom();
+        LockRoom();
         if (isEntered)
         {
-           
+
             if (!hasVisited)
             {
                 LockRoom();
                 hasVisited = true;
                 player.visitedRooms++;
                 Debug.Log(player.visitedRooms);
-                
+
 
                 var test = GetComponentInChildren<Itemspawner>();
                 if (test != null)
@@ -136,10 +141,11 @@ public class Room : MonoBehaviour
 
 
             }
-            else{
+            else
+            {
                 UnlockRoom();
             }
-            
+
 
 
 
@@ -172,18 +178,22 @@ public class Room : MonoBehaviour
         {
             ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.closedDoorTile);
             door.doorIsOpen = false;
+            door.DarkenLockedDoorIconColor();
         }
     }
-    public void LockRoom(){
+    public void LockRoom()
+    {
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && door.GetComponent<Door>().isLocked).Select(go => go.GetComponent<Door>()))
         {
             ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), door.lockedDoorTile);
 
         }
     }
-    public void UnlockRoom(){
-         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && !door.GetComponent<Door>().isLocked && door.GetComponent<Door>().wasLocked).Select(go => go.GetComponent<Door>())){
-        ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
+    public void UnlockRoom()
+    {
+        foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null && !door.GetComponent<Door>().isLocked && door.GetComponent<Door>().wasLocked).Select(go => go.GetComponent<Door>()))
+        {
+            ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
         }
     }
 
@@ -196,6 +206,7 @@ public class Room : MonoBehaviour
         {
             ObstacleTileMap.SetTile(new Vector3Int((int)door.gameObject.transform.localPosition.x, (int)door.gameObject.transform.localPosition.y), null);
             door.doorIsOpen = true;
+            door.BrightenLockedDoorIconColor();
         }
     }
     /// <summary>

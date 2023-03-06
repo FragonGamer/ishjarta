@@ -4,8 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
-
-
+using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
@@ -20,32 +19,42 @@ public class Door : MonoBehaviour
     public bool doorIsOpen;
     public GameObject ConnectedDoor = null;
     [SerializeField] public Direction direction;
-    
+
     [SerializeField] public Tile closedDoorTile;
-    [SerializeField]public bool isLocked;
+    [SerializeField] public bool isLocked;
     public bool wasLocked;
     [SerializeField] public Tile lockedDoorTile;
     [SerializeField] public float range = 1f;
     private Player player;
     InputMaster inputMaster;
     public bool isInRange;
-
+    [SerializeField] private GameObject LockedDoorUIElement;
     public Room room;
-    
-private void Start() {
-    player = FindObjectOfType<Player>();
-    inputMaster.Player.UnlockDoor.performed += UnlockDoor;
-}
-private void Update() {
-    
-    if(room.IsCleared){
-        CalculatRange();
-        if(isLocked)
-            wasLocked = true;
 
+    public void DarkenLockedDoorIconColor() => LockedDoorUIElement.GetComponentInChildren<RawImage>().color = Color.gray;
+    public void BrightenLockedDoorIconColor() => LockedDoorUIElement.GetComponentInChildren<RawImage>().color = Color.white;
+
+    private void Start()
+    {
+        player = FindObjectOfType<Player>();
+        inputMaster.Player.UnlockDoor.performed += UnlockDoor;
+        lockedDoorTile = closedDoorTile;
+
+        if (!isLocked)
+            LockedDoorUIElement.SetActive(false);
     }
-}
-private void OnEnable()
+    private void Update()
+    {
+
+        if (room.IsCleared)
+        {
+            CalculatRange();
+            if (isLocked)
+                wasLocked = true;
+
+        }
+    }
+    private void OnEnable()
     {
         inputMaster.Enable();
     }
@@ -53,24 +62,31 @@ private void OnEnable()
     {
         inputMaster.Disable();
     }
-private void UnlockDoor(InputAction.CallbackContext context){
-    if(isInRange&&isLocked){
-        var inventory= player.inventory;
-        if(inventory.GetKeys().Amount > 0){
-            inventory.DropItem(new UsableItem(){type = UsableItem.UsableItemtype.key,Amount = 1});
-            isLocked = false;
+    private void UnlockDoor(InputAction.CallbackContext context)
+    {
+        if (isInRange && isLocked)
+        {
+            var inventory = player.inventory;
+            if (inventory.GetKeys().Amount > 0)
+            {
+                inventory.DropItem(new UsableItem() { type = UsableItem.UsableItemtype.key, Amount = 1 });
+                isLocked = false;
+                LockedDoorUIElement.SetActive(false);
+            }
         }
     }
-}
-private void CalculatRange(){
-    float distance = GetPlayerDistanceToDoor(this.player);
-    if( distance <= range){
-        isInRange = true;
+    private void CalculatRange()
+    {
+        float distance = GetPlayerDistanceToDoor(this.player);
+        if (distance <= range)
+        {
+            isInRange = true;
+        }
+        else
+        {
+            isInRange = false;
+        }
     }
-    else{
-        isInRange=false;
-    }
-}
     public Room ConnectedDoorRoom;
     private void Awake()
     {
