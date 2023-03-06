@@ -38,7 +38,7 @@ public class Door : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         inputMaster.Player.UnlockDoor.performed += UnlockDoor;
-        lockedDoorTile = Tile.Instantiate(closedDoorTile);
+        lockedDoorTile = closedDoorTile;
 
         if (!isLocked)
             LockedDoorUIElement.SetActive(false);
