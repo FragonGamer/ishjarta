@@ -84,9 +84,23 @@ public class EnemyMeeleAttack : MonoBehaviour
 
                     Destroy(pc, 0.2f);
                 }
+                if (animator != null)
+                {
+                    try
+                    {
+                        animator.SetBool("attack", false);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
                 time += Time.deltaTime;
             }
+
         }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
