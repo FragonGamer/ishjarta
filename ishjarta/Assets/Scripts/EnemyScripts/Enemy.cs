@@ -122,6 +122,7 @@ public class Enemy : Entity
         }
 
         gameObject.GetComponent<AIPath>().canMove = false;
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         animator.SetBool("isDead", true);
         room.RemoveEnemy(this);
     }

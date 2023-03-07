@@ -15,13 +15,14 @@ MonoBehaviour:
   ItemName: Sword
   description: 
   fullDescription: 
+  isBuyable: 0
   <Icon>k__BackingField: {fileID: 21300000, guid: e07e788bcb4073e4cb8d6b5d2387da84, type: 3}
   <Rarity>k__BackingField: 0
   <Price>k__BackingField: 0
   <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
-  <Damage>k__BackingField: 500
+  <Damage>k__BackingField: 20
   <Range>k__BackingField: 1.2
   <AttackRate>k__BackingField: 1
   <IsChargable>k__BackingField: 0

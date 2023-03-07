@@ -3858,6 +3858,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8856521798528433699}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3928,6 +3936,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8856521798528433699}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4050,6 +4066,14 @@ PrefabInstance:
       propertyPath: enemyLootDropTable
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4119,6 +4143,14 @@ PrefabInstance:
     - target: {fileID: 8253690455608401491, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
       propertyPath: enemyLootDropTable
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4238,11 +4270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.060669
+      value: 14.310669
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.0678716
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4730,11 +4762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.952086
+      value: 11.702086
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.995162
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
