@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0104d7bb7445144ac59fd335973c43, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  ItemName: 
-  description: 
-  fullDescription: 
+  ItemName: Key
+  description: Opens doors
+  fullDescription: Opens doors
+  isBuyable: 0
   <Icon>k__BackingField: {fileID: 21300000, guid: 58fafa13e6646ab41bff128d78f970c6, type: 3}
   <Rarity>k__BackingField: 0
   <Price>k__BackingField: 0

@@ -21,6 +21,7 @@ TagManager:
   - MerchantRoom
   - TextObject
   - Wall
+  - Astar
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - UI
   - Walls
   - Minimap
-  - Player
+  - Entity
   - 
   - 
   - 

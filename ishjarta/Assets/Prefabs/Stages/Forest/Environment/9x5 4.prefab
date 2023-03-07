@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 6377154396843775729}
   - component: {fileID: 7456662544722901133}
   - component: {fileID: 6493327869352106750}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Obstacles
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -2738,11 +2738,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockRoom: 0
+  lockLevelAmount: 0
   hasVisited: 0
   maxOfThisRoom: 1
   isEntered: 0
   isClosed: 0
-  RoomId: 0
+  RoomId: 1
   DistanceToStart: 0
   Enemies: []
   lenX: 27
@@ -3856,6 +3858,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8856521798528433699}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3926,6 +3936,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8856521798528433699}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4048,6 +4066,14 @@ PrefabInstance:
       propertyPath: enemyLootDropTable
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4117,6 +4143,14 @@ PrefabInstance:
     - target: {fileID: 8253690455608401491, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
       propertyPath: enemyLootDropTable
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158428064144755672, guid: 9bf632f82a13dbe4f83c9a1ea9a47d6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4191,7 +4225,7 @@ PrefabInstance:
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: closedDoorTile
       value: 
-      objectReference: {fileID: 11400000, guid: 15cfe5bc93a3c4943a7f263958dcbeeb, type: 2}
+      objectReference: {fileID: 11400000, guid: 61e28e36a32b5b34da42e96264c91baa, type: 2}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: lockedDoorTile
       value: 
@@ -4236,11 +4270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.060669
+      value: 14.310669
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.0678716
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4728,11 +4762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.952086
+      value: 11.702086
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.995162
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4839,7 +4873,7 @@ PrefabInstance:
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: closedDoorTile
       value: 
-      objectReference: {fileID: 11400000, guid: 15cfe5bc93a3c4943a7f263958dcbeeb, type: 2}
+      objectReference: {fileID: 11400000, guid: 61e28e36a32b5b34da42e96264c91baa, type: 2}
     - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: lockedDoorTile
       value: 

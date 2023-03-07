@@ -1982,7 +1982,7 @@ GameObject:
   - component: {fileID: 888309985550873970}
   - component: {fileID: 8846249081386724459}
   - component: {fileID: 7547738803445882578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3030,6 +3030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockRoom: 0
+  lockLevelAmount: 0
   hasVisited: 0
   maxOfThisRoom: 2
   isEntered: 0
@@ -3074,7 +3076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.1425261
+      value: -2.8925261
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3200,6 +3202,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 991802873700777761}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3344,6 +3354,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 991802873700777761}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3436,7 +3454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0691495
+      value: -2.8191495
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3850,6 +3868,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 991802873700777761}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4142,6 +4168,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 991802873700777761}
     m_Modifications:
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132687144757089, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7939937297367134488, guid: 234128b03c895e849bbc7b8845e5faf3, type: 3}
       propertyPath: m_RootOrder
       value: -1

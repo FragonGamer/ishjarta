@@ -23,17 +23,19 @@ public class SaveData
 
     public PlayerData playerData;
 
-    public List<EnemyData> enemyData = new List<EnemyData>();
+    public List<RoomData> roomData = new List<RoomData>();
 
-    public List<MeleeWeaponData> meleeWeaponData = new List<MeleeWeaponData>();
+    //public List<EnemyData> enemyData = new List<EnemyData>();
 
-    public List<RangedWeaponData> rangedWeaponData = new List<RangedWeaponData>();
+    //public List<MeleeWeaponData> meleeWeaponData = new List<MeleeWeaponData>();
 
-    public List<ActiveItemData> activeItemData = new List<ActiveItemData>();
+    //public List<RangedWeaponData> rangedWeaponData = new List<RangedWeaponData>();
 
-    public List<PassivItemData> passivItemData = new List<PassivItemData>();
+    //public List<ActiveItemData> activeItemData = new List<ActiveItemData>();
 
-    public List<UsableItemData> usableItemData = new List<UsableItemData>();
+    //public List<PassivItemData> passivItemData = new List<PassivItemData>();
+
+    //public List<UsableItemData> usableItemData = new List<UsableItemData>();
 
     public void ClearAll()
     {

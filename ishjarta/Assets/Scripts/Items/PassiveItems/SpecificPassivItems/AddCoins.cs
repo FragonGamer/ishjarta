@@ -6,27 +6,32 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(menuName = "passiv items/AddCoins")]
 public class AddCoins : PassiveItem
 {
-    public int Amount;
+    [SerializeField]
+    public int Amount = 1;
     public override void triggerEffect()
     {
 
         var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
         var coins = Utils.LoadItemByName<UsableItem>(p, "Coin");
+        var coin = Instantiate(coins);
         var inv = Inventory.instance;
-        coins.Amount = Amount;
+        coin.Amount = Amount;
 
-        inv.AddUsableItem(coins);
+        inv.AddUsableItem(coin);
+        coins.Amount = 1;
 
 
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
     }
 
     public override void removeEffect()
     {
         var p = Utils.LoadIRessourceLocations<GameObject>(new string[] { "ScriptableObject", "UsableItem" });
         var coins = Utils.LoadItemByName<UsableItem>(p, "Coin");
+        var coin = Instantiate(coins);
         var inv = Inventory.instance;
-        coins.Amount = Amount;
-        Inventory.instance.DropItem(coins);
+        coin.Amount = Amount;
+        Inventory.instance.DropItem(coin);
+                coins.Amount = 1;
+
     }
 }

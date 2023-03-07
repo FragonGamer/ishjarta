@@ -51,11 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockRoom: 1
+  lockLevelAmount: 0
   hasVisited: 0
   maxOfThisRoom: -1
   isEntered: 0
   isClosed: 0
-  RoomId: 0
+  RoomId: 9
   DistanceToStart: 0
   Enemies: []
   lenX: 9
@@ -540,7 +542,7 @@ GameObject:
   - component: {fileID: 4066895838149425400}
   - component: {fileID: 543760204948543108}
   - component: {fileID: 4245873406173050103}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Obstacles
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

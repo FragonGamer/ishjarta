@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class ActiveItem : Item
+
 {
     public float cooldownTime;
     public float activeTime;

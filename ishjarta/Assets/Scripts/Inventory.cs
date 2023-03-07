@@ -197,14 +197,14 @@ public class Inventory : MonoBehaviour
     }
 
     public void ChangeWeapon()
-    {        
-        if (CurrentWeapon.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
+    {      
+        if (CurrentWeapon?.GetType() == typeof(RangedWeapon) && MeleeWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = MeleeWeapon;
             player.AddEffectRange(CurrentWeapon.OwnerEffects);
         }
-        else if (CurrentWeapon.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
+        else if (CurrentWeapon?.GetType() == typeof(MeleeWeapon) && RangedWeapon != null)
         {
             player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
             CurrentWeapon = RangedWeapon;
@@ -212,8 +212,10 @@ public class Inventory : MonoBehaviour
         }
         if (hudManager != null)
             hudManager.UpdateWeaponSprites();
-        player.SetBaseDamage(CurrentWeapon.Damage);
-        PrintInventory();
+        if (CurrentWeapon != null) {
+            player.SetBaseDamage(CurrentWeapon.Damage);
+            PrintInventory();
+        }
     }
 
     private void AddWeapon(Item item)
@@ -235,7 +237,7 @@ public class Inventory : MonoBehaviour
         {
             if (RangedWeapon != null)
             {
-                DropItem(MeleeWeapon);
+                DropItem(RangedWeapon);
                 //player.RemoveEffectRange(CurrentWeapon.OwnerEffects);
                 CurrentWeapon = null;
             }
@@ -275,9 +277,9 @@ public class Inventory : MonoBehaviour
     /// <param name="item"></param>
     public void AddUsableItem(UsableItem item)
     {
-        int itemAmount = 1;
+        int itemAmount = 0;
 
-        if (item.Amount > 1)
+        if (item.Amount > 0)
         {
             itemAmount = item.Amount;
         }
@@ -361,7 +363,9 @@ public class Inventory : MonoBehaviour
     public void AddPassiveItem(PassiveItem item)
     {
         PassiveItems.Add(item);
-        PeriodiclePassiveItems.Add(item);
+        item.triggerEffect();
+        if(item.isPeriodicle)
+            PeriodiclePassiveItems.Add(item);
         
         //player.AddEffectRange(item.OwnerEffects);
     }
@@ -390,8 +394,13 @@ public class Inventory : MonoBehaviour
             Debug.Log(item.GetType());
             if (item.GetType() == typeof(PassiveItem))
             {
+                ((PassiveItem)item).removeEffect();
+                if(((PassiveItem)item).isPeriodicle)
+                    PeriodiclePassiveItems.Remove((PassiveItem)item);
                 if (PassiveItems.Remove((PassiveItem)item))
                     player.RemoveEffectRange(item.OwnerEffects);
+                    
+                
 
             }
             else if (item.GetType() == typeof(UsableItem))
@@ -419,23 +428,40 @@ public class Inventory : MonoBehaviour
 
     private void SpawnItem(Item item)
     {
+        var item_type = item.GetType();
+        GameObject go = null;  
+         var assets = new List<GameObject>();
+         var gos = new List<GameObject>();
+        if(item_type.IsSubclassOf(typeof(Weapon))){
+           var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Weapon" });
+           assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
+        }
+        else{
+           var reference = Utils.LoadIRessourceLocations<GameObject>(new string[] { "Item" });
+           assets = Utils.LoadMultipleObjects<GameObject>(reference).ToList();
+        }
+        
         Vector2 playerPos = gameObject.transform.position;
         Type type = item.GetType();
         if (type == typeof(MeleeWeapon) || item.GetType().IsSubclassOf(typeof(MeleeWeapon)))
         {
-            GameObject meleeWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Melee/{item.name}") as GameObject;
-            Instantiate(meleeWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
+            GameObject meleeWeapon = assets.Where(i => i.GetComponent<ItemManager>().GetItem().ItemName == item.ItemName).FirstOrDefault();
+            go = Instantiate(meleeWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
         else if (type == typeof(RangedWeapon) || item.GetType().IsSubclassOf(typeof(RangedWeapon)))
         {
-            GameObject rangedWeapon = (GameObject)Resources.Load($"Prefabs/WeaponPrefab/Ranged/{item.name}") as GameObject;
-            Instantiate(rangedWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
+            GameObject rangedWeapon = assets.Where(i => i.GetComponent<ItemManager>().GetItem().ItemName == item.ItemName).FirstOrDefault();
+            go = Instantiate(rangedWeapon, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
         else if (item.GetType() == typeof(ActiveItem) || item.GetType().IsSubclassOf(typeof(ActiveItem)))
         {
-            GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
-            Instantiate(activeItem, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
+           
+            GameObject activeItem = assets.Where(i => i.GetComponent<ItemManager>().GetItem().ItemName == item.ItemName).FirstOrDefault();
+            if (activeItem != null)
+            // GameObject activeItem = (GameObject)Resources.Load($"Prefabs/ActiveItemPrefabs/{item.name}") as GameObject;
+                go = Instantiate(activeItem, playerPos + new Vector2(0, -0.25f), gameObject.transform.rotation);
         }
+        go.transform.SetParent(player.currentRoom.gameObject.transform);
 
     }
     private void DropUsableItem(UsableItem item)
@@ -496,13 +522,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
+    public ActiveItemState GetState(){
+        return state;
+    }
     // Active Item Usage
 
     float cooldownTime;
     float activeTime;
 
-    enum ActiveItemState
+    public enum ActiveItemState
     {
         ready,
         active,
@@ -519,6 +547,13 @@ public class Inventory : MonoBehaviour
                 PeriodiclePassiveItems[i].triggerEffect();
             }
         }
+    }
+    public UsableItem GetUsableItem(UsableItem.UsableItemtype itemtype){
+        var p = Utils.LoadIRessourceLocations<ScriptableObject>(new string[] { "ScriptableObject", "UsableItem" });
+        var name = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemtype.ToString().ToLower());
+        var item = Utils.LoadItemByName<UsableItem>(p, name);
+        
+        return item;
     }
     void Update()
     {

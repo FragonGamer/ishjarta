@@ -21,7 +21,6 @@ public class AddArmor : PassiveItem
             inv.AddUsableItem(armor);
 
 
-            Inventory.instance.RemovePeriodiclePassiveItem(this);
         });
     }
 

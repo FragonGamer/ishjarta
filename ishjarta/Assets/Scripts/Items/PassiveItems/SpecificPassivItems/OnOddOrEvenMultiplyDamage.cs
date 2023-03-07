@@ -52,6 +52,5 @@ public class OnOddOrEvenMultiplyDamage : PassiveItem
         {
             playerObject.RemoveDamageModifierer(multiplier);
         }
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
     }
 }

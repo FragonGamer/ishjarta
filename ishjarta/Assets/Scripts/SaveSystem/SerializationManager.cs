@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -31,7 +32,7 @@ public class SerializationManager
 
     public static object Load(string saveName, out bool loaded)
     {
-        string path = savePath + @"\" + saveName + ".save";
+        string path = savePath + @"/" + saveName + ".save";
         if (!File.Exists(path))
         {
             Debug.Log("Path: "+path+" does not exist");
@@ -51,8 +52,9 @@ public class SerializationManager
             loaded = true;
             return save;
         }
-        catch
+        catch(Exception ex)
         {
+            Debug.LogError(ex.ToString());
             Debug.LogError($"Failed to load file at path: {path}");
             fileStream.Close();
             loaded = false;

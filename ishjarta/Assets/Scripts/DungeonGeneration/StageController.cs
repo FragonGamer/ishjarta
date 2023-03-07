@@ -22,7 +22,6 @@ public class StageController : MonoBehaviour
     GameObject HUD;
     int nextRoomId = 0;
     public bool CreateRooms = true;
-
     public List<Room> worldRooms { get; private set; } = new List<Room>();
 
     //2D array for tracking position and doors of room cells
@@ -45,6 +44,9 @@ public class StageController : MonoBehaviour
     public IList<IResourceLocation> enemyAssets { get; private set; }
     public List<LevelName> stageNames { get; private set; }
     private int currentStageCounter;
+    public int GetCurrentStageCounter(){
+        return currentStageCounter;
+    }
     public LevelName currentStageName { get; private set; }
 
     int SetMaxRooms()
@@ -143,6 +145,7 @@ public class StageController : MonoBehaviour
         {
             room.ConnectDoors();
         }
+       
 
         foreach (var item in worldRooms)
         {
@@ -158,6 +161,10 @@ public class StageController : MonoBehaviour
         SetEveryFreeDoorClosed();
         HUD.GetComponentInChildren<Minimap>().AddRoomsToMinimap(worldRooms);
 
+        AstarPath.active.Scan();
+         foreach (var room in worldRooms){
+            room.InitLocking();
+        }
         if (!TestGeneration)
         {
             SetEveryRoomInvisible();

@@ -4,6 +4,9 @@ using TMPro;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
+using System.Linq.Expressions;
+using System;
 
 public class HUDManager : MonoBehaviour
 {
@@ -70,17 +73,27 @@ public class HUDManager : MonoBehaviour
         ItemInfoUI.SetActive(false);
         
     }
+   
     private void UpdateItemInfoUI(){
+        var activeitem = Inventory.instance.GetActiveItem();
+        if (activeitem != null){
+            if(Inventory.instance.GetState() == Inventory.ActiveItemState.cooldown){
+                ActiveItemSprite.color  = new Color32(150,150,150,100);
+            }
+            else{
+                ActiveItemSprite.color  = new Color32(255,255,225,100);
+            }
+        }
         nearestItemManager = player.nearestItemManager;
         if(nearestItemManager == null) return;
         var isItemInRange = nearestItemManager.isInRange ? true : false;
         if(isItemInRange){
             var item = nearestItemManager.GetItem();
             StringBuilder stringBuilder = new StringBuilder();
-
+            
             stringBuilder.AppendLine($"{item.ItemName}");
             stringBuilder.AppendLine();
-            if(nearestItemManager.showFullDescription) stringBuilder.AppendLine($"{item.fullDescription}");
+            if(player.canSeeFullDesc) stringBuilder.AppendLine($"{item.fullDescription}");
             else stringBuilder.AppendLine($"{item.description}");
             stringBuilder.AppendLine();
 

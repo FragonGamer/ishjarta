@@ -13,6 +13,7 @@ public class Player : Entity
     [SerializeField] GameObject FirePoint;
     [SerializeField] int rangeModifier;
     [SerializeField] public ItemManager nearestItemManager = null;
+    public bool canSeeFullDesc = false;
     [SerializeField] int luck;
     [SerializeField] private float timeRanged = 0.0f;
     [SerializeField] private float timeMelee = 0.0f;
@@ -151,7 +152,24 @@ public class Player : Entity
         DamageModifier -= DM;
 
     }
+ public void AddSpeedModifierer(float sp)
+    {
+        this.SpeedModifier += sp;
+    }
+    public void RemoveSpeedModifierer(float sp)
+    {
+        SpeedModifier -= sp;
 
+    }
+    public void AddAttackRate(int ar)
+    {
+        AttackRate += ar;
+    }
+    public void RemoveAttackRate(int ar)
+    {
+        AttackRate -= ar;
+
+    }
 
     public List<BaseEffect> GetCurrentEffects =>
         inventory.CurrentWeapon is MeleeWeapon || inventory.CurrentWeapon is RangedWeapon ?
@@ -180,7 +198,6 @@ public class Player : Entity
                 pc.points = v;
                 var angleOfAttack = Vector2.Angle(v[1],v[3]);
 
-                //TODO: Give the particle system the right angle
                 attackParticleSystem.transform.localRotation = Quaternion.Euler(0, 0, (angle * Mathf.Rad2Deg)-angleOfAttack/2);
                 var shape = attackParticleSystem.shape;
                 shape.arc = angleOfAttack;
@@ -221,7 +238,7 @@ public class Player : Entity
             Destroy(projectile, 10f);
         }
     }
-    public override async void Attack(Vector2 mousePos, float damageChargeModifier)
+    public override void Attack(Vector2 mousePos, float damageChargeModifier)
     {
         if (GetComponent<PolygonCollider2D>() == null && inventory.CurrentWeapon is MeleeWeapon melWeapon)
         {

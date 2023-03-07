@@ -218,13 +218,13 @@ public abstract class Entity : MonoBehaviour
                     statusEffectHandler.RemoveEffect(baseEffect);
                 }
             }
-            DamageModifier = strengthBoost;
+            DamageModifier += strengthBoost;
         }
         else
-            DamageModifier = 1f;
+            DamageModifier = DamageModifier;
 
         HUDManager.instance.UpdateAllSpritesAndText();
-        SpeedModifier = 1 + speedBoost - speedDelay;
+        // SpeedModifier =  1 + speedBoost - speedDelay;
         //float speedBoost = 1, speedDelay = 1;
         //BaseEffect baseEffect = statusEffectHandler.Frost;
         //if (baseEffect != null)

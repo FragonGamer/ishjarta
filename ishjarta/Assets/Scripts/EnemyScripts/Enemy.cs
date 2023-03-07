@@ -122,6 +122,9 @@ public class Enemy : Entity
         }
 
         gameObject.GetComponent<AIPath>().canMove = false;
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        if(TryGetComponent<EnemyMeeleAttack>(out var enemyMeeleAttack))
+            enemyMeeleAttack.enabled = false;
         animator.SetBool("isDead", true);
         room.RemoveEnemy(this);
     }
@@ -130,7 +133,8 @@ public class Enemy : Entity
     {
         slime,
         rangedSlime,
-        skeleton
+        skeleton,
+        spawner
     }
 
 }

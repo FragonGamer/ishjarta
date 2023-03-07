@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class PassiveItem : Item, PassivItemInterface
 {
     public PassivItemtype ItemType { get; set; }
-
+    [SerializeField] public bool isPeriodicle = false;
     public enum PassivItemtype
     {
         speedFlower

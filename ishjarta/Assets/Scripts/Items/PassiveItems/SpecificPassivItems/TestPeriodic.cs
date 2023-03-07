@@ -12,6 +12,5 @@ public class TestPeriodic : PassiveItem
 
     public override void removeEffect()
     {
-        Inventory.instance.RemovePeriodiclePassiveItem(this);
     }
 }

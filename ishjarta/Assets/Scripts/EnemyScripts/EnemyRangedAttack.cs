@@ -51,7 +51,7 @@ public class EnemyRangedAttack : MonoBehaviour
             if (time >= AttackRate)
             {
                 Debug.Log("Raycasting");
-                var hit = Physics2D.Raycast(transform.position, target.position - transform.position, Mathf.Infinity, LayerMask.GetMask("Player"));
+                var hit = Physics2D.Raycast(transform.position, target.position - transform.position, Mathf.Infinity, LayerMask.GetMask("Entity","Obstacle","Walls"));
                 if (hit == true && hit.collider.CompareTag("Player"))
                 {
                     Debug.Log("Hit a player");
@@ -72,8 +72,8 @@ public class EnemyRangedAttack : MonoBehaviour
                 }
                 time = 0.0f;
             }
-            time += Time.deltaTime;
         }
+        time += Time.deltaTime;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

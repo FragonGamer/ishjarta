@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyMeeleAttack : MonoBehaviour
 {
+    [SerializeField] public Animator animator;
     [SerializeField] public int MeeleDamage;
     [SerializeField] public float AttackRate;
     private float time = 0.0f;
@@ -39,42 +40,52 @@ public class EnemyMeeleAttack : MonoBehaviour
     {
         if (enemyScript.isInRange == true)
         {
-                if (playerCollider != null)
+            if (playerCollider != null)
+            {
+                if (time >= AttackRate)
                 {
-                    if (time >= AttackRate)
+                    time = 0.0f;
+
+                    //Add effect to the player
+                    //playerCollider.gameObject.GetComponent<Player>().AddEffect(enemyScript.EmitEffect);
+
+                    //playerCollider.gameObject.GetComponent<Player>().ReceiveDamage(MeeleDamage);
+
+                    Vector2 lookdir = playerCollider.gameObject.transform.position
+                    - enemyScript.gameObject.transform.position;
+                    float angle = Mathf.Atan2(lookdir.y, lookdir.x);
+                    if (angle < 0)
+                        angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
+
+                    Vector2[] v = new Vector2[]
                     {
-                        time = 0.0f;
-
-                        //Add effect to the player
-                        //playerCollider.gameObject.GetComponent<Player>().AddEffect(enemyScript.EmitEffect);
-
-                        //playerCollider.gameObject.GetComponent<Player>().ReceiveDamage(MeeleDamage);
-
-                        Vector2 lookdir = playerCollider.gameObject.transform.position
-                        - enemyScript.gameObject.transform.position;
-                        float angle = Mathf.Atan2(lookdir.y, lookdir.x);
-                        if (angle < 0)
-                            angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
-
-                        Vector2[] v = new Vector2[]
-                        {
                                 new Vector2 {x = 0, y = 0},
                                 Entity.RotateVector2(new Vector2 {x = enemyScript.Range * (0.7f), y = enemyScript.Width}, angle),
                                 Entity.RotateVector2(new Vector2 {x = enemyScript.Range, y = 0}, angle),
                                 Entity.RotateVector2(new Vector2 {x = enemyScript.Range * (0.7f), y = enemyScript.Width * (-1)}, angle)
-                        };
+                    };
 
-                        //Debug.Log($"Angle: {angle}, x: {v[2].x}, y: {v[2].y}");
+                    //Debug.Log($"Angle: {angle}, x: {v[2].x}, y: {v[2].y}");
+                    if (animator != null)
+                    {
+                        try
+                        {
+                            animator.SetBool("attack", true);
+                        }
+                        catch (Exception)
+                        {
 
-
-                        PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();
-                        pc.isTrigger = true;
-                        pc.points = v;
-
-                        Destroy(pc, 0.2f);
+                            throw;
+                        }
                     }
-                        time += Time.deltaTime;
+                    PolygonCollider2D pc = this.gameObject.AddComponent<PolygonCollider2D>();
+                    pc.isTrigger = true;
+                    pc.points = v;
+
+                    Destroy(pc, 0.2f);
                 }
+                time += Time.deltaTime;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
