@@ -16,10 +16,11 @@ MonoBehaviour:
   description: Magic ring of Odin, symbol of wealth and abundance
   fullDescription: Get 50 coins
   isBuyable: 0
-  <Icon>k__BackingField: {fileID: -1471337798, guid: 1de33a85ac23b8db08805475e340a27c, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 1de33a85ac23b8db08805475e340a27c, type: 3}
   <Rarity>k__BackingField: 15
   <Price>k__BackingField: 25
   <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
+  isPeriodicle: 0
   Amount: 50

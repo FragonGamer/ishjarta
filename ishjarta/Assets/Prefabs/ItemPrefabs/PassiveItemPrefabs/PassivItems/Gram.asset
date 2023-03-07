@@ -16,7 +16,7 @@ MonoBehaviour:
   description: The sword of Sigurd (Siegfried), the dragon slayer
   fullDescription: Adds damage, attack speed and movementspeed
   isBuyable: 0
-  <Icon>k__BackingField: {fileID: -1471337798, guid: 0226673b88b3d8170bba7274e34b27e8, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 0226673b88b3d8170bba7274e34b27e8, type: 3}
   <Rarity>k__BackingField: 2
   <Price>k__BackingField: 40
   <SpawnLevelPool>k__BackingField: 00000000

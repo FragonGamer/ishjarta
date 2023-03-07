@@ -17,7 +17,7 @@ MonoBehaviour:
     on it that brings death to anyone who acquires it
   fullDescription: Chance to double your coins or die instantly
   isBuyable: 0
-  <Icon>k__BackingField: {fileID: -1471337798, guid: 7607478821233cfa884a8b96129a2e7a, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 7607478821233cfa884a8b96129a2e7a, type: 3}
   <Rarity>k__BackingField: 15
   <Price>k__BackingField: 15
   <SpawnLevelPool>k__BackingField: 00000000

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Horn of the god Heimdall, signal horn that calls the gods of Asgard
   fullDescription: Every enemy in the room takes damage
   isBuyable: 0
-  <Icon>k__BackingField: {fileID: -1471337798, guid: cbffe3683d097c263819dbd1efd612a8, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: cbffe3683d097c263819dbd1efd612a8, type: 3}
   <Rarity>k__BackingField: 2
   <Price>k__BackingField: 50
   <SpawnLevelPool>k__BackingField: 00000000
