@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,9 +34,11 @@ float KnockbackStrength = 10f;
                 audiosource.Play();
 
                 //hitsound.Play();
-
+                var aiPath = enemy.GetComponent<AIPath>();
                 Vector2 recoilDirection = (enemy.transform.position - player.transform.position).normalized;
-                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength,ForceMode2D.Impulse);
+                aiPath.enabled = false;
+                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength, ForceMode2D.Impulse);
+                aiPath.enabled = true;
             }
             else if (this.gameObject.tag == "Player")
             {
@@ -46,7 +49,7 @@ float KnockbackStrength = 10f;
                 player.AddEffect(enemy.EmitEffect);
 
                 Vector2 recoilDirection = (player.transform.position - enemy.transform.position).normalized;
-                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength,ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength, ForceMode2D.Impulse);
 
                 StartCoroutine(ChangeColor(this.gameObject));
             }
