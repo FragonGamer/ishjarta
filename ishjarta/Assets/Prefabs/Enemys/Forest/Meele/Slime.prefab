@@ -188,15 +188,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f0d7f5352c48f4ba5eba2cdf560f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
-  <MaxHealth>k__BackingField: 100
-  <BaseHealth>k__BackingField: 100
+  currentHealth: 60
+  <MaxHealth>k__BackingField: 60
+  <BaseHealth>k__BackingField: 60
   <HealthModifier>k__BackingField: 1
   <Resistance>k__BackingField: 0
   <CurrentResistance>k__BackingField: 0
   <MovementSpeed>k__BackingField: 1
   <SpeedModifier>k__BackingField: 1
-  <BaseDamage>k__BackingField: 5
+  <BaseDamage>k__BackingField: 3
   <DamageModifier>k__BackingField: 1
   <AttackRate>k__BackingField: 1
   <Range>k__BackingField: 1.2
@@ -521,11 +521,11 @@ PrefabInstance:
       objectReference: {fileID: 7939937297367134493}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_RootOrder
@@ -549,11 +549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -573,15 +573,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3882414637596578855, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -619,7 +619,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1875364318825237842, guid: fd310dc2bcbf872aaa6d2c8e5b31220c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -35,7 +35,7 @@ float KnockbackStrength = 10f;
                 //hitsound.Play();
 
                 Vector2 recoilDirection = (enemy.transform.position - player.transform.position).normalized;
-                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength);
+                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength,ForceMode2D.Impulse);
             }
             else if (this.gameObject.tag == "Player")
             {
@@ -46,7 +46,7 @@ float KnockbackStrength = 10f;
                 player.AddEffect(enemy.EmitEffect);
 
                 Vector2 recoilDirection = (player.transform.position - enemy.transform.position).normalized;
-                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength);
+                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength,ForceMode2D.Impulse);
 
                 StartCoroutine(ChangeColor(this.gameObject));
             }
