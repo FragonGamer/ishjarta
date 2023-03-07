@@ -92,23 +92,22 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            inv.<a class="code" href="classInventory.html#ad71452f11f0b55b9af71eef326ca5e3c">AddUsableItem</a>(armor);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="classInventory.html">Inventory</a>.instance.RemovePeriodiclePassiveItem(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        });</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> removeEffect()</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        var p = Utils.LoadIRessourceLocations&lt;ScriptableObject&gt;(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { <span class="stringliteral">&quot;ScriptableObject&quot;</span>, <span class="stringliteral">&quot;UsableItem&quot;</span> });</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        var armor = Utils.LoadItemByName&lt;<a class="code" href="classUsableItem.html">UsableItem</a>&gt;(p, <span class="stringliteral">&quot;Armor&quot;</span>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        var inv = <a class="code" href="classInventory.html">Inventory</a>.instance;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        armor.Amount = Amount;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classInventory.html">Inventory</a>.instance.<a class="code" href="classInventory.html#a95696f9b4e4c0640422f538619c9acbf">DropItem</a>(armor);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        });</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> removeEffect()</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        var p = Utils.LoadIRessourceLocations&lt;ScriptableObject&gt;(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { <span class="stringliteral">&quot;ScriptableObject&quot;</span>, <span class="stringliteral">&quot;UsableItem&quot;</span> });</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        var armor = Utils.LoadItemByName&lt;<a class="code" href="classUsableItem.html">UsableItem</a>&gt;(p, <span class="stringliteral">&quot;Armor&quot;</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        var inv = <a class="code" href="classInventory.html">Inventory</a>.instance;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        armor.Amount = Amount;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classInventory.html">Inventory</a>.instance.<a class="code" href="classInventory.html#a95696f9b4e4c0640422f538619c9acbf">DropItem</a>(armor);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 <div class="ttc" id="aclassAddArmor_html"><div class="ttname"><a href="classAddArmor.html">AddArmor</a></div><div class="ttdef"><b>Definition:</b> <a href="AddArmor_8cs_source.html#l00009">AddArmor.cs:10</a></div></div>
 <div class="ttc" id="aclassInventory_html"><div class="ttname"><a href="classInventory.html">Inventory</a></div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00010">Inventory.cs:11</a></div></div>
-<div class="ttc" id="aclassInventory_html_a95696f9b4e4c0640422f538619c9acbf"><div class="ttname"><a href="classInventory.html#a95696f9b4e4c0640422f538619c9acbf">Inventory.DropItem</a></div><div class="ttdeci">void DropItem(Item item)</div><div class="ttdoc">Drops Item from Inventory and spawns it back into the world</div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00386">Inventory.cs:386</a></div></div>
-<div class="ttc" id="aclassInventory_html_ad71452f11f0b55b9af71eef326ca5e3c"><div class="ttname"><a href="classInventory.html#ad71452f11f0b55b9af71eef326ca5e3c">Inventory.AddUsableItem</a></div><div class="ttdeci">void AddUsableItem(UsableItem item)</div><div class="ttdoc">Checks Usable Item Type and uses that to increase the amount</div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00276">Inventory.cs:276</a></div></div>
+<div class="ttc" id="aclassInventory_html_a95696f9b4e4c0640422f538619c9acbf"><div class="ttname"><a href="classInventory.html#a95696f9b4e4c0640422f538619c9acbf">Inventory.DropItem</a></div><div class="ttdeci">void DropItem(Item item)</div><div class="ttdoc">Drops Item from Inventory and spawns it back into the world</div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00390">Inventory.cs:390</a></div></div>
+<div class="ttc" id="aclassInventory_html_ad71452f11f0b55b9af71eef326ca5e3c"><div class="ttname"><a href="classInventory.html#ad71452f11f0b55b9af71eef326ca5e3c">Inventory.AddUsableItem</a></div><div class="ttdeci">void AddUsableItem(UsableItem item)</div><div class="ttdoc">Checks Usable Item Type and uses that to increase the amount</div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00278">Inventory.cs:278</a></div></div>
 <div class="ttc" id="aclassPassiveItem_html"><div class="ttname"><a href="classPassiveItem.html">PassiveItem</a></div><div class="ttdef"><b>Definition:</b> <a href="PassiveItem_8cs_source.html#l00006">PassiveItem.cs:7</a></div></div>
 <div class="ttc" id="aclassUsableItem_html"><div class="ttname"><a href="classUsableItem.html">UsableItem</a></div><div class="ttdef"><b>Definition:</b> <a href="UsableItem_8cs_source.html#l00006">UsableItem.cs:7</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

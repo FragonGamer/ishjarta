@@ -1,5 +1,5 @@
 <map id="Door" name="Door">
-<area shape="rect" id="node1" title="Represents a door of a room. Contains features for connecting to other doors, closing a door etc." alt="" coords="75,81,128,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="75,81,128,108"/>
 <area shape="rect" id="node3" href="$classRoom.html" title="Represents a room of the level. Contains all doors of a room and controls the game flow." alt="" coords="71,185,131,212"/>
 <area shape="rect" id="node2" title=" " alt="" coords="121,5,245,32"/>
 </map>

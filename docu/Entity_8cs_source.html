@@ -289,13 +289,13 @@ $(function() {
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                    statusEffectHandler.<a class="code" href="classStatusEffectHandler.html#a4a226a82cb36732b64d44fb0fbba58e3">RemoveEffect</a>(baseEffect);</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                }</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            }</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            DamageModifier = strengthBoost;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            DamageModifier += strengthBoost;</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            DamageModifier = 1f;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            DamageModifier = DamageModifier;</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        HUDManager.instance.UpdateAllSpritesAndText();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        SpeedModifier = 1 + speedBoost - speedDelay;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="comment">// SpeedModifier =  1 + speedBoost - speedDelay;</span></div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="comment">//float speedBoost = 1, speedDelay = 1;</span></div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="comment">//BaseEffect baseEffect = statusEffectHandler.Frost;</span></div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="comment">//if (baseEffect != null)</span></div>

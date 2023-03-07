@@ -81,20 +81,18 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        var player = <a class="code" href="classPlayerManager.html">PlayerManager</a>.instance.player.GetComponent&lt;<a class="code" href="classPlayer.html">Player</a>&gt;();</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        player.AddToMaxHealth(Amount);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        player.AddToCurrentHealth(Amount);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="classInventory.html">Inventory</a>.instance.RemovePeriodiclePassiveItem(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    }</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> removeEffect()</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        var player = <a class="code" href="classPlayerManager.html">PlayerManager</a>.instance.player.GetComponent&lt;<a class="code" href="classPlayer.html">Player</a>&gt;();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        player.RemoveFromMaxHealth(Amount);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (player.CurrentHealth - Amount &gt; 0)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            player.RemoveFromMaxHealth(Amount);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="ttc" id="aclassInventory_html"><div class="ttname"><a href="classInventory.html">Inventory</a></div><div class="ttdef"><b>Definition:</b> <a href="Inventory_8cs_source.html#l00010">Inventory.cs:11</a></div></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">void</span> removeEffect()</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        var player = <a class="code" href="classPlayerManager.html">PlayerManager</a>.instance.player.GetComponent&lt;<a class="code" href="classPlayer.html">Player</a>&gt;();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        player.RemoveFromMaxHealth(Amount);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (player.CurrentHealth - Amount &gt; 0)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            player.RemoveFromMaxHealth(Amount);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 <div class="ttc" id="aclassPassiveItem_html"><div class="ttname"><a href="classPassiveItem.html">PassiveItem</a></div><div class="ttdef"><b>Definition:</b> <a href="PassiveItem_8cs_source.html#l00006">PassiveItem.cs:7</a></div></div>
 <div class="ttc" id="aclassPlayerManager_html"><div class="ttname"><a href="classPlayerManager.html">PlayerManager</a></div><div class="ttdef"><b>Definition:</b> <a href="PlayerManager_8cs_source.html#l00005">PlayerManager.cs:6</a></div></div>
 <div class="ttc" id="aclassPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdef"><b>Definition:</b> <a href="Player_8cs_source.html#l00008">Player.cs:9</a></div></div>

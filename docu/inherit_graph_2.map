@@ -1,3 +1,44 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structColorData.html" title=" " alt="" coords="5,5,92,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,943,129,969"/>
+<area shape="rect" id="node2" href="$classBaseMenuController.html" title="BaseController for the MainMenuController and the PauseMenuController" alt="" coords="220,31,375,57"/>
+<area shape="rect" id="node5" href="$classCameraFollow.html" title=" " alt="" coords="240,81,355,108"/>
+<area shape="rect" id="node6" href="$classDoor.html" title=" " alt="" coords="271,132,324,159"/>
+<area shape="rect" id="node7" href="$classDoorTrigger.html" title=" " alt="" coords="249,183,346,209"/>
+<area shape="rect" id="node8" href="$classEffectAreaTrigger.html" title=" " alt="" coords="231,233,364,260"/>
+<area shape="rect" id="node9" href="$classEffectAreaTriggerForFrost.html" title=" " alt="" coords="205,284,390,311"/>
+<area shape="rect" id="node10" href="$classEffectAreaTriggerForIncernation.html" title=" " alt="" coords="184,335,411,361"/>
+<area shape="rect" id="node11" href="$classEffectAreaTriggerForPoisining.html" title=" " alt="" coords="191,385,403,412"/>
+<area shape="rect" id="node12" href="$classEffectAreaTriggerForRegeneration.html" title=" " alt="" coords="177,436,417,463"/>
+<area shape="rect" id="node13" href="$classEffectAreaTriggerForSpeed.html" title=" " alt="" coords="201,487,394,513"/>
+<area shape="rect" id="node14" href="$classEffectAreaTriggerForSpeeds.html" title=" " alt="" coords="197,537,397,564"/>
+<area shape="rect" id="node15" href="$classEffectAreaTriggerForStrength.html" title=" " alt="" coords="193,588,401,615"/>
+<area shape="rect" id="node16" href="$classEndPosition.html" title="Represents the end point of a level. For triggering the reset of a level" alt="" coords="248,639,347,665"/>
+<area shape="rect" id="node17" href="$classEnemyHealthBar.html" title=" " alt="" coords="231,689,363,716"/>
+<area shape="rect" id="node18" href="$classEnemyMeeleAttack.html" title=" " alt="" coords="223,740,372,767"/>
+<area shape="rect" id="node19" href="$classEnemyPathPattern.html" title=" " alt="" coords="227,791,368,817"/>
+<area shape="rect" id="node20" href="$classEnemyRangedAttack.html" title=" " alt="" coords="218,841,377,868"/>
+<area shape="rect" id="node21" href="$classEnemySpawner.html" title=" " alt="" coords="236,892,359,919"/>
+<area shape="rect" id="node22" href="$classEntity.html" title=" " alt="" coords="267,943,327,969"/>
+<area shape="rect" id="node25" href="$classEntityDamageTrigger.html" title=" " alt="" coords="218,993,377,1020"/>
+<area shape="rect" id="node26" href="$classHealthBar.html" title=" " alt="" coords="254,1044,341,1071"/>
+<area shape="rect" id="node27" href="$classInventory.html" title=" " alt="" coords="255,1095,339,1121"/>
+<area shape="rect" id="node28" href="$classItemManager.html" title=" " alt="" coords="243,1145,352,1172"/>
+<area shape="rect" id="node29" href="$classItemspawner.html" title=" " alt="" coords="244,1196,351,1223"/>
+<area shape="rect" id="node30" href="$classLoadPrefs.html" title="This class loads the player&#45;settings" alt="" coords="254,1247,341,1273"/>
+<area shape="rect" id="node31" href="$classMerchant.html" title=" " alt="" coords="256,1297,339,1324"/>
+<area shape="rect" id="node32" href="$classMessy_1_1TMPSizeFitter.html" title=" " alt="" coords="220,1348,375,1375"/>
+<area shape="rect" id="node33" href="$classMinimap.html" title=" " alt="" coords="258,1399,337,1425"/>
+<area shape="rect" id="node34" href="$classMinimapCamera.html" title=" " alt="" coords="232,1449,363,1476"/>
+<area shape="rect" id="node35" href="$classPinUIElement.html" title=" " alt="" coords="242,1500,353,1527"/>
+<area shape="rect" id="node36" href="$classPlayerManager.html" title=" " alt="" coords="237,1551,357,1577"/>
+<area shape="rect" id="node37" href="$classProjectile.html" title=" " alt="" coords="256,1601,339,1628"/>
+<area shape="rect" id="node38" href="$classRoom.html" title="Represents a room of the level. Contains all doors of a room and controls the game flow." alt="" coords="267,1652,327,1679"/>
+<area shape="rect" id="node39" href="$classSaveManager.html" title="This class manages the save&#45;system" alt="" coords="242,1703,353,1729"/>
+<area shape="rect" id="node40" href="$classStageController.html" title=" " alt="" coords="236,1753,359,1780"/>
+<area shape="rect" id="node41" href="$classStartPosition.html" title="Represents the starting position of a level where the player will be spawned. Should only exist once." alt="" coords="245,1804,350,1831"/>
+<area shape="rect" id="node42" href="$classUnitSound.html" title=" " alt="" coords="253,1855,342,1881"/>
+<area shape="rect" id="node3" href="$classMenuController.html" title="The controller for the MainMenu" alt="" coords="484,5,607,32"/>
+<area shape="rect" id="node4" href="$classPauseMenuController.html" title="Controller for the PauseMenu" alt="" coords="465,56,625,83"/>
+<area shape="rect" id="node23" href="$classEnemy.html" title=" " alt="" coords="512,917,579,944"/>
+<area shape="rect" id="node24" href="$classPlayer.html" title=" " alt="" coords="514,968,577,995"/>
 </map>

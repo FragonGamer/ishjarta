@@ -122,7 +122,7 @@ $(function() {
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">if</span> (time &gt;= AttackRate)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                Debug.Log(<span class="stringliteral">&quot;Raycasting&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                var hit = Physics2D.Raycast(transform.position, target.position - transform.position, Mathf.Infinity, LayerMask.GetMask(<span class="stringliteral">&quot;Player&quot;</span>));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                var hit = Physics2D.Raycast(transform.position, target.position - transform.position, Mathf.Infinity, LayerMask.GetMask(<span class="stringliteral">&quot;Entity&quot;</span>,<span class="stringliteral">&quot;Obstacle&quot;</span>,<span class="stringliteral">&quot;Walls&quot;</span>));</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">if</span> (hit == <span class="keyword">true</span> &amp;&amp; hit.collider.CompareTag(<span class="stringliteral">&quot;Player&quot;</span>))</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                {</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                    Debug.Log(<span class="stringliteral">&quot;Hit a player&quot;</span>);</div>
@@ -143,8 +143,8 @@ $(function() {
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                time = 0.0f;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            time += Time.deltaTime;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        time += Time.deltaTime;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> OnTriggerExit2D(Collider2D collision)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>

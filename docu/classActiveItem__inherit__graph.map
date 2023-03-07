@@ -1,8 +1,11 @@
 <map id="ActiveItem" name="ActiveItem">
-<area shape="rect" id="node1" title=" " alt="" coords="156,155,249,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="344,155,437,181"/>
 <area shape="rect" id="node4" href="$classActiveEffectItem.html" title=" " alt="" coords="5,229,136,256"/>
-<area shape="rect" id="node5" href="$classDashItem.html" title=" " alt="" coords="160,229,245,256"/>
-<area shape="rect" id="node6" href="$classSpawnItem.html" title=" " alt="" coords="270,229,365,256"/>
-<area shape="rect" id="node2" href="$classItem.html" title=" " alt="" coords="177,80,229,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="138,5,267,32"/>
+<area shape="rect" id="node5" href="$classAndvaranaut.html" title=" " alt="" coords="161,229,266,256"/>
+<area shape="rect" id="node6" href="$classDashItem.html" title=" " alt="" coords="291,229,376,256"/>
+<area shape="rect" id="node7" href="$classGjallarhorn.html" title=" " alt="" coords="401,229,495,256"/>
+<area shape="rect" id="node8" href="$classGleipnir.html" title=" " alt="" coords="519,229,593,256"/>
+<area shape="rect" id="node9" href="$classSpawnItem.html" title=" " alt="" coords="617,229,711,256"/>
+<area shape="rect" id="node2" href="$classItem.html" title=" " alt="" coords="365,80,417,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="326,5,455,32"/>
 </map>

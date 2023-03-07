@@ -193,25 +193,29 @@ $(function() {
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        gameObject.GetComponent&lt;AIPath&gt;().canMove = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        animator.SetBool(<span class="stringliteral">&quot;isDead&quot;</span>, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        room.<a class="code" href="classRoom.html#a474461aae032a494a3d5aa28ade33290">RemoveEnemy</a>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keyword">public</span> <span class="keyword">enum</span> EnemyEnum</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        slime,</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        rangedSlime,</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        skeleton</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        gameObject.GetComponent&lt;Rigidbody2D&gt;().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">if</span>(TryGetComponent&lt;EnemyMeeleAttack&gt;(out var enemyMeeleAttack))</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            enemyMeeleAttack.enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        animator.SetBool(<span class="stringliteral">&quot;isDead&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        room.<a class="code" href="classRoom.html#a474461aae032a494a3d5aa28ade33290">RemoveEnemy</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">public</span> <span class="keyword">enum</span> EnemyEnum</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        slime,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        rangedSlime,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        skeleton,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        spawner</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
 <div class="ttc" id="aclassBaseEffect_html"><div class="ttname"><a href="classBaseEffect.html">BaseEffect</a></div><div class="ttdoc">The base from which all other effects inherit</div><div class="ttdef"><b>Definition:</b> <a href="BaseEffect_8cs_source.html#l00008">BaseEffect.cs:9</a></div></div>
 <div class="ttc" id="aclassEnemyData_html"><div class="ttname"><a href="classEnemyData.html">EnemyData</a></div><div class="ttdoc">This class is the state-storage for Enemy</div><div class="ttdef"><b>Definition:</b> <a href="EnemyData_8cs_source.html#l00009">EnemyData.cs:10</a></div></div>
 <div class="ttc" id="aclassEnemyLootDropTable_html"><div class="ttname"><a href="classEnemyLootDropTable.html">EnemyLootDropTable</a></div><div class="ttdef"><b>Definition:</b> <a href="EnemyLootDropTable_8cs_source.html#l00007">EnemyLootDropTable.cs:8</a></div></div>
 <div class="ttc" id="aclassEnemy_html"><div class="ttname"><a href="classEnemy.html">Enemy</a></div><div class="ttdef"><b>Definition:</b> <a href="Enemy_8cs_source.html#l00007">Enemy.cs:8</a></div></div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="Entity_8cs_source.html#l00009">Entity.cs:10</a></div></div>
-<div class="ttc" id="aclassRoom_html"><div class="ttname"><a href="classRoom.html">Room</a></div><div class="ttdoc">Represents a room of the level. Contains all doors of a room and controls the game flow.</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00010">Room.cs:11</a></div></div>
-<div class="ttc" id="aclassRoom_html_a474461aae032a494a3d5aa28ade33290"><div class="ttname"><a href="classRoom.html#a474461aae032a494a3d5aa28ade33290">Room.RemoveEnemy</a></div><div class="ttdeci">void RemoveEnemy(Enemy enemy)</div><div class="ttdoc">removes enemy of enemies list in room</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00046">Room.cs:46</a></div></div>
+<div class="ttc" id="aclassRoom_html"><div class="ttname"><a href="classRoom.html">Room</a></div><div class="ttdoc">Represents a room of the level. Contains all doors of a room and controls the game flow.</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00011">Room.cs:12</a></div></div>
+<div class="ttc" id="aclassRoom_html_a474461aae032a494a3d5aa28ade33290"><div class="ttname"><a href="classRoom.html#a474461aae032a494a3d5aa28ade33290">Room.RemoveEnemy</a></div><div class="ttdeci">void RemoveEnemy(Enemy enemy)</div><div class="ttdoc">removes enemy of enemies list in room</div><div class="ttdef"><b>Definition:</b> <a href="Room_8cs_source.html#l00050">Room.cs:50</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

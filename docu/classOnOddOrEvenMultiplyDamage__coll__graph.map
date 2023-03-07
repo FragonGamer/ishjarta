@@ -9,6 +9,6 @@
 <area shape="rect" id="node8" title=" " alt="" coords="661,5,785,32"/>
 <area shape="rect" id="node9" href="$classInventory.html" title=" " alt="" coords="887,81,971,108"/>
 <area shape="rect" id="node10" href="$classRoom.html" title="Represents a room of the level. Contains all doors of a room and controls the game flow." alt="" coords="487,81,547,108"/>
-<area shape="rect" id="node11" href="$classDoor.html" title="Represents a door of a room. Contains features for connecting to other doors, closing a door etc." alt="" coords="287,185,341,212"/>
+<area shape="rect" id="node11" href="$classDoor.html" title=" " alt="" coords="287,185,341,212"/>
 <area shape="rect" id="node12" href="$classItemManager.html" title=" " alt="" coords="669,81,778,108"/>
 </map>

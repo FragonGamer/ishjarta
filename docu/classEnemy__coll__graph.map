@@ -3,7 +3,7 @@
 <area shape="rect" id="node2" href="$classEntity.html" title=" " alt="" coords="259,81,319,108"/>
 <area shape="rect" id="node3" title=" " alt="" coords="143,5,267,32"/>
 <area shape="rect" id="node4" href="$classRoom.html" title="Represents a room of the level. Contains all doors of a room and controls the game flow." alt="" coords="175,81,235,108"/>
-<area shape="rect" id="node5" href="$classDoor.html" title="Represents a door of a room. Contains features for connecting to other doors, closing a door etc." alt="" coords="5,185,59,212"/>
+<area shape="rect" id="node5" href="$classDoor.html" title=" " alt="" coords="5,185,59,212"/>
 <area shape="rect" id="node6" href="$classEnemyLootDropTable.html" title=" " alt="" coords="344,81,504,108"/>
 <area shape="rect" id="node7" title=" " alt="" coords="359,5,489,32"/>
 </map>
