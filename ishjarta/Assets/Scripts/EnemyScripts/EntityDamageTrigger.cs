@@ -5,7 +5,8 @@ using UnityEngine.Audio;
 
 public class EntityDamageTrigger : MonoBehaviour
 {
-
+[SerializeField]
+float KnockbackStrength = 10f;
     public void OnTriggerEnter2D(Collider2D collider)
     {
 
@@ -34,7 +35,7 @@ public class EntityDamageTrigger : MonoBehaviour
                 //hitsound.Play();
 
                 Vector2 recoilDirection = (enemy.transform.position - player.transform.position).normalized;
-                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * 100);
+                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength);
             }
             else if (this.gameObject.tag == "Player")
             {
@@ -45,7 +46,7 @@ public class EntityDamageTrigger : MonoBehaviour
                 player.AddEffect(enemy.EmitEffect);
 
                 Vector2 recoilDirection = (player.transform.position - enemy.transform.position).normalized;
-                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * 100);
+                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength);
 
                 StartCoroutine(ChangeColor(this.gameObject));
             }
