@@ -282,11 +282,11 @@ public class EnemyPathPattern : MonoBehaviour
             angle = (float)(Math.PI - Math.Abs(angle) + Math.PI);
 
         float attackAngle;
-        if (lookdir.magnitude <= 2.5)
+        if (lookdir.magnitude <= 1.8)
         {
             aiPath.isStopped = true;
 
-            if (lookdir.magnitude <= 2)
+            if (lookdir.magnitude <= 1.4)
             {
                 attackAngle = (angle - 180);
                 if (attackAngle >= 360)

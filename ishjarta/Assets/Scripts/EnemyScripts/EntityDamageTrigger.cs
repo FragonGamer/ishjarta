@@ -28,17 +28,14 @@ float KnockbackStrength = 10f;
                 Player player = FindObjectOfType<Player>();
                 Enemy enemy = this.gameObject.GetComponent<Enemy>();
 
-                enemy.ReceiveDamage(player.DealingDamage);
-                enemy.AddEffectRange(player.GetCurrentEffects);
+                Vector2 recoilDirection = (enemy.transform.position - player.transform.position).normalized;
+                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength, ForceMode2D.Force);
+                StartCoroutine(ChangeColor(this.gameObject));
                 var audiosource = enemy.GetComponent<AudioSource>();
                 audiosource.Play();
+                enemy.ReceiveDamage(player.DealingDamage);
+                enemy.AddEffectRange(player.GetCurrentEffects);
 
-                //hitsound.Play();
-                var aiPath = enemy.GetComponent<AIPath>();
-                Vector2 recoilDirection = (enemy.transform.position - player.transform.position).normalized;
-                aiPath.enabled = false;
-                enemy.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength, ForceMode2D.Impulse);
-                aiPath.enabled = true;
             }
             else if (this.gameObject.tag == "Player")
             {
@@ -49,7 +46,7 @@ float KnockbackStrength = 10f;
                 player.AddEffect(enemy.EmitEffect);
 
                 Vector2 recoilDirection = (player.transform.position - enemy.transform.position).normalized;
-                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(recoilDirection * KnockbackStrength, ForceMode2D.Force);
 
                 StartCoroutine(ChangeColor(this.gameObject));
             }
@@ -58,10 +55,8 @@ float KnockbackStrength = 10f;
 
     private IEnumerator ChangeColor(GameObject go)
     {
-        go.GetComponent<SpriteRenderer>().enabled = true;
-        go.GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0.5f, 0.7f);
+        go.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 0.5f, 0.5f, 0.7f);
         yield return new WaitForSeconds(0.1f);
-        go.GetComponent<SpriteRenderer>().color = Color.white;
-        go.GetComponent<SpriteRenderer>().enabled = false;
+        go.GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 }

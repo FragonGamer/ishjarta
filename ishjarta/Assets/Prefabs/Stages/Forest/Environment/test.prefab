@@ -2248,6 +2248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75295ca2c5ce94e80a50d9f53f83db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockRoom: 0
+  lockLevelAmount: 0
   hasVisited: 0
   maxOfThisRoom: -1
   isEntered: 0
@@ -2452,11 +2454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.93
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.52
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2690,11 +2692,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.95
+      value: 6.45
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.42
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6691741460952480379, guid: b490af93043c6b6429d9142841f70e67, type: 3}
       propertyPath: m_LocalPosition.z

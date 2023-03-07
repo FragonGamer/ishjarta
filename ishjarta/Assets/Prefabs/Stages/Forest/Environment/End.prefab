@@ -1676,6 +1676,10 @@ PrefabInstance:
       propertyPath: room
       value: 
       objectReference: {fileID: 4558592206793461460}
+    - target: {fileID: 3167269239400844753, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
+      propertyPath: closedDoorTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 15cfe5bc93a3c4943a7f263958dcbeeb, type: 2}
     - target: {fileID: 6685603576521750624, guid: afc79e237d128a94f85cdea11894e67e, type: 3}
       propertyPath: m_Size.x
       value: 0.05
