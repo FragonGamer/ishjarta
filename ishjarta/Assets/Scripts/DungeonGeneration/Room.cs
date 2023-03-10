@@ -37,6 +37,7 @@ public class Room : MonoBehaviour
     [SerializeField] Tile closedWallRight;
     private Tilemap ObstacleTileMap;
     [SerializeField] public Door enteredDoor;
+    GameObject levelExit = null;
     Player player;
 
     private GridPosdataType[,] roomLayout = null;
@@ -49,8 +50,16 @@ public class Room : MonoBehaviour
     {
         Enemies.Remove(enemy);
     }
+    void Awake()
+    {
+        levelExit = GameObject.FindGameObjectWithTag("LevelExit");
+        if(levelExit != null){
+            DeactivateLevelExit();
+        }
+    }
     private void Start()
     {
+
         if (gameObject.CompareTag("StartRoom"))
         {
             isEntered = true;
@@ -60,6 +69,15 @@ public class Room : MonoBehaviour
         Enemies = GetComponentsInChildren<Enemy>().ToList();
         SetCleared();
         player = FindObjectOfType<Player>();
+    }
+
+    private void DeactivateLevelExit() {
+        if(levelExit != null)
+        levelExit.SetActive(false);
+    }
+    private void ActivateLevelExit() {
+        if(levelExit != null)
+        levelExit.SetActive(true);
     }
 
     /// <summary>
@@ -201,6 +219,8 @@ public class Room : MonoBehaviour
     /// </summary>
     private void OpenRoom()
     {
+        if(levelExit != null)
+            ActivateLevelExit();
         foreach (Door door in doors.Where(door => door.GetComponent<Door>().ConnectedDoor != null).Select(go => go.GetComponent<Door>()))
         {
             if(!door.doorIsOpen && !door.isLocked)
