@@ -147,7 +147,7 @@ Transform:
   - {fileID: 5230681451430374148}
   - {fileID: 4194703556580382726}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7504484478580955689
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 20
   <DamageModifier>k__BackingField: 1
   <AttackRate>k__BackingField: 1
-  <Range>k__BackingField: 2
+  <Range>k__BackingField: 1
   <Width>k__BackingField: 0.5
   animator: {fileID: 1147722404055063327}
   spottingRange: 10

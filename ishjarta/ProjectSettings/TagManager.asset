@@ -22,6 +22,7 @@ TagManager:
   - TextObject
   - Wall
   - Astar
+  - LevelExit
   layers:
   - Default
   - TransparentFX
@@ -61,4 +62,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: levelexit
+    uniqueID: 515654849
     locked: 0
