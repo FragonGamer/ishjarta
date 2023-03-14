@@ -22,7 +22,7 @@ MonoBehaviour:
   <SpawnLevelPool>k__BackingField: 00000000
   <OwnerEffects>k__BackingField: []
   <EmitEffects>k__BackingField: []
-  <Damage>k__BackingField: 20
+  <Damage>k__BackingField: 500
   <Range>k__BackingField: 1.2
   <AttackRate>k__BackingField: 1
   <IsChargable>k__BackingField: 0
