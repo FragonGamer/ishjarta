@@ -109,7 +109,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: upload-WebGL
-          path: build
+          path: build/WebGL
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
