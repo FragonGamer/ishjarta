@@ -98,7 +98,7 @@ jobs:
           restore-keys: |
             Library-build-
             Library-
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v2.2
         env:
           projectPath: ${{ matrix.projectPath }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
