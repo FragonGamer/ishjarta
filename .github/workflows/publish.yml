@@ -118,43 +118,43 @@ jobs:
   #         target-folder: game
 
   buildAndDeployWindows:
-  needs: testAllModes
-  name: Build and Deploy Windows EXE 🖥️
-  runs-on: ubuntu-latest
-  strategy:
-    fail-fast: false
-    matrix:
-      projectPath:
-        - ishjarta
-  steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        lfs: true
-    - uses: actions/cache@v2
-      with:
-        path: ${{ matrix.projectPath }}/Library
-        key: Library-build-StandaloneWindows64
-        restore-keys: |
-          Library-build-
-          Library-
-    - uses: game-ci/unity-builder@v2.2
-      env:
-        projectPath: ${{ matrix.projectPath }}
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      with:
-        targetPlatform: StandaloneWindows64
-    - uses: actions/upload-artifact@v2
-      with:
-        name: upload-StandaloneWindows64
-        path: build/StandaloneWindows64
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: publish
-        folder: build/StandaloneWindows64
-        target-folder: game
+    needs: testAllModes
+    name: Build and Deploy Windows EXE 🖥️
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - ishjarta
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-build-StandaloneWindows64
+          restore-keys: |
+            Library-build-
+            Library-
+      - uses: game-ci/unity-builder@v2.2
+        env:
+          projectPath: ${{ matrix.projectPath }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneWindows64
+      - uses: actions/upload-artifact@v2
+        with:
+          name: upload-StandaloneWindows64
+          path: build/StandaloneWindows64
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: publish
+          folder: build/StandaloneWindows64
+          target-folder: game
 
-    
+      
